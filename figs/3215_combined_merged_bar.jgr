@@ -1,0 +1,103 @@
+
+newgraph y_translate 0.9
+
+xaxis size 1.3
+no_auto_hash_marks
+no_auto_hash_labels
+min 0
+max 12
+
+yaxis size 2
+
+label : Number of outages
+min 0
+
+legend defaults x 12 y 1500 hjr vjt 
+
+newcurve marktype xbar color 0.2 0.2 0.2 label : Not renumbered
+pts
+0.5 1517
+1.5 949
+2.5 422
+3.5 134
+4.5 228
+5.5 176
+6.5 117
+7.5 149
+8.5 94
+9.5 41
+10.5 18
+11.5 52
+
+newcurve marktype xbar color 0.8 0.8 0.8 label : Renumbered
+pts
+0.5 1378
+1.5 818
+2.5 349
+3.5 110
+4.5 203
+5.5 133
+6.5 75
+7.5 80
+8.5 40
+9.5 24
+10.5 17
+11.5 52
+
+newgraph border 
+newcurve marktype none color 0.7 0.7 0.7 linetype solid pts 0 20 12 20
+newcurve marktype none color 0.7 0.7 0.7 linetype solid pts 0 40 12 40
+newcurve marktype none color 0.7 0.7 0.7 linetype solid pts 0 60 12 60
+newcurve marktype none color 0.7 0.7 0.7 linetype solid pts 0 80 12 80
+
+xaxis  size 1.3
+no_auto_hash_marks
+no_auto_hash_labels
+label : Outage duration 
+min 0
+max 12
+hash_labels vjc hjr rotate 90
+
+hash_label at 0.5 : < 5m
+hash_label at 1.5 : 5-10m
+hash_label at 2.5 : 10-20m
+hash_label at 3.5 : 20-30m
+hash_label at 4.5 : 30-60m
+hash_label at 5.5 : 1-3h
+hash_label at 6.5 : 3-6h
+hash_label at 7.5 : 6-12h
+hash_label at 8.5 : 12-24h
+hash_label at 9.5 : 1-3d
+hash_label at 10.5 : 3d-7d
+hash_label at 11.5 : >1w
+yaxis size 0.75 
+label : % of outages
+min 0 max 100
+
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts
+0.5 100
+1.5 100
+2.5 100
+3.5 100
+4.5 100
+5.5 100
+6.5 100
+7.5 100
+8.5 100
+9.5 100
+10.5 100
+11.5 100
+
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 0.5 76.0
+0.5 90.8371786421
+1.5 86.195995785
+2.5 82.7014218009
+3.5 82.0895522388
+4.5 89.0350877193
+5.5 75.5681818182
+6.5 64.1025641026
+7.5 53.6912751678
+8.5 42.5531914894
+9.5 58.5365853659
+10.5 94.4444444444
+11.5 100.0

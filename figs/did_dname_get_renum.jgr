@@ -1,0 +1,90 @@
+
+newgraph
+
+xaxis size 6.0
+
+min 0
+max 22
+no_auto_hash_marks
+
+no_auto_hash_labels
+
+label font Helvetica fontsize 13
+hash_labels font Helvetica fontsize 11
+
+hash_label at 0.5 : TH
+hash_label at 1.5 : TW
+hash_label at 2.5 : MX
+hash_label at 3.5 : IT
+hash_label at 4.5 : DE
+hash_label at 5.5 : BR
+hash_label at 6.5 : AU
+hash_label at 7.5 : ES
+hash_label at 8.5 : PL
+hash_label at 9.5 : RU
+hash_label at 10.5 : RO
+hash_label at 11.5 : AR
+hash_label at 12.5 : CA
+hash_label at 13.5 : SE
+hash_label at 14.5 : FI
+hash_label at 15.5 : CH
+hash_label at 16.5 : GB
+hash_label at 17.5 : US
+hash_label at 18.5 : NL
+hash_label at 19.5 : NO
+hash_label at 20.5 : NZ
+hash_label at 21.5 : SI
+label hjc vjc : Geographic Location
+
+yaxis log size 2 
+min 0.8
+label font Helvetica fontsize 13
+hash_labels font Helvetica fontsize 12
+label : Number of Domains
+
+newcurve marktype xbar color 0.8 0.8 0.8 label : No address changes
+newcurve marktype xbar color 0.2 0.2 0.2 label : Address changes
+legend defaults font Helvetica fontsize 13
+
+font Helvetica fontsize 12
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 0.5 19
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 0.5 18
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 1.5 25
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 1.5 14
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 2.5 225
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 2.5 114
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 3.5 40
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 3.5 18
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 4.5 75
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 4.5 29
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 5.5 26
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 5.5 9
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 6.5 19
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 6.5 5
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 7.5 55
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 7.5 14
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 8.5 36
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 8.5 5
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 9.5 59
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 9.5 7
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 10.5 21
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 10.5 2
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 11.5 72
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 11.5 5
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 12.5 204
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 12.5 12
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 13.5 68
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 13.5 4
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 14.5 21
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 14.5 1
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 15.5 156
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 15.5 6
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 16.5 172
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 16.5 6
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 17.5 1280
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 17.5 41
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 18.5 79
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 18.5 2
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 19.5 26
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 20.5 17
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 21.5 21

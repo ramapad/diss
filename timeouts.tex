@@ -1,0 +1,378 @@
+
+% \section{Understanding false probe-loss inference due to early
+%   timeout}
+\section{Mitigating false inferences due to early timeout}
+\label{sec:timeouts}
+
+In this section, I describe how probe responses delayed beyond
+timeouts used by current probing-based techniques can lead to false
+probe-loss inferences, and thereby to false outage inferences. I 
+describe work with colleagues which
+investigated the prevalence of delayed responses in the
+Internet. Using these results, I propose an approach that will minimize responses
+delayed beyond timeouts.
+
+\subsection{Challenges in selecting a timeout for probing techniques}
+
+Conventional wisdom suggests that active probes on the Internet should timeout
+after a few seconds. The belief is that after a few seconds there is a very
+small chance that a probe and response will still exist in the
+network. Once a probe times out, the prober can free the state
+associated with the probe, thereby reclaiming memory.
+
+Conventional wisdom also suggests that a single timed out probe is
+insufficient to reason about end-host failures, due to potential random loss on
+the Internet. % When a probe experiences a timeout, it could be because
+% the end-host's last-mile link is \emph{out}, but it could also be because the
+% probe was lost elsewhere along the path.
+For most probing systems, any timed out active probes are followed up with
+retransmissions to increase the confidence that a lack of response is due to
+an outage event and not due to random loss on the Internet. These followup probes will also have a timeout that
+is generally the same as the first attempt. 
+
+Setting correct timeouts is critical for
+probing-based remote outage detection techniques. These techniques infer outages
+based upon lost probes and probe response loss is
+dependent upon the prober's timeout. Additonally, since probe timeouts trigger followup probes, setting appropriate
+timeouts is vital to these techniques. However, choosing an appropriate timeout is
+challenging. Selecting a timeout value that is too low will ignore delayed
+responses and might add to congestion by performing retransmissions to an
+already congested host. Timeout values that are too high will delay
+retransmissions that can confirm an outage. In addition, too-high timeouts
+increase the amount of state that needs to be maintained at a prober, since
+every probe will need to be stored until either the probe times out,
+or the response arrives.
+
+% Internet performance monitoring systems use a wide range of probe
+% timeouts. On the
+% shorter side, iPlane~\cite{iplane} and Hubble~\cite{hubble} send ICMP echo requests with a 2 second
+% timeout. iPlane declares a host unresponsive after one failed retransmission. Hubble waits two minutes after a failed probe then retransmits probes six times and finally declares reachability with traceroutes. On the longer side, Feamster
+% et al.~\cite{measuring-effects} used a one hour timeout after each probe. However,
+% they chose a long timeout to avoid errors due to clock drift between their
+% probing and probed hosts; they did not do so to account for links that have
+% excessive delays. PlanetSeer~\cite{planetseer} assumed that four consecutive
+% TCP timeouts (3.2-16 seconds) indicates a path anomaly. 
+
+Outage detection systems such as Trinocular~\cite{trinocular}
+and Thunderping~\cite{pingin} tend to use a 3 second timeout for active
+probes because it is the default TCP SYN/ACK
+timeout~\cite{rfc1122}. Both techniques will not infer outages if a
+single response is delayed beyond the timeout, since they send
+follow-up probes to confirm suspected outages. However, if a series of
+responses are delayed beyond the timeout, both techniques can
+potentially infer false probe-loss and therefore, false
+outages. % Ideally, we would like to detect these events as \emph{sleep}
+% events, since the probe responses are delayed, not lost.
+
+\subsection{Investigating the prevalence of delayed responses}
+
+Here, I describe work with colleagues that measured how frequently responses
+to active probes are delayed beyond timeouts set by existing
+approaches. We began by studying ping latencies from Internet-wide surveys~\cite{census-survey} conducted by ISI,
+including 9.64 billion ICMP Echo Responses from 4 million different IP
+addresses in 2015, and identified addresses that are particularly likely
+to be subject to high delay.  We then \emph{verified} the high latencies
+by repeating measurements using other probing techniques, comparing the
+statistics of various surveys, and investigating high-latency
+behavior of ICMP compared to UDP and TCP.  Finally, we
+explained these distributions by isolating satellite links,
+considering sequences of latencies at a higher sampling rate,
+and classifying a complete sample of the Internet address
+space through a modified Zmap client. In this proposal, I will highlight
+the most relevant results; detailed analyses are available in our IMC
+2015 paper~\cite{timeouts}.
+
+\subsubsection{ISI survey data reveals minute-long latencies}
+% \subsubsection{ISI survey data reveals minute-long latencies in recent
+% surveys}
+
+ISI has conducted Internet wide
+surveys~\cite{census-survey} since 2006. Each survey includes pings sent to approximately 24,000 /24
+address blocks, meant to represent 1\% of all allocated IPv4
+address space.  Once an address block is included, ICMP echo
+request probes are sent to all 256 addresses in the selected
+/24 address blocks once every 11 minutes, typically for two
+weeks. Though the probing scheme for these surveys set a timeout
+threshold of 3 seconds~\cite{census-survey}, ISI records every
+received packet, including potential responses to probes that were delayed
+beyond the prober's timeout. We determined which received packets were
+valid responses and included them in our latency analysis.
+
+We then analyzed the ping latencies of all pings obtained
+from ISI's Internet survey datasets from January and February 2015 to find reasonable timeout values. For each IP address, we found the 1st, 50th, 80th,
+90th, 95th, 98th and 99th percentile latencies. We then found the 1st, 50th,
+80th, 90th, 95th, 98th and 99th percentiles of all the 1st percentile latencies. We repeated this for each
+percentile and show the results in Table~\ref{tbl:grand_2015}.
+
+\begin{table}[tb]
+  % \begin{center}%
+    \begin{small}%
+      \hspace{-0.06in}%
+  \begin{tabular}{l@{\hspace{0.5em}}r|rrrrrrr}
+    &\multicolumn{8}{c}{\textbf{\% of pings}} \\
+    && \hdr{1\%} & \multicolumn{1}{c}{\textbf{50\%}} & \hdr{80\%} & \hdr{90\%} & \hdr{95\%} &
+    \hdr{98\%} & \hdr{99\%} \\\cline{2-9}
+    \multirow{7}{*}{\rotatebox[origin=lb]{90}{\textbf{\% of addresses}}} & 
+    \textbf{1\%} & 0.01 & 0.03 & 0.04 & 0.07 & 0.10 & 0.13 & 0.18\Tstrut \\
+%    \cline{2-9}
+    &\textbf{50\%} & 0.16 & 0.19 & 0.21 & 0.26 & 0.42 & 0.53 & 0.64 \\
+%    \cline{2-9}
+    &\textbf{80\%} & 0.19 & 0.26 & 0.33 & 0.43 & 0.54 & 0.74 & 1.21 \\
+%    \cline{2-9}
+    &\textbf{90\%} & 0.22 & 0.31 & 0.42 & 0.57 & 0.84 & 1.61 & 3\bb \\
+%    \cline{2-9}
+    &\textbf{95\%} & 0.25 & 1.42 & 2.38 & 3\bb & 5\bb & 9\bb & 15\bb \\
+%    \cline{2-9}
+    &\textbf{98\%} & 0.30 & 1.94 & 4\bb & 6\bb & 12\bb & 41\bb & 78\bb \\
+%    \cline{2-9}
+    &\textbf{99\%} & 0.33 & 2.31 & 4\bb & 8\bb & 22\bb & 76\bb & 145\bb \\
+    \end{tabular}
+    \end{small}
+    % \end{center}
+
+\vspace{\baselineskip}
+
+    \caption{Minimum timeout in seconds that would have captured c\% of pings from r\% of IP
+      addresses in two ISI survey datasets from early 2015 (where r is the row number and c is
+      the column number).}
+\label{tbl:grand_2015}
+\end{table}
+
+The 1st percentile of an address's latency will be close to the ideal latency that its link
+can provide. We found that the 1st percentile latency is below 330ms for 99\%
+of IP addresses: most addresses are capable of
+responding with low latency. Further, 50\% of pings from 50\% of the
+addresses have latencies below 190ms, showing that latencies tend to
+be low in general. 
+
+However, we see that a substantial fraction of IP addresses also have
+surprisingly high latencies. For instance, to capture 95\% of pings from 95\%
+addresses requires waiting 5 seconds.  Restated, at least 5\% of
+pings from 5\% of addresses have latencies higher than 5 seconds. Thus, even
+setting a timeout as high as 5 seconds will infer a false loss rate of 5\%
+for these addresses. At the extreme, we see 1\% of pings from 1\% of addresses
+having latency above 145 seconds!
+
+
+\begin{figure*}
+  \begin{center}
+  \includegraphics[width=\textwidth]{figs/pctile_var_over_time_for_proposal}
+  \end{center}
+  \caption{\label{fig:pctile_var_over_time}Top: Minimum timeout
+    required to capture the $c^{th}$ percentile latency sample from
+    the $c^{th}$ percentile address in each survey, organized by time.
+    Each point represents the timeout required to capture, e.g., 95\%
+    of the responses from 95\% of the addresses.}
+\end{figure*}
+
+\subsubsection{ISI survey data shows that high latencies are a recent phenomenon}
+
+These unusually high latencies led us to perform a longitudinal
+analysis of ISI's surveys and investigate if these high latencies have
+occurred consistently over time. We selected the minimum timeouts that would
+have captured 95\% of pings from 95\% of addresses, 98\% of pings from
+98\% of addresses, and 99\% of pings from 99\% of addresses and show
+these values in each survey from 2006 to 2015 in
+Figure~\ref{fig:pctile_var_over_time}. We observe that the minimum
+timeout that would have captured 95\% of pings from 95\% of addresses
+increased from 2s in 2011 to 5s in 2015, and the value for 99\% of
+pings from 99\% increased from 20s to 140s during the same
+period. These results suggest that high latencies are a relatively
+recent phenomenon. 
+
+
+
+\subsubsection{Zmap data shows that high latencies are more prevalent
+in some ASes than others}
+
+Some of the latencies in Table~\ref{tbl:grand_2015} are so high that
+we considered if they could be artifacts of ISI's probing scheme. The
+ISI survey results are derived from repeated pings to 1\% of the
+routed Internet. The Zmap project~\cite{durumeric2013zmap} offers a different
+perspective, sending a single probe to the entire Internet.
+
+Though Zmap is stateless and does not measure latencies by default, we
+modified Zmap to measure latencies. We did so by extending the ICMP
+probing module in the Zmap scanner to embed the probe send time into
+the echo request. When an echo response is received, Zmap provides
+both the time of the response as well as the embedded probe send time,
+allowing us to estimate the latency. Zmap has performed these scans
+since April 2015.
+
+\begin{figure}[tb]
+% \centering
+\begin{center}
+\includegraphics[width=3in]{figs/grand_zmap}
+\end{center}
+\caption{\label{fig:grand_zmap}%
+Distribution of RTTs for all Zmap scans performed between April to
+September 2015. Around 5\%
+of addresses have latencies greater than 1s in each scan, and 0.1\% of addresses observed latencies in excess of 75s.
+}
+\end{figure}
+
+Our first goal was to confirm that Zmap also observed high
+latencies. Figure~\ref{fig:grand_zmap} shows the distribution of latencies in 17 Zmap scans conducted between April to
+September 2015. Most responses arrive with low latency, having a median latency lower than
+250ms for each scan. However, ~5\% of addresses responded with RTTs
+greater than 1 second in each scan. Further, 0.1\% of addresses
+responded with latencies exceeding 75 seconds in each scan. These
+results corroborate the high latencies observed in the ISI data and
+demonstrate that typical timeouts would miss a significant fraction of responses.
+
+However, are these high latencies spread randomly across all addresses
+in the Internet? Or instead, are some addresses particularly likely to
+experience high latencies?
+% The former would be the case if core
+% routers in the Internet experience congestion, which could potentially
+% delay packets for a wide swath of the Internet's addresses. The latter
+% would happen if the cause of the high latencies is something to do
+% with the last-mile link, so that a few addresses experience higher delay
+% owing to some aspect of their last-mile link.
+To find how high latencies are distributed across the Internet, we
+investigated which Autonomous Systems' addresses are particularly
+likely to have high latencies. For this analysis, we used three Zmap
+scans conducted in 2015 to identify high latency addresses, conducted
+on May 22, Jun 21 and Jul 9. These scans were conducted at different
+times of the day, on different days of the week and in different
+months. For each of these Zmap scans, we used Maxmind to find the ASN
+and geographic location for every address that responded.
+
+\newcommand{\hdrbar}[1]{\multicolumn{1}{c|}{\textbf{#1}}}
+\begin{table*}[t]%
+  \begin{center}%
+  \begin{small}%
+  \begin{tabular}{ll|rrr|rrr|rrr}
+  % \begin{tabular}{r|rrr|rrr|rrr|rrr}
+  % \begin{tabular}{rl|r|rr}
+    % & & \multicolumn{3}{c|}{\textbf{April 2015}} &
+    & & 
+    \multicolumn{3}{c|}{\textbf{May 2015}} &
+    \multicolumn{3}{c|}{\textbf{June 2015}} &
+    \multicolumn{3}{c}{\textbf{July 2015}} \\ 
+    % \hdr{ASN} & \hdr{$>$1s} & \%  & \hdr{Rank} &
+    % \hline 
+    \hdr{ASN} & \hdrbar{Owner} & 
+    \hdr{$>$1s} & \%  & \hdrbar{Rank} &
+    \hdr{$>$1s} & \%  & \hdrbar{Rank} &
+    \hdr{$>$1s} & \% & \hdr{Rank} \\
+    % \hdr{$>$1s} & \% & \hdr{Rank} \\
+    \hline 
+    26599 & TELEFONICA BRASIL & 
+    % 26599 &
+    % 2,941,446 & 79.275 & 1 & 
+    3.56M & 80.4 & 1 & 
+    3.87M & 77.5 & 1 &
+    4.20M & 77.0 & 1\Tstrut \\
+
+    26615 & Tim Celular S.A. &
+    1.35M & 74.5 & 3 &
+    1.42M & 71.5 & 2 &
+    1.72M & 71.6 & 2 \\
+
+    45609 & Bharti Airtel Ltd. &
+    1.46M & 76.6 & 2 &
+    1.21M & 81.0 & 3 &
+    1.03M & 79.2 & 3 \\
+
+    22394 & Cellco Partnership &
+    0.55M & 73.4 & 8 &
+    0.58M & 73.5 & 4 &
+    0.63M & 72.7 & 4 \\
+
+    1257 & TELE2 &
+    0.67M & 69.5 & 5 &
+    0.42M & 65.5 & 9 &
+    0.58M & 67.4 & 5 \\
+
+    27831 & Colombia Movil &
+    0.53M & 68.8 & 9 &
+    0.54M & 64.3 & 5 & 
+    0.53M & 62.8 & 6 \\
+
+    6306 & VENEZOLAN &
+    0.69M & 77.3 & 4 &
+    0.41M & 76.4 & 10 &
+    0.40M & 75.7 & 10 \\
+
+    9829 & National Internet Backbone &
+    0.57M & 27.6 & 7 &
+    0.43M & 30.9 & 7 &
+    0.43M & 29.5 & 9 \\
+
+    4134 & Chinanet &
+    0.60M & 1.5 & 6 &
+    0.38M & 0.9 & 11 &
+    0.34M & 0.9 & 11 \\
+
+    35819 & Etihad Etisalat (Mobily) & 
+    0.42M & 54.0 & 10 &
+    0.43M & 54.5 & 6 &    
+    0.45M & 55.8 & 8 \\
+  \end{tabular}
+  \end{small}
+  \end{center}
+  \caption{\label{tbl:zmap_asns} Autonomous Systems sorted by the
+    addresses summed across three Zmap scans for addresses that observed
+    RTTs greater than 1s. The table shows for each AS: the number and
+    percentage of addresses with RTT greater than 1s and the rank in that scan.}
+\end{table*}
+
+
+Inspecting the Autonomous Systems and countries of addresses with high latencies
+reveals that a majority of them belong to cellular ASes in South
+America and Asia, as shown in Table~\ref{tbl:zmap_asns}. AS26599
+(TELEFONICA BRASIL), a cellular AS in Brazil, has the most addresses
+with latencies exceeding 1s---more than double that of the next
+largest AS in each of the scans. The next two ASes, AS45609 (Bharti
+Airtel Ltd.), and AS26615 (Tim Celular), are also cellular, and so are
+5 of the remaining 7 ASes in the top 10 ASes with the most addresses
+with latencies exceeding a second. Also notable is that more than 70\%
+of all responding addresses in these ASes had latencies exceeding a
+second. 
+
+% Include the next para if you really want to talk about the
+% experiments that appear to confirm that we're reaching cellular devices.
+% We conducted additional experiments upon some addresses that
+% were particularly likely to have high latencies from the ISI dataset,
+% and confirmed that 
+
+While the results from the ISI and Zmap datasets reveal that high
+latencies exceeding typical timeouts occur in the Internet, they also
+show that these latencies are not uniformly distributed across all
+addresses. This observation lies at the root of my proposed work to
+set timeouts for probe-based remote outage detection systems.
+
+\subsubsection{Proposed work: Set timeouts based upon
+  destination addresses}
+
+The wide variation in observed latencies for IP addresses around the
+world indicate that probers should set timeout values
+based upon the addresses that they are probing. Even a 3s
+timeout may suffice for 90\% of addresses in the ISI survey since 90\% of addresses respond
+within 3s for 99\% of the pings sent to them. My proposed work is to find expected latency values
+associated with the IP addresses that need to be probed, and to set
+their timeouts accordingly.
+ 
+I propose to find expected latencies for any IP address on the
+Internet by analyzing historical and current ping data, available from
+the Zmap project~\cite{censys-icmp}. Zmap has continued to perform
+their scans of the IPv4 Internet, averaging one scan per week since
+April 2015. For each IP address that has consistently responded to
+pings, I expect to have roughly 100 samples. I will calculate expected
+latencies for all addresses using their own latencies weighted by the
+number of observed samples and will also include latency samples of
+other ``related'' addresses. Related addresses can be addresses
+belonging to the same /24 network, addresses belonging to the same
+ISP, addresses sharing the same last-hop router, addresses from the
+same dynamically addressed pools etc; I describe related addresses in
+more detail in Section~\ref{sec:last_mile}.
+
+Once I have determined the expected latencies for all IP addresses
+that respond to pings in the IPv4 Internet, the next task is to
+determine appropriate per-address timeouts based upon the destinations
+that need to be probed. Given any address to probe, I will modify the probing scheme to
+set timeouts that are just high enough as to capture almost all
+responses (say 99.9\%) from that address. Setting adaptive timeouts this way will achieve the
+twin goals of capturing most responses while also keeping the state
+required at the prober low.

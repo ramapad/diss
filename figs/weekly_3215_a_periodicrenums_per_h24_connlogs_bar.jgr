@@ -1,0 +1,70 @@
+
+newgraph clip
+
+xaxis 
+size 4
+no_auto_hash_marks
+no_auto_hash_labels
+label fontsize 13
+hash_labels fontsize 11
+
+label : Hour of the day (GMT)
+min 0
+max 24
+
+hash_label at 0.5 : 1
+hash_label at 1.5 : 2
+hash_label at 2.5 : 3
+hash_label at 3.5 : 4
+hash_label at 4.5 : 5
+hash_label at 5.5 : 6
+hash_label at 6.5 : 7
+hash_label at 7.5 : 8
+hash_label at 8.5 : 9
+hash_label at 9.5 : 10
+hash_label at 10.5 : 11
+hash_label at 11.5 : 12
+hash_label at 12.5 : 13
+hash_label at 13.5 : 14
+hash_label at 14.5 : 15
+hash_label at 15.5 : 16
+hash_label at 16.5 : 17
+hash_label at 17.5 : 18
+hash_label at 18.5 : 19
+hash_label at 19.5 : 20
+hash_label at 20.5 : 21
+hash_label at 21.5 : 22
+hash_label at 22.5 : 23
+hash_label at 23.5 : 24
+yaxis 
+size 2
+label font Helvetica fontsize 13
+hash_labels font Helvetica fontsize 11
+
+label : Address changes
+min 0
+
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 0.5 100
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 1.5 142
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 2.5 130
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 3.5 81
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 4.5 41
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 5.5 37
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 6.5 89
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 7.5 94
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 8.5 113
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 9.5 106
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 10.5 76
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 11.5 79
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 12.5 86
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 13.5 110
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 14.5 90
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 15.5 97
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 16.5 156
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 17.5 105
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 18.5 137
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 19.5 111
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 20.5 145
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 21.5 133
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 22.5 58
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 23.5 90

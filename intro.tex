@@ -1,0 +1,233 @@
+
+% \section{Preliminaries}
+
+\section{Introduction}
+
+% Internet users today can communicate with each other, perform
+% financial transactions, plan their travel, and even
+% obtain emergency services---without getting out of bed!
+
+% With online accessibility of
+% devices ranging from temperature control systems to baby monitors in
+% this Internet of Things era, our dependence upon the Internet for
+% increasingly many facets of our daily lives only continues to
+% rise.
+
+% With the ability to access a
+% variety of devices online in this Internet of Things era, ranging from
+% temperature control systems to baby monitors, our dependence upon the
+% Internet for increasingly many facets of our daily lives only
+% continues to rise. 
+
+% As the range of Internet services that we rely upon increases, so does our reliance upon
+% the Internet. 
+
+Internet reliability is increasingly important as a variety of
+services that we use migrate to the Internet, including critical
+services such as health monitoring and emergency
+services~\cite{emergency-voip-voipfone, emergency-voip-fcc,
+ideal-life, remote-health-elderly}. Broad and longitudinal
+measurements of users' Internet reliability in different circumstances
+can identify vulnerable networks and their challenges, can inform
+which enhancements can help these networks improve reliability, and
+can evaluate the efficacy of deployed enhancements.
+
+% Measuring
+% Internet reliability at the individual user level will therefore prove invaluable in assessing
+% the current state of Internet connectivity and in developing future
+% enhancements.
+
+% By detecting outage events and their duration, we
+% can reason about a particular user's Internet reliability and compare
+% it to other users' reliability across geography, ISPs, and
+% media-types.
+Yet, we lack authoritative measures of last-mile Internet reliability. The first step towards measuring users' Internet
+reliability is to detect \emph{Internet outages}---events that prevent
+users from communicating over the Internet. Since we expect outage
+events to be rare, detecting them requires broad and longitudinal
+measurements of individual users. However, such measurements of
+Internet reliability at the individual user level are challenging to
+obtain accurately and at scale. The next step towards measuring users'
+reliability is to segregate detected outages into categories
+that suggest their cause. Once outages are categorized in this
+manner, we can estimate the reliability of an ISP by considering the
+subset of outages that affected solely that ISP.
+
+Existing techniques that measure individual-user-level outages can be
+grouped into on-premises outage detection techniques and remote probing-based
+outage detection techinques. On-premises techniques, such as
+RIPE Atlas~\cite{atlas}, SamKnows~\cite{samknows}, and
+BISmark~\cite{bismark-main-bib}, measure diverse aspects of
+users' Internet connections, but
+measure relatively few users. These techniques 
+deploy dedicated hardware at user premises that continuously conduct ping,
+traceroute, DNS measurements etc.; some of these
+measurements can be used to infer Internet connectivity problems. Whereas hardware
+based techniques have fundamental scaling difficulties owing to
+manufacturing and deployment costs, hundreds of millions of
+IP addresses respond to active probes~\cite{timeouts}. Since many
+residences have at least one device with a public IP address ~\cite{cgn-imc16}
+(typically the home router), these IP addresses can be probed
+remotely, from 
+vantage points that we control, to measure their connectivity. Thunderping~\cite{pingin} and Trinocular~\cite{trinocular} adopt this
+approach to outage detection, taking a
+complementary approach to on-premises techniques: they focus upon
+measuring only connectivity but do so for many users. Since these
+techniques can send probes remotely from servers under their control, without requiring any user
+involvement, they are able to detect outages across time
+as well as across the IPv4 address space.
+% However, existing techniques do
+% not study latency and therefore do not identify performance
+% degradation resulting from high delay.
+However, probing-based remote outage detection techniques can
+make false inferences about outages when some scenarios
+occur~\cite{timeouts, addrchange-reasons}. Further, existing
+techniques have not 
+attempted to categorize detected outages by their likely cause.
+% However, measuring residential
+% outages is challenging because of the scale: there are millions of
+% residential links to measure. 
+% Second, users can voluntarily power
+% down their home Internet equipment and it is challenging to
+% distinguish between voluntary user shutdowns and an outage at the last-mile link.
+ 
+% ; even multihomed last mile links for business connectivity
+% often share the same upstream hardware, representing a single point of 
+% failure~\cite{twcable-business-web}. 
+% Last-mile links lack the redundancy of the Internet's core;
+% thus an outage of the last-mile link is likely to cut off users'
+% Internet connectivity altogether.
+
+% The second challenge is that it can be hard to distinguish
+% between an outage at the last-mile link and voluntary user shutdowns
+% of their Internet connections.
+% We do not have a good understanding of the reliabity of Internet
+% connectivity for end-users. Understanding the reliability of Internet
+% connectivity for end-users requires understanding the reliability of
+% the \emph{last mile link} connecting an end-user to the Internet. This
+% is because the core of the Internet is designed to be redundant but
+% last mile links typically are not.
+%TODO: Perhaps borrow sentence from enduser.tex about business last-mile links.
+
+
+% Thesis statement comments
+
+% Older versions of thesis statement:
+% \emph{For any end-host with a publicly assigned IP address that has the ability to respond to active probes, it is possible to remotely isolate accurately determine connectivity problems experienced by that end-host's last mile link.}
+% \emph{For any end-host with an IP address that has the ability to
+% respond to active probes, it is possible to remotely detect outages
+% experienced by that end-host's last mile link.}
+
+% Bobby's comments: Send traceroutes, but also to related addresses. What happens when all addresses change en-masse? Can we somehow identify such instances?
+% Neil suggested that I should replace end-host with 'Internet accessible device'. Can I assert that a device with a public IP address is by definition Internet accessible.
+% \emph{It is possible to remotely and accurately detect outages experienced by any device with a public IP address that typically responds to active probes.}
+
+% Come up with definition of accuracy of outages.
+
+% and use it to compare reliability across ISPs, media-types and
+% geographical areas
+
+I argue in this thesis that 
+\emph{It is possible to remotely and accurately detect substantial outages
+  experienced by any device with a stable public IP address that typically
+  responds to active probes and use these outages to compare
+  reliability across ISPs, media-types and geographical areas.} To demonstrate the thesis, I make the following
+initial contributions:
+
+% TODO: 
+% It is possible to remotely and accurately estimate the reliability of
+% an ISP's customer's device so long as the device has
+% a stable public IP address that typically
+%   responds to active probes
+
+
+In Section~\ref{sec:related}, I define terms in the thesis statement, place the problem of outage detection
+at the individual user level in the context of related work, and describe the challenges
+that probing-based remote outage detection techniques will need to address. These
+techniques study outages by sending active probes (such as ping's echo
+requests) and use probe responses to infer outages. They assume that a
+response to an active probe indicates a working path to the probed
+user device and that lack of response is indicative of failure. I
+illustrate two scenarios where this assumption can be
+invalid, leading to potentially false outage inferences.
+ % I
+% illustrate two potential scenarios where this assumption is
+% invalid---when responses are delayed beyond the prober's timeout and
+% when the probed address is dynamically reassigned. I also highlight why
+% Internet outages voluntarily caused by the
+% residential user need to be segregated.
+% I also describe the challenge that remote probing-based techniques face
+% in detecting outages specifically in the last-mile.
+
+In Section~\ref{sec:timeouts}, I investigate the prevalence of delayed
+probe responses due to early timeout. The
+lack of response to an active probe isn't always indicative of loss;
+for example, when
+responses are delayed beyond the prober's timeout, the response
+eventually arrives but the prober would never see the response because
+it timed out too early. I report how commonly responses are delayed
+beyond timeouts in
+networks around the world and propose techniques to mitigate this
+problem. 
+% Decouple probe retransmission
+% and loss. Possibly identify that only cellular guys have long delays?
+% Also, this will ensure that we trigger retransmission upon high
+% latency/loss and actually identify loss as loss and high latency as
+% high latency.
+
+In Section~\ref{sec:addr_change}, I investigate how dynamic addressing can
+lead remote probing-based outage detection techniques to make false inferences about outages and techniques to
+mitigate these false inferences. My approach to mitigating
+these false inferences is rooted in building a model that characterizes
+the probability that a dynamic address is reassigned at any point of time. I describe preliminary
+work which shows the feasibility of building such a model and detail
+proposed work to gather new datasets that can feed into the
+model. I will ultimately use this model to find candidate stable Internet
+addresses for probing.
+
+In Section~\ref{sec:last_mile}, I discuss an approach to determine
+which of the detected outages are consistent with the failure of an
+ISP's operated equipment, and which outages can be attributed to other
+causes such as power outages or users voluntarily shutting down their home
+Internet equipment. My approach is to probe addresses that are related
+to the address that is already being probed. I propose the use of multiple criteria
+to find related addresses such as geography, ISP, and network
+topology. I describe how we can then use simultaneous outages of these
+related addresses (or the lack thereof) to categorize outages and
+estimate Intrenet reliability along various dimensions.
+
+% We show in this proposal that confounding factors can cause RODWAP
+% techniques to sometimes
+% infer false outages. 
+
+% However, we argue that RODWAP techniques can
+% be used for accurate outage detection by identifying and mitigating
+% confounding factors. 
+ % This has
+% been the basis of existing active probe based techniques that detect
+% loss, and thereby outage events, such as Thunderping~\cite{pingin} and
+% Trinocular~\cite{quan2013trinocular}.
+
+% In spite of , we argue that it is possible to remotely detect
+% outages on the last mile link using active probes for any end-host
+% with an IP address that responds to active probes.
+
+% We investigate potential causes that
+% would lead existing active probe based outage detection approaches to
+% falsely infer loss and describe proposed work to mitigate detection of
+% false loss in Section~\ref{sec:timeouts} and
+% Section~\ref{sec:addr_change}. We also propose 
+
+% We show in this proposal that probe-loss need not always be due to
+% lossy links.
+
+
+% \begin{itemize}
+%   \item{\bf{False probe-loss inference due to early timeout:}} 
+%     Traditionally, active probe based approaches time out probes after a few seconds. Responses that arrive after the timeout will be reported as lost. When this happens, existing techniques would confuse high delay with probe-loss.
+%   \item{\bf{False probe-loss inference due to IP address change:}}
+%     Consider an IP address that was previously responsive. If the host to whom that IP address was assigned changed its IP address as a result of dynamic addressing or mobility, and if the probed IP address is not reassigned to any host, then echo responses will cease to arrive and existing techniques would infer false probe-loss.
+% \end{itemize}
+
+% After analyzing causes of false probe-loss, we will investigate techniques to remove false probe-loss. Once we remove false probe-loss, we will be left with all instances of true probe-loss and probe-delays. This will give us the ability to identify that \emph{some} link on the path to the destination is experiencing connectivity problems. However, since we are specifically interested in identifying connectivity problems on the last-mile link we require another step. In this step, we will conduct TTL-limited probing from multiple vantage points to identify which link exhibits connectivity problems.
+

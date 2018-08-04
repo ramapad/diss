@@ -1,0 +1,719 @@
+
+\section{Mitigating false inferences due to dynamic addressing}
+\label{sec:addr_change}
+
+In this section, I describe how dynamic addressing can lead
+probing-based outage detection
+techniques to make false inferences about outages and describe
+techniques to obtain a list of stable addresses for probing.
+
+Academia and industry often rely on a simplifying assumption that IP addresses 
+uniquely identify end-hosts~\cite{p2pfilesharing,p2pavail,sen2004analyzing,sekar2006multi,anomalousdns,kuhrer2015going,xie2005worm,jung2004empirical,fabian2007botnet,stone2009your,andriesse2015reliable,fail2ban,spamhaus,cbl,sorbs}.
+This assumption allows researchers to track end host
+behavior over time~\cite{anomalousdns, kuhrer2015going, pingin}, or to count participating users in peer-to-peer
+systems~\cite{p2pfilesharing,p2pavail,sen2004analyzing}. Many organizations create blacklists of suspicious IP
+addresses based on previously observed malicious traffic associated
+with those addresses~\cite{fail2ban,spamhaus,cbl,sorbs}. 
+
+When probing-based remote outage detection techniques send probes to an address, they expect that the
+address continues to be assigned to the same end-host for the entirety
+of the probing duration. Depending upon how a dynamic address gets
+reassigned, these techniques can make false inferences about outages in two ways:
+
+\begin{itemize}
+
+\item{\emph{Detecting false outages} Probing-based remote outage detection techniques detect outages
+    when a previously responsive address stops responding to
+    probes. However, If a dynamic address being probed is
+withdrawn from its host and is not assigned to any other host, active probes to the address will no longer
+elicit responses. These techniques will infer false
+probe-loss, leading them to infer false outages.}
+
+\item{\emph{Detecting false outage duration} These techniques detect outage
+    duration by continuing to probe an unresponsive address. When the
+    address starts responding to probes again, the outage is inferred
+    to end. If a user device  with a
+    public dynamic address has an outage and at some point during the outage,
+    the dynamic address is reassigned to some other user device
+    which responds to probes, probing-based remote outage detection techniques would infer that the outage ended incorrectly.
+% For ISPs that use DHCP
+%     for address assignment, we would expect dynamically
+%     assigned addresses to stick around on the end-host until an
+%     outage occurs. However, upon the occurrence of the outage, if the
+%     outage is long enough, they can get reassigned to another host,
+%     especially, if the outage is longer than the DHCP lease
+%     duration. Here, RODWAP techniques can detect the outage itself but
+%     can perhaps not detect outages that are long
+}
+
+% TODO: CITE http://www.umiacs.umd.edu/~tdumitra/courses/ENEE757/Fall15/papers/Stone-Gross09.pdf
+\end{itemize}
+
+My approach to mitigating these false inferences is to analyze how
+frequently and for what reasons dynamic addresses are
+reassigned. I will use the results of these analyses to build a model
+of how likely an inference about an outage using a probing-based
+remote outage detection technique is
+a false inference caused by dynamic addressing. For example,
+preliminary work with colleagues has revealed that some European ISPs change addresses upon
+very small outages and are particularly likely to change addresses at certain
+times of the day~\cite{addrchange-reasons}. These results will inform
+my model to not attempt detection of 
+outage duration for these ISPs, and to discard outages
+detected at times that are particularly likely to have dynamic address
+changes. The model will ultimately yield stable addresses who either
+do not undergo dynamic reassignment for months at a time, or who get
+reassigned but in a predictable manner. Thunderping limits itself to
+probing addresses in the U.S. where dynamic reassignment is
+uncommon~\cite{addrchange-reasons}; stable addresses from the
+model can help us detect outages in new areas.
+
+% In the rest of this section, we provide background about 
+
+\subsection{Dynamic addressing background}
+
+An IP address can be used to uniquely identify the end-host it is assigned to
+until the end-host's address changes for some reason. The duration of
+time that a dynamic IP address continues to be assigned to the same
+CPE (Customer Premises Equipment) device depends upon various causes that can induce the assigned IP
+address to change. Here, I present techniques used for
+assigning dynamic addresses and the events and
+agents involved in dynamic address changes.
+
+ISPs often use the Dynamic Host Configuration Protocol
+(DHCP)~\cite{rfc2131} for IP address assignment. DHCP issues an IP address to a host for a lease
+duration configured by the ISP. The host will try to renew the lease
+before it expires, typically half-way into the lease. However,
+whether the same IP address is renewed, or a different one is
+assigned, depends upon ISP policy.  We speculate that the
+typical behavior of ISPs using DHCP is to renew the lease of the
+currently assigned IP address, since one of the stated design goals
+in the DHCP specification is that a DHCP client should be assigned the same address
+in response to each request, whenever possible. Thus, we typically
+only expect an ISP using DHCP, to change the address of a CPE, if
+something happens to prevent the CPE from renewing its lease (like an outage).
+% Further, on
+% reboot, the previously assigned address may be reassigned, or
+% alternately a new address may be issued, again, as dicated by ISP
+% policy.
+
+In some networks, end-hosts connect to an ISP using
+point-to-point links. For these networks, the Point-to-Point Protocol
+(PPP) first configures and establishes the point-to-point link~\cite{rfc1661}. Next,
+a Network Control Protocol (NCP) like the Internet Protocol Control
+Protocol (IPCP) configures IP addresses~\cite{rfc1332}. The PPP specification
+notes that the link will remain configured for communication until the
+link is actively closed down through network administrator
+intervention or when an inactivity timer expires.
+
+\subsubsection{Potential dynamic address change causes} 
+
+Next, we identify the reasons dynamic addresses assigned using
+the above techniques could change. We classify the following categories of address change:
+
+\begin{itemize}
+\item{\textbf{Changes after outages}} If the client is
+  disconnected or loses power long enough to fail to renew a DHCP lease,
+  its address may be assigned to another; when it returns,
+  it may then get a new address. We call such changes
+  \emph{outage-caused address changes}.
+
+\item{\textbf{Changes after reboot/reconnect}} While we
+  expect addresses assigned through traditional DHCP to change only when the
+  outage duration is long enough to prevent lease renewal, addresses
+  assigned through PPP can change upon outages of any duration. Any reboot or
+  network reconnect event could cause the client
+  to forget its prior address and request a new one, or the
+  state associated with a connection may be lost.
+  We call such
+  address changes \emph{reboot-caused address changes}. 
+  
+  % We make no
+  % distinction between very short power outages and reboots.
+
+\item{\textbf{Administrative address changes}} A purpose of
+  dynamic address assignment is to allow reconfiguration of
+  the network; it is possible that a reconfiguration of the
+  DHCP server will force a change to the subnet on which the
+  client lies.  We expect such reassignment to be rare.
+  
+\item{\textbf{Periodic address changes}} We observe that
+  some ISPs limit the session length associated with an
+  address, causing a reassignment after a fixed duration,
+  typically one day to one week depending on the ISP.
+
+\end{itemize}
+
+\subsection{Building a global model of dynamic address change}
+
+Conceptually, so long as there is some uniquely identifying feature
+that remains constant across a device's address change,
+it can be possible to track IP address changes over time. Several studies have used this broad
+method~\cite{udmap, census-survey, zmap-dhcp,
+maier2009dominant, dhcp-gatech, peering-shroud, dhcp-dimes}. 
+UDmap~\cite{udmap} studied
+dynamic address properties using Hotmail user login
+traces where the user's login serves as the identifying
+feature. Casado et al.~\cite{peering-shroud} tracked clients using HTTP cookies when
+clients access a CDN. Other studies~\cite{zmap-dhcp, census-survey} used continuous
+responsiveness of an address itself as the identifying feature, assuming
+that an address that responds continuously belongs to the same user and that
+when an address stops responding to pings, it has been
+reassigned. 
+
+However, these studies report conflicting results about the frequency
+of address changes. While UDmap reported that over 30\% of IP addresses have
+inter-user durations of 1--3 days~\cite{udmap},  Heidemann et
+al. reported that 90\% of IP addresses were occupied for less than a
+day~\cite{census-survey}.  Maier et al.~\cite{maier2009dominant} reported that a
+major European ISP had per-user median durations of just 20 minutes during
+their study in 2009 whereas our work in 2015 did not observe this
+duration~\cite{addrchange-reasons}. These differences are likely due
+to the different biases associated with each study: Maier et
+al.~\cite{maier2009dominant} studied one European ISP in an area,
+UDmap studied only Hotmail users, while studies that use continuous
+responsiveness of addresses over time~\cite{zmap-dhcp, census-survey} could
+potentially confuse the occurrence of an outage with an address change.
+
+Considering these conflicting results,
+I first analyze the feasibility of building a dynamic addressing
+model by describing preliminary results from a novel dataset~\cite{addrchange-reasons}. The
+results show that a global model is indeed feasible, but that it will
+require multiple, independent, diverse datasets that track address changes across
+the world. % Then I describe proposed
+% work to gather other complementary datasets.
+
+% However, most of these studies do not account for the cause of the address change,
+% studying dynamic address durations in isolation. We show in this
+% proposal that studying the causes of dynamic address change is vital
+% especially for RODWAP techniques. The occurrence of outages can cause
+% dynamic address reassignment.
+
+\subsection{Preliminary results towards a global model}
+
+The RIPE NCC's Atlas project deploys small devices, called probes, that
+conduct measurements from globally distributed
+networks~\cite{atlas}. The RIPE Atlas dataset offers measurements that allow us to
+determine when an IP address change occurred and what the addresses
+were before and after the change. In addition, the dataset includes many
+measurements that provide context about what was happening around the
+time of the address change. I was able to use these measurements to
+detect when RIPE Atlas probes rebooted and were not sending pings
+(indicating a power outage) and when their pings were not getting
+responses (indicating a network outage). In a study with colleagues of active RIPE
+Atlas probes in 2015, we found 3,038 RIPE Atlas probes with address
+changes hosted across 929 ISPs and 156 countries~\cite{addrchange-reasons}.
+
+\subsubsection{Some ISPs change addresses periodically}
+
+
+ISPs can assign dynamic addresses for as long as they wish.
+In DHCP, long leases simplify administration, while short
+leases can be more efficient in reclaiming unused addresses.
+DHCP leases, however, are meant to be renewable by devices
+that are still active.  In this section, we look at periodic
+address reassignment: instances where a device changes
+address periodically, despite actively using the address.
+
+If ISPs intentionally renumber after specific durations, we would
+expect those address durations to be prominent in a distribution
+of all address durations belonging to that ISP. We initially
+considered studying distributions
+of raw address durations, similar to the analyses by
+Maier et al.~\cite{maier2009dominant} and
+Moura et al.~\cite{zmap-dhcp}, but found that short address-durations
+were overrepresented. When trying to reason about the expected duration that an address will
+continue to be assigned to the CPE, we would like to know the fraction
+of total time that each duration accounted for. This latter notion is more useful to find whether an
+ISP is using periodic durations consistently, since the modes at
+intervals on the scale of days will be more visible. 
+
+To capture this notion we
+define a metric, the \emph{total time fraction}. For a given probe and an address duration $d$,
+we define the total time fraction for $d$ as the fraction of time spent by the probe in durations of length $d$.
+We compute the total time fraction for a given probe and a duration
+$d$ by obtaining the total address
+time for the probe, and computing the fraction of the total
+address time that was accounted for by address durations of 
+length $d$. For a probe $p$, if $n(d)$ is the number of times the probe had an address duration
+$d$ and $D$ is an array containing all address durations that were assigned to
+the probe, the total time fraction for the address duration $d$ is
+given by:
+
+$f^p_d =  d \times n(d) / \Sigma(D)$
+
+We use a similar procedure for computing the total time fraction
+considering all probes in an ISP, country, or continent. We believe that  
+%the distribution of 
+the total time fraction offers a better representation of 
+the
+probability that an address was assigned for a certain
+duration than a simple inspection of the address durations. 
+
+\subsubsection*{North American addresses are assigned longer than other addresses}
+
+\begin{figure}[tb]
+  % \centering
+  \begin{center}
+    \includegraphics[width=3in]{figs/conts_a_all_ip_durs_connlogs_wtd_cdf}
+  \end{center}
+  \caption{\label{fig:conts_all_durs} 
+    %% Dynamic address-durations
+    %%     weighted by address-durations by continent.
+    Cumulative distribution of total time fraction by continent. 
+    Modes (vertical segments
+    in the CDF) indicate periodic renumbering.  Addresses in North America
+    are relatively long lived and free of periodic renumbering.}
+\end{figure}
+
+We begin by inspecting how address durations vary across
+continents.  We expected that address scarcity might affect
+address durations, leading to longer durations in North
+America and shorter durations in Asia.
+We use RIPE
+Atlas's probe database 
+to find the country to which each probe belongs. Next, we aggregate the
+address durations of probes by their respective countries and
+subsequently, to their continents.
+Figure~\ref{fig:conts_all_durs} shows the cumulative distribution of
+the total time fraction for each
+continent, i.e., the y-axis shows the fraction of total address duration accounted for by durations less than the x-axis value. 
+%% Figure~\ref{fig:conts_all_durs} shows a CDF of address durations, weighted as described above, for each
+%% continent.
+The number in
+parentheses in the legend for each continent shows the total
+ address duration for that continent in years ($\Sigma(D)$).
+
+In Europe, Asia, Africa, and South America, address durations exhibit well-defined modes,
+mostly at intervals that are multiples of 24 hours. The most common mode is
+exactly at 24 hours: the total time fraction for European addresses at
+24 hours is 0.16, African addresses is also 0.16, and Asian addresses is 0.07.
+One week address durations are also common in Europe, with the total
+time fraction at 1 week equaling 0.08.
+South American addresses exhibit multiple modes: their total time
+fraction is 0.11 at
+12 hours, 0.07 at 28 hours, 0.09 at 48 hours, and 0.03 at 192 hours (8
+days). 
+
+The curves for North America and Oceania do not have well-defined modes,
+suggesting that ISPs in these continents do not periodically change
+addresses. Further, North American probes typically retain their dynamic
+addresses for much longer durations than other continents; North
+American addresses spent more
+than half of the total time in address durations longer than 50
+days. This suggests that IP addresses can be used as end-host
+identifiers in North America for several weeks.
+
+% \subsubsection*{Periodic renumbering is common in some parts of the world}
+
+% \begin{figure}[tb]
+%   % \centering
+%   \begin{center}
+%     \includegraphics[width=3in]{figs/DE_asns_a_all_ip_durs_connlogs_wtd_cdf}
+%   \end{center}
+%   \caption{\label{fig:DE_asns_all_durs}
+% %
+% 	%% Dynamic address-durations weighted by address-durations for ASes in Germany.
+%     Cumulative distribution of total time fractions for ASes in Germany.
+%         Many
+%       German ISPs appear to change addresses every 24 hours. However,
+%       some ISPs have more stable addresses.
+%   %%@@rama: quantify
+%   }
+% \end{figure}
+
+
+% Next, we investigate how the periodic renumbering behavior of ISPs
+% correlates with the country in which they operate. Germany has more
+% than a hundred RIPE Atlas probes deployed across several ISPs, thus we
+% study their address durations in Figure~\ref{fig:DE_asns_all_durs} for
+% ISPs with probes that contributed at least 3 years of total time. Many
+% ISPs in Germany change addresses every 24 hours: 77\% of the duration
+% in DTAG (AS 3320), 76\% in Telefonica1 (AS 6805), 74\% in Telefonica2
+% (AS 13184), and 29\% in Vodafone (AS 3209), is 24 hours. We observe
+% that the 'other' ISPs also have a mode at 24 hours, suggesting that
+% German ISPs are particularly likely to renumber every 24
+% hours. However, this behavior is not universal: Kabel Deutschland (AS
+% 31334) and Kabel BW (AS29562) do not exhibit a mode at 24 hours;
+% instead, more than 90\% of their total address duration was spent in
+% durations longer than two weeks. These results suggest that periodic renumbering behavior can exhibit
+% some geographic correlation, but is likely
+% largely caused by ISP policy. 
+
+% We found 20 ISPs in the RIPE Atlas dataset that we label as \emph{periodic} because
+% these ISPs renumber many of their customers after they have held their
+% address for a specific duration. This time limit varies across
+% ISPs. Of 2272 dynamically assigned probes in the dataset, 193 (8.5\%)
+% change addresses periodically with a period of 24 hours, and 123
+% (5.4\%) do so with a period of one week. Periodic renumbering occurred
+% most commonly in central European countries like Germany, Austria,
+% Poland, and Croatia. Some ISPs in Russia, Kazakhstan, Mauritius, and
+% South America, also periodically renumber.
+
+% Private communication with a large European ISP confirmed that the ISP renumbers every 24
+% hours, since the ISP considers this scheme to be more 'privacy secure' although
+% there is no government regulation that forces this feature. The ISP
+% also reported that it uses PPPoE instead of DHCP for its DSL
+% lines (which accounted for the vast majority of its customers). Since
+% periodic behavior would be atypical of DHCP but consistent with PPP
+% techniques for address assignment, we speculate that periodic
+% renumbering is a property of ISPs that use PPP.
+
+\subsubsection*{Periodic address changes are some times synchronized}
+
+% \begin{figure}[th]
+%  \centering
+%     \includegraphics[width=3in]{figs/weekly_3215_a_periodicrenums_per_h24_connlogs_bar}
+%   \caption{\label{fig:3215_renums_per_h24}Periodic address changes
+%     in Orange appear more evenly distributed among the hours of the
+%     day.}
+% \end{figure}
+
+\begin{figure}[th]
+  \centering
+    \includegraphics[width=3in]{figs/daily_3320_a_periodicrenums_per_h24_connlogs_bar}
+  \caption{\label{fig:3320_renums_per_h24}Periodic address changes
+    are more likely in some hours for Deutsche Telekom.}
+\end{figure}
+
+We imagine two broad strategies for daily renumbering:
+either leaving each customer on an independent, free-running
+clock that resets after 24 hours, or synchronizing all
+address changes to an off-peak time when few would be
+interrupted.  Both seem reasonable strategies: independent
+clocks seem simple to implement, synchronized address
+changes seem more likely to shuffle addresses since many
+addresses are made available during the synchronized
+interval.  Probing-based outage detection techniques would benefit from knowing which strategy
+is being used: if an ISP is known to change addresses at specific
+times of the day, we can account for this behavior in the model.
+
+ We expect
+that plotting the time of day at which addresses change for
+each ISP will expose whether the renumbering is
+synchronized. For the German ISP, Deutsche Telekom AG (DTAG), Figure~\ref{fig:3320_renums_per_h24} shows the hour of
+the day when an address change occurred after the address had been
+assigned for 24 hours; DTAG assigns periodic durations more often during some
+hours of the day. In private correspondence with a large European ISP,
+we learned that many CPE devices come with an option to choose the
+time at which they should disconnect and reconnect to receive a new
+address, as a privacy feature. Figure~\ref{fig:3320_renums_per_h24}
+supports this deployment scenario, observing almost three quarters of
+all periodic address changes between hours 24 to 6 (in GMT). However,
+some CPEs do not have this feature because a quarter of the periodic
+address changes happen at other hours of the day.
+
+\subsubsection{Some ISPs are more likely to change addresses upon
+  outages}
+
+Here, we investigated how outages occurring at the CPE (customer
+premises equipment), due to loss of power or network connectivity
+affect the likelihood of address changes. % We quantify how frequently
+% and for which probes an outage event at the CPE device appears to
+% cause the reassignment of its IP address.
+% We quantify how the relationship between outage 
+
+
+% \subsubsection*{Renumbering behavior upon outages varies across ISPs}
+
+% For each individual probe, we considered the conditional
+% probability of an address change given a detected
+% outage. $P(ac|nw)$
+% represents the conditional probability that an address change occurred
+% given a network outage and $P(ac|pw)$ represents the same for a power outage. We estimated this probability using the
+% fraction of outages occurring contemporaneously with an address change (out of the
+% total number of outages).  We show the distribution of
+% these probabilities by probe to estimate whether the group
+% of probes (by geography or ISP) is dominated by those that
+% always or seldom change addresses on an outage.
+
+% \begin{figure}[tb]
+%   % \centering
+%   \begin{center}
+%     \includegraphics[width=3in]{figs/top_asns_frac_norenums_over_totalnos_cdf}
+%   \end{center}
+%   \caption{\label{fig:top_asns_frac_norenums_over_totalnos}
+% Distribution of $P(ac|nw)$ per probe for the ASes with the most probes
+% that had at least one address change. Probes in DTAG, Orange, and BT, are far more likely to change addresses upon a
+%     network outage than probes in Verizon and LGI.}
+% \end{figure}
+
+
+% We find that the likelihood of address change upon an outage event
+% differs across ASes. Figure~\ref{fig:top_asns_frac_norenums_over_totalnos} shows
+% the CDF of $P(ac|nw)$ for the five ASes
+% that host the most probes with at least one address change and at least three
+% network outage events. We find that probes in ASes that periodically renumber---Orange, DTAG, and BT---have high $P(ac|nw)$ compared to probes from ASes that
+% do not periodically renumber, LGI and Verizon. Around half of the probes in both Orange and
+% DTAG had  $P(ac|nw)$  equal to 1: every network outage was accompanied
+% by an address change! $P(ac|pw)$ was also similar
+% for these ISPs. We found 10 more ASes whose probes were particularly
+% likely to renumber upon outages: all of them are in Europe and 7 of them
+% also periodically renumber. Private communication with a large European
+% ISP whose probes consistently had an address change upon outage confirmed that they use PPPoE and Radius to assign addresses for
+% their DSL lines. We expect that this property can be used as evidence in inferring a device's link
+% type.
+
+% \subsubsection*{For some ISPs, most outages result in address changes}
+
+\begin{figure}[t]
+  \includegraphics[width=1.5in]{figs/6830_combined_merged_bar}~~~
+  \includegraphics[width=1.5in]{figs/3215_combined_merged_bar}
+
+  \caption{\label{fig:outagedurs} The likelihood of an address change (renumbering)
+    given network or power outages of different durations in LGI (left)
+    and Orange (right).  The top graph is a histogram; the
+    complete bar represents the number of outages observed
+    across all probes in that AS.  The lightly-shaded bar
+    extends for those outages that also saw an address
+    change.  The lower graph shows the same data as a
+    percentage.  Although relatively few outages
+    lasted longer than a day, the majority of these were
+    coincident with an address change in both ISPs. However,
+    Orange (right) changed addresses even on the shortest
+    outages.}
+\end{figure}
+
+Dynamic addresses assigned using DHCP should typically retain
+their addresses as long as they continue to renew their lease half-way
+into the lease duration as the standard
+recommends~\cite{rfc2131}. However, an outage could
+prevent them from renewing their lease. Depending upon the address
+churn at the time, the address they had previously been assigned may
+be reassigned to another device.  In this way, an outage
+longer than half a lease duration could potentially cause an address
+change. To investigate the effect of outage duration on the likelihood
+of address change, we analyzed the conditional probability of an
+address change given the occurrence of network or power outages of different durations
+for probes from LGI (AS 6830) and
+Orange (AS 3215) in Figure~\ref{fig:outagedurs}. 
+
+The behavior upon outages for the two ISPs is strikingly
+different. LGI's behavior appears consistent with what we would 
+expect for dynamic addresses assigned using DHCP: fewer than
+3\% of outages of up to an hour resulted in an address
+change.  More than 25\% of outage
+durations that lasted at least twelve hours resulted in an address
+change. This behavior is consistent with a DHCP lease duration on the
+order of a few hours.  Not every outage longer than twelve
+hours resulted in an address change, consistent with DHCP 
+behavior when a client returns after an expired lease and the
+previously assigned address
+is still available.
+
+For Orange, we found that even very short outages resulted in
+address changes. 91\% of outages that lasted less than five
+minutes resulted in an address change, and for every outage duration
+longer than five minutes and shorter than three hours, more than 75\% occurred with an
+address change. For outages between three hours to three days
+long, the percentage of address changes was closer to 50\%, suggesting
+the presence of some CPE devices that do not renumber upon every outage. However, as the
+outage duration increases beyond 3 days, almost every outage results
+in an address change.
+
+% Private communication with a large European ISP
+% confirmed that this behavior is expected for PPPoE based DSL lines in
+% that ISP: any reboot/reconnect event will result in the assignment of a new
+% address from the ISP's dynamic address pool. Since outages of such short durations can result in an
+% address change, a simple reboot of the CPE (resulting in a power
+% outage), or unplugging and replugging the network cable (resulting in a network outage), can change the dynamic address assigned to the end-user.%  That
+% end-users can change their dynamically assigned address 
+% has implications for researchers and operators who use IP
+% addresses to identify end-hosts, particularly when IP addresses are
+% being used to blacklist malicious actors.
+
+\subsubsection*{Preliminary results suggest that building a global
+  model is feasible}
+
+Preliminary results offer promise that modeling the likelihood of
+address change can help prevent false inferences about outages and
+their durations. For ISPs that change periodically and/or synchronously, the model can
+predict when probe-loss is more likely due to
+address changes than outages. For ISPs that change addresses upon most
+outages, the model can inform in which ISPs outage duration detection
+is particularly error-prone. For other ISPs which change addresses
+mostly upon longer outages, the model can be used to estimate the
+likelihood that an inferred outage ended falsely.
+
+Though the results from RIPE Atlas are promising, they are potentially
+biased toward technical users like most measurement infrastructure,
+and biased toward European deployment. Building the global model of dynamic address change will
+require multiple, independent, diverse datasets that track address changes across
+the world.
+
+\subsection{Proposed work to gather complementary datasets}
+
+IP address changes can
+be tracked over time if there exists some uniquely identifying feature
+that remains constant across the device's address change. I investigate the use of datasets which have this
+property to study dynamic addresses:
+
+% \subsubsection{Download manager logs}
+
+% A large CDN's download manager installed on users’ desktop
+% and laptops records log lines when events such as a file download
+% occur. Each such log line contains a unique installation ID, the
+% user’s current public IPv4 address, and the timestamp. 
+
+\subsubsection{Dynamic DNS services}
+
+Websites such as dyn.com~\cite{dyn} provide dynamic DNS. Dynamic
+DNS is a service that allows users with a dynamic IP address to host
+web services, by providing DNS services that can be easily updated to
+reflect changes in users' IP addresses. Users of Dynamic DNS Services
+run a daemon provided by the dynamic DNS provider, which is responsible for
+determining the publicly visible IP address, and updating the A
+record(s) for the user's domain(s). 
+
+I propose to track IP address changes using domain names
+registered with dynamic DNS services. Since the domain name of a user
+maps to her current IP address, we can use the domain name as a
+fingerprint, and detect changes in IP addresses for each domain name
+over time, by periodically obtaining the 'A' record associated with
+each domain name. 
+
+\paragraph{Geographic correlation of dynamic behavior}
+
+\begin{figure}[tb]
+% \centering
+\begin{center}
+\includegraphics[height=1.5in]{figs/did_dname_get_renum}
+\end{center}
+\caption{\label{fig:addr_change_per_ctry}
+IP address renumbering in dynamic DNS domains over a week: Black
+represents dynamic DNS domains which experienced at least one address
+change, while grey represents domains whose addresses remained the
+same. Renumbering behavior appears to be correlated with geographic
+location.}
+\end{figure}
+
+As a proof of concept, I report on a preliminary result from this
+approach: corroborating the geographic relationships in Figure~\ref{fig:conts_all_durs} 
+while extending to countries not well represented by RIPE.
+I
+obtained 3000 dynamic DNS domains from three different dynamic DNS
+services: 2000 from afraid.org~\cite{afraid}, 600 from dyn~\cite{dyn} and 400 from
+noip.com~\cite{noip} and fetched the 'A' records from their respective
+nameservers once every hour. I collected this data for a week, and
+then inspected how many of these domains experienced at least one
+address change during this time. Figure~\ref{fig:addr_change_per_ctry}
+shows the number of domains that had at least one 
+address change and the domains that had none. The y-axis is in log-scale. 
+Address changes in Asian and Latin American countries appear
+more prevalent, with more than a third of all domains in these
+countries seeing at least one address-change. On the other hand,
+Northern European countries observe fewer than 6\% of their domain names
+experiencing an address change. Address changes are uncommon in
+North America: only 3\% of domain names in the US and 6\% of domain
+names in Canada observed an address change.
+
+The results from the dynamic DNS dataset are preliminary in
+scale and based on a short measurement to show potential.
+Further, our study of RIPE Atlas data showed us that the cause of
+address changes is important. I intend to couple our
+outage-detection tool to probe addresses corresponding to
+the dynamic DNS domains while fetching their A records.  We
+can thus identify outages that occur near the reassignment,
+allowing us to infer if an address-change was caused by an outage and
+feed results into the model. Further, if the dynamic DNS result
+indicates that a probed address had recently been reassigned, then the
+detected false positive outage can be filtered.
+ 
+\subsubsection{Open DNS resolvers}
+
+Since 2010, various studies have reported on the existence of more
+than 15 million 'open' DNS resolvers on the
+Internet~\cite{openresolver, schomp2014clientsidedns, kuhrer2014exit,
+  kuhrer2015going}. These DNS resolvers are 'open' because they will resolve a DNS query sent from arbitrary IP
+addresses on the Internet. Previous studies have found that more than
+three-quarters of open DNS resolvers are likely to be
+residential~\cite{schomp2014dnsvul, schomp2014clientsidedns}. I
+propose two potential approaches to fingerprint these open DNS
+resolvers and track address changes.
+
+\paragraph{DNS caches}
+Open DNS resolvers often cache previous
+lookups~\cite{schomp2014dnsvul}. My insight is that these caches can
+be used to fingerprint open DNS resolvers, allowing us to track when
+their IP addresses change. I plan to do this in two phases.
+
+First, I will find open DNS resolvers on the Internet. I propose to register a domain and deploy an Authoritative DNS server
+for it. Then I intend to perform a one-time scan of the entire IPv4
+address space by sending a DNS request for a subdomain within the
+domain we control to all the IPv4 addresses on the Internet. Each DNS
+request I send to a target IP address will embed the target address
+into the request, similar to the approach used by Dagon et
+al.~\cite{dagon2008corrupted}. The Open DNS resolvers will route the
+request to our Authoritative DNS server.  At the authoritative DNS
+server, I will note the target IP address to which this request was
+sent and generate a unique fingerprint for the device at this address,
+and embed this fingerprint in my response. When these responses
+reach the open DNS resolvers, each will now contain its unique
+fingerprint in its cache.
+
+Next, I will periodically inspect the caches of known open DNS resolvers.
+I will issue periodic DNS requests for the subdomain we
+control (with the target IP address embedded in the request) to all
+the addresses that contacted our Authoritative DNS server. If we
+obtain the fingerprint that we had previously issued to that address,
+we know that the device continues to be assigned that address. If we
+find that an address is no longer returning the expected cache
+fingerprint, we know that the address has changed. I then propose to
+issue DNS requests to related addresses (as described in
+Section~\ref{sec:last_mile}) with the \emph{old} target IP address
+embedded in the request. If the device is present on any of those
+addresses, then we will obtain the expected fingerprint. Upon finding
+the device at a new address, we will update
+our local mapping and note that the fingerprint is now available at
+this new address.
+
+\paragraph{Anomalous Open DNS Resolvers}
+
+Of the 30 million Open DNS Resolvers on the Internet, around 17
+million are \emph{anomalous}~\cite{anomalousdns}, i.e.,
+instead of sending DNS responses with a source port of 53, they
+respond with a non-standard source port. Kaizer et al. ~\cite{anomalousdns} found that
+these devices are primarily residential ADSL modems. Not only do these
+devices use a non-standard source port, DNS requests can be made to
+these devices in such a way that the source ports are assigned
+\emph{sequentially}. My insight is that we can use this sequential
+assignment of source ports to fingerprint anomalous open DNS resolvers.
+
+The first part of our approach here is similar to my approach with
+the DNS caches: I will find open DNS resolvers that are anomalous. After registering a domain and deploying an Authoritative DNS server
+for it, I will perform a one-time scan of the entire IPv4
+address space by sending a DNS request for a subdomain within the
+domain we control to all the IPv4 addresses on the Internet. Each DNS
+request I send to a target IP address will embed the target address
+into the request as before. However, instead of embedding responses with
+unique fingerprints from the authoritative DNS server, we simply
+monitor the source ports that issue DNS responses from each
+address. If it's a non-standard port, we flag the device as an
+anomalous open DNS resolver.
+
+Next, I will periodically inspect the source ports used by anomalous
+open DNS resolver responses. Since we know which
+  addresses the anomalous open DNS resolvers are located at, I
+  periodically issue DNS queries to these addresses. As long as the
+  source port for successive requests to an address continues to be
+  sequential, I can state with high confidence that the address has
+  not changed. The source ports for these devices typically vary
+  between 10,000 to 30,000; thus there is only a small likelihood that
+  another device coincidentally happens to have the next value in
+  sequence. If we find that a response doesn't arrive, or that one
+  arrives but the source port is not sequential, then we know that the
+  device's address has been reassigned. As in the DNS cache approach,
+  I will then look for the expected source port in DNS responses from
+  requests sent to related addresses to find the device again.
+
+
+\subsection{Confirming that detected outages are accurate}
+
+After mitigating false positive outages, I propose the use of datasets
+from RIPE Atlas probes~\cite{atlas} as ground truth to confirm that the remaining
+outages are indeed true positives. In previous work, I had inferred outages occurring on
+RIPE Atlas probes by looking for gaps when probes did not perform 
+measurements that they were scheduled to~\cite{addrchange-reasons}. By
+probing IP addresses at which RIPE Atlas probes are also deployed, I
+will compare outages we detect against outages inferred from RIPE
+Atlas datasets and validate whether our detected outages are accurate.

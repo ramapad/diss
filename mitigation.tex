@@ -1,0 +1,314 @@
+
+\section{Categorizing outages using simultaneous failures of related addresses}
+\label{sec:last_mile}
+
+% Only true positive outages remain after filtering false positive
+% outages using the proposed techniques in the previous sections, and
+% some applications may be able to use these outages without any additional
+% processing. 
+% For example, consider a peer-to-peer file storage network
+% that keeps track of live peers; this network can use our outage feed
+% as is to update its list of live peers.
+
+% On the other hand, when 
+
+When analyzing the reliability of a particular ISP, we need
+to find the subset of outages that affected only
+that ISP. Doing so ensures that ISPs offering services in challenged
+areas do not have their reliability lowered by events such as power
+outages or users voluntarily shutting down their home Internet
+equipment.
+
+I describe three categories under which detected outages can be 
+placed. Each category provides hints about the likely cause of outages
+placed in that category. For example, power outages or undersea cable cuts can affect addresses from multiple
+ISPs; I term events which result in outages for
+many providers' addresses \emph{multiple-ISP outages}. Users in some
+geographic areas are particularly likely to shut down their Internet
+equipment~\cite{grover2013peeking} but users elsewhere may also power
+off their equipment when faced with certain circumstances, such as
+approaching thunderstorms. I call such an event a \emph{user-caused
+outage}. On the other hand, consider an ISP experiencing a failure in
+its networking infrastructure resulting in an outage affecting only
+addresses belonging to this ISP: these are outages that should bring down the ISP's reliability
+estimate. I term these events \emph{shared-ISP outages}.
+Probing-based remote outage detection techniques will detect outages
+when all of these scenarios occur since previously responsive
+addresses will cease responding in all these scenarios.
+
+I develop and evaluate an approach for segregating outages into different categories
+based upon the insight that outages occurring simultaneously in time
+for addresses that are related by virtue of sharing geography, ISP, or
+network topology,
+could share a common cause. For example, if we detect addresses from
+many ISPs within geographically proximate regions failing simultaneously in time, we are likely observing a
+multiple-ISP outage. If we detect addresses from only a single ISP
+failing simultaneously in time, we are potentially observing a
+shared-ISP outage. If the detected outage does not appear to
+have happened simultaneously in time with other outages of related
+addresses, I term it an \emph{isolated} outage. User-caused outages would
+likely manifest as isoltated outages. Thus, evidence
+of simultaneous failure of multiple
+``related'' addresses can be used to distinguish between the different
+categories of outages. 
+
+However, it is possible that this approach can incorrectly classify detected
+outages into the wrong outage category. For example, if
+unrelated addresses happen to fail close together in time,
+these outages could be detected as
+``simultaneous'' and could be classified into either the multiple-ISP
+or shared-ISP categories, depending upon the ISPs to which
+the unlrelated addresses belonged. It is also possible that a
+multiple-ISP outage is categorized as shared-ISP because
+other affected ISPs' addresses had
+not been probed at that time. Similarly, if a set of related addresses failed
+simultaneously but only one of these addresses was being
+probed, we would not observe these outages to be simultaneous. 
+
+While the above false classifications can potentially be mitigated by
+intelligent probing schemes, there exists a limitation that cannot:
+once an outage has beeen detected to be \emph{isolated}, the proposed approach cannot distinguish between
+a user-caused outage and an outage that only affected a single user
+but was caused by lack of power or by a network failure. It is possible
+that some users regularly power off their equipment at night; if
+so, we could
+check if a particular user's address consistently experiences outages
+between certain hours and categorize these outages as user-caused. But
+this solution would not be successful in categorizing all instances of user-caused outages.
+% This scenario is not an example of a false
+% classification; instead, it is a limitation of the simultaneous outage
+% detection approach.
+
+Though it is important to reduce false classifications,
+it is also important to balance the probing volume. Sending probes
+too quickly to an already challenged network could exacerbate the
+problem. Also, keeping the probing volume towards individual
+destination addresses low will increase the overall number of
+destination addresses we can probe. 
+
+The proposed approach has two tasks:
+(a) find addresses that are ``related'' to a given address and are therefore
+likely to fail together and
+(b) design a probing scheme that balances false outage classification
+rates with the number of sent probes.
+
+\subsection{Finding related addresses}
+
+Given any address to probe, a key task for the proposed approach is to
+find addresses that are ``related'' to this address since such addresses are likely to share
+fate with the given address and experience outages simultaneously. For instance, addresses can be
+related by geography when they are physically proximate to each
+other; a power outage can result in simultaneous outages
+of many geographically proximate addresses. Alternately, addresses can be related by ISP, when they
+share the same provider. Addresses can also be related by network
+topology: for instance, they can share the same last-hop
+router~\cite{hobbit-use-hobbit-imc-instead} or they can be assigned
+from the same dynamic addressing
+pool~\cite{addrchange-reasons}. 
+
+To successfully segregate outages into their categories,
+addresses related by a range of criteria need to be chosen because
+outages with different causes can cause a different set of related
+addresses to fail together. For example, if a
+tree branch damages a network cable that serves an apartment building,
+it is possible that only addresses that are related by network
+topology will fail together. On the other hand, a failure in the
+network infrastructure for an ISP could cause many addresses belonging to that ISP to
+fail together across several geographic areas. A power outage can cause
+addresses belonging to many different ISPs in a geographic region to
+fail together.
+
+Existing datasets can be used to find a set of \emph{candidate related
+addresses}, according to
+each criterion. Given an address, let $cra$ be the set of
+candidate related addresses. To find addresses that are related to a
+given address according to geography or ISP, we can use the
+MaxMind database~\cite{MaxMind}, a popular commercial service used in
+several large Internet measurement projects~\cite{censys-about,
+usc-sandy, heidemann-diurnal}. Although we would expect intuitively
+that addresses related by network topology can be found by simply
+enumerating numerically adjacent addresses, preliminary work has shown
+that subsequent dynamically addresses assigned to the same device are
+often numerically distant~\cite{addrchange-reasons}. Thus, it is possible that even
+numerically adjacent addresses are not related by network topology and
+conversely, that numerically distant addresses are. Addresses from the same
+dynamic addressing pool are available from preliminary
+work~\cite{addrchange-reasons} and from other proposed work in
+Section~\ref{sec:addr_change}. Addresses with the same last-hop router
+as a given address are available from Lee and
+Spring~\cite{hobbit-use-hobbit-imc-instead}. 
+
+% After finding the set of candidate related addresses, $cra$, for each given
+% address, the next step is to select a subset of these addresses for probing which
+% will maximize the likelihood of finding simultaneous outages when they
+% occur. I call this subset of addresses the probed related addresses ($pra$). Addresses that are topologically related (same last-hop router
+% or same dynamic addressing pools) are likely to share fate upon
+% outages; thus, I will first select topologically related addresses
+% to a given address. Selecting addresses related by other criteria can
+% also prove to be helpful for shedding light upon potential causes and
+% the extent of outages. For example, power outages and network outages
+% in an area can result in simultaneous outages for multiple IP
+% addresses in that geographic area. By selecting related
+% addresses from that geographic area, we can potentially disambiguate a power
+% outage from a network outage: if addresses in that area from multiple
+% ISPs fail simultaneously, the outage is likely a power outage and if
+% addresses from only a single ISP failed, the cause is likely a network
+% outage. If we also select addresses from multiple
+% geographic areas, we can estimate the severity and potential cause of
+% the outage. For example, if addresses fail simultaneously
+% across a large geographic area, a severe outage has likely occurred,
+% perhaps at some core infrastructure. 
+
+% Although increasing the size of the set of probed related addresses,
+% $pra$, can increase the likelihood of finding simultaneous outages, it will also result in higher
+% probe volume. Thus, an important component of this task is to balance
+% the addresses in $pra$ such that the probe volume remains reasonable
+% while also maximizing our ability to observe simultaneous
+% outages. My plan is to start with a small $pra$ set consisting of 11
+% addresses: two topologically related, four geographically related
+% and five for severity estimation. In the next section, I illustrate
+% how probe traffic can remain low even when we have 11
+% additional addresses to probe in the $pra$.
+
+
+\subsection{Probing related addresses}
+
+The other key task in the proposed approach is to probe the given
+address and a subset of addresses from its $cra$ in such a manner as to
+minimize false outage classifications while
+keeping the probing volume low. Probing a larger subset of addresses
+from the $cra$ will increase the likelihood of observing
+simultaneous outages since there is a higher
+likelihood that we are probing addresses that fail together. Probing more frequently
+increases the accuracy of the measured simultaneity; for example,
+probing all addresses every second will allow us to measure
+simultaneous outages that occurred in the same second. Less frequent probes will
+reduce accuracy by increasung the likelihood that two outages
+which were not actually simultaneous are reported to be simultaneous. On the other hand, probing many addresses and
+probing more frequently increase the probing volume. 
+
+My first approach toward resolving these tradeoffs is to vary the number of
+probed addresses from the $cra$ and the probing volume towards them and empirically
+determine the resulting false classification rates. 
+Ideally, a
+complete list of ``ground truth'' outages per category would
+exist against which the detected outages can be
+compared. Although a complete list does not exist, partial lists of
+network outages are available from the outages mailing
+list~\cite{outages-mailing-list} and of power outages from the
+U.S. Department of Energy~\cite{power-outages-us-official-list}. For
+multiple-ISP
+and shared-ISP outages, I intend to compare the detected
+outages against the known outages in these lists for various combinations of probed addresses and
+probing volume. While these partial lists can confirm that some
+multiple-ISP and shared-ISP outages were indeed
+categorized correctly, they
+cannot inform if isolated outages were
+categorized incorrectly into the multiple-ISP or shared-ISP
+categories, since these lists are not exhaustive.
+
+For determining how often isolated outages are falsely categorized into
+the multiple-ISP or shared-ISP categories at various probing volumes, 
+I intend to investigate outages detected by existing studies such as
+Thunderping~\cite{pingin} and the ISI survey~\cite{census-survey}.
+Using these existing measurements, I will first estimate the probability that
+unrelated addresses that were probed fail ``simultaneously'' over
+different windows of time. Thunderping pings thousands of
+addresses every day in areas with severe weather alerts and each
+address receives approximately a ping every minute when Thunderping
+uses 11 vantage points. The ISI survey uses a different probing scheme: it sends probes
+to every address in a /24 prefix once every 11 minutes over a two week
+period for 24,000 /24 prefixes. With such a large volume of addresses being
+probed, both Thunderping and the ISI survey detect many ``simultaneous'' outages; some of
+these are likely true positive simultaneous outages and others
+false. Simultaneous outages observed in these
+datasets for addresses in unrelated ISPs and disparate geographic areas are
+likely false positives. I intend to use such false positives to
+estimate the probability of detecting false simultaneous outages---and
+therefore, falsely categorizing outages into multiple-ISP or
+shared-ISP---using
+these techniques' default probing scheme. To obtain the false positive
+rate for less frequent probing volumes, I intend to simulate the
+false positives that would have resulted if probes had been send at
+lower frequencies to a smaller subset of probed addresses. Similarly,
+I will assess the false negative rate by looking for related addresses
+that failed together in these datasets. Thunderping probes addresses
+in similar geographic areas and the ISI survey probes all addresses in
+a /24; thus, both schemes already probe some related addresses. I will
+simulate lower probing-volume schemes and determine how many true simultaneous
+outages affecting various related addresses will be missed and estimate
+the false negative rate.
+
+\subsection{Using categorized outages to estimate reliability}
+
+After validating that the outage categorizations are accurate, I will
+use the categorized outages to estimate ISP-level, media-type-level,
+and geographical-area-level reliability using both reliability metrics
+I defined in Section~\ref{sec:related}. For ISP-level and
+media-type-level reliability analyses, I will only consider shared-ISP
+outages. For comparing reliability across different geographies, I will consider multiple-ISP outages as
+well. Also, I will perform an analysis of the proportion of
+Internet-connected devices over time; this analysis will include every
+discovered outage, including isolated ones.
+
+% When analyzing if a particular geographical area has reliable
+% Interent connectivity,
+% multiple-ISP and shared-ISP outages should count as outages,
+% but not user-caused ones. And when comparing ISP-level or
+% media-type-level reliability, only shared-ISP outages should
+% be treated as outages.
+
+% The other key task in the proposed approach is to probe the given
+% address and the addresses in its $pra$ in such as a manner as to
+% find simultaneous outages with precision while keeping the probing
+% volume low. If we probe all the $pra$ addresses every second, we
+% can observe simultaneous outages with the precision of a second. Thus,
+% observing just two simultaneous outages in a given second may be
+% enough to convince us that these outages are involuntary, since two
+% users are very unlikely to power off their equipment in the exact same
+% second. On the other hand, if we only probe $pra$ addresses once every
+% hour, we likely need more addresses to fail together simultaneously,
+% because the likelihood that two users decided to voluntarily power off
+% their devices in the same hour is higher.
+
+% My idea to balance probing volume and simultaneous outage detection
+% precision is to probe $pra$ addresses only when necessary for
+% simultaneous outage detection. Whenever the given address appears to
+% be experiencing an outage, addresses in $pra$ will need to be probed
+% to check for simultaneity. I will probe the
+% given address every minute; one ping per minute is the approximate
+% probe-rate that an address receives from Thunderping when Thunderping
+% has 11 vantage points. Upon a lost probe to the given address, I will
+% immediately initiate probes to all the $pra$ addresses as well as to
+% the given address using the probing scheme adopted by
+% Thnderping~\cite{pingin}. During this phase, all addresses in the
+% $pra$ as well as the given address will receive at least a ping every
+% minute from each vantage point (assuming 11 vantage points). I will
+% retry lost probes to any of these addresses with exponential backoff. This scheme
+% will ensure that an outage that affects any subset of the given
+% address and addresses in the $pra$ will be detected in the same minute.
+
+% Since this probing scheme relies upon addresses in the $pra$ for
+% simultaneous outage detection, an important task is to ensure that
+% the addresses in $pra$ remain responsive to probes. Thus, even when the given address
+% is responsive to probes, I will probe every $pra$ address
+% once every 11 minutes from a single vantage point. When an address in
+% the $pra$ is no longer responsive, I will replace it with another
+% address from the $cra$.
+
+% By ensuring that probes are only sent when necessary, I believe that
+% the probe volume will be low enough to not trigger abuse
+% reports. Consider the case when we select 11 $pra$ addresses
+% for a given address from the same ISP and we use 11 vantage points. The probe rate towards that ISP
+% in the absence of lost probes will only be increased by 1 probe per
+% minute (since each $pra$ address will only receive a single
+% probe every 11 minutes). This increase of 1 probe per minute is
+% similar to the increase in Thunderping's probe rate, if Thunderping
+% had selected a single extra IP address to probe in that ISP. When
+% probes to the given address are lost, then the probe rate towards that
+% ISP increases by a factor of 11. However, this increase in probe rate
+% is justified because we can now detect simultaneous outages in the
+% minute that they occur.
+
+
+% Why should we send them traceroutes?

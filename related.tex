@@ -1,0 +1,325 @@
+
+\section{Background}
+\label{sec:related}
+
+% \subsection{Goal}
+
+% My goal is to measure Internet reliability 
+
+\subsection{Definitions}
+
+The goal of this work is to provide broad, longitudinal, and accurate measurements of
+Internet reliability across ISPs, media-types, and geographic
+locations in a variety of circumstances. Such measurements can help
+users choose from their available Internet options and can inform ISPs
+about potential problems in their networks. To achieve this goal, I
+propose the following thesis and define terms in the thesis as follows:
+
+\emph{It is possible to remotely and accurately detect substantial outages
+  experienced by any device with a stable public IP address that typically
+  responds to active probes and use these outages to compare
+  reliability across ISPs, media-types and geographical areas.}
+
+
+\begin{itemize}
+
+\item {\emph{Device with a stable public IP address}: This is a device
+    connected to the Internet, like a
+home-router, to which an ISP has assigned a public IP address such
+that the
+assignment is either static, or dynamic in a manner that allows the
+duration of dynamic assignment to be estimated.}
+
+\item {\emph{Substantial outage}: I define a substantial outage to be an event where a device
+    with an Internet connection is unable to send or receive any
+    packets for at least 10 minutes.}
+
+\item {\emph{Accuracy of outage detection}: An outage detection technique is accurate when it
+correctly identifies every substantial outage event experienced by an Internet-connected-device, along with its
+duration. There are no time-periods when the address
+experiences a substantial outage but it goes undetected (false
+negatives). Similarly, there are no time-periods classified as
+outages when the destination address is able to receive packets from the
+Internet (false positives).}
+
+\item {\emph{Reliability}: I define two measures of reliability: one is the raw count of outage
+events over measured time and the other is the proportion of total measured time
+detected as outage events.} % When estimating a particular ISP's reliability, I
+% only use the subset of outages that solely affected that ISP's
+% addresses.}
+% When estimating the reliability of a geographical area, I
+% consider the subset of outages that affected only that geographical
+% area.
+
+\end{itemize}
+
+\subsection{Related work}
+
+The architects of the Internet predicted that network outages could
+occur, and designed the Internet to have the ability to route around
+outages~\cite{clark-darpa}. As predicted, a variety of factors cause
+outages in the Internet, including optical fiber
+cuts~\cite{fiber-cuts}, routing and infrastructure
+failures~\cite{backbone-failures-1999, ratulbgp}, and
+hurricanes~\cite{pingin}.
+
+%TODO: Cite ratulbgp somewhere, network-black-holes, feamster:sigmetrics:failures
+
+Large Internet outages that can affect packets from
+thousands of Internet hosts have received attention from the research
+community~\cite{censorship-outages, trinocular, hubble, paxson-e2e,
+  hubble, netdiagnoser, lifeguard,
+  poiroot, phillipa-outages-mailing-list,
+  california-fault-lines, delayed-routing-convergence, consensus-routing,
+  routing-e2e-path-perf, voip-bgp-convergence}. Outages occurring in the Internet's core can cause Internet
+path failures; researchers have
+investigated transient Internet path failures caused by route
+changes~\cite{delayed-routing-convergence, consensus-routing,
+  routing-e2e-path-perf, voip-bgp-convergence} and longer path failures caused by
+infrastructure device outages~\cite{paxson-e2e,
+  hubble, netdiagnoser, lifeguard,
+  poiroot, phillipa-outages-mailing-list,
+  california-fault-lines}. Other studies detect outages at the
+country-level~\cite{censorship-outages} and at the network prefix
+level~\cite{trinocular, hubble}.
+
+ % Industry provides some options to
+% study failures but they either focus solely on websites that are
+% down~\cite{downdetector, outageanalyzer, isitdownrightnow, downforeveryoneorjustme}, or offer services to monitor
+% large customer networks~\cite{thousandeyes}. 
+However, outages that affect individual users have received comparatively less
+attention~\cite{pingin, samknows, ripe-atlas-website,
+  grover2013peeking}. In the rest of this
+section, I classify these efforts to detect outages into on-premises
+outage detection techniques, and remote probing-based outage detection
+techniques, and
+discuss their approaches and challenges in detail.
+
+% Why do I care only about complete outages and not partial ones?
+% Because they are easy to define! :P
+% Because they are more likely to be last-mile link. Aha! Yes, so a
+% complete outage means we will have the ability to isolate the fault
+
+% We define a link to experience an outage when it experiences peformance
+% degradation resulting in unusually high loss and/or delay. When a link
+% experiences delay but no loss, we define that link to be \emph{sleepy}
+% and we refer to the event as a \emph{sleep}. When a link experiences
+% loss but no delay, we define that link to be \emph{lossy} and we refer
+% to the event as a loss. When a link experiences complete loss, i.e.,
+% all packets on that link are dropped, we define that link to be
+% \emph{out} and we refer to the event as an \emph{outage}. Note that by
+% definition, every \emph{outage} event is also a \emph{loss}
+% event. When a link experiences delay and loss, we define that link to
+% be \emph{sleepy-lossy} and we refer to the event as a
+% \emph{sleep-loss}. When we speak of a single probe being lost/delayed,
+% we will refer to it a \emph{probe-loss} /\emph{probe-sleep}.
+
+
+
+% Several studies have tried to detect outages. 
+
+% Find which ones study outages using passive techniques?
+
+% Find which ones study outages at not the last-mile
+
+% Find which ones study outages at the last-mile but using dedicated
+% hardware (Ark, RIPE Atlas)
+
+\subsection{On-premises outage detection techniques}
+% The redundancy present in the core of the Internet is
+% mostly absent in residential networks, owing to the high cost of
+% deploying redundant last mile links. Even multihomed last mile links for business connectivity
+% often share the same upstream hardware, representing a single point of 
+% failure. Residential link failures directly impact end-users and as a result,
+% are of interest to service providers, policy makers, and the end-users themselves.
+
+% Most residential end-users today lack the means to understand the
+% reliability of their Internet connectivity over time, and of comparing
+% reliability across competing ISPs. They have to rely upon speedtest
+% tools which can offer estimates of connectivity over a few seconds but
+% not over longer timescales. 
+Recognizing the need for long term
+measurements of residential Internet performance, policymakers such as
+the FCC from the U.S., and Ofcom from the U.K. have deployed the SamKnows
+hardware platform~\cite{samknows} inside residences to measure residential
+Internet connections continuously by performing active and passive
+measurements and reporting their results to users, ISPs, and
+policy makers. RIPE NCC, the European RIR, has pioneered the RIPE Atlas~\cite{atlas} project and
+Sundaresan et al. the BISmark project~\cite{bismark-main-bib}, which also study
+user connectivity using dedicated hardware measurement devices on user premises. Another
+on-premises technique is the DIMES project~\cite{netdimes}, which
+deploys measurement software on user machines; however, this approach
+is not well suited to detecting outages since the DIMES software is
+often installed on laptops~\cite{dhcp-dimes}.
+
+% In essence,
+% they are also probe-based outage detection techniques, in that the
+% absence of any probes indicates an outage; however, they are
+% on-premises and not remote.
+Hardware-based approaches can offer accurate reports about
+Internet connectivity since the hardware devices are designed to make
+measurements continuously as long as they are powered. These techniques have the
+ability to perform a range of other measurements such as DNS anycast
+tests that can identify which instance of a root-server is closest,
+and even passive measurement of the websites that users
+access. However, these approaches are fundamentally limited in scale
+since their hardware is expensive, distributing the hardware to users
+is time consuming, and convincing users to keep their hardware running
+is challenging. For example, the RIPE Atlas project, which began in
+2010 and has been continuously expanding all across the world, has fewer than 10,000 probes that are currently making measurements, out
+of more than 15,000 distributed probes.
+ 
+\subsection{Probing-based remote outage detection techniques}
+
+% TODO: Talk about Zmap. It cannot do adaptive probing, being
+% stateless, and hence cannot be used for individual outage detection.
+
+Probing-based remote outage detection techniques can detect
+connectivity problems remotely through active probing from servers
+that we control. Though this approach will prevent us from running
+certain types of measurements, such as DNS anycast tests, it can measure
+Internet connectivity for individual users at scale. However,
+existing techniques can infer false outages in some scenarios as I
+illustrate next.
+
+Probing-based remote outage detection techniques study connectivity problems by
+sending active probes (such as ping's echo requests) and use probe
+responses to infer connectivity problems. For example, an
+echo-response from the end-host indicates that its network connection
+is working. If a previously responsive destination ceases to respond
+to probes, current techniques infer that the destination could be
+experiencing connectivity problems. Thunderping~\cite{pingin},
+Trinocular~\cite{trinocular}, and Zmap~\cite{durumeric2013zmap}, have
+used this technique to detect outages, albeit at different scales:
+Zmap detected outages that affected several US states during Hurricane
+Sandy, Trinocular detects outages that affect /24 prefixes, and
+Thunderping detects outages at the individual IP address level.
+
+While probing-based outage detection techniques can scale to probing hundreds
+of thousands of addresses, they cannot scale indefinitely. Very high
+probe volume can cause our traffic to be viewed as malicious and can
+result in probes getting blacklisted and in abuse
+reports~\cite{durumeric2013zmap}. Further, high probe volume increases
+the state that needs to be stored by the prober; though probing
+schemes like Zmap have circumvented this problem by not storing
+state~\cite{durumeric2013zmap}, adaptive retransmission to confirm a
+suspected outage requires the storage of state.
+
+% Trinocular is an outage detection system that employs active
+% probes to detect outages for entire /24 prefixes. It uses historical
+% measurements to 
+
+% Thunderping~\cite{pingin}, detects last-mile
+% link outages for individual residential links during times of predicted severe weather
+% conditions using pings, and correlates outages with weather
+% conditions. The US National Weather service issues severe weather alerts for areas that are
+% likely to experience conditions of severe weather; Thunderping uses
+% these alerts to select geographic areas to study. Using
+% Maxmind, a popular geolocation service, it then finds IP addresses in
+% these geographic areas and pings these addresses from multiplee
+% PlanetLab vantage points before, during, and after the weather
+% event. We use the results of these pings to infer outages
+% and correlate them with observed weather conditions to measure
+% the effect of weather upon residential Internet connectivity.
+
+
+% \begin{figure}[tb]
+% % \centering
+% \begin{center}
+% \includegraphics[width=3in]{figs/pingin_real_deal_v13}
+% \end{center}
+% \caption{\label{fig:thunderping} Thunderping detects outages in
+%   last-mile links during times of predicted severe weather. It uses
+%   weather alerts from NOAA to find areas that are likely to be
+%   affected by severe weather. It then pings IP addresses in those
+%   areas before, during and after the weather alerts from multiple
+%   PlanetLab vantage points and uses the
+%   results to infer outages.}
+% \end{figure}
+
+% \subsubsection{Improving the accuracy of remote probing based outage
+%   detection techniques}
+
+% Can measure reliability inaccurately
+\subsubsection{Probing-based remote outage detection techniques can
+be inaccurate}
+
+% I define a probed destination address to undergo an ``outage'' event
+% when the address is unable to send or receive any Internet packets. The ideal outage detection technique should be capable of
+% identifying every outage event, along with its
+% duration. There should be no time-periods when the destination address
+% experiences an outage but the outage is undetected (false
+% negatives). Also, there should be no time-periods classified as
+% outages when the destination address is able to receive packets from the
+% Internet (false positives).
+
+Probing-based remote outage detection techniques can infer false
+negative and false positive outages as a consequence of their foundational
+assumption: that a response to an active probe indicates a working path to the probed
+IP address and that lack of response is indicative of
+failure. False negatives can occur when the probe rate
+to a destination address is low, so that very short outages
+experienced by the address go undetected. For example, with
+Thunderping's probing scheme of sending a ping every 11 minutes from
+each of its vantage points to a destination address~\cite{pingin}, it is possible that an outage lasting
+shorter than 11 minutes is not observed by each vantage
+point. Increasing the probe rate can limit the maximum duration
+of these false negative outages; remote probing based outage detection
+techniques must tradeoff the rate
+with which they probe a given destination and the duration of the
+longest outage that they can fail to detect. 
+
+While false negative outages can be controlled by probing faster,
+false positive outages pose a potentially larger accuracy problem. Current
+techniques can make false positive inferences about
+outages in the following scenarios:
+
+\begin{itemize}
+
+\item{\bf{Confusing delay with loss:}}
+ Traditionally, active probe based approaches time out probes after a few seconds. Thunderping~\cite{pingin} and Trinocular~\cite{trinocular}
+time out probes after a few seconds. Responses that arrive after the
+timeout will be reported as lost. When this happens, existing
+techniques would infer loss though the responses are in fact merely
+delayed. 
+
+% TODO: Raise whether extreme delay is an outage.
+
+\item{\bf{Making false inferences about outages due to dynamic
+      addressing:}}
+
+    Consider an IP address that was previously responsive. If the host
+    to which that IP address was assigned changed its IP address as a
+    result of dynamic addressing, and if the probed IP
+    address is not reassigned to any host, then echo responses will
+    cease to arrive. Existing techniques would thus infer false
+    probe-loss and consequently, false
+    outages. Consider an alternate scenario where the probed IP address has an
+    outage. Suppose that at some point during the outage, the IP
+    address is reassigned to some other end-host which responds to
+    probes. Existing techniques would infer that the arrival of
+    responses signals the end of the outage and would infer that the
+    outage ended prematurely.
+
+% \item{\bf{Some outages can falsely lower inferred reliability}}
+% When analyzing ISP-level or media-type-level reliability, our
+% reliability inferences for an ISP should only be based upon outages that
+% affected solely that ISP's customers. However, power outages and
+% undersea cable cuts can result in outages to many ISPs'
+% customers. Also, users sometimes choose to voluntarily shut down their home Internet
+% equipment~\cite{grover2013peeking}. If a probing-based remote outage detection technique happens to
+% measure an address during these times, probes sent to that address
+% will cease to arrive, leading to the inference of an outage. When
+% measuring ISP-level or media-type-level reliability, these outages
+% must be filtered.
+
+\end{itemize}
+
+I address how the accuracy of probing-based remote outage detection
+techniques can be improved by mitigating these listed causes of false
+positive outages in Section~\ref{sec:timeouts} and Section~\ref{sec:addr_change}.
+% the rest of the proposal.
+ % false probe-loss inference due to early timeout in
+% Section~\ref{sec:timeouts} and false probe-loss inference due to IP
+% address change in Section~\ref{sec:addr_change}.
+

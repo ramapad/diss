@@ -1,0 +1,47 @@
+newgraph clip
+
+xaxis min 0 max 3350 size 7 no_auto_hash_labels no_auto_hash_marks label font Helvetica hash_labels font Helvetica fontsize 13
+hash_at 365
+hash_label at 365 : 2007
+hash_at 730
+hash_label at 730 : 2008
+hash_at 1095
+hash_label at 1095 : 2009
+hash_at 1460
+hash_label at 1460 : 2010
+hash_at 1825
+hash_label at 1825 : 2011
+hash_at 2190
+hash_label at 2190 : 2012
+hash_at 2555
+hash_label at 2555 : 2013
+hash_at 2920
+hash_label at 2920 : 2014
+hash_at 3285
+hash_label at 3285 : 2015
+
+yaxis log hash_format g min 1 max 700 size 2.5 label font Helvetica fontsize 15 hash_labels font Helvetica fontsize 11
+ label : Min Timeout (s)
+
+legend defaults x 200 y 150 hjl vjc 
+
+newcurve marktype x linetype solid color 0.8 0.1 0.1 label : 99%
+newcurve marktype diamond linetype dotted color 0.3 0.9 0.9 label : 98%
+newcurve marktype cross linetype dashed color 0.1 0.15 0.05 label : 95%
+
+
+
+
+newcurve marktype x linetype solid linethickness 2 color 0.1 0.15 0.05 pts
+shell : awk '{printf "%d %f\n", ($1), ($6)}' pctile_var_over_time
+
+newcurve marktype diamond linetype solid linethickness 2 color 0.3 0.9 0.9 pts
+shell : awk '{printf "%d %f\n", ($1), ($7)}' pctile_var_over_time
+
+newcurve marktype cross linetype solid linethickness 2 color 0.8 0.1 0.1 pts
+shell : awk '{printf "%d %f\n", ($1), ($8)}' pctile_var_over_time
+
+(* second y-axis on the right *)
+newgraph
+xaxis min 0 max 3350 size 7 nodraw
+yaxis hash_scale 1 log hash_format g min 1 max 700 size 2.5 label font Helvetica fontsize 15 hash_labels font Helvetica fontsize 11
