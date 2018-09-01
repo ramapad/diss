@@ -152,6 +152,15 @@ deploys measurement software on user machines; however, this approach
 is not well suited to detecting outages since the DIMES software is
 often installed on laptops~\cite{dhcp-dimes}.
 
+% To
+% offset some of the scalability costs, on-premises outage detection systems can also be software-based 
+While some of these costs can be offset by utilizing measurements from
+deployed software on user systems~\cite{netdimes, dhcp-dimes, Dasu:NSDI2013} or using a combination of hardware
+and software measurements~\cite{IMC2014-Broadband-bischof}, deploying software widely remains
+challenging. Separating user behavior, such as turning off their laptops, from
+Internet outage events presents additional challenges for these techniques~\cite{dhcp-dimes}.
+
+
 % In essence,
 % they are also probe-based outage detection techniques, in that the
 % absence of any probes indicates an outage; however, they are
