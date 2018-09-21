@@ -95,6 +95,16 @@ outage detection techniques, and remote probing-based outage detection
 techniques, and
 discuss their approaches and challenges in detail.
 
+A complementary technique uses large passive data collection to detect
+Internet outages at the edge. Dainotti et~al.~\cite{dainotti-imc11} observe Internet Background
+Radiation traffic sent to IPv4 darknets to detect outages affecting
+entire countries. 
+
+Disco~\cite{disco} uses Kleinberg's burst detection to detect
+events where many RIPE Atlas probes disconnect from
+their infrastructure in a correlated manner.
+
+
 % Why do I care only about complete outages and not partial ones?
 % Because they are easy to define! :P
 % Because they are more likely to be last-mile link. Aha! Yes, so a
@@ -199,17 +209,67 @@ is working. If a previously responsive destination ceases to respond
 to probes, current techniques infer that the destination could be
 experiencing connectivity problems. Thunderping~\cite{pingin},
 Trinocular~\cite{trinocular}, and Zmap~\cite{durumeric2013zmap}, have
-used this technique to detect outages, albeit at different scales:
-Zmap detected outages that affected several US states during Hurricane
-Sandy, Trinocular detects outages that affect /24 prefixes, and
-Thunderping detects outages at the individual IP address level.
+used this technique to detect outages, albeit at different scales. I
+discuss each approach in detail next.
+
+\subsubsection{Zmap was used to study Internet outages during
+  Hurricane Sandy}
+
+% TODO: Find Zippier Zmap and cite it.
+
+Zmap is an active probing technique designed to send packets of a
+specified type (such as ICMP echo) to all IPv4 addresses at
+very fast speeds (under an hour in 2013~\cite{durumeric2013zmap},
+under 5 minutes today~\cite{}. The key to these speeds is that the
+Zmap tool chooses to not store state at the prober; instead, response
+packets are matched with sent ones by encoding destination-specific data
+in the sent packets. By using cyclic generators, Zmap probes
+destination addresses in a random order, reducing probing burden on
+individual ISPs. However, Zmap's decision to not store state comes
+with a trade off: probe retransmissions upon the detection of a lost
+probe is difficult.
+
+While the Zmap
+tool was used to detect Internet outages during Hurricane
+Sandy~\cite{durumeric2013zmap}, finding smaller Internet failure
+events with the Zmap tool is challenging. Since outages are infrequent and can affect small parts of
+the address space, finding them would require running repeated Zmap
+scans of the entire address space on the order of minutes. Even if this is technically feasible,
+it remains an open problem whether such an aggressive probing scheme
+is warranted.
+
+\subsubsection{Trinocular detects failures of /24 address blocks}
+
+Trinocular pings addresses in ~4M /24 address blocks and
+uses the responses to detect Internet outages affecting entire blocks. Using historical
+data from the ISI census~\cite{census-survey}, it models the responsiveness of
+blocks and finds subsets of addresses within each block that are
+likely to respond to pings. The system pings a few of these addresses
+from each block at random and probes them in 11-minute
+rounds. Trinocular then employs Bayesian inference to reason about
+responses from blocks. When a block's responsiveness is lower than
+expected, Trinocular probes the block at a faster rate and eventually
+detects an outage when the follow-up probes also indicate the block's
+lack of Internet connectivity.
+
+The key difference of this work from Trinocular is that we do not assume
+that correlated failures span entire /24-address blocks; instead, we
+look for correlated failures of addresses related by geography and
+ISP. While we share Trinocular's intuiton that dependent events will
+affect related addresses, Trinocular's notion of relatedness is solely
+that of belonging to the same /24. With the IPv4 address space
+breaking up, we hypothesized that addresses in disparate /24s may be
+affected by a correlated failure event. Further, a power outage may
+affect a few addresses but from several different ISPs.
+
+
 
 While probing-based outage detection techniques can scale to probing hundreds
 of thousands of addresses, they cannot scale indefinitely. Very high
 probe volume can cause our traffic to be viewed as malicious and can
 result in probes getting blacklisted and in abuse
 reports~\cite{durumeric2013zmap}. Further, high probe volume increases
-the state that needs to be stored by the prober; though probing
+the state that needs to be stored by the prober. While probing
 schemes like Zmap have circumvented this problem by not storing
 state~\cite{durumeric2013zmap}, adaptive retransmission to confirm a
 suspected outage requires the storage of state.
