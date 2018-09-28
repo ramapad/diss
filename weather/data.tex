@@ -1,0 +1,411 @@
+\section{Data Set}
+
+This section describes the data we collected and its initial
+processing.
+%
+We start with a definition of the partially interpreted data
+we seek: ``dropouts,'' where an address fails to respond in
+the context of otherwise ``responsive hours'' of an address.
+%
+We next briefly review the ThunderPing data probing system and
+present brief statistics about the raw active probing data.
+% 
+Then, we review the weather data, particularly how and
+where it is collected and how we handle hurricanes.
+%
+We conclude by describing the benefits (and limitations) of this
+data for our study of weather-related effects.
+
+\subsection{Dropouts, Defined} %{{{
+
+A dropout happens when the address attached to a residential link transitions from
+being responsive to pings from multiple vantage points, to being unresponsive
+from all of the vantage points.
+% 
+Specifically, we define a residential link ``dropout'' as an hour when at least three
+vantage points pinging a host and receiving replies suddenly experience 11 minutes
+(an entire probing interval) where they do not receive a 
+reply before a five second timeout.
+%
+This dropout occurs within a ``responsive address hour,'' a
+continuous observation of an IP address in known weather
+conditions.  A responsive hour may or may not include a
+dropout, and the ratio of dropouts to responsive hours is a
+measure of outage likelihood.  Responsive hours add: two
+addresses both observed in the same hour or one address
+observed for two hours in the same conditions are equivalent.
+
+Our selection of three vantage points is based on prior work's selection
+of three vantage points to observe outages~\cite{trinocular}.
+%
+Our selection of a five second timeout for ping responses is based on our
+prior work that observed that most ping replies to residential
+hosts are received within five seconds~\cite{timeouts-imc}.
+%
+Our selection of one hour as the time period for a dropout is based on the fact
+that the weather data we collected consists of hourly reports.
+%
+Considering at most one dropout per probed address per hour will diminish the
+number of observed dropouts from individual links, if they should alternate
+between responsive and unresponsive states: there can be at most one per hour,
+not five (due to the 11 minute probing interval).
+
+% To contrast with a dropout, a ``responsive hour'' is an hour
+% in which weather is experienced, but the address does not
+% experience a dropout.
+% We define responsive hour later in Sec 2.4. And we do it
+%   correctly there!
+% nspring - I think it needs to be here, corrected if necessary.
+
+Observing a dropout is a sign that a residential link may (but may not) have
+experienced an outage:
+%
+\emph{Dropouts are a superset of outages.}
+%
+Dropouts can also occur if the device re-attaches to the
+network with a new address after only momentary
+disconnection, typically through re-association of a PPP
+session for a DSL modem, but potentially through
+administrative renumbering of prefixes. For our purposes, we
+expect these events to occur independent of weather, such
+that the two events can be studied separately.
+%
+% Restated, when a residential link experiences a prolonged outage, a prolonged
+% dropout will also occur.
+%
+%Other network changes can also lead to dropouts.
+%
+%IP renumbering is the most common source of dropouts that are not outages. 
+%IP renumbering is when residential providers change the IP addresses assigned
+%to their customers either via forced renumbering~\cite{forced-renumbering},
+%DHCP lease expiration~\cite{dhcp-lease}, or PPPoE sessions
+%%expiring~\cite{pppoe}.  For our purposes, we expect these events (address
+%reassignment or premise equipment reboot) to occur independent
+%of weather, such that the two events can be studied separately.
+%
+We confirm that dropouts during typical maintenance intervals are
+unlikely to correlate with weather in
+Section~\ref{subsec:independence_of_maintenance}, and we
+revisit DHCP in Section~\ref{sec:recovery}.
+
+%
+% \todo{insert that our approach for dealing with this is statistical?}
+
+In short, by observing dropouts, we will be able to observe how residential
+links behave during weather, at the scale necessary to make quantitative
+conclusions about weather's effect on residential links in the U.S.
+%
+% We must also be careful because we observe the effects of
+% other network changes that do not correspond with outages.
+%}}}
+
+% \subsection{How did we observe if there were dropouts on residential links during weather?} %{{{
+
+\subsection{Dropouts, collected}
+
+We briefly summarize the methodology of ``ThunderPing'': our probing
+system that has been running for seven years.
+%
+More details about ThunderPing can be found in our preliminary work in
+%ThunderPing was described in our preliminary work in
+IMC~2011~\cite{pingin}.
+%, details can be found there.
+%
+% nspring - I know I wrote this, but I'm not feeling it any more.
+% surgical strike preferred.
+%Although our initial probing methodology was sufficient for data collection, our
+%analysis methods were inadequate in that they did not consider the background
+%rate of failures and they were too ambitious in assuming outage duration could
+%be understood for all link types.  We describe our revised method in 
+%Section~\ref{sec:method}.
+
+The ThunderPing probing methodology is as follows:
+%
+For every forecast of severe weather provided by the US National Weather
+Service, ThunderPing pings a sample of 100 residential hosts from each
+provider in the affected region.  The affected region is specified by FIPS code, which roughly
+corresponds to counties in the U.S.
+%
+The probing starts up to six hours before the forecast event, continues during the
+event, and terminates six hours after the event, regardless of whether the weather
+materializes.
+ 
+The residential hosts ThunderPing pings during each weather event are selected
+from a master list of residential hosts classified by provider (reverse DNS
+name) and geographic location (FIPS code).  We classify link type by
+provider, when the provider implies a well-defined link type; (typically rural) providers that
+use a variety of media types to provide connectivity are included under ``All'' link
+types with the rest, but are not classified further.  We determine location using a 
+MaxMind database from the same year for choosing which addresses to probe, but from the same
+month for analysis. Although there are errors in both classifications, a location error
+would be expected to cause an underestimate of the effect of weather by placing a host
+not in the forecast region falsely into the area of weather effect.
+ 
+ThunderPing sends pings to each of these hosts from up to 10 geographically
+dispersed \planetlab vantage points every 11 minutes.  This interval is due to~\cite{imc08-heidemann}.
+When a \planetlab node fails, we replace it, but if the number of working vantage points
+drops below three, we discard observations at that time as untrustworthy.
+%
+% Having more than the three vantage points needed to detect dropouts allows us
+% to continue probing uninterrupted even in the inevitable case that a
+% \planetlab node fails.
+% %
+When there are at least three, we require
+that all active vantage points do not have a response in order to label the event as a dropout.
+  
+ThunderPing retransmits failed ICMP requests: when a vantage point sees a
+lack of ping response it retries that ping with an exponential backoff up to 10
+times within the 11~minute probing interval.  Therefore, a dropout will typically require
+at least 30 failed ICMP requests.
+
+ThunderPing has been running for seven years, and has
+collected 76 billion responsive pings to 8.7 million
+residential addresses.
+ 
+\subsection{Weather, classified}
+
+To quantify the effect of weather on dropouts, we needed to determine
+what weather residential links were exposed to when a dropout did or did not
+occur.
+
+The US National Weather Service (NWS) operates a 
+network of 900 automated ``ASOS'' weather stations.
+%
+These weather stations are typically located at airports.
+%
+The NWS weather stations record hourly observations of 24 weather
+variables in METAR format and make those available~\cite{metar-ftp}.
+% nspring: I feel like "we downloaded it" is implied.
+%
+%For all of the geographic locations that we probed, across all of the time
+%periods that we probed, we downloaded METAR data
+%from~\cite{metar-ftp}.
+%
+ 
+There are two types of weather information: categories that
+account for the common precipitation types (e.g.,
+thunderstorm, hail, snow) and continuous variables (e.g.,
+wind speed, precipitation quantity).
+
+We annotate each responsive address hour for an address with the
+corresponding weather information associated with the geographically
+closest weather station to that address. Doing so allows us to find
+the number of responsive hours and dropout address hours in specific
+weather conditions. 
+
+\paragraph{Hurricanes are special}
+%
+Severe events are among the most important failure events for us to study how the
+Internet is affected, as the Internet is increasingly relied on as the primary
+mode of communication in an emergency~\cite{emergency-voip-fcc}.
+However, severe events have the potential to overwhelm the typical and
+obscure interesting observations.
+
+% hurricane_times = [
+%    ['October 7 2017 00:00:00', 'October 10 2017 00:00:00'], # Hurricane Nate                  
+%    ['September 9 2017 00:00:00', 'September 13 2017 00:00:00'], # Hurricane Irma              
+%    ['August 24 2017 00:00:00', 'September 1 2017 00:00:00'], # Hurricane Harvey                
+%    ['October 6 2016 00:00:00', 'October 9 2016 00:00:00'], # Hurricane Matthew                
+%    ['September 1 2016 00:00:00', 'September 3 2016 00:00:00'], # Hurricane Hermine            
+%    ['July 3 2014 00:00:00', 'July 5 2014 00:00:00'], # Hurricane Arthur, don't seem to have an\
+% y data                                                                                          
+%    ['October 28 2012 00:00:00', 'November 2 2012 00:00:00'], # Hurricane Sandy                
+%    ['August 25 2012 00:00:00', 'August 31 2012 00:00:00'], # Hurricane Isaac                  
+%    ['August 26 2011 00:00:00', 'August 30 2011 00:00:00'], # Hurricane Irene, don't seem to ha\
+% ve any data                                                                                    
+% ]
+
+The following hurricanes made US landfall during our
+measurement:
+Irene (Aug 26--30, 2011),
+Isaac (Aug 25--31, 2012),
+Sandy (Oct 28--Nov 1, 2012),
+Arthur (Jul 3--5, 2014),
+Hermine (Sept 1--3, 2016),
+Matthew (Oct 6--9, 2016),
+Harvey (Oct 6--9, 2017),
+Irma (Sept 9--13, 2017), and
+Nate (Oct 7--10, 2017)~\cite{noaa-sotc}.
+Hurricanes manifest as a combination of weather features and
+are so pronounced that their contribution to thunderstorm or
+rain outages would be disproportionate.\footnote{It is
+  disappointing to realize the irony that the most
+  significant weather events are also the least
+  surprising.}  We thus omit them from categorical weather
+classification (e.g., Figure~\ref{fig:inflatedfrate_by_wtyp_ci_whiskers}).
+However, we consider data from Hurricane events
+when studying continuous variables (inches of rain and wind speed,
+for example, where these extremes are clearly distinguishable).
+%
+Collectively, these hurricane times account for less than 3\% of
+%
+%All these hurricane times put together account for less than 3\% of
+responsive address hours and 4\% of dropout hours.
+
+\begin{table}
+  \hspace{-0.1in}\ninput{weather/fragments/summary_table_vert}
+  \caption{\label{tbl:summary}Summary of data set for large ISPs
+	classified by link type.  ``All'' comprises data from ISPs not
+	included in this sample.
+	(For this table, we count D.C.~as a state.)
+	}
+\end{table}
+
+
+
+\subsection{Data, Summarized} % Comparing with our IMC 2011 Study}
+
+% \todo{ alter this to cover table 1 and mention the old data in comparison. } 
+
+This data set comprises observations from January 2011 to December 2017,
+though only 1467 days included sufficiently many operating vantage points to
+classify a responsive address hour.
+
+We show per-ISP highlights in Table~\ref{tbl:summary}.  We
+observe major providers such as Comcast, Qwest, and ViaSat
+in all fifty states (and DC).  Of the 1.77 Billion
+responsive address hours from Table~\ref{tbl:summary}, 139M
+(8\%) were hours where responsive addresses experienced
+rain, 66M (4\%) snow, and 19M (1\%) thunderstorm.
+
+Contrasted to our preliminary study~\cite{pingin}, this
+covers nearly 22 times the duration (compared to 66 days),
+and includes roughly 60 times as many dropout events (likely
+because those days were in spring and early summer).%
+% sentiment in next section :
+% is collected over enough time that we can draw
+% conclusions with confidence about the increase in dropouts correlated with
+% many different types of weather in different geographic locations.
+%
+\footnote{In the public reviews of the IMC 2011 paper, all of the reviewers stated that
+they wished the dataset was more comprehensive so conclusions could be made
+about the effects of weather on residential links.}
+%
+% The dataset in this work covers many seasons several times and contains a 
+% severe weather events.
+%
+%
+% At 1467 days, the data in this work spans a period of time 22
+% times longer than our preliminary study in 2011.
+%
+
+%}}}
+
+\subsection{Why this data?} %{{{
+
+Others have studied outages and collected broad IP
+responsiveness data.  Here we describe the benefits
+of our data, addressing its limitations in Section~\ref{sec:datasux}.
+
+Our data provides a view on outages of individual addresses,
+including isolated outages of ``customer premises''
+equipment or singly-connected links that are most exposed.
+We rely on statistics to identify a significant change in likelihood of
+failure, rather than rely upon large outages of infrastructure
+common to a larger aggregate prefix to signify significance.
+Every residential link is wired with its
+own infrastructure: every residence can have different equipment installed
+in different ways and has its own resident network administrator.
+As a concrete example, we expect to observe
+the effect of water infiltration in the network interface
+device (the demarcation point connecting premise phone
+wiring to the provider).  (We discuss the flip side of this
+coin below.)
+
+Our data is of a scale large enough to compare link
+types, providers, geography, and across time.  Seven years
+of data make it feasible to observe multiple instances of
+both severe and common weather events.  Rare events include
+a fair number of tornadoes and virtually unique events such
+as snow in Louisiana.  Many observations of similar weather
+increase the confidence in our dropout probability estimates,
+making it possible to split the data and identify the differences
+between, for example, heavy and light rain on wireless ISPs in
+Kentucky.  The sampling approach---providing data for each 
+provider in an area---ensures that even less-used network links
+and providers are well-represented, permitting a comparison with
+satellites and wireless ISPs that might be poorly represented
+in end host measurement probes~\cite{samknows, sundaresan-sigcomm11,
+  ripe-atlas} or when using provider-specific
+data~\cite{conext10-jin,cisco-transponder,alpha-transponder}.
+
+Our data includes data from times not subject to interesting
+weather: the method probes before and after forecast weather
+alerts.  ``Typical'' weather occurs particularly when the
+forecast does not materialize or the forecast is for a
+long-term event (e.g., summer fire warnings).  With these
+measurements, we can establish a baseline for the rate of
+dropouts in common weather conditions.  Probing after the
+weather also permits measuring recovery time as we wait for
+previously responsive addresses to return.
+
+Our data is not sensitive to link failures elsewhere in the
+Internet or to PlanetLab vantage point failures.
+Restated, with multiple vantage points, catastrophic Internet link outages,
+such as the fiber cuts during the ``Baltimore tunnel fire'' in
+2001~\cite{bmore-tunnel-fire} will only be considered as an outage if all
+vantage points are unable to communicate with the host over the residential
+link.  As described above, without three active vantage points,
+we make no decision about address responsiveness.
+
+\subsection{Dataset Limitations} % What are the limitations of our data set?} %{{{
+\label{sec:datasux}
+
+% \paragraph{Probing is biased to links and time periods where there are weather
+% forecasts}
+%
+The essence of ThunderPing is to selectively probe only when
+there is a weather alert forecast for an area, which biases the data
+toward time periods where there is some atypical weather present.
+Obviously, regions that experience temperate weather are 
+unlikely to be represented, and we thus do not attempt to quantify
+what fraction of all residential network outages are caused by weather.
+More subtly, during the interval around
+forecast severe weather, the weather conditions may not be
+ideal: our estimate of the background dropout rate is likely inflated 
+by proximity to potentially severe weather, thus causing us to underestimate
+the quantitative effect of that weather.
+
+% \todo{Aaron- did I capture what you wanted (prior text commented below)?}
+
+% Since ThunderPing only probes when there is a weather forecast for an area, we
+% may not probe some residential links that received few or no forecasted weather
+% over the course of our seven year study.
+% %
+% Also, by focusing only on links that are expected to experience weather, we may
+% have bias toward hosts that will dropout if our weather assignment is
+% incorrect. 
+% %
+% The result of this is that our baseline number of dropouts may be inflated.
+
+Our approach relies upon active probing to gain breadth
+across hundreds of providers, but there are limits to this
+breadth: providers may administratively filter ICMP requests
+and home routers may decline to respond.  We assume that
+providers and end hosts that filter are no more or less
+vulnerable to weather and that these features do not affect
+our conclusions.
+
+Our data set does not identify the cause of an individual
+dropout. Our analysis seeks to correlate observations of
+dropouts with weather events under the expectation that a
+change in probability of outage is related to the weather.
+Should a user turn off equipment nightly, this is
+independent of weather and will not not be a factor; should a user
+unplug equipment when lightning is nearby, such would
+contribute to the probability of dropouts in thunderstorm.
+Residential Internet infrastructure is also explicitly reliant
+on residential electrical power, and we do not isolate power
+failures.  We expect network service outages to be more common
+than power outages, for power outages to occur only in the most
+severe of weather conditions, and for power outages not
+to correlate with link type.
+% In part, this is why we omit hurricanes: prior
+% studies of network outages in hurricanes were likely to be
+% measurements of power loss.~\cite{zmap}
+
+Finally, AT\&T, one of the largest DSL and fiber providers in the US does
+not assign reverse DNS names to their residential customers. As such, they
+were not included in our master list of residential links that we probe
+with ThunderPing.  
+%}}}

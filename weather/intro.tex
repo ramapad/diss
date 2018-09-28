@@ -1,0 +1,308 @@
+\section{Introduction}
+
+Wather-related damage to vital infrastructure
+(in this case the power grid) can lead to significant economic harm.
+%
+Yet, %  in the Internet era,
+little is known about the economic impact of
+weather-induced outages on the most pervasive infrastructure that people use to
+access the Internet: residential last-mile links.
+%
+For massive last-mile outages, telcos are required by U.S.~policy~\cite{cfr49}
+to report the outage to the FCC.
+%
+However, the minimum reporting threshold is astronomical: the outage must be at
+least 30 minutes in duration, and it must have affected tens of thousands of
+customers~\cite{cfr49}.
+%
+Researchers have also studied widespread link failures in the Internet,
+like undersea cable cuts~\cite{chan-pam11, bilski-ccis09}, natural
+disasters~\cite{heidemann-sandy}, and backbone router
+failures~\cite{iannaccone-imw02}. 
+
+In practice, most weather events are much more localized and not severe enough
+to generate such a large outage.
+%
+For decades, this everyday weather has been known to lead to to smaller scale
+outages of telecom infrastructure.
+%
+For example, early telephone and cable television engineering documents
+describe how to avoid moisture in wires because it impedes signal
+propagation~\cite{aiee09-jewett, toct66-smith}.  Also, rain attenuates
+satellite signals above 10~GHz~\cite{ieee75-hogg}.  Finally, point-to-point
+wireless links can experience multipath fading due to objects moving in the
+wind~\cite{ieeecm01-bolcskei}. In short, residential links are vulnerable to
+everyday weather because residential equipment and wiring are often installed
+outdoors: wind can blow trees onto overhead wires, heat can cause equipment to
+fail, and rain can seep into underground equipment cabinets.
+ 
+Surprisingly, for these everyday weather conditions, there are no public
+statistics on the frequency or magnitude of the outages they induce (directly
+and indirectly).
+%
+This could be a problem for Internet-based companies because they do not know
+how many customers they are losing to nature, and for regulators because they
+do not know how significant the problem is, and which conditions and geographic
+areas deserve their attention.
+%
+In this work we resolve this issue: we provide the first comprehensive study
+that identifies the correlation between everyday weather and residential
+Internet last-mile outages.
+%
+Specifically, we quantify the absolute increase in the number of outages
+observed during weather, when compared to non-weather periods.
+
+%To make this information useful to the intended audience of this work (i.e.,
+%policymakers, web companies, and operators), 
+
+Quantifying the relationship between occurrences of weather and an increase in
+outages cannot be answered with a short term %, broadly collected
+study.
+%
+The data set needs to be longitudinal because weather is
+\emph{seasonal}---certain weather conditions only happen at certain times of
+year---and because some weather events are \emph{rare} enough that providers in a 
+specific location may not be adequately prepared.
+%
+Targeted probing is needed because weather is \emph{localized}: at any time
+only specific geographic locations are exposed to weather conditions.
+%
+Broad observation of outages of several links will capture correlated outages
+of several hosts, such as the work by Heidemann et al.~\cite{imc08-heidemann,
+trinocular}, but it will not reveal failures of individual links as may be
+the case for weather.
+%
+Although some systems can obtain detailed measurements at residential
+gateways~\cite{ripe-atlas,sundaresan-sigcomm11}, the limited deployment of
+these measurement systems make them inadequate for studying the scale needed to
+observe many different weather conditions, multiple times, in different
+geographic areas.
+%
+Therefore, we performed a seven year longitudinal study with targeted
+measurements of residential links surviving weather events.
+
+In 2011, we introduced a measurement system for this task called
+ThunderPing~\cite{schulman-imc11}.
+%
+For the past seven years ThunderPing has been following forecasts of weather in
+the U.S. and pinging a sample of 100 hosts from each last-mile provider in the
+area for six hours before, during, and six hours after the forecasted weather
+event.
+%
+The focus of our initial paper on ThunderPing was its probing methodology, but
+it also included a preliminary study that looked at 66 days of data.
+%
+Given how limited the data set was, we were unable to draw statistically 
+significant conclusions and we saw only one season, summer, of one
+year. % ---therefore we could not, with any confidence, quantify the increase in
+% outages during weather events.
+%
+We also did not have enough data to explore variations in effect of
+weather by geography,
+%
+nor could we explore if the likelihood of failure varies
+with continuous weather conditions (e.g., wind speed),
+ 
+In this paper, the time totaled across all responsive links
+exposed to different weather events is in the \textbf{centuries}.
+%
+For example,
+we have observed a total of \emph{100 centuries} of DSL links exposed to cold
+weather.
+%
+This large data set enabled us to address all of these significant limitations
+of our prior preliminary study.
+ 
+There is a challenge with quantifying how weather correlates with
+outages: outages are relatively uncommon events, and thus every outage
+is a significant event.
+%
+%This means every single outage is a significant event.
+%
+This is compounded by the fact that we wish to analyze subsets of our
+data to focus on, say, particular link types or locations.
+%% Yet, we need to slice and dice the data to isolate different properties
+%% of residential links that may be related to their failure likelihood:
+%% namely their link type and location.
+%
+With so few outages observed compared to the time that links are responsive,
+it is difficult to determine if different weather causes a statistically significant
+increase in outages.
+%
+To address this issue, we borrow statistical tools from epidemiology
+that enable us to reason about the \emph{inflation} in dropout
+probability, and to establish statistical significance to our results,
+even though failures happen at relatively low rates.
+%
+We detail this approach in Section~\ref{sec:hazard}, as we believe it
+to be of general use to the community.
+
+
+%% known as
+%% \emph{hazard rate}.
+%% %
+%% This tool enables us to establish statistical significance of our results, even
+%% though there are relatively few failure events.
+%% %
+%% This metric enables us to measure the \emph{increase} in probability of a failure
+%% that correlates with a specific type, or intensity, of weather.
+%% 
+%% We expect that this metric may be useful for web and cloud service operators
+%% because they can use it to quantify how many of the outages that they observe
+%% are likely due to weather alone, and thus estimate how much revenue they are
+%% losing to weather outages.
+%% %
+%% It may be useful for regulators because they can determine if the added number of
+%% failures from weather is significant enough to warrant new policy focused on
+%% addressing weather outages, such as advocating for undergrounding
+%% infrastructure as it has a demonstrated improvement on robustness to
+%% weather~\cite{undergrounding}.
+
+Another challenge is this metric could be artificially inflated by
+weather conditions coinciding with daily network state changes such as
+maintenance or renumbering~\cite{addrchange-imc}.
+%
+We verify that weather does not appear to be positively correlated with
+peak diurnal failure periods, and to do recovery time analysis we
+select networks and outage durations unlikely to suffer from address
+renumbering, allowing us to ensure that we are probing the same
+residential link before and after the outage.
+
+\paragraph{Observations and Contributions}
+%
+We present a dataset spanning seven years, all weather conditions, and
+76~billion responsive pings to 8.7~million hosts throughout the U.S. 
+%
+We apply techniques from epidemiology to attribute statistically
+significant rates of dropout to individual weather conditions.
+%
+Our key findings span four broad areas of analysis:
+
+\begin{itemize}
+
+\item \textbf{Link type variations} (\S\ref{sec:inflations}): Different link
+types experience weather in highly varying ways.  For instance, compared to
+wired link types (cable, DSL, fiber), wireless link types (WISPs and satellite)
+experience greater increases in dropout rates during rainy conditions and high
+temperatures, but often \emph{decreases} in dropout rates in snow and cold
+temperatures.
+
+\item \textbf{Geographic variations} (\S\ref{sec:geography}): Different
+geographic regions can be affected to varying degrees.  For instance,
+Midwestern U.S.~states are more prone to failures in thunderstorms and rain
+than coastal states.  Southern states are more prone to failures in snow than
+other states.
+
+\item \textbf{Continuous variable analysis} (\S\ref{sec:continuous}): Most link
+types have highly nonlinear dropout rates with respect to changes in
+temperature, wind speed, and precipitation.  For temperature, dropout rates are
+typically non-monotonic; satellite links drop out more in moderate temperatures
+than low or high temperatures.
+
+\item \textbf{Recovery times} (\S\ref{sec:recovery}): The amount of time to
+recover from a dropout varies significantly across different weather
+conditions.  Thunderstorms take the longest for cable links to recover from.
+
+\end{itemize}
+
+Our findings have ramifications on how network outage detection and analysis
+should be performed; limiting measurements to any particular geographic region,
+link type, or time of year can introduce statistically significant bias.
+%
+We believe our results also have implications for network administrators and
+policy-makers; an increased use of satellite links in the Midwestern U.S.~has
+resulted in those states' increased dropout rates in rainy weather.
+%
+We will be making all of our data and code publicly available.
+
+% New contributions =============================================================
+
+% Can quantify weather because we have more data
+
+% Tons more data allowed us to compute confidence intervals
+
+% Double checking if we have more failures due to maintenance periods and what not
+
+% Failure duration 
+
+% Double checking if failure duration with NetSession data
+
+% Each of the PLOTS, DUH!
+
+% Extra text {{{
+
+% Among our findings, we show that temperature has a
+% surprising relationship with link reliability: extreme
+% temperature correlates with failures of typical link types,
+% while satellite links and dialup links see high failure at
+% modest temperatures.  Wind degrades reliability proportional
+% to the square of wind speed, and the amount of hourly
+% precipitation, in contrast, has a less pronounced effect on
+% reliability.  However, the type of precipitation has a
+% substantial effect---freezing rain, hail, and thunderstorm
+% often double the probability of seeing a failure, depending 
+% on link type.
+
+% 
+% A location can be exposed to the same weather patterns year over year, then one
+% year a severe storm such as Hurricane Sandy in New York City in 2012.
+% %
+% This is important for our study because it will reveal how resilient last-mile
+% Internet links are to failures when an anomalous weather event occurs that
+% providers are not prepared for.
+% 
+% Therefore, the seven years worth of data that we collected for this study
+% provides an opportunity to quantify the effect of weather on a particular
+% location.
+%
+
+% Unlike the measurements needed to understand
+% these failures, the collecting measurements needed to understand residential link failures
+% requires a particularly broad set of hosts. Weather 
+% varies by location and time, and how residential hosts fail in weather 
+% depends on location, link type, and Internet service provider.
+
+% Evaluation of weather-related failures in this work presented in
+% Section~\ref{sec:failurerate} are backed with more pings which enable
+% statistical comparisons between failures in different weather conditions, and
+% observations of continuous weather conditions such as wind speed and
+% temperature.
+
+% For the continuous weather measurements, we observe clear
+% relationships between the probability of failure depending on the residential
+% link type~\todo{nums}. For the discrete weather measurements, we observe~\todo{nums}.
+
+% With both breadth and depth, the observations of residential link
+% failures can also be correlated with other possible causes: We study weather as
+% a likely cause of outages to gain confidence that outages can be detected
+% remotely; this confidence enables future comparisons of reliability measures
+% across providers and countries.
+
+
+% Weather can cause fixed \lastmile transmission media to
+% fail~\cite{schulman-imc11}. 
+% 
+% Also there are so many different ISPs that it is difficult to get a global
+% picture of the weather-related failures.
+% 
+% We know a lot about how loss of vital infrastructure affects business from the supplier side.
+% %
+% We do not however know what the costs are of having customers disconnected due to weather.
+% In this work we deliver on that promise
+% 
+% 
+% Unlike other vital infrastructure, residential Internet depends on the operation
+% of other vital infrastructure to function.
+% %
+% Also, it has a lower barrier for a user to shut it down on their own, in
+% particular to avoid damage of their equipment during storms.
+% %
+% If it does turn out that users are doing this, this is still valuable knowledge
+% for operators as those customers will not be able to access their networks.
+% 
+% 
+% (1) Categorical
+%  - overall
+%  - geographic (rama finds the worst link type/geography combination)
+%}}}
+

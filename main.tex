@@ -1,93 +1,12 @@
+\input{preamble}
 
-%TODO: Find out what's different about ns-proposal used in reliability proposal
-% \documentclass[letterpaper,10pt]{article}
-\documentclass[10pt,onecolumn]{article}
-\usepackage[letterpaper, margin=1.25in]{geometry}
-
-\PassOptionsToPackage{hyphens}{url}
-\usepackage[hyphens]{url}
-\usepackage{hyperref}
-\hypersetup{breaklinks=true}
-\urlstyle{same}
-\usepackage{balance}
-
-% TODO: I seem to have used most of these from the reliability
-% proposal. Find out what the role of each command is.
-\usepackage{ifpdf,floatrow} 
-
-% nspring 10.35pt palatino
-\renewcommand*{\rmdefault}{ppl} % Roman default
-\usepackage{fix-cm}
-% \renewcommand{\normalsize}{\fontsize{10.35pt}{12.5pt}\selectfont}
-% \renewcommand{\normalsize}{\fontsize{10pt}{12.5pt}\selectfont}
-% endspring
-
-%% ns - replacement for times that lacks stupidity.
-% \usepackage{mathptmx}
-% \usepackage[scaled=.90]{helvet}
-% \usepackage{courier}
-% 
-\usepackage[override]{cmtt} % make tt font tighter / less ugly
-
-% \usepackage{makeidx}  % allows for indexgeneration
-
-\usepackage[square,comma,numbers,sort&compress]{natbib}
-
-\usepackage{color}
-\usepackage[table]{xcolor}
-\definecolor{orange}{RGB}{255,127,0}
-
-\newcommand{\rama}[1]{{\color{red}[\todo{rama: #1}]}}
-\newcommand{\ns}[1]{{\color{green}[ns: #1]}}
-% \newcommand{\ignore}[1]{}
-
-% \setlength{\textwidth}{6.5in}
-% \setlength{\textheight}{9in}
-% \setlength{\topmargin}{0in}
-% \setlength{\headheight}{0in}
-% \setlength\columnsep{.30in}
-% \setlength{\headsep}{0in}
-% \setlength{\oddsidemargin}{0pt}
-% \setlength{\evensidemargin}{0pt}
-\setlength{\textfloatsep}{.1in plus 0.05in}
-\setlength{\itemsep}{-10pt}
-
-
-\usepackage{enumitem}
-\setlist[itemize]{leftmargin=*}
-% \usepackage{slashbox}
-\usepackage{graphicx}
-\usepackage{amsmath,amssymb}
-\usepackage{verbatimbox}
-\usepackage{boxedminipage}
-\usepackage{multirow}
-% \usepackage{subfigure}
-\usepackage{xspace}
-\usepackage[]{pdfpages}
-
-\usepackage[utf8x]{inputenc}
-\usepackage{ucs}
-
-%boxed,vlined,,linesnumbered,commentsnumbered
-\usepackage[vlined]{algorithm2e}
-\providecommand{\SetAlgoLined}{\SetLine}
-\providecommand{\DontPrintSemicolon}{\dontprintsemicolon}
+\newcommand{\planetlab}{PlanetLab\xspace}
 
 % \renewcommand\thesubfigure{(\alph{subfigure})}
 
-%\usepackage{algorithm}
-%\usepackage[noend]{algpseudocode}
-
-\hyphenation{map-orphans}
-
-% \input{commands} % TODO: Find out what this does!
-
-% Find out how \ninput is different from \input
-
-% \title{Thesis Proposal: Detecting outages per IP address remotely}
-\title{Analyzing last-mile Internet reliability using probing-based measurements}
-% \title{Measuring Internet reliability remotely for
-%   individual users with probing-based techniques}
+%\usepackage{algorithm}s}
+\title{Analyzing Internet reliability remotely for
+  individual users with probing-based techniques}
 % \title{Thesis Proposal: Remote probing-based outage detection for
 %   individual IP addresses}
 
@@ -106,11 +25,20 @@
 \maketitle
 
 \input{abstract}
+\newpage
+
 \input{intro}
+
 \input{related}
+
+\chapter{When should probes time out?}
 \input{timeouts}
 \input{addr_change}
+\chapter{Analyzing weather's effect on Internet Reliability}
+\label{cpt:weather}
 \input{weather}
+\input{weather/intro}
+\input{weather/data}
 \input{mitigation}
 \input{conclusion}
 
