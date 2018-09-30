@@ -84,7 +84,7 @@ SPELLTEX:=$(MASTER).tex $(SPELLTEX_ZERO) $(shell test -z "$(SPELLTEX_ZERO)" || e
 # which files should be generated if not present.
 #NEEDED_EPS:=$(shell grep \\includegraphics $(SPELLTEX) | grep -v "%.*includegraphics" | sed 's/^.*includegraphics[^{]*{//' | sed 's/}.*$$/.eps/' | grep -v '\#1.eps' )
 # pdflatex can includegraphics .jpg files, so no need to convert.
-NEEDED_PDF:=$(shell for i in `grep \\includegraphics *.tex | grep -v "%.*includegraphics" | sed 's/^.*includegraphics[^{]*{//' | sed 's/}.*$$//' | grep -v '\#1'`; do test -e `echo $$i | sed 's/$$/.jpg/'` || (echo $$i | sed 's/$$/.pdf/'); done | grep -v $(FINALFILENAME).pdf )
+NEEDED_PDF:=$(shell for i in `grep \\includegraphics *.tex */*.tex | grep -v "%.*includegraphics" | sed 's/^.*includegraphics[^{]*{//' | sed 's/}.*$$//' | grep -v '\#1'`; do test -e `echo $$i | sed 's/$$/.jpg/'` || (echo $$i | sed 's/$$/.pdf/'); done | grep -v $(FINALFILENAME).pdf )
 
 # EPS files that can be removed are those that are backed by
 # .jpg, .fig, .jgr files.  If you added another conversion to
@@ -106,7 +106,7 @@ debug:
 ## a set of rules to build a pocket thesis 
 papersave.tex: $(MASTER).tex  papersave.cls Makefile
 	ruby -pe '$$_.gsub!(/\{uwthesis\}/,"\{papersave\}"); $$_.gsub!(/^\\(signaturepage|doctoralquoteslip)/,"")' < $(MASTER).tex > $@
-papersave.pdf: papersave.tex $(wildcard *.tex) $(NEEDED_PDF) 
+papersave.pdf: papersave.tex $(wildcard */*.tex) $(wildcard *.tex)  $(NEEDED_PDF) 
 	rm -f papersave.aux 
 	$(PDFLATEX) papersave.tex </dev/null
 	$(PDFLATEX) papersave.tex </dev/null
@@ -119,7 +119,7 @@ unofficial.cls: uwthesis.cls Makefile unofficial.patch
 
 unofficial.tex: $(MASTER).tex  unofficial.cls Makefile
 	ruby -pe '$$_.gsub!(/\{uwthesis\}/,"\{unofficial\}"); $$_.gsub!(/^\\(signaturepage|doctoralquoteslip)/,"")' < $(MASTER).tex > $@
-unofficial.pdf: unofficial.tex $(wildcard *.tex) $(NEEDED_PDF) 
+unofficial.pdf: unofficial.tex $(wildcard */*.tex) $(wildcard *.tex) $(NEEDED_PDF) 
 	rm -f papersave.aux 
 	$(PDFLATEX) unofficial.tex </dev/null
 	@if grep -s citation $(MASTER).aux; then \
@@ -181,7 +181,7 @@ public: $(FINALFILENAME).ps $(FINALFILENAME).pdf censor todo
 
 ## kind of overdone, just to make sure that a small problem,
 ## such as a broken aux file, doesn't break the build.
-$(FINALFILENAME).pdf: $(wildcard *.tex) $(NEEDED_PDF) $(wildcard *.bib) $(wildcard *.cls) $(wildcard *.sty) $(wildcard *.bst) 
+$(FINALFILENAME).pdf: $(wildcard */*.tex) $(wildcard *.tex) $(NEEDED_PDF) $(wildcard *.bib) $(wildcard *.cls) $(wildcard *.sty) $(wildcard *.bst) 
 	rm -f $(MASTER).aux $(MASTER).lo[ft]
 	$(PDFLATEX) $(MASTER).tex </dev/null
 	@if grep -s citation $(MASTER).aux; then \
@@ -199,7 +199,7 @@ $(FINALFILENAME).pdf: $(wildcard *.tex) $(NEEDED_PDF) $(wildcard *.bib) $(wildca
 $(FINALFILENAME).ps2.pdf: $(FINALFILENAME).ps
 	gs -q -dSAFER -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$@ -dCompatibilityLevel=1.5 -dPDFSETTINGS=/prepress -c .setpdfwrite -f $<
  
-$(FINALFILENAME).ps: $(wildcard *.tex) $(NEEDED_EPS) $(wildcard *.bib) $(wildcard *.cls) $(wildcard *.sty) $(wildcard *.bst) 
+$(FINALFILENAME).ps: $(wildcard */*.tex) $(wildcard *.tex) $(NEEDED_EPS) $(wildcard *.bib) $(wildcard *.cls) $(wildcard *.sty) $(wildcard *.bst) 
 	rm -f $(MASTER).aux $(MASTER).lo[ft]
 	$(LATEX) $(MASTER).tex </dev/null
 	@if grep -s citation $(MASTER).aux; then \
@@ -219,14 +219,14 @@ show: $(FINALFILENAME).pdf
 	#open $<
 
 ## ick.  I dislike latex2html...
-$(FINALFILENAME)/$(MASTER).html: Makefile $(wildcard *.tex) /etc/latex2html.conf
+$(FINALFILENAME)/$(MASTER).html: Makefile $(wildcard */*.tex) $(wildcard *.tex) /etc/latex2html.conf
 	rm -rf $(FINALFILENAME)/
 	mkdir -p $(FINALFILENAME)
 	perl -MCarp=verbose /usr/bin/latex2html $(MASTER).tex -split 0 -dir $(FINALFILENAME) -white -no_navigation -info 0 -show_section_numbers
 
 # would use $(MASTER).bbl, but it has to be possible to have 
 # no bib at all.
-$(MASTER).dvi: $(wildcard *.tex) $(wildcard *.bib) $(NEEDED_EPS) $(wildcard *.sty) $(wildcard *.bbl) $(MASTER).bbl
+$(MASTER).dvi: $(wildcard */*.tex) $(wildcard *.tex) $(wildcard *.bib) $(NEEDED_EPS) $(wildcard *.sty) $(wildcard *.bbl) $(MASTER).bbl
 
 ## how to build eps files from jgraph source.  I have two
 ## versions of a program that compresses the output of
@@ -257,7 +257,7 @@ $(MASTER).dvi: $(wildcard *.tex) $(wildcard *.bib) $(NEEDED_EPS) $(wildcard *.st
 	JGRAPH_BORDER=5 $(JGRAPH) -P $< > $@ || rm $@
 
 
-%.dvi: %.tex $(wildcard *.tex) $(NEEDED_EPS) $(wildcard *.bbl) 
+%.dvi: %.tex $(wildcard */*.tex) $(wildcard *.tex) $(NEEDED_EPS) $(wildcard *.bbl) 
 	$(LATEX) $< </dev/null
 	test -e $(MASTER).aux || (echo "failed to build an aux file for bibtex to chew on."; exit 1)
 	@if grep -s citation $(MASTER).aux; then \

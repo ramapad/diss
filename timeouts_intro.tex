@@ -4,69 +4,11 @@
 \chapter{Mitigating false inferences due to early timeout}
 \label{cpt:timeouts}
 
-In this section, I describe how probe responses delayed beyond
+In this chapter, I describe how probe responses delayed beyond
 timeouts used by current probing-based techniques can lead to false
-probe-loss inferences, and thereby to false outage inferences. I 
-describe work with colleagues which
-investigated the prevalence of delayed responses in the
-Internet. Using these results, I propose an approach that will minimize responses
-delayed beyond timeouts.
+probe-loss inferences, and thereby to false outage inferences. 
 
-\subsection{Challenges in selecting a timeout for probing techniques}
-
-Conventional wisdom suggests that active probes on the Internet should timeout
-after a few seconds. The belief is that after a few seconds there is a very
-small chance that a probe and response will still exist in the
-network. Once a probe times out, the prober can free the state
-associated with the probe, thereby reclaiming memory.
-
-Conventional wisdom also suggests that a single timed out probe is
-insufficient to reason about end-host failures, due to potential random loss on
-the Internet. % When a probe experiences a timeout, it could be because
-% the end-host's last-mile link is \emph{out}, but it could also be because the
-% probe was lost elsewhere along the path.
-For most probing systems, any timed out active probes are followed up with
-retransmissions to increase the confidence that a lack of response is due to
-an outage event and not due to random loss on the Internet. These followup probes will also have a timeout that
-is generally the same as the first attempt. 
-
-Setting correct timeouts is critical for
-probing-based remote outage detection techniques. These techniques infer outages
-based upon lost probes and probe response loss is
-dependent upon the prober's timeout. Additonally, since probe timeouts trigger followup probes, setting appropriate
-timeouts is vital to these techniques. However, choosing an appropriate timeout is
-challenging. Selecting a timeout value that is too low will ignore delayed
-responses and might add to congestion by performing retransmissions to an
-already congested host. Timeout values that are too high will delay
-retransmissions that can confirm an outage. In addition, too-high timeouts
-increase the amount of state that needs to be maintained at a prober, since
-every probe will need to be stored until either the probe times out,
-or the response arrives.
-
-% Internet performance monitoring systems use a wide range of probe
-% timeouts. On the
-% shorter side, iPlane~\cite{iplane} and Hubble~\cite{hubble} send ICMP echo requests with a 2 second
-% timeout. iPlane declares a host unresponsive after one failed retransmission. Hubble waits two minutes after a failed probe then retransmits probes six times and finally declares reachability with traceroutes. On the longer side, Feamster
-% et al.~\cite{measuring-effects} used a one hour timeout after each probe. However,
-% they chose a long timeout to avoid errors due to clock drift between their
-% probing and probed hosts; they did not do so to account for links that have
-% excessive delays. PlanetSeer~\cite{planetseer} assumed that four consecutive
-% TCP timeouts (3.2-16 seconds) indicates a path anomaly. 
-
-Outage detection systems such as Trinocular~\cite{trinocular}
-and Thunderping~\cite{pingin} tend to use a 3 second timeout for active
-probes because it is the default TCP SYN/ACK
-timeout~\cite{rfc1122}. Both techniques will not infer outages if a
-single response is delayed beyond the timeout, since they send
-follow-up probes to confirm suspected outages. However, if a series of
-responses are delayed beyond the timeout, both techniques can
-potentially infer false probe-loss and therefore, false
-outages. % Ideally, we would like to detect these events as \emph{sleep}
-% events, since the probe responses are delayed, not lost.
-
-\subsection{Investigating the prevalence of delayed responses}
-
-Here, I describe work with colleagues that measured how frequently responses
+Next, I describe work with colleagues that measured how frequently responses
 to active probes are delayed beyond timeouts set by existing
 approaches. We began by studying ping latencies from Internet-wide surveys~\cite{census-survey} conducted by ISI,
 including 9.64 billion ICMP Echo Responses from 4 million different IP
@@ -78,25 +20,13 @@ behavior of ICMP compared to UDP and TCP.  Finally, we
 explained these distributions by isolating satellite links,
 considering sequences of latencies at a higher sampling rate,
 and classifying a complete sample of the Internet address
-space through a modified Zmap client. In this proposal, I will highlight
-the most relevant results; detailed analyses are available in our IMC
-2015 paper~\cite{timeouts}.
+space through a modified Zmap client. These results are reproduced
+from our published work~\cite{timeouts}.
 
-\subsubsection{ISI survey data reveals minute-long latencies}
-% \subsubsection{ISI survey data reveals minute-long latencies in recent
-% surveys}
+Using these results, I discuss how probing-based outage
+detection techniques can mitigate false outage inferences caused by
+delayed responses.
 
-ISI has conducted Internet wide
-surveys~\cite{census-survey} since 2006. Each survey includes pings sent to approximately 24,000 /24
-address blocks, meant to represent 1\% of all allocated IPv4
-address space.  Once an address block is included, ICMP echo
-request probes are sent to all 256 addresses in the selected
-/24 address blocks once every 11 minutes, typically for two
-weeks. Though the probing scheme for these surveys set a timeout
-threshold of 3 seconds~\cite{census-survey}, ISI records every
-received packet, including potential responses to probes that were delayed
-beyond the prober's timeout. We determined which received packets were
-valid responses and included them in our latency analysis.
 
 We then analyzed the ping latencies of all pings obtained
 from ISI's Internet survey datasets from January and February 2015 to find reasonable timeout values. For each IP address, we found the 1st, 50th, 80th,

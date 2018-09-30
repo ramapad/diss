@@ -1,0 +1,297 @@
+
+newgraph clip
+
+xaxis 
+size 5.0
+min -1 max 256.5no_auto_hash_labels
+no_auto_hash_marks
+
+label fontsize 13
+hash_labels fontsize 11
+
+label hjc vjc font Helvetica : Last Octet
+
+hash_at 0
+hash_label at 0 : 0
+hash_at 31
+hash_label at 31 : 31
+hash_at 63
+hash_label at 63 : 63
+hash_at 95
+hash_label at 95 : 95
+hash_at 127
+hash_label at 127 : 127
+hash_at 159
+hash_label at 159 : 159
+hash_at 191
+hash_label at 191 : 191
+hash_at 223
+hash_label at 223 : 223
+hash_at 255
+hash_label at 255 : 255
+
+yaxis 
+size 3
+min 0
+label fontsize 13
+hash_labels fontsize 11
+
+label font Helvetica : Broadcast addresses
+
+
+newcurve marktype xbar marksize 0.1 pts 0 36661
+newcurve marktype xbar marksize 0.1 pts 1 68
+newcurve marktype xbar marksize 0.1 pts 2 49
+newcurve marktype xbar marksize 0.1 pts 3 6646
+newcurve marktype xbar marksize 0.1 pts 4 5706
+newcurve marktype xbar marksize 0.1 pts 5 80
+newcurve marktype xbar marksize 0.1 pts 6 68
+newcurve marktype xbar marksize 0.1 pts 7 14702
+newcurve marktype xbar marksize 0.1 pts 8 10656
+newcurve marktype xbar marksize 0.1 pts 9 95
+newcurve marktype xbar marksize 0.1 pts 10 100
+newcurve marktype xbar marksize 0.1 pts 11 7321
+newcurve marktype xbar marksize 0.1 pts 12 5635
+newcurve marktype xbar marksize 0.1 pts 13 76
+newcurve marktype xbar marksize 0.1 pts 14 64
+newcurve marktype xbar marksize 0.1 pts 15 19493
+newcurve marktype xbar marksize 0.1 pts 16 14090
+newcurve marktype xbar marksize 0.1 pts 17 76
+newcurve marktype xbar marksize 0.1 pts 18 71
+newcurve marktype xbar marksize 0.1 pts 19 7302
+newcurve marktype xbar marksize 0.1 pts 20 5620
+newcurve marktype xbar marksize 0.1 pts 21 71
+newcurve marktype xbar marksize 0.1 pts 22 70
+newcurve marktype xbar marksize 0.1 pts 23 14943
+newcurve marktype xbar marksize 0.1 pts 24 10272
+newcurve marktype xbar marksize 0.1 pts 25 79
+newcurve marktype xbar marksize 0.1 pts 26 80
+newcurve marktype xbar marksize 0.1 pts 27 7072
+newcurve marktype xbar marksize 0.1 pts 28 5461
+newcurve marktype xbar marksize 0.1 pts 29 68
+newcurve marktype xbar marksize 0.1 pts 30 72
+newcurve marktype xbar marksize 0.1 pts 31 23908
+newcurve marktype xbar marksize 0.1 pts 32 17119
+newcurve marktype xbar marksize 0.1 pts 33 65
+newcurve marktype xbar marksize 0.1 pts 34 69
+newcurve marktype xbar marksize 0.1 pts 35 7202
+newcurve marktype xbar marksize 0.1 pts 36 5304
+newcurve marktype xbar marksize 0.1 pts 37 85
+newcurve marktype xbar marksize 0.1 pts 38 75
+newcurve marktype xbar marksize 0.1 pts 39 14831
+newcurve marktype xbar marksize 0.1 pts 40 10067
+newcurve marktype xbar marksize 0.1 pts 41 71
+newcurve marktype xbar marksize 0.1 pts 42 71
+newcurve marktype xbar marksize 0.1 pts 43 6956
+newcurve marktype xbar marksize 0.1 pts 44 5193
+newcurve marktype xbar marksize 0.1 pts 45 76
+newcurve marktype xbar marksize 0.1 pts 46 57
+newcurve marktype xbar marksize 0.1 pts 47 18377
+newcurve marktype xbar marksize 0.1 pts 48 12940
+newcurve marktype xbar marksize 0.1 pts 49 54
+newcurve marktype xbar marksize 0.1 pts 50 78
+newcurve marktype xbar marksize 0.1 pts 51 6712
+newcurve marktype xbar marksize 0.1 pts 52 5244
+newcurve marktype xbar marksize 0.1 pts 53 63
+newcurve marktype xbar marksize 0.1 pts 54 69
+newcurve marktype xbar marksize 0.1 pts 55 14286
+newcurve marktype xbar marksize 0.1 pts 56 9783
+newcurve marktype xbar marksize 0.1 pts 57 61
+newcurve marktype xbar marksize 0.1 pts 58 72
+newcurve marktype xbar marksize 0.1 pts 59 6711
+newcurve marktype xbar marksize 0.1 pts 60 5138
+newcurve marktype xbar marksize 0.1 pts 61 55
+newcurve marktype xbar marksize 0.1 pts 62 62
+newcurve marktype xbar marksize 0.1 pts 63 26938
+newcurve marktype xbar marksize 0.1 pts 64 20094
+newcurve marktype xbar marksize 0.1 pts 65 58
+newcurve marktype xbar marksize 0.1 pts 66 69
+newcurve marktype xbar marksize 0.1 pts 67 6960
+newcurve marktype xbar marksize 0.1 pts 68 5190
+newcurve marktype xbar marksize 0.1 pts 69 73
+newcurve marktype xbar marksize 0.1 pts 70 56
+newcurve marktype xbar marksize 0.1 pts 71 14333
+newcurve marktype xbar marksize 0.1 pts 72 9785
+newcurve marktype xbar marksize 0.1 pts 73 54
+newcurve marktype xbar marksize 0.1 pts 74 65
+newcurve marktype xbar marksize 0.1 pts 75 6682
+newcurve marktype xbar marksize 0.1 pts 76 5152
+newcurve marktype xbar marksize 0.1 pts 77 61
+newcurve marktype xbar marksize 0.1 pts 78 46
+newcurve marktype xbar marksize 0.1 pts 79 18020
+newcurve marktype xbar marksize 0.1 pts 80 12526
+newcurve marktype xbar marksize 0.1 pts 81 53
+newcurve marktype xbar marksize 0.1 pts 82 52
+newcurve marktype xbar marksize 0.1 pts 83 6604
+newcurve marktype xbar marksize 0.1 pts 84 4978
+newcurve marktype xbar marksize 0.1 pts 85 57
+newcurve marktype xbar marksize 0.1 pts 86 46
+newcurve marktype xbar marksize 0.1 pts 87 13660
+newcurve marktype xbar marksize 0.1 pts 88 9371
+newcurve marktype xbar marksize 0.1 pts 89 43
+newcurve marktype xbar marksize 0.1 pts 90 56
+newcurve marktype xbar marksize 0.1 pts 91 6240
+newcurve marktype xbar marksize 0.1 pts 92 4695
+newcurve marktype xbar marksize 0.1 pts 93 52
+newcurve marktype xbar marksize 0.1 pts 94 42
+newcurve marktype xbar marksize 0.1 pts 95 21549
+newcurve marktype xbar marksize 0.1 pts 96 15364
+newcurve marktype xbar marksize 0.1 pts 97 55
+newcurve marktype xbar marksize 0.1 pts 98 68
+newcurve marktype xbar marksize 0.1 pts 99 6279
+newcurve marktype xbar marksize 0.1 pts 100 4925
+newcurve marktype xbar marksize 0.1 pts 101 78
+newcurve marktype xbar marksize 0.1 pts 102 63
+newcurve marktype xbar marksize 0.1 pts 103 13643
+newcurve marktype xbar marksize 0.1 pts 104 9225
+newcurve marktype xbar marksize 0.1 pts 105 54
+newcurve marktype xbar marksize 0.1 pts 106 56
+newcurve marktype xbar marksize 0.1 pts 107 6258
+newcurve marktype xbar marksize 0.1 pts 108 4695
+newcurve marktype xbar marksize 0.1 pts 109 55
+newcurve marktype xbar marksize 0.1 pts 110 51
+newcurve marktype xbar marksize 0.1 pts 111 17051
+newcurve marktype xbar marksize 0.1 pts 112 11953
+newcurve marktype xbar marksize 0.1 pts 113 64
+newcurve marktype xbar marksize 0.1 pts 114 56
+newcurve marktype xbar marksize 0.1 pts 115 6095
+newcurve marktype xbar marksize 0.1 pts 116 4557
+newcurve marktype xbar marksize 0.1 pts 117 46
+newcurve marktype xbar marksize 0.1 pts 118 57
+newcurve marktype xbar marksize 0.1 pts 119 13092
+newcurve marktype xbar marksize 0.1 pts 120 9000
+newcurve marktype xbar marksize 0.1 pts 121 69
+newcurve marktype xbar marksize 0.1 pts 122 68
+newcurve marktype xbar marksize 0.1 pts 123 5991
+newcurve marktype xbar marksize 0.1 pts 124 4595
+newcurve marktype xbar marksize 0.1 pts 125 67
+newcurve marktype xbar marksize 0.1 pts 126 46
+newcurve marktype xbar marksize 0.1 pts 127 31311
+newcurve marktype xbar marksize 0.1 pts 128 23335
+newcurve marktype xbar marksize 0.1 pts 129 76
+newcurve marktype xbar marksize 0.1 pts 130 69
+newcurve marktype xbar marksize 0.1 pts 131 6478
+newcurve marktype xbar marksize 0.1 pts 132 4969
+newcurve marktype xbar marksize 0.1 pts 133 64
+newcurve marktype xbar marksize 0.1 pts 134 74
+newcurve marktype xbar marksize 0.1 pts 135 14007
+newcurve marktype xbar marksize 0.1 pts 136 9362
+newcurve marktype xbar marksize 0.1 pts 137 47
+newcurve marktype xbar marksize 0.1 pts 138 58
+newcurve marktype xbar marksize 0.1 pts 139 6380
+newcurve marktype xbar marksize 0.1 pts 140 4795
+newcurve marktype xbar marksize 0.1 pts 141 56
+newcurve marktype xbar marksize 0.1 pts 142 49
+newcurve marktype xbar marksize 0.1 pts 143 17800
+newcurve marktype xbar marksize 0.1 pts 144 12122
+newcurve marktype xbar marksize 0.1 pts 145 57
+newcurve marktype xbar marksize 0.1 pts 146 56
+newcurve marktype xbar marksize 0.1 pts 147 6495
+newcurve marktype xbar marksize 0.1 pts 148 4758
+newcurve marktype xbar marksize 0.1 pts 149 60
+newcurve marktype xbar marksize 0.1 pts 150 73
+newcurve marktype xbar marksize 0.1 pts 151 13434
+newcurve marktype xbar marksize 0.1 pts 152 9173
+newcurve marktype xbar marksize 0.1 pts 153 66
+newcurve marktype xbar marksize 0.1 pts 154 68
+newcurve marktype xbar marksize 0.1 pts 155 6109
+newcurve marktype xbar marksize 0.1 pts 156 4635
+newcurve marktype xbar marksize 0.1 pts 157 57
+newcurve marktype xbar marksize 0.1 pts 158 56
+newcurve marktype xbar marksize 0.1 pts 159 21037
+newcurve marktype xbar marksize 0.1 pts 160 14888
+newcurve marktype xbar marksize 0.1 pts 161 75
+newcurve marktype xbar marksize 0.1 pts 162 75
+newcurve marktype xbar marksize 0.1 pts 163 6290
+newcurve marktype xbar marksize 0.1 pts 164 4679
+newcurve marktype xbar marksize 0.1 pts 165 68
+newcurve marktype xbar marksize 0.1 pts 166 79
+newcurve marktype xbar marksize 0.1 pts 167 13216
+newcurve marktype xbar marksize 0.1 pts 168 8874
+newcurve marktype xbar marksize 0.1 pts 169 73
+newcurve marktype xbar marksize 0.1 pts 170 70
+newcurve marktype xbar marksize 0.1 pts 171 5931
+newcurve marktype xbar marksize 0.1 pts 172 4420
+newcurve marktype xbar marksize 0.1 pts 173 60
+newcurve marktype xbar marksize 0.1 pts 174 60
+newcurve marktype xbar marksize 0.1 pts 175 16685
+newcurve marktype xbar marksize 0.1 pts 176 11197
+newcurve marktype xbar marksize 0.1 pts 177 63
+newcurve marktype xbar marksize 0.1 pts 178 65
+newcurve marktype xbar marksize 0.1 pts 179 5952
+newcurve marktype xbar marksize 0.1 pts 180 4505
+newcurve marktype xbar marksize 0.1 pts 181 65
+newcurve marktype xbar marksize 0.1 pts 182 58
+newcurve marktype xbar marksize 0.1 pts 183 13007
+newcurve marktype xbar marksize 0.1 pts 184 8670
+newcurve marktype xbar marksize 0.1 pts 185 52
+newcurve marktype xbar marksize 0.1 pts 186 47
+newcurve marktype xbar marksize 0.1 pts 187 5720
+newcurve marktype xbar marksize 0.1 pts 188 4392
+newcurve marktype xbar marksize 0.1 pts 189 48
+newcurve marktype xbar marksize 0.1 pts 190 59
+newcurve marktype xbar marksize 0.1 pts 191 24162
+newcurve marktype xbar marksize 0.1 pts 192 17609
+newcurve marktype xbar marksize 0.1 pts 193 67
+newcurve marktype xbar marksize 0.1 pts 194 65
+newcurve marktype xbar marksize 0.1 pts 195 6008
+newcurve marktype xbar marksize 0.1 pts 196 4471
+newcurve marktype xbar marksize 0.1 pts 197 56
+newcurve marktype xbar marksize 0.1 pts 198 46
+newcurve marktype xbar marksize 0.1 pts 199 12867
+newcurve marktype xbar marksize 0.1 pts 200 8852
+newcurve marktype xbar marksize 0.1 pts 201 62
+newcurve marktype xbar marksize 0.1 pts 202 62
+newcurve marktype xbar marksize 0.1 pts 203 5867
+newcurve marktype xbar marksize 0.1 pts 204 4400
+newcurve marktype xbar marksize 0.1 pts 205 55
+newcurve marktype xbar marksize 0.1 pts 206 44
+newcurve marktype xbar marksize 0.1 pts 207 16535
+newcurve marktype xbar marksize 0.1 pts 208 11033
+newcurve marktype xbar marksize 0.1 pts 209 58
+newcurve marktype xbar marksize 0.1 pts 210 55
+newcurve marktype xbar marksize 0.1 pts 211 5850
+newcurve marktype xbar marksize 0.1 pts 212 4364
+newcurve marktype xbar marksize 0.1 pts 213 60
+newcurve marktype xbar marksize 0.1 pts 214 46
+newcurve marktype xbar marksize 0.1 pts 215 12539
+newcurve marktype xbar marksize 0.1 pts 216 8440
+newcurve marktype xbar marksize 0.1 pts 217 40
+newcurve marktype xbar marksize 0.1 pts 218 54
+newcurve marktype xbar marksize 0.1 pts 219 5638
+newcurve marktype xbar marksize 0.1 pts 220 4292
+newcurve marktype xbar marksize 0.1 pts 221 56
+newcurve marktype xbar marksize 0.1 pts 222 46
+newcurve marktype xbar marksize 0.1 pts 223 20097
+newcurve marktype xbar marksize 0.1 pts 224 14174
+newcurve marktype xbar marksize 0.1 pts 225 52
+newcurve marktype xbar marksize 0.1 pts 226 46
+newcurve marktype xbar marksize 0.1 pts 227 5843
+newcurve marktype xbar marksize 0.1 pts 228 4352
+newcurve marktype xbar marksize 0.1 pts 229 55
+newcurve marktype xbar marksize 0.1 pts 230 55
+newcurve marktype xbar marksize 0.1 pts 231 12668
+newcurve marktype xbar marksize 0.1 pts 232 8353
+newcurve marktype xbar marksize 0.1 pts 233 61
+newcurve marktype xbar marksize 0.1 pts 234 59
+newcurve marktype xbar marksize 0.1 pts 235 5623
+newcurve marktype xbar marksize 0.1 pts 236 4231
+newcurve marktype xbar marksize 0.1 pts 237 49
+newcurve marktype xbar marksize 0.1 pts 238 46
+newcurve marktype xbar marksize 0.1 pts 239 16062
+newcurve marktype xbar marksize 0.1 pts 240 11442
+newcurve marktype xbar marksize 0.1 pts 241 63
+newcurve marktype xbar marksize 0.1 pts 242 54
+newcurve marktype xbar marksize 0.1 pts 243 5722
+newcurve marktype xbar marksize 0.1 pts 244 4161
+newcurve marktype xbar marksize 0.1 pts 245 46
+newcurve marktype xbar marksize 0.1 pts 246 47
+newcurve marktype xbar marksize 0.1 pts 247 12373
+newcurve marktype xbar marksize 0.1 pts 248 8393
+newcurve marktype xbar marksize 0.1 pts 249 59
+newcurve marktype xbar marksize 0.1 pts 250 73
+newcurve marktype xbar marksize 0.1 pts 251 5544
+newcurve marktype xbar marksize 0.1 pts 252 4256
+newcurve marktype xbar marksize 0.1 pts 253 49
+newcurve marktype xbar marksize 0.1 pts 254 55
+newcurve marktype xbar marksize 0.1 pts 255 57236

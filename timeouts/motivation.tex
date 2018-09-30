@@ -1,0 +1,140 @@
+% \section{Importance of probe timeouts}  
+\section{Challenges in selecting a timeout for probing techniques}
+\label{sec:motivation}
+
+% Paper stuff
+% In this section, we describe why it is important to choose an appropriate
+% timeout for active probes, especially when used
+% for outage detection. We also describe measurement
+% studies with particular attention to what timeouts were used and how those
+% timeouts were chosen.
+
+Conventional wisdom suggests that active probes on the Internet should timeout
+after a few seconds. The belief is that after a few seconds there is a very
+small chance that a probe and response will still exist in the
+network. Once a probe times out, the prober can free the state
+associated with the probe, thereby reclaiming memory.
+
+Conventional wisdom also suggests that a single timed out probe is
+insufficient to reason about end-host failures, due to potential
+random loss on the Internet. % When a probe experiences a timeout, it
+could be because % the end-host's last-mile link is \emph{out}, but it
+could also be because the % probe was lost elsewhere along the path.
+For most probing systems, any timed out active probes are followed up
+with retransmissions to increase the confidence that a lack of
+response is due to an outage event and not due to random loss on the
+Internet. These followup probes will also have a timeout that is
+generally the same as the first attempt.
+
+Setting correct timeouts is critical for
+probing-based remote outage detection techniques. These techniques infer outages
+based upon lost probes and probe response loss is
+dependent upon the prober's timeout. Additonally, since probe timeouts trigger followup probes, setting appropriate
+timeouts is vital to these techniques. 
+
+However, choosing an appropriate timeout is
+challenging. Selecting a timeout value that is too low will ignore delayed
+responses and might add to congestion by performing retransmissions to an
+already congested host. Timeout values that are too high will delay
+retransmissions that can confirm an outage. In addition, too-high timeouts
+increase the amount of state that needs to be maintained at a prober, since
+every probe will need to be stored until either the probe times out,
+or the response arrives.
+
+% Even for studies that don't focus upon outages, selecting a good 
+% timeout is important. For instance, in the ISI surveys we study, most probes solicit
+% no responses. To the best of our knowledge, this is the first paper
+% that investigates this
+% broad lack of responses to see if researchers are simply using timeouts that
+% are too short.
+
+\subsection{Timeouts used in outage and connectivity studies}
+
+Outage detection systems such as Trinocular~\cite{trinocular}
+and Thunderping~\cite{pingin} tend to use a 3 second timeout for active
+probes because it is the default TCP SYN/ACK
+timeout~\cite{rfc1122}. Both techniques will not infer outages if a
+single response is delayed beyond the timeout, since they send
+follow-up probes to confirm suspected outages. However, if a series of
+responses are delayed beyond the timeout, both techniques can
+potentially infer false probe-loss and therefore, false
+outages. % Ideally, we would like to detect these events as \emph{sleep}
+% events, since the probe responses are delayed, not lost.
+
+Internet performance monitoring systems use a wide range of probe
+timeouts. On the shorter side, iPlane~\cite{iplane} and
+Hubble~\cite{hubble} send ICMP echo requests with a 2 second
+timeout. iPlane declares a host unresponsive after one failed
+retransmission. Hubble waits two minutes after a failed probe then
+retransmits probes six times and finally declares reachability with
+traceroutes. On the longer side, Feamster et
+al.~\cite{measuring-effects} used a one hour timeout after each
+probe. However, they chose a long timeout to avoid errors due to clock
+drift between their probing and probed hosts; they did not do so to
+account for links that have excessive
+delays. PlanetSeer~\cite{planetseer} assumed that four consecutive TCP
+timeouts (3.2-16 seconds) indicates a path anomaly.
+
+% internal
+It is especially important for connectivity measurements from probing
+hardware placed inside networks to have timeouts because of the limited memory
+in the probing hardware. The RIPE Atlas~\cite{atlas} probing hardware sends
+continuous pings to various hosts on the Internet to observe connectivity. The
+timeout for their ICMP echo requests is 1
+second~\cite{atlas-mailing-list-post}. 
+The SamKnows probing hardware uses a 3 second timeout for ICMP echo requests
+sent during loaded intervals~\cite{samknows}.
+
+We started this study with the expectation that these
+timeout values might need minor adjustment to account for
+large buffers in times of congestion; what we found was
+quite different.
+
+% dunno what to do with this text
+%Other studies have analyzed ping latencies. Cai et.
+%al~\cite{cai2011understanding} use the variance of ping latencies to
+%distinguish between low-bitrate edge links and broadband connections. Pelsser
+%et. al~\cite{pelsser2013paris} study if pings are suitable to measure delay and
+%jitter for applications and they find that latency variance is high for probes
+%belonging to different flows, and that variance is much less for probes
+%belonging to the same flow. Our focus in this work is specifically upon
+%utilizing ping latency data to find appropriate retransmission thresholds.
+
+% it should
+% be able to distinguish between a lost response and a delayed
+% response. to beProbe retransmission is crucial for outage detection using active
+% probes. Both Thunderping and Trinocular utilize adaptive retransmission to
+% distinguish between probes lost due to end-host outages and probes
+% lost due to general loss on the Internet\rama{Do we have a citation for how much general loss on the
+%   Internet is?}. However, outage detection requires that a delayed
+% probe not be interpreted as a lost probe. Sending more packets to
+% an already congested host can be harmful, thus the timeout for
+% retransmission should capture most packets. At the same time, a very
+% high timeout can result in retransmissions occurring after long
+% periods of time, resulting in delayed outage detection. Further, high
+% timeouts require high memory usage since all packets in transit need
+% to be kept track of. 
+
+% Currently, both Thunderping and Trinocular use fixed timeout durations
+% before retransmission.
+ % Thunderping uses a 5s timeout while Trinocular
+% uses a 3 second timeout.
+
+% Our goal in this paper is to find reasonable timeout thresholds by
+% performing an analysis of ping latency. 
+% We study the distribution of
+% ping latency in a representative dataset and find timeout thresholds
+% that can recover X percentile of probe responses from any IP address.
+
+% \textbf{Outage detection with active probes}: The Thunderping
+% project~\cite{schulman2011} detects outages in residential hosts
+% caused by severe weather. Thunderping uses a timeout of 5s before retransmission.
+% Trinocular detects outages in all /24 blocks on the
+% Internet. Trinocular retransmits packets after a 3s timeout.
+
+% \textbf{Latency of pings}: Heidemann et al. study how the variance in
+% ping latency can be used to distinguish between different types of
+% links in~\cite{cai2011understanding}. Pelsser et al. examine how the
+% variance of ping latency on a path can be reduced by employing common
+% flow IDs. 
+
