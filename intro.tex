@@ -164,12 +164,15 @@ metric is the rate of Internet outages over time. Another
 metric is the fraction of total time accounted for by outages. 
 
 These metrics can quantify Internet reliability along different
-dimensions---such as reliability across ISPs, and geographic
+dimensions---such as reliability across ISPs, media-types, geographic
 regions---when facing a range of conditions. Comparing Internet
 reliability metrics across ISPs can help users with their choice of ISP and
 can help ISPs assess their competitors. Comparing metrics across geographic
 regions can help policymakers and ISPs identify problematic areas that
-can benefit from more Internet infrastructure investment.
+can benefit from more Internet infrastructure investment. Comparing
+metrics for a particular group of addresses across conditions (such as
+the presence of rain) can reveal the effect of the condition on
+Internet reliability.
 
 However, not all Internet outages contribute towards
 (un)reliability metrics. For example, if a user voluntarily chooses to power
@@ -186,8 +189,8 @@ different dimensions.
 
 However, analyzing Internet reliability using measured outages is
 again challenging. First, outage measurement errors can result in
-overestimating Internet connectivity issues. Second, categorizing
-outages by their cause is a challenging problem. Prior work performs
+overestimating Internet reliability problems. Second, categorizing
+outages by their cause is difficult. Prior work performs
 outage classification mostly using sparsely available ground
 truth. Turner et al. investigate router and system logs and email
 archives to find different kinds of infrastructure
@@ -207,15 +210,15 @@ attempted to categorize detected outages by their likely cause. Grover
 et al. point out that users in some countries are particularly likely
 to power down their home Internet equipment but do not attempt further
 classification of detected outages~\cite{grover2013peeking}. Shah et
-al.~\cite{disco} and Bischof et al.~\cite{alwayson} take first steps
-towards classifying outages, using traceroutes sent from within the
+al.~\cite{disco} and Bischof et al.~\cite{alwayson} use traceroutes sent from within the
 home to find the hop where probes fail. While the traceroute-based
-approach to classify an outage offers promise, neither technique
+approach has the potential to categorize outages---by correlating
+failures that fail at the same hop, for instance---neither technique currently
 attempts to infer the real world event (like a network or power
-outage) that resulted in the outage. Analyzing the reliability of an
+outage) that resulted in the outage. However, analyzing the reliability of an
 ISP or the reliability of a geographic area requires the
 identification of outage causes, so that the appropriate subset of
-them can be used to perform reliability measures. 
+them can be used in Internet reliability metrics. 
 
 
 
@@ -269,15 +272,57 @@ them can be used to perform reliability measures.
 
 \section{Thesis}
 
-My insight is that confounding factors can exist but that
-there are ways to address these confounding factors.
 
-I argue in this thesis that 
+% My goal in this dissertation is to use probing-based techniques to
+% detect outages remotely and use detected outages for
+% measuring Internet reliability.
+My goal in this dissertation is to develop approaches that will
+address the challenges in obtaining authoritative measures of
+residential Internet reliability. I work towards this goal using the
+probing-based technique due to its ability to scale. In the rest of
+the dissertation, I illustrate my approaches to mitigate probing-based
+techniques' problems in measuring residential Internet reliability
+by defending the following thesis:
+
 \emph{It is possible to remotely and accurately detect substantial outages
   experienced by any device with a stable public IP address that typically
   responds to active probes and use these outages to compare
-  reliability across ISPs, media-types and geographical areas.} To demonstrate the thesis, I make the following
-contributions:
+  reliability across ISPs, media-types and geographical areas.} 
+
+% The common theme is that it is possible to list, measure, mitigate
+% My approaches share a common theme: I list potential sources of
+% error, measure them, and mitigate them
+
+At the heart of my approaches is the insight that it is possible to: (a) list
+potential sources of error, (b) measure and evaluate these sources of
+error in various circumstances, and (c) use these
+measurements to mitigate error. I use this insight to list and
+measure the likelihood of potential errors in outage detection due
+to confounding factors (such as high latency and dynamic address reassignment) across ISPs and
+geographic regions. I also use this insight to list potential causes
+of unrelated outages (such as users powering off their
+home Internet equipment) and develop techniques to 
+measure and mitigate them. %  extracting instances where the signal
+% clearly outweighs the noise.
+
+% Negate them is true in the weather-paper. Not strictly true in
+% corrfails. Think about how to do this. Ahh, just use mitigate again, whatever.
+
+\section{Contributions}
+
+To demonstrate the thesis, I measure two confounding factors---high
+latency (Chapter~\ref{cpt:timeouts}) and dynamic address reassignent
+(Chapter~\ref{cpt:addr_change})---that can lead probing-based outage
+detection techniques to make false outage inferences. I go on to show how
+to measure Internet reliability in the presence of inference errors
+and unrelated outages (Chapter~\ref{cpt:weather} and
+Chapter~\ref{cpt:corrfails}). This dissertation is organized as follows:
+ % I
+% demonstrate that the inflation in outage rate during the presence of a
+% particular challenging condition, such as during thunderstorms, 
+
+% I make the following
+% contributions:
 
 % TODO: 
 % It is possible to remotely and accurately estimate the reliability of
@@ -285,16 +330,23 @@ contributions:
 % a stable public IP address that typically
 %   responds to active probes
 
+\textbf{Chapter~\ref{cpt:bg}:~~Measuring Residential Internet
+  Reliability: a Primer}
 
-In Chapter~\ref{ch:related}, I define terms in the thesis statement, place the problem of outage detection
-at the individual user level in the context of related work, and describe the challenges
-that probing-based remote outage detection techniques will need to address. These
-techniques study outages by sending active probes (such as ping's echo
-requests) and use probe responses to infer outages. They assume that a
-response to an active probe indicates a working path to the probed
-user device and that lack of response is indicative of failure. I
-illustrate two scenarios where this assumption can be
-invalid, leading to potentially false outage inferences.
+I provide background on residential
+Internet reliability, define terms in the thesis statement, and place
+related work in context. I describe the challenges that probing-based
+remote outage detection techniques will need to address to measure
+residential Internet reliability. These techniques study outages by
+sending active probes (such as ping's echo requests) and use probe
+responses to infer outages. They assume that a response to an active
+probe indicates a working path to the probed user device and that lack
+of response is indicative of failure. I illustrate two scenarios where
+this assumption can be invalid, leading to potentially false outage
+inferences. I also illustrate scenarios where detected outages may
+need to be treated differently depending upon the type of
+Internet reliability being studied (ISP-level reliability,
+region-level reliability etc.).
  % I
 % illustrate two potential scenarios where this assumption is
 % invalid---when responses are delayed beyond the prober's timeout and
