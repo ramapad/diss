@@ -1,0 +1,92 @@
+newgraph clip
+
+xaxis
+  size 3
+  label : latency (s)
+  min 0 max 660
+
+yaxis
+  size 2
+  no_auto_hash_labels 
+  no_auto_hash_marks
+
+  (*
+  hash_at 0
+  hash_label at 0 : 0
+
+  hash_at 0.2
+  hash_label at 0.2 : 0.2
+  
+  hash_at 0.4
+  hash_label at 0.4 : 0.4
+
+  hash_at 0.6
+  hash_label at 0.6 : 0.6
+  
+  hash_at 0.8
+  hash_label at 0.8 : 0.8
+  *)
+
+  hash_at 0.98
+  hash_label at 0.98 : 0.98
+
+  hash_at 0.99
+  hash_label at 0.99 : 0.99
+
+  hash_at 1.0
+  hash_label at 1.0 : 1.0
+
+  min 0.98 max 1.0001
+  hash 0.01
+  label : CDF
+
+legend defaults x 630 y 0.987 hjr vjc 
+
+newcurve marktype none linetype solid color 0.7 0.25 0 label  : median
+newcurve marktype none linetype solid color 0 0.7 0.25  label  : 80
+newcurve marktype none linetype solid color 0.25 0 0.7  label  : 90
+newcurve marktype none linetype solid color 0.7 0.25 0.7  label  : 95
+newcurve marktype none linetype solid color 0.7 0.7 0.25  label  : 98
+newcurve marktype none linetype solid color 0.25 0.7 0.7  label  : 99
+
+newcurve marktype none linetype dotted color 0 0 0
+pts
+0 0
+660 0
+
+newcurve marktype none linetype dotted color 0 0 0
+pts
+0 1
+660 1
+
+newcurve marktype none linetype solid color 0.7 0.25 0
+pts
+0 0 
+shell : awk '{ if ($2 >= 0.97) printf "%f %f\n", ($1), ($2)}' timeouts/figs/unfiltered/median_file_sorted_cdf_pts
+
+newcurve marktype none linetype solid color 0 0.7 0.25
+pts
+0 0 
+shell : awk '{ if ($2 >= 0.97) printf "%f %f\n", ($1), ($2)}' timeouts/figs/unfiltered/80pctile_file_sorted_cdf_pts 
+
+newcurve marktype none linetype solid color 0.25 0 0.7
+pts
+0 0 
+shell : awk '{ if ($2 >= 0.97) printf "%f %f\n", ($1), ($2)}' timeouts/figs/unfiltered/90pctile_file_sorted_cdf_pts
+
+newcurve marktype none linetype solid color 0.7 0.25 0.7
+pts
+0 0 
+shell : awk '{ if ($2 >= 0.97) printf "%f %f\n", ($1), ($2)}' timeouts/figs/unfiltered/95pctile_file_sorted_cdf_pts
+
+newcurve marktype none linetype solid color 0.7 0.7 0.25
+pts
+0 0 
+shell : awk '{ if ($2 >= 0.97) printf "%f %f\n", ($1), ($2)}' timeouts/figs/unfiltered/98pctile_file_sorted_cdf_pts
+
+newcurve marktype none linetype solid color 0.25 0.7 0.7
+pts
+0 0 
+shell : awk '{ if ($2 >= 0.97) printf "%f %f\n", ($1), ($2)}' timeouts/figs/unfiltered/99pctile_file_sorted_cdf_pts
+
+

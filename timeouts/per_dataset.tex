@@ -1,0 +1,66 @@
+\begin{figure*}
+  \begin{center}
+  \includegraphics[width=7in]{timeouts/figs/pctile_var_over_time}
+  \end{center}
+  \caption{\label{fig:pctile_var_over_time}Top: Minimum timeout
+    required to capture the $c^{th}$ percentile latency
+    sample from the $c^{th}$ percentile address in each
+    survey, organized by time.  Each point represents the
+    timeout required to capture, e.g., 95\% of the responses
+    from 95\% of the addresses.  The 1\% line is indicative
+    of the minimum.  Bottom: Response rate for each survey;
+    symbols represent which vantage point was used.  Surveys
+    from Japan with very few successes are not plotted on
+    the top graph.}
+\end{figure*}
+
+
+\subsection{Is it a particular survey or vantage point?}
+
+ISI survey data are collected from four vantage points at
+different times.  Vantage points are identified by initial
+letter, and are in Marina del Rey,
+California, ``w''; Ft. Collins, Colorado, ``c''; Fujisawa-shi, Kanagawa,
+Japan, ``j''; and Athens, Greece, ``g''.  
+
+In this section, we look at summary metrics of each of the
+surveys.  In Figure~\ref{fig:pctile_var_over_time}, our
+intent was to ensure that the results were consistent from
+one survey to the next, but we found a surprising result as
+well.  The consistency of values is apparent: the median
+ping from the median address remains near 200ms for the
+duration.  However, there are exceptions in the following
+data sets: IT59j (20140515), IT60j (20140723), IT61j
+(20141002), IT62g (20141210). 
+These
+higher sampled latencies are coincident with a substantial
+reduction in the fraction of responses that are matched: in
+typical ISI surveys, 20\% of pings receive a response; in
+these, between 0.02\% and 0.2\% see a response.  It appears
+that these data sets should not be considered further.
+Additionally, it54c (20130524) it54j (20130618) and it54w (20130430)
+were flagged by ISI as having high latency variation due to 
+a software error~\cite{isi-notes-54}.
+
+Ignoring the outliers, trends are apparent.  The timeout
+necessary to capture 95\% of responses from 95\% of
+addresses increased from near two seconds in 2007 to near
+five seconds in 2011.  (We note that the apparent stability
+of this line may be misleading; since the $y$-axis is a log
+scale and our latency estimates are only precise to integer
+seconds when greater than 3, small variations will be lost.)
+The 98th percentile latency from the 98th percentile address
+has increased steadily since 2011, and the 99th increased
+from a modest 20 seconds in 2011 to a surprising 140 in
+2013.  These latency observations are not isolated to
+individual traces.
+
+In sum, high latency is increasing, and although some surveys
+show atypical statistics, early 2015 datasets that we focus on
+appear typical of expected performance.
+
+
+
+
+
+

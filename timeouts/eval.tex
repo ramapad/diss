@@ -1,0 +1,220 @@
+% \vfill\eject
+\section{Recommended Timeout Values}
+\label{sec:eval}
+% \newcommand{\hdr}[1]{\multicolumn{1}{c}{\textbf{#1}}}
+
+In this section, we analyze the ping latencies of all pings obtained
+from ISI's Internet survey datasets from 2015 to find reasonable timeout values.
+We demonstrate the effectiveness
+of our matching scheme for recovering delayed responses from the
+dataset. We then group the survey-detected responses and delayed
+responses together to determine what timeout values would be necessary to 
+recover various percentiles of responses. 
+Some IP
+addresses observe very high latencies in the ISI dataset; we verify that
+these are real in Section~\ref{sec:verification} and examine causes in Section~\ref{sec:causes}.
+
+% we validate
+% our results by probing these IP addresses with the scamper tool~\cite{luckie2010scamper} and
+% analyzing their latencies.
+
+\subsection{Incorporating unmatched responses}
+
+\begin{table}[tb]
+  \begin{center}
+    \begin{small}
+  \begin{tabular}{c|rr}
+    & \hdr{Packets} & \hdr{Addresses} \\
+    \hline
+    \textbf{Survey-detected } & 9,644,670,150 & 4,008,703\Tstrut\\
+    % \hline
+    \textbf{Naive matching} & 9,768,703,324 & 4,008,830 \\
+    % \hline
+    \textbf{Broadcast responses} & 33,775,148 & 9,942 \\
+    % \hline
+    \textbf{Duplicate responses} & 67,183,853 & 20,736 \\
+    % \hline
+    % \textbf{Filtered survey-detected} & 125,578,194,082 & 16,320,357 \\
+    % \hline
+    \textbf{Survey + Delayed} & 9,667,744,323 & 3,978,152 \\
+    \end{tabular}
+    \end{small}
+  \end{center}
+    \caption{Adding unmatched responses to survey-detected responses}
+
+\label{tbl:filter_results}
+\end{table}
+
+\begin{figure*}[tb]
+% \centering
+\begin{center}
+\subfloat[Before filtering]{
+\includegraphics[width=3in]{timeouts/figs/cdf_basic_ping_ttl}
+\label{fig:basic_lat}
+}
+\hspace{0.2in}
+\subfloat[After filtering]{
+\includegraphics[width=3in]{timeouts/figs/cdf_filter_ping_ttl}
+%
+\label{fig:filter_lat}
+}
+\end{center}
+\caption{CDF of Percentile latency per IP address before and after filtering
+  unexpected responses. Each point represents an IP address and each
+  color represents the percentile from that IP address's response
+  latencies. Before filtering unexpected responses, there are
+  bumps caused by broadcast responses at 330s, 165s and 495s,
+  fractions of the 11 minute (660s) probing interval.
+}
+\label{fig:lat}
+\end{figure*}
+
+
+ISI detected 9.64 Billion echo responses from 4 Million IP addresses in 2015
+in the IT63w (20150117) and IT63c (20150206) datasets, as shown in the
+first row of Table~\ref{tbl:filter_results}.
+The next row shows the number of responses we would have obtained
+if we had used a naive matching scheme where we simply matched each
+unmatched response for an IP address with the last echo request for
+that IP
+address, without filtering unexpected responses.
+The number of responses
+increases by 1.3\% to 9.77 Billion; however, this includes responses
+from addresses that received broadcast responses and duplicate
+responses. 
+%
+After filtering unexpected responses, the number of IP addresses
+reduces to 99.23\% of
+the original addresses. 
+%
+Of 30,678 discarded IP addresses, 9,942 (32.4\%)
+addresses were discarded because they also received broadcast
+responses. 
+%
+The majority of discarded IP addresses, 20,736 (67.6\%) were addresses that
+sent more than 4 echo responses in response to a single echo request. 
+
+Though the number of discarded IP addresses is relatively small, removing
+them eliminates responses that cluster around 330, 165, and 495 seconds.
+Figure~\ref{fig:lat} shows the distribution of percentile latency per
+IP address before and after filtering unexpected responses.  Comparing
+these two graphs shows that the ``bumps'' in the CDF are removed by the filtering.
+
+After discarding addresses, our matching technique yields 23,074,173
+additional responses for the remaining addresses, giving us a total of
+9.67 Billion Echo Responses from 3.98 Million IP addresses. We perform
+our latency analysis on this combined dataset.
+
+% They are caused
+% because of the non-random sequence of probing, which meant that 0 and
+% 1 were probed 330seconds apart.
+
+% \newcommand{\bb}{~~~~~}
+%%% \begin{table}[tp]%
+%%%   \begin{center}%
+%%%   \begin{small}%
+%%%   \begin{tabular}{c@{\hspace{0.5em}}r|rrrrrrr}
+%%%     &\multicolumn{8}{c}{\textbf{\% of pings}\vspace{0.3em}} \\
+%%%     && \hdr{1\%} & \multicolumn{1}{c}{\textbf{50\%}} & \hdr{80\%} & \hdr{90\%} & \hdr{95\%} &
+%%%     \hdr{98\%} & \hdr{99\%} \\\cline{2-9}
+%%%     \parbox[t]{2mm}{\multirow{7}{*}{\rotatebox[origin=c]{90}{\textbf{\% of addresses}}}} & 
+%%%     \textbf{1\%} & 0.01 & 0.05 & 0.11 & 0.13 & 0.16 & 0.29 & 0.34 \\
+%%% %    \cline{2-9}
+%%%     &\textbf{50\%} & 0.12 & 0.24 & 0.35 & 0.50 & 0.67 & 0.92 & 1.21 \\
+%%% %    \cline{2-9}
+%%%     &\textbf{80\%} & 0.19 & 0.33 & 0.57 & 1.34 & 2.20 & 5\bb & 7\bb \\
+%%% %    \cline{2-9}
+%%%     &\textbf{90\%} & 0.24 & 1.00 & 2.39 & 4\bb & 6\bb & 8\bb & 11\bb \\
+%%% %    \cline{2-9}
+%%%     &\textbf{95\%} & 0.31 & 2.43 & 5\bb & 6\bb & 7\bb & 12\bb & 18\bb \\
+%%% %    \cline{2-9}
+%%%     &\textbf{98\%} & 0.37 & 4\bb & 6\bb & 7\bb & 11\bb & 20\bb & 52\bb \\
+%%% %    \cline{2-9}
+%%%     &\textbf{99\%} & 0.43 & 4\bb & 6\bb & 8\bb & 14\bb & 55\bb & 159\bb \\
+%%%     \end{tabular}
+%%%   \end{small}
+%%%   \end{center}
+%%% 
+%%% 
+%%%     \caption{Minimum timeout in seconds that would have captured c\% of pings from r\% of IP
+%%%       addresses in pings sent from Nov 2011 to October 2013 (where r is the row number and c is
+%%%       the column number).}
+%%% \label{tbl:grand}
+%%% \end{table}
+
+%\newcommand{\bb}{~~~~~}
+
+
+\subsection{Recommended Timeout Values}
+
+We now find retransmission thresholds which recover various
+percentiles of responses for the IP addresses from the
+combined dataset. For each IP address, we find the 1st, 50th, 80th,
+90th, 95th, 98th and 99th percentile latencies. We then find the 1st, 50th,
+80th, 90th, 95th, 98th and 99th percentiles of all the 1st percentile latencies. We repeat this for each
+percentile and show the results in Table~\ref{tbl:grand_2015}.
+
+\begin{table}[tb]
+  % \begin{center}%
+    \begin{small}%
+      \hspace{-0.06in}%
+  \begin{tabular}{l@{\hspace{0.5em}}r|rrrrrrr}
+    &\multicolumn{8}{c}{\textbf{\% of pings}} \\
+    && \hdr{1\%} & \multicolumn{1}{c}{\textbf{50\%}} & \hdr{80\%} & \hdr{90\%} & \hdr{95\%} &
+    \hdr{98\%} & \hdr{99\%} \\\cline{2-9}
+    \multirow{7}{*}{\rotatebox[origin=lb]{90}{\textbf{\% of addresses}}} & 
+    \textbf{1\%} & 0.01 & 0.03 & 0.04 & 0.07 & 0.10 & 0.13 & 0.18\Tstrut \\
+%    \cline{2-9}
+    &\textbf{50\%} & 0.16 & 0.19 & 0.21 & 0.26 & 0.42 & 0.53 & 0.64 \\
+%    \cline{2-9}
+    &\textbf{80\%} & 0.19 & 0.26 & 0.33 & 0.43 & 0.54 & 0.74 & 1.21 \\
+%    \cline{2-9}
+    &\textbf{90\%} & 0.22 & 0.31 & 0.42 & 0.57 & 0.84 & 1.61 & 3\bb \\
+%    \cline{2-9}
+    &\textbf{95\%} & 0.25 & 1.42 & 2.38 & 3\bb & 5\bb & 9\bb & 15\bb \\
+%    \cline{2-9}
+    &\textbf{98\%} & 0.30 & 1.94 & 4\bb & 6\bb & 12\bb & 41\bb & 78\bb \\
+%    \cline{2-9}
+    &\textbf{99\%} & 0.33 & 2.31 & 4\bb & 8\bb & 22\bb & 76\bb & 145\bb \\
+    \end{tabular}
+    \end{small}
+    % \end{center}
+
+\vspace{\baselineskip}
+
+    \caption{Minimum timeout in seconds that would have captured c\% of pings from r\% of IP
+      addresses in the IT63w (20150117) and IT63c (20150206) datasets (where r is the row number and c is
+      the column number).}
+\label{tbl:grand_2015}
+\end{table}
+
+The 1st percentile of an address's latency will be close to the ideal latency that its link
+can provide. We find that the 1st percentile latency is below 330ms for 99\%
+of IP addresses: most addresses are capable of
+responding with low latency. Further, 50\% of pings from 50\% of the
+addresses have latencies below 190ms, showing that latencies tend to
+be low in general.
+
+However, we see that a substantial fraction of IP addresses also have
+surprisingly high latencies. For instance, to capture 95\% of pings from 95\%
+addresses requires waiting 5 seconds.  Restated, at least 5\% of
+pings from 5\% of addresses have latencies higher than 5 seconds. Thus, even
+setting a timeout as high as 5 seconds will infer a false loss rate of 5\%
+for these addresses.
+
+Note that retrying lost pings cannot be used as a substitute for
+setting a longer timeout since a retried ping is not an independent
+sample of latency. 
+Whatever caused the first one to be delayed is likely to cause the
+followup pings to be delayed as well, as we show in Section~\ref{sec:causes}.
+
+At the extreme, we see 1\% of pings from 1\% of addresses
+having latency above 145 seconds! These latencies are so high that
+we investigate these addresses further.  \emph{We now
+  consider 60 seconds to be a reasonable timeout to balance
+  progress with response rate, at least when studying
+  outages and latencies, although an ideal timeout may vary
+  for different settings.}  A timeout of 60 seconds easily
+covers 98\% of pings to 98\% of addresses, yet does not seem
+long enough to slow measurements unnecessarily.
+
