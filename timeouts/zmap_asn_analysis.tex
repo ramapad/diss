@@ -1,0 +1,309 @@
+\newcommand{\elide}[1]{}
+
+\newcommand{\hdrbar}[1]{\multicolumn{1}{c|}{\textbf{#1}}}
+\begin{table*}[t]%
+  \begin{center}%
+  \begin{small}%
+  \begin{tabular}{ll|rrr|rrr|rrr}
+  % \begin{tabular}{r|rrr|rrr|rrr|rrr}
+  % \begin{tabular}{rl|r|rr}
+    % & & \multicolumn{3}{c|}{\textbf{April 2015}} &
+    & & 
+    \multicolumn{3}{c|}{\textbf{May 2015}} &
+    \multicolumn{3}{c|}{\textbf{June 2015}} &
+    \multicolumn{3}{c}{\textbf{July 2015}} \\ 
+    % \hdr{ASN} & \hdr{$>$1s} & \%  & \hdr{Rank} &
+    % \hline 
+    \hdr{ASN} & \hdrbar{Owner} & 
+    \hdr{$>$1s} & \%  & \hdrbar{Rank} &
+    \hdr{$>$1s} & \%  & \hdrbar{Rank} &
+    \hdr{$>$1s} & \% & \hdr{Rank} \\
+    % \hdr{$>$1s} & \% & \hdr{Rank} \\
+    \hline 
+    26599 & TELEFONICA BRASIL & 
+    % 26599 &
+    % 2,941,446 & 79.275 & 1 & 
+    3.56M & 80.4 & 1 & 
+    3.87M & 77.5 & 1 &
+    4.20M & 77.0 & 1\Tstrut \\
+
+    26615 & Tim Celular S.A. &
+    1.35M & 74.5 & 3 &
+    1.42M & 71.5 & 2 &
+    1.72M & 71.6 & 2 \\
+
+    45609 & Bharti Airtel Ltd. &
+    1.46M & 76.6 & 2 &
+    1.21M & 81.0 & 3 &
+    1.03M & 79.2 & 3 \\
+
+    22394 & Cellco Partnership &
+    0.55M & 73.4 & 8 &
+    0.58M & 73.5 & 4 &
+    0.63M & 72.7 & 4 \\
+
+    1257 & TELE2 &
+    0.67M & 69.5 & 5 &
+    0.42M & 65.5 & 9 &
+    0.58M & 67.4 & 5 \\
+
+    27831 & Colombia Movil &
+    0.53M & 68.8 & 9 &
+    0.54M & 64.3 & 5 & 
+    0.53M & 62.8 & 6 \\
+
+    6306 & VENEZOLAN &
+    0.69M & 77.3 & 4 &
+    0.41M & 76.4 & 10 &
+    0.40M & 75.7 & 10 \\
+
+    9829 & National Internet Backbone &
+    0.57M & 27.6 & 7 &
+    0.43M & 30.9 & 7 &
+    0.43M & 29.5 & 9 \\
+
+    4134 & Chinanet &
+    0.60M & 1.5 & 6 &
+    0.38M & 0.9 & 11 &
+    0.34M & 0.9 & 11 \\
+
+    35819 & Etihad Etisalat (Mobily) & 
+    0.42M & 54.0 & 10 &
+    0.43M & 54.5 & 6 &    
+    0.45M & 55.8 & 8 \\
+  \end{tabular}
+  \end{small}
+  \end{center}
+  \caption{\label{tbl:zmap_asns} Autonomous Systems sorted by the
+    addresses summed across three Zmap scans for addresses that observed
+    RTTs greater than 1s. The table shows for each AS: the number and
+    percentage of addresses with RTT greater than 1s and the rank in that scan.}
+\end{table*}
+
+\begin{table*}[t]%
+  \begin{center}%
+  \begin{small}%
+  \begin{tabular}{c|rr|rr|rr}
+    &
+    \multicolumn{2}{c|}{\textbf{May 2015}} &
+    \multicolumn{2}{c|}{\textbf{June 2015}} &
+    \multicolumn{2}{c}{\textbf{July 2015}} \\ 
+    \hdrbar{Continent} & 
+    \hdr{$>$1s} & \%  & 
+    \hdr{$>$1s} & \%  & 
+    \hdr{$>$1s} & \% \\\hline
+    South America &
+    7.27M & 26.7 &
+    7.41M & 25.8 &
+    8.05M & 26.9\Tstrut \\
+
+    Asia &
+    5.56M & 3.8 &
+    4.73M & 3.4 &
+    4.56M & 3.2 \\
+
+    Europe &
+    2.56M & 2.7 &
+    2.09M & 2.2 &
+    2.32M & 2.4 \\
+
+    Africa &
+    1.12M & 29.4 &
+    1.20M & 30.3 &
+    1.30M & 31.7 \\
+
+    North America &
+    0.93M & 1.0 &
+    1.04M & 1.1 &
+    1.14M & 1.2 \\
+
+    Oceania &
+    0.08M & 3.9 &
+    0.08M & 3.7 &
+    0.08M & 3.7 \\
+
+\end{tabular}
+  \end{small}
+  \end{center}
+  \caption{\label{tbl:zmap_conts} Continents sorted by the addresses summed across three Zmap scans for addresses that observed
+    RTTs greater than 1s. The table shows for each AS: the number and
+    percentage of addresses with RTT greater than 1s in that scan.}
+\end{table*}
+
+
+\begin{table*}[t]%
+  \begin{center}%
+  \begin{small}%
+  \begin{tabular}{ll|rrr|rrr|rrr}
+    & & 
+    \multicolumn{3}{c|}{\textbf{May 2015}} &
+    \multicolumn{3}{c|}{\textbf{June 2015}} &
+    \multicolumn{3}{c}{\textbf{July 2015}} \\ 
+    \hdr{ASN} & \hdrbar{Owner} & 
+    \hdr{$>$100s} & \%  & \hdrbar{Rank} &
+    \hdr{$>$100s} & \%  & \hdrbar{Rank} &
+    \hdr{$>$100s} & \% & \hdr{Rank} \\
+    \hline 
+    26599 & TELEFONICA BRASIL & 
+    51.9K & 1.2 & 1 &
+    63.5K & 1.3 & 1 &
+    77.6K & 1.4 & 1\Tstrut \\
+    
+    12430 & VODAFONE ESPANA S.A.U. &
+    12.8K & 4.4 & 2 &
+    11.6K  & 4.1 & 2 &
+    14.6K & 5.2 & 3 \\
+
+    26615 & Tim Celular S.A. &
+    6.2K & 0.3 & 7 &
+    9.4K & 0.5 & 3 &
+    14.7K & 0.6 & 2 \\
+
+    3352 & TELEFONICA DE ESPANA &
+    8.5K & 0.2 & 3 & 
+    7.3K & 0.1 & 5 &
+    7.5K & 0.2 & 4 \\
+    
+    6306 & VENEZOLAN &
+    7.5K & 0.8 & 5 &
+    8.4K & 1.5 & 4 &
+    6.6K & 1.2 & 6 \\
+
+    22394 & Cellco Partnership &
+    6.9K & 0.9 & 6 &
+    6.6K & 0.8 & 6 &
+    7.5K & 0.9 & 5 \\
+    
+    27831 & Colombia Movil &
+    3.2K & 0.4& 10 &
+    5.0K & 0.6 & 7 &
+    5.2K & 0.6 & 7 \\
+
+    45609 & Bharti Airtel Ltd. &
+    7.8K & 0.4 & 4 &
+    2.6K & 0.2 & 9 &
+    2.9K & 0.2 & 9 \\
+
+    35819 & Etihad Etisalat (Mobily) & 
+    3.8K & 0.5 & 9 &
+    3.9K & 0.5 & 8 &
+    4.0K & 0.5 & 8 \\
+
+    1257 & TELE2 &
+    6.2K & 0.4 & 8 &
+    1.7K & 0.3 & 14 &
+    2.4K & 0.3 & 12 \\
+    
+  \end{tabular}
+  \end{small}
+  \end{center}
+  \caption{\label{tbl:zmap_asns_100s} Autonomous Systems sorted by the
+    addresses summed across three Zmap scans for addresses that observed
+    RTTs greater than 100s. The table shows for each AS: the number and
+    percentage of addresses with RTT greater than 100s and the rank in that scan.}
+\end{table*}
+
+
+\subsection{Autonomous Systems with the most high latency addresses}
+\label{subsec:motivation}
+
+Next, we investigate the ASes and geographic locations with the most high latency
+addresses to identify relationships. For this analysis, we use Zmap scans from 2015 to
+identify high latency addresses. Zmap pings every IPv4 address,
+thereby covering addresses from all ASes. We chose
+the May 22, Jun 21 and Jul 9 Zmap scans to study. These scans
+were conducted at different times of the day, on different days of the week
+and in different months, as shown in Table~\ref{tbl:scans}.
+For each of these Zmap scans, we use Maxmind to find the ASN and geographic
+location for every address that responded.
+% , analyzing these
+% responses allows us to recognize high-latency trends in
+% Autonomous Systems and geographic locations.
+% \vspace{-0.1in}
+\subsubsection*{ASes most prone to RTTs greater than 1 second}
+
+Figure~\ref{fig:grand_zmap} showed that the percentage of
+addresses that sent high latency Echo Responses remained stable over time.
+%
+In particular, around 5\% of addresses observed RTTs greater than
+a second in each scan. We refer to these addresses as \emph{turtles} and
+investigate their distribution 
+across Autonomous Systems to identify relationships.
+
+For each Zmap scan, we found the turtles and identified
+their AS, and ranked ASes by the number of contributed
+turtles. Finally, we summed the turtles from each AS across the three
+scans and sort ASes accordingly and show the top ten in Table~\ref{tbl:zmap_asns}. For
+example, AS26615 had the second-largest sum of turtles across the three Zmap
+scans, but was ranked third within the May 2015 scan.
+
+Inspecting the owners of each of these Autonomous Systems reveals that a majority of them are cellular. 
+%
+AS26599 (TELEFONICA BRASIL), a cellular AS in Brazil, has the most
+turtles, more than double that of the next largest AS in
+each of the scans. 
+%
+The next two ASes, AS45609 (Bharti Airtel Ltd.), and AS26615 (Tim Celular), are also cellular, 
+and so are 5 of
+the remaining 7 ASes in the top 10. 
+
+Also notable is the percentage of responding addresses
+that are turtles for these ASes. Most of the cellular ASes have around
+70\% of all probed addresses being turtles. 
+AS9829, one of the two ASes with turtles accounting
+for lower than 50\% of probed addresses, is known to offer other
+services in addition to cellular. 
+%
+AS4134, with only 1\% of its probed addresses
+being turtles, is also known to offer other services.
+We believe that the cellular addresses observe high RTTs while
+others do not, explaining the low ratio of probed addresses with
+RTTs greater than 1 second.
+%
+
+%
+Finally, nine ASes were observed in the top
+ten in every scan. AS4134 was the only exception, but it ranked 11th in the June and
+July scans. Thus, the Autonomous Sytems with the most
+turtles also remain consistent over time.
+%
+
+
+Table~\ref{tbl:zmap_conts}  shows the continents with the most turtles. South America and Asia alone
+account for around 75\% of all turtles.
+%
+Further, around a quarter of all
+addresses in South America and a third of the addresses in Africa experienced
+RTTs greater than 1s in each scan.
+%
+On the other hand, only 1\% of North America's addresses are turtles
+(of which more than
+half come from a single ASN: AS22394).
+
+% This suggests that turtles are more prevalent in developing
+% areas of the world.
+
+\subsubsection*{ASes most prone to RTTs greater than 100 seconds}
+
+% In each Zmap scan, we found around XX addresses with RTTs greater than
+% 100s: we refer to these addresses as RTTgt100s.
+%
+Next, we investigate the Autonomous Systems of addresses with RTTs
+greater than 100 seconds in the three Zmap scans: we refer to these addresses
+as sleepy-turtles. 
+We consider whether these addresses are different from turtles to
+identify whether there is a different underlying cause.
+%
+Following the same process in identifying ASes and sorting them as in
+Table~\ref{tbl:zmap_asns}, Table~\ref{tbl:zmap_asns_100s} shows Autonomous Systems that are
+most prone to RTTs greater than 100 seconds.  
+%
+
+We find that sleepy-turtles exhibit similarities to turtles. Every Autonomous System in
+Table~\ref{tbl:zmap_asns_100s} is cellular. Further, the ranks of the
+Autonomous Systems remain stable over time across the scans. However,
+there is more variation across the scans for the percentage of
+sleepy-turtles among all probed addresses for
+an AS. This suggests that the fraction of addresses experiencing RTTs
+greater than 100 seconds is less stable
+over time.

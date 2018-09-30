@@ -1,0 +1,35 @@
+
+
+\subsubsection{Proposed work: Set timeouts based upon
+  destination addresses}
+
+The wide variation in observed latencies for IP addresses around the
+world indicate that probers should set timeout values
+based upon the addresses that they are probing. Even a 3s
+timeout may suffice for 90\% of addresses in the ISI survey since 90\% of addresses respond
+within 3s for 99\% of the pings sent to them. My proposed work is to find expected latency values
+associated with the IP addresses that need to be probed, and to set
+their timeouts accordingly.
+ 
+I propose to find expected latencies for any IP address on the
+Internet by analyzing historical and current ping data, available from
+the Zmap project~\cite{censys-icmp}. Zmap has continued to perform
+their scans of the IPv4 Internet, averaging one scan per week since
+April 2015. For each IP address that has consistently responded to
+pings, I expect to have roughly 100 samples. I will calculate expected
+latencies for all addresses using their own latencies weighted by the
+number of observed samples and will also include latency samples of
+other ``related'' addresses. Related addresses can be addresses
+belonging to the same /24 network, addresses belonging to the same
+ISP, addresses sharing the same last-hop router, addresses from the
+same dynamically addressed pools etc; I describe related addresses in
+more detail in Section~\ref{sec:last_mile}.
+
+Once I have determined the expected latencies for all IP addresses
+that respond to pings in the IPv4 Internet, the next task is to
+determine appropriate per-address timeouts based upon the destinations
+that need to be probed. Given any address to probe, I will modify the probing scheme to
+set timeouts that are just high enough as to capture almost all
+responses (say 99.9\%) from that address. Setting adaptive timeouts this way will achieve the
+twin goals of capturing most responses while also keeping the state
+required at the prober low.

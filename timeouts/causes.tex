@@ -1,0 +1,44 @@
+%% 
+%% * could it be routing? (if affecting all of a /24 at the same time;  I don't believe this happens)
+%% 
+%% * could it be handoff?  (should be occasional / rare (though not necessarily so), within some networks but not all, and apply to networks with already high latencies)
+%% 
+%% * could it be solar interference on satellites?  (seek diurnal patterns s.t. for one (15 minute?) period out of the 24 hours, there's a problem)
+%% 
+%% * does it affect thought-to-be-wired links?  (seek large cable-provider networks and fiber providers, determine whether there are high latency guys in there.)
+%% 
+%% * can the devices be fingerprinted? (e.g., nmap)
+
+\section{Why do pings take so long?}
+\label{sec:causes}
+
+In this section, we aim to determine what causes high RTTs. We
+investigate the RTTs of satellite
+links and find that they account for a small fraction of high RTT
+addresses. We follow up with an analysis of Autonomous Systems and
+geographic locations that are most prone to two potentially different
+types of high RTTs: RTTs greater than 1s and RTTs greater than
+100s. We then investigate addresses that exhibit each type of RTT and
+find potential explanations.
+% check if the first ping to an address in a continuous stream of pings is subject to
+% higher latencies than the rest. Finally, we investigate particularly high
+% latencies and identify patterns associated with their occurrence.
+
+\ninput{timeouts/satellites}
+
+\ninput{timeouts/zmap_asn_analysis}
+
+\ninput{timeouts/first_ping}
+
+\ninput{timeouts/handoff}
+
+\subsection{Summary}
+High latencies appear to be a property mainly of cellular
+  Autonomous Systems, though a few also appear on satellite
+  links. Latencies in the ISI data that are regularly above one second seem to be caused
+by the first-ping behavior associated with several addresses, where
+the first ping in a stream of pings has higher latency than the
+rest. Egregiously high latencies, i.e., latencies greater than a
+hundred seconds, occur in two broad patterns. In the first, latencies
+steadily decay with each probe, as if clearing a backlog. In the second, latencies are continuously
+high and are accompanied by loss, as if the network link is oversubscribed.

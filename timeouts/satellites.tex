@@ -1,0 +1,66 @@
+\begin{figure*}
+\begin{center}
+\includegraphics[width=3.2in]{timeouts/figs/20150206_high_1pctile_gt_300ms_one_vs_99_scatter-nosat-decimated}
+\hspace{0.3in}\includegraphics[width=3.2in]{timeouts/figs/20150206_high_1pctile_gt_300ms_one_vs_99_scatter-sat}
+\end{center}
+\caption{\label{fig:20150206_high_1pctile_gt_300ms_one_vs_99_scatter}Scatterplot of 1st and 99th percentile latencies for addresses with high values of both in survey IT63c; Left omits satellite-only ISPs; Right includes only satellite-only ISPs.}
+\end{figure*}
+
+
+\subsection{Are satellites involved?}
+
+A reasonable hypothesis is that satellite links, widely
+known for their necessarily high minimum latency, would also
+be responsible for very high maximum latencies.
+Transmissions via
+geosynchronous satellite must transit 35,786km to a
+satellite and back, leading to about 125 ms of one way
+delay~\cite{minei-jsac99,barakat-geostationary}.  Another 125 ms for
+the return trip yields a theoretical minimum
+of 250ms. 
+%  208 baycity
+%    27 horizon
+%  2696 hughes
+%   365 iinet
+%   116 ON_LINE
+%   233 skylogic
+%    93 skymesh
+%    34 telesat
+%   755 viasat
+
+We expect satellite ISPs to have
+high 1st percentile latencies, but we consider whether they
+have high 99th percentile latencies as well. We use data from ISI survey IT63c
+(20150206) for this analysis because it provides hundreds of ping samples per IP address, and we wish to study relatively few addresses in some detail. Figure~\ref{fig:20150206_high_1pctile_gt_300ms_one_vs_99_scatter}
+shows the plot of 1st percentile latencies vs. the 99th percentile
+latencies for addresses in this survey. We
+separate addresses that the Maxmind database maps to
+known satellite providers, including Hughes and ViaSat.  At left, we
+show the overall distribution without addresses from known satellite
+ISPs; at right, we show only satellite ISPs.  (Recall that the
+precision of values just above the ISI timeout of three seconds is
+limited to integers; this creates the horizontal bands.)  The
+satellite-only ISPs plot shows that the 1st percentile RTT for these
+addresses exceeds 500ms in all cases, showing that the RTTs are almost
+double the theoretical minimum. There are
+some points in the left plot that remain within the satellite-like
+cluster; at least some of these are from rural broadband providers
+that provide both satellite and other connectivity, such as xplorenet
+in Canada, which had at least one IP address report with a below 0.5s first percentile.
+
+Each satellite provider has a distinct cluster in this scatter
+plot, and two smaller providers, Horizon and iiNet, have
+clusters of reports that produce near-horizontal lines in
+the graph, with varying 1st percentile but fairly consistent
+99th percentile, as if queuing for these addresses is
+capped but the base distance to the satellite varies by geography.
+
+Although some satellite hosts do have remarkably high RTT
+values---up to 517s---their 99th percentile values
+are predominantly below 3s.  They do not have such
+high 99th percentile values as the rest of the hosts with
+over 0.3s first percentiles (those shown on the left
+graph). Thus, satellite ASes accounted for very few of the high latency
+addresses. 
+
+

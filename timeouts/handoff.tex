@@ -1,0 +1,91 @@
+
+\subsection{Patterns associated with RTTs greater than 100 seconds}
+
+Finally, we look at addresses with extraordinarily high
+latencies ( greater than 100 seconds); in particular, we want to
+understand whether these high latencies are an instance of a
+first-ping-like behavior, where wireless negotiation or
+buffering during intermittent connectivity creates the high
+value, or, on the other hand, are instances of extreme
+congestion.  To separate the two types of events, we consider
+a sequence of probes, looking for whether or not the latency
+diminishes after a ping beyond 100 seconds.
+
+We sample 3,000 of 38,794 addresses whose 99th percentile
+latency was greater than 100 seconds in the IT63c (20150206)
+dataset.  Of this sample, 1,400 responded.
+%
+We sent each address 2000 ICMP Echo Request packets using
+Scamper, spaced by 1 second.
+%
+To collect responses with very high delays without altering
+the Scamper timeout, we simultaneously run tcpdump to
+capture packets.
+%
+
+Ping samples that saw a round trip time above 100 seconds
+exist in the context of a few very distinct patterns.
+%
+Often, a series of successive ping responses would be delivered
+together almost simultaeously, leading to a steady decay in their
+round trip times.
+%
+For example, after 136 seconds of no response
+from IP address 191.225.110.96, we received all 136 responses over
+a one second interval: every subsequent response's
+round-trip latency was 1 second lower than the previous.
+%
+This pattern is sometimes preceded by a relatively low latency ping
+($<$ 10
+seconds) and at other times, follows a few lost pings: we distinguish
+between these two cases and call the former \emph{Low latency, then decay}
+and the latter \emph{Loss, then decay}.  It is possible that these
+are both observing the same underlying action on the network, but
+we leave them separate since there are substantially many of each.
+%%% NEED TO EXPLAIN THE RULE.
+%
+
+Another characteristic pattern is that a high round trip time is
+followed by
+ several responses of even greater latency, possibly with intermittent losses.
+%
+This behavior is usually sustained for several minutes with latencies
+remaining higher than normal ($>$10 seconds) throughout the duration:
+we call this behavior \emph{Sustained high latency and loss}.
+%
+Finally, there are some cases where a single ping has a latency $>$
+100 seconds and is preceded and followed by loss. We call these cases
+\emph{High latency between loss}.
+
+We count the number of occurrences of each pattern in Table~\ref{tbl:handoff}. 
+%
+For
+each pattern, we show the number of pings greater than 100 seconds that were part of
+that pattern, the number of instances of that
+pattern occurring, and the number of unique addresses for which it
+occurred.
+%
+We observe that the majority of events and addresses are \emph{Loss, then decay}, yet almost
+twice as many pings are part of \emph{Sustained high latency and
+  loss}.
+%
+
+\newcommand{\noop}[1]{#1}
+\begin{table}[t]
+  \begin{center}%
+    \begin{small}%
+      \begin{tabular}{c|rrr}
+        \hdrbar{Pattern} & \hdr{Pings} & \hdr{Events} & \hdr{Addrs}\\\hline
+        \noop{Low latency, then decay} & 615 & 13 & 10\Tstrut\\
+        \noop{Loss, then decay} & 1528 & 81 & 33\\
+        \noop{Sustained high latency and loss} & 2994 & 21 & 14 \\
+        \noop{High latency between loss} & 12 & 12 & 12
+        % 
+      \end{tabular}
+    \end{small}
+    \end{center}
+  \caption{We observed distinct patterns of latency and loss near high latency responses,
+    classifying all 5149 pings above 100 seconds from the sample.}
+\label{tbl:handoff}
+\end{table}
+      

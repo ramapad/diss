@@ -1,0 +1,148 @@
+
+\input{timeouts/counts}
+\subsection{Is it the first ping?}
+\label{subsec:first_ping}
+
+% The latencies measured in Section~\ref{sec:eval} are
+RTTs that are consistently greater than a second are sufficiently
+high that interactive application traffic would seem impractical with these
+delays.
+We suspected that the latencies measured by ISI and Zmap
+might not be typical of application traffic.
+
+We considered two broad explanations---extraordinary
+persistent latency due to oversized queues associated with
+low-bandwidth links, or extraordinary temporary, initial
+latency due to MAC-layer time slot negotiation or device
+wake-up.
+
+In this section, we find that the latter appears to be a
+more likely explanation, qualitatively consistent with prior
+investigations of GPRS performance
+characteristics~\cite{gprsweb}, but showing quantitatively more significant delay.
+
+
+We extracted \countInitialList{} IP addresses from the 20150206 ISI 
+dataset (February 2015), including all addresses with 
+a median RTT of at least one second.   To select only responsive
+addresses that still had high latency, for each of these 
+IP addresses, we sent two pings, separated by five seconds, 
+with a timeout of 60 seconds.   We omit \countUnresponsive{} 
+addresses that did not respond to either probe and 
+\countNotprobed{} addresses that responded, on average, 
+within 200ms.
+
+%% todo -- want to say that 80s is long enough for
+%% whatever process to reset. 
+Of the \countResponsives{} addresses that remain, we 
+wait approximately 80 seconds before sending ten pings, 
+once per second with the same 60-second timeout.  We 
+next classify how the round trip time of the first ping, $RTT_1$, differs from
+those of the rest of the responded pings, $RTT_2 \ldots RTT_{n}$, where $n$ may be smaller than 10 if responses are missing.   For most of these addresses,
+\countDropsToMedianAndToMax{}, the first
+response took longer than the \emph{maximum} of the
+rest.  This suggests that roughly 2/3 of high latency
+observations are a result of negotiation or wake-up rather
+than random latency variation or persistent congestion.
+For \countDropsToMedianNotToMax, $median(RTT_2 \ldots RTT_{n}) < RTT_1 < max(RTT_2 \ldots RTT_{n})$, i.e., the first response
+took longer than the \emph{median}, but not the maximum, of
+the rest.  The first response was smaller than the
+median of the rest for a comparable \countNegativeDrop.
+That the first is above or below the median in roughly 
+equal measure suggests that for these addresses there is 
+little observed penalty to the first ping.
+Finally, we omit analysis of \countFirstProbeNoResponse{} addresses
+because we did not receive a response to, at least, the first probe, even though
+they did respond to the initial pair of probes, 
+and we omit an additional \countTooFewResponses{} addresses that did
+respond to the first probe, but not to at least four probes overall
+(i.e., we require $n \geq 4$ before computing the median or maximum
+for comparison).
+
+\begin{figure}[tb]
+\begin{center}
+\includegraphics[width=3in]{timeouts/figs/initial_dual_cdf}
+\end{center}
+\caption{\label{fig:initial_drops_cdf}Bottom: Difference between initial latency and second probe latency; values around 1 indicate that both responses arrive at about the same time, values near zero indicate that the RTTs were about the same.  The second line includes only those where $RTT_1 > max(RTT_2 \ldots RTT_n)$.  Top: The probability that, given $RTT_1 - RTT_2$ on the $x$-axis, that $RTT_1 > max(RTT_2 \ldots RTT_n)$.}
+\end{figure}
+
+% \vspace{-0.1in}
+
+\subsubsection*{Can the overestimate be detected?}  We show in 
+Figure~\ref{fig:initial_drops_cdf} the differences between the
+first and second round trip times for all those that had a 
+first and second response. (\countSecondProbeNoResponse{} 
+addresses responded to the first but not the second).  Rarely,
+latency increases from first to the second (yielding a negative 
+difference) or decreases sufficient to indicate reordering (yielding 
+a difference greater than one second).  Typical among these 
+addresses is for the second ping to be one second less than the first, that
+is, for both responses to arrive at about the same time.
+
+We infer that a measurement approach that sent a second
+probe after one second could detect this behavior.  The top
+graph of Figure~\ref{fig:initial_drops_cdf} shows the
+probability that the maximum will be less than the first based on the difference
+between the first two latencies.  (When the RTT difference
+exceeds 1 at the right edge of the upper graph, there are very
+few samples in an environment of substantial reordering.)
+Any significant drop from $RTT_1$ to $RTT_2$ is
+indicative of an overestimate with high probability.
+
+\begin{figure}[tb]
+\begin{center}
+\includegraphics[width=3in]{timeouts/figs/drops_to_min_cdf}
+\end{center}
+\caption{\label{fig:drops_to_min}Difference between initial latency and observed minimum.  The typical setup time is below four seconds.}
+\end{figure}
+
+\subsubsection*{How long does the negotiation or wake-up process take, and how 
+large is the overestimate?}  We observe that this can be
+estimated by comparing the first round trip time to the lowest 
+seen among the ten probes.  Of course, if the negotiation takes
+15 seconds, the first probe rtt will take at most 9 seconds 
+longer than the last, so this data set will treat all instances of
+a setup time between 10 and 60 seconds as taking 9. We show in Figure~\ref{fig:drops_to_min}
+the differences between $RTT_1$ and $min(RTT_2 \ldots RTT_n)$
+for those \countDropsToMedianAndToMax{} addresses that had a higher 
+first rtt than the maximum of the rest.  The median is 1.37 seconds, and 90\% of the
+differences are below 4 seconds.  Only 2\% of the samples are above 8.5 seconds,
+suggesting that we do not underestimate this time substantially, and thus conclude
+that the wake-up or negotiation process generally takes from one-half to four seconds.
+
+\begin{figure}[tb]
+\begin{center}
+\includegraphics[width=3in]{timeouts/figs/prefix_percentage_cdf}
+\end{center}
+\caption{\label{fig:prefix_percentage_cdf}Percentage of addresses in a /24 prefix showing 
+  a drop from the initial to the maximum.}
+\end{figure}
+% \neil{maybe drop the following par} 
+\subsubsection*{Are the addresses that show a high initial
+ping scattered across the IP address space or clustered into
+/24s?}  The \countInitialList{} IP addresses that we decided
+to probe initially are from only
+\countInitialSlashTwentyFours{} ``/24'' prefixes.  This is
+somewhat fewer prefixes than would be expected, given that
+there are 3.6M addresses in 34K prefixes in the overall
+20150206 dataset.  That is, as one might expect, greater than
+one second latencies do seem to be a property of the
+networks associated with selected prefixes.  The
+\countResponsives{} addresses that responded are from only
+\countResponsiveSlashTwentyFours{} prefixes.  We show the percentage
+of responsive addresses within each prefix that dropped from the 
+initial ping to the maximum of the rest in Figure~\ref{fig:prefix_percentage_cdf}.  Several
+prefixes did not have an initial latency greater than the maximum; these typically had very few responsive addresses.  In other
+prefixes, most addresses showed a reduction.
+Finally, the
+\countDropsToMedianAndToMax{} that showed a reduction from the
+initial ping are from only \countDroppingSlashTwentyFours{}
+prefixes.  Of the 161 prefixes that had only one address with 
+above one-second median latency, only 39 showed a reduced from the
+initial RTT to the maximum of the rest.  Taken together, we believe
+this distribution of addresses across relatively few prefixes indicates
+that the wake-up behavior is associated with some providers but not
+restricted to them.
+
+% /24's:   34395
+% addrs: 3636156
