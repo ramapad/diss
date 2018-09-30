@@ -157,6 +157,10 @@ confounding factors requires broad measurements of these factors in turn.
 
 \subsection{Analyzing reliability using measured outages}
 
+% TODO: Come back here and ensure this is consistent with the
+% description in the Intro of chapter 2. And that the text in Chater 2
+% is consistent with this.
+
 The next step towards analzying reliability is to use measured outages
 to make inferences about residential Internet reliability. Inferences
 can be made by employing metrics that capture outage properties. One such
@@ -182,10 +186,11 @@ outage in an area should contribute towards lowering the reliability
 of that area, but should not lower the reliability of the
 ISPs whose addresses were affected. 
 
-The ideal Internet reliability assessment system should be capable of
-categorizing detected outages by their cause. These categorized
-outages can then be used to determine Internet reliability across
-different dimensions.
+% TODO: Perhaps this is too ambitious.
+% The ideal Internet reliability assessment system should be capable of
+% categorizing detected outages by their cause. These categorized
+% outages can then be used to determine Internet reliability across
+% different dimensions.
 
 However, analyzing Internet reliability using measured outages is
 again challenging. First, outage measurement errors can result in
@@ -343,7 +348,9 @@ responses to infer outages. They assume that a response to an active
 probe indicates a working path to the probed user device and that lack
 of response is indicative of failure. I illustrate two scenarios where
 this assumption can be invalid, leading to potentially false outage
-inferences. I also illustrate scenarios where detected outages may
+inferences. I also show how detected outages can be used to measure
+Internet reliability along different dimensions. I illustrate
+scenarios where detected outages may
 need to be treated differently depending upon the type of
 Internet reliability being studied (ISP-level reliability,
 region-level reliability etc.).
@@ -356,16 +363,15 @@ region-level reliability etc.).
 % I also describe the challenge that remote probing-based techniques face
 % in detecting outages specifically in the last-mile.
 
-In Chapter~\ref{ch:timeouts}, I investigate the prevalence of delayed
-probe responses due to early timeout. The
-lack of response to an active probe isn't always indicative of loss;
-for example, when
-responses are delayed beyond the prober's timeout, the response
-eventually arrives but the prober would never see the response because
-it timed out too early. I report how commonly responses are delayed
-beyond timeouts in
-networks around the world and propose techniques to mitigate this
-problem. 
+\textbf{Chapter~\ref{cpt:timeouts}:~~Mitigating false inferences due
+to early timeout} In Chapter~\ref{cpt:timeouts}, I investigate the
+prevalence of delayed probe responses due to early timeout. The lack
+of response to an active probe isn't always indicative of loss; for
+example, when responses are delayed beyond the prober's timeout, the
+response eventually arrives but the prober would never see the
+response because it timed out too early. I report how commonly
+responses are delayed beyond timeouts in networks around the world and
+use these measurements to discuss techniques that would mitigate this problem.
 % Decouple probe retransmission
 % and loss. Possibly identify that only cellular guys have long delays?
 % Also, this will ensure that we trigger retransmission upon high
