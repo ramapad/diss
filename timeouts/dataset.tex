@@ -55,9 +55,9 @@ Scriptroute~\cite{usits03-spring}.
 
 \subsection{Matched response latencies are capped at the timeout}
 
-\begin{figure}[tb]
+\begin{figure}[t]
 \begin{center}
-\includegraphics[width=3in]{timeouts/figs/cdf_raw_ping_ttl}
+\includegraphics[width=0.7\textwidth]{timeouts/figs/cdf_raw_ping_ttl}
 \end{center}
 \caption{\label{fig:raw_lat}%
 CDF of percentile latency of survey-detected responses per IP address: Each point represents an IP address
@@ -259,7 +259,7 @@ such as 255, 0, 127, 128 etc., have spikes. These addresses are likely broadcast
 On the other hand, last octets that
 end in binary '01' or '10' have very few addresses.
 
-\begin{figure}[tb]
+\begin{figure}[t]
 \begin{center}
 \includegraphics[width=3in]{timeouts/figs/zmap_last_octet_hist_all_bcast_addrs_apr_17}
 \end{center}
@@ -277,7 +277,7 @@ have last octets whose last N bits are either 1 or 0
 % We examine how many of the unmatched responses in the dataset are
 % broadcast responses. 
 %
-\begin{figure}[tb]
+\begin{figure}[t]
 \begin{center}
 \includegraphics[width=.99\linewidth]{timeouts/figs/last_octet_hist}
 \end{center}
@@ -337,10 +337,11 @@ This would lead
 to a latency based on the interval between probing
 211.4.10.254 and 211.4.10.255, as shown in the figure.
 
-\begin{figure}[tb]
+\begin{figure}[t]
 \begin{center}
 % \centering
-\includegraphics[width=0.97\linewidth]{timeouts/figs/wfall_bcast}
+% \includegraphics[width=0.97\linewidth]{timeouts/figs/wfall_bcast}
+\includegraphics[width=3in]{timeouts/figs/wfall_bcast}
 \end{center}
 \caption{\label{fig:bcast_sample}%
 We filter broadcast responses since they can lead to the inference of
@@ -475,7 +476,7 @@ addresses respond many times to a single probe. In this case, the incoming packe
 probes, but are either caused by incorrect configurations or malicious
 behavior. 
 
-\begin{figure}[tb]
+\begin{figure}[t]
 \begin{center}
 % \centering
 \includegraphics[width=.9\linewidth]{timeouts/figs/ccdf_dos}

@@ -1,0 +1,51 @@
+
+\chapter{Towards categorizing outages by
+  their cause}
+\label{cpt:corrfails}
+
+Since Internet reliability measures are application-dependent,
+different measures may need to consider different subsets of detected
+outages.
+
+In this chapter, I introduce a taxonomy of outages based upon their
+likely cause.
+
+% When analyzing the reliability of a particular ISP, we need
+% to find the subset of outages that affected only
+% that ISP. Doing so ensures that ISPs offering services in challenged
+% areas do not have their reliability lowered by events such as power
+% outages or users voluntarily shutting down their home Internet
+% equipment.
+
+I describe three categories under which detected outages can be 
+placed. Each category provides hints about the likely cause of outages
+placed in that category. For example, power outages or undersea cable cuts can affect addresses from multiple
+ISPs; I term events which result in outages for
+many providers' addresses \emph{multiple-ISP outages}. Users in some
+geographic areas are particularly likely to shut down their Internet
+equipment~\cite{grover2013peeking} but users elsewhere may also power
+off their equipment when faced with certain circumstances, such as
+approaching thunderstorms. I call such an event a \emph{user-caused
+outage}. On the other hand, consider an ISP experiencing a failure in
+its networking infrastructure resulting in an outage affecting only
+addresses belonging to this ISP: these are outages that should bring down the ISP's reliability
+estimate. I term these events \emph{shared-ISP outages}.
+Probing-based remote outage detection techniques will detect outages
+when all of these scenarios occur since previously responsive
+addresses will cease responding in all these scenarios.
+
+I develop and evaluate an approach for segregating outages into different categories
+based upon the insight that outages occurring simultaneously in time
+for addresses that are related by virtue of sharing geography or ISP
+could share a common cause. For example, if we detect addresses from
+many ISPs within geographically proximate regions failing simultaneously in time, we are likely observing a
+multiple-ISP outage. If we detect addresses from only a single ISP
+failing simultaneously in time, we are potentially observing a
+shared-ISP outage. If the detected outage does not appear to
+have happened simultaneously in time with other outages of related
+addresses, I term it an \emph{isolated} outage. User-caused outages would
+likely manifest as isoltated outages. Thus, evidence
+of simultaneous failure of multiple
+``related'' addresses can be used to distinguish between the different
+categories of outages. 
+

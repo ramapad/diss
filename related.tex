@@ -408,11 +408,15 @@ outages in the following scenarios:
 
 \subsection{Confusing delay with loss}
 
- Traditionally, active probe based approaches time out probes after a few seconds. Thunderping~\cite{pingin} and Trinocular~\cite{trinocular}
-time out probes after a few seconds. Responses that arrive after the
-timeout will be reported as lost. When this happens, existing
-techniques would infer loss though the responses are in fact merely
-delayed. 
+Traditionally, active probe based approaches time out probes after a
+few seconds. Thunderping~\cite{pingin} and
+Trinocular~\cite{trinocular} time out probes after a few
+seconds. Responses that arrive after the timeout will be reported as
+lost. When this happens, existing techniques would infer loss though
+the responses are in fact merely delayed. Chapter~\ref{cpt:timeouts}
+presents a measurement study on probe response latencies in networks
+around the world and discusses approaches to disambiguate delayed
+probes from lost probes.
 
 % TODO: Raise whether extreme delay is an outage.
 
@@ -421,18 +425,18 @@ delayed.
 % \item{\bf{Making false inferences about outages due to dynamic
 %       addressing:}}
 
-    Consider an IP address that was previously responsive. If the host
-    to which that IP address was assigned changed its IP address as a
-    result of dynamic addressing, and if the probed IP
-    address is not reassigned to any host, then echo responses will
-    cease to arrive. Existing techniques would thus infer false
-    probe-loss and consequently, false
-    outages. Consider an alternate scenario where the probed IP address has an
-    outage. Suppose that at some point during the outage, the IP
-    address is reassigned to some other end-host which responds to
-    probes. Existing techniques would infer that the arrival of
-    responses signals the end of the outage and would infer that the
-    outage ended prematurely.
+ Consider an IP address that was previously responsive. If the host
+to which that IP address was assigned changed its IP address as a
+result of dynamic addressing, and if the probed IP address is not
+reassigned to any host, then echo responses will cease to
+arrive. Existing techniques would thus infer false probe-loss and
+consequently, false outages. Consider an alternate scenario where the
+probed IP address has an outage. Suppose that at some point during the
+outage, the IP address is reassigned to some other end-host which
+responds to probes. Existing techniques would infer that the arrival
+of responses signals the end of the outage and would infer that the
+outage ended prematurely.  I address how to mitigate false inferences
+due to dynamic address reassignment in Chapter~\ref{cpt:addr_change}.
 
 % \item{\bf{Some outages can falsely lower inferred reliability}}
 % When analyzing ISP-level or media-type-level reliability, our
@@ -448,9 +452,6 @@ delayed.
 
 % \end{itemize}
 
-I address how the accuracy of probing-based remote outage detection
-techniques can be improved by mitigating these listed causes of false
-positive outages in Chapter~\ref{cpt:timeouts} and Chapter~\ref{cpt:addr_change}.
 % the rest of the proposal.
  % false probe-loss inference due to early timeout in
 % Section~\ref{sec:timeouts} and false probe-loss inference due to IP
@@ -491,21 +492,53 @@ and dynamic address reassignment, some false outages may
 remain. 
 
 Additionally, the set of detected outages that should be considered in
-reliability metrics can vary depending upon the application. 
+reliability metrics can vary depending upon the application. Here are
+three potential applications with different requirements:
 
-For example, if the goal is to estimate how many users can be reached
-by broadcasting something via the Internet, all detected outages may
-be relevant.
+\begin{itemize}
 
-When comparing geographic-level reliability, shouldn't consider
-user-caused outages.
+\item{Suppose the goal is to measure the effectiveness of broadcasting
+    critical information (such as severe weather alerts or Amber
+    alerts) over the Internet. An Internet reliability metric, such as
+    the rate of Internet outages over time, offers a sense of how many
+    users in each ISP or geographic region can be reached through such
+    a broadcast. For this application, all Internet
+    outages---including outages due to users turning off their home
+    Internet equipment---should be represented in the metric. }
+
+\item {When comparing Internet reliability across geographic regions,
+    perhaps to identify areas with particularly poor connectivity, outages due to
+    user behavior should not be considered in the reliability
+    metric. Grover et al. report that users sometimes voluntarily
+    power off their home Internet
+    equipment~\cite{grover2013peeking}. Probing-based techniques would
+  detect such instances as Internet outages since a previously
+  responsive address ceases to respond to probes. Without accounting
+  for such outages, we may overestimate the outage rate in a region.}
  
-In another example, if comparing ISP-level reliability, shouldn't
-consider power outages.
+\item {When comparing reliability across ISPs, the reliability metric
+should ideally only consider outages that each ISP was responsible
+for. Doing so ensures that ISPs offering services in challenged areas
+do not have their reliability lowered by events such as power outages
+or user behavior.}
 
+\end{itemize}
 
-\subsection{Estimating the effect of weather on Internet reliability}
+\subsection{Estimating how a challenging condition affects Internet
+  reliability}
 
-
+Suppose we wish to assess the effect of a challenging condition or environment---like
+the presence of a thunderstorm---upon the Internet reliability of a
+group of addresses. This group of addresses could be a set of
+addresses that share some relationship to each other: they could
+belong to the same ISP, media-type, geographic region etc. Such an
+assessment would help identify areas and networks that are
+particularly prone to Internet connectivity problems in certain types
+of weather. Chapter~\ref{cpt:weather} describes how to perform these assessments.
 
 \subsection{Categorizing outages by their potential cause}
+
+Since the set of detected outages that should go into a reliability
+metric varies by application, depending upon the outage's cause, there
+is a need to classify detected outages. Chapter~\ref{cpt:corrfails}
+discussed a technique that uses simultaneous failures of related addresses to achieve this classification.

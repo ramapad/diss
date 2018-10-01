@@ -364,7 +364,9 @@ region-level reliability etc.).
 % in detecting outages specifically in the last-mile.
 
 \textbf{Chapter~\ref{cpt:timeouts}:~~Mitigating false inferences due
-to early timeout} In Chapter~\ref{cpt:timeouts}, I investigate the
+to early timeout} 
+
+I investigate the
 prevalence of delayed probe responses due to early timeout. The lack
 of response to an active probe isn't always indicative of loss; for
 example, when responses are delayed beyond the prober's timeout, the
@@ -378,26 +380,36 @@ use these measurements to discuss techniques that would mitigate this problem.
 % latency/loss and actually identify loss as loss and high latency as
 % high latency.
 
-In Chapter~\ref{ch:addr_change}, I investigate how dynamic addressing can
-lead remote probing-based outage detection techniques to make false inferences about outages and techniques to
-mitigate these false inferences. My approach to mitigating
-these false inferences is rooted in building a model that characterizes
-the probability that a dynamic address is reassigned at any point of time. I describe preliminary
-work which shows the feasibility of building such a model and detail
-proposed work to gather new datasets that can feed into the
-model. I will ultimately use this model to find candidate stable Internet
-addresses for probing.
+\textbf{Chapter~\ref{cpt:addr_change}:~~Mitigating false inferences due to dynamic addressing} 
 
-In Section~\ref{sec:last_mile}, I discuss an approach to determine
-which of the detected outages are consistent with the failure of an
-ISP's operated equipment, and which outages can be attributed to other
-causes such as power outages or users voluntarily shutting down their home
-Internet equipment. My approach is to probe addresses that are related
-to the address that is already being probed. I propose the use of multiple criteria
-to find related addresses such as geography, ISP, and network
-topology. I describe how we can then use simultaneous outages of these
-related addresses (or the lack thereof) to categorize outages and
-estimate Intrenet reliability along various dimensions.
+I investigate how dynamic addressing can lead remote probing-based
+outage detection techniques to make false inferences about outages and
+techniques to mitigate these false inferences. I measure the frequency
+and patterns in dynamic address reassignment for ISPs across the
+world.  I also introduce a technique using a complementary dataset to
+determine whether an outage detected for an address by a probing-based
+system is a false outage due to dynamic reassignment.
+
+\textbf{Chapter~\ref{cpt:weather}:~~Analyzing weather's effect on
+  Internet Reliability} 
+
+I show how to measure and compare the reliability of groups of addresses---like
+addresses belonging to the same ISP, media-type, geographic
+region---when facing challenging environments. I consider one class of
+challenging environments that residential Internet connections can
+fact: severe weather conditions. I show how to use the inflation in
+outage rate---the number of outages per time---to measure the effect
+of different classes of weather upon various groups of addresses.
+
+\textbf{Chapter~\ref{cpt:corrfails}:~~Towards categorizing outages by
+  their cause} 
+
+I discuss an approach to determine which of the detected outages are
+consistent with the failure of an ISP's operated equipment, and which
+outages can be attributed to other causes such as power outages or
+users voluntarily shutting down their home Internet equipment. I
+describe how to use simultaneous outages of addresses related
+to each other, by geography or ISP, to categorize outages.
 
 % We show in this proposal that confounding factors can cause RODWAP
 % techniques to sometimes
