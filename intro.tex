@@ -130,7 +130,7 @@ residences have at least one device with a public IP address ~\cite{cgn-imc16}
 (typically the home router), these IP addresses can be probed
 remotely, from 
 vantage points under researcher control, to measure their connectivity. Thunderping~\cite{pingin} and Trinocular~\cite{trinocular} adopt this
-complementary approach to outage detection: they focus upon
+approach to outage detection: they focus upon
 measuring only connectivity but do so for many users. Since these
 techniques can send probes remotely from servers under their control, without requiring any user
 involvement, they are able to detect outages across time
@@ -307,7 +307,7 @@ to confounding factors (such as high latency and dynamic address reassignment) a
 geographic regions. I also use this insight to list potential causes
 of unrelated outages (such as users powering off their
 home Internet equipment) and develop techniques to 
-measure and mitigate them. %  extracting instances where the signal
+measure and mitigate their effect on Internet reliability metrics. %  extracting instances where the signal
 % clearly outweighs the noise.
 
 % Negate them is true in the weather-paper. Not strictly true in
@@ -388,7 +388,10 @@ techniques to mitigate these false inferences. I measure the frequency
 and patterns in dynamic address reassignment for ISPs across the
 world.  I also introduce a technique using a complementary dataset to
 determine whether an outage detected for an address by a probing-based
-system is a false outage due to dynamic reassignment.
+system is a false outage due to dynamic reassignment. The evidence for
+reassignment over failure can be as simple as a client that once asked
+for updates from the address with a detected outage asking for the
+next update \emph{during} the detected outage from a different address.
 
 \textbf{Chapter~\ref{cpt:weather}:~~Analyzing weather's effect on
   Internet Reliability} 
@@ -397,7 +400,7 @@ I show how to measure and compare the reliability of groups of addresses---like
 addresses belonging to the same ISP, media-type, geographic
 region---when facing challenging environments. I consider one class of
 challenging environments that residential Internet connections can
-fact: severe weather conditions. I show how to use the inflation in
+face: severe weather conditions. I show how to use the inflation in
 outage rate---the number of outages per time---to measure the effect
 of different classes of weather upon various groups of addresses.
 

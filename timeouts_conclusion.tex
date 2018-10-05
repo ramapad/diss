@@ -1,35 +1,115 @@
 
 
-\subsubsection{Proposed work: Set timeouts based upon
-  destination addresses}
+\section{Conclusion and Discussion}
 
-The wide variation in observed latencies for IP addresses around the
-world indicate that probers should set timeout values
-based upon the addresses that they are probing. Even a 3s
-timeout may suffice for 90\% of addresses in the ISI survey since 90\% of addresses respond
-within 3s for 99\% of the pings sent to them. My proposed work is to find expected latency values
-associated with the IP addresses that need to be probed, and to set
-their timeouts accordingly.
+Researchers use tools like ping to detect network outages,
+but generally guessed at the timeout after which a ping
+should be declared ``failed'' and an outage suspected.  The
+choice of timeout can affect the accuracy and timeliness of
+outage detection: if too small, the outage detector may
+falsely assert an outage in the presence of congestion; if
+too large, the outage detector may not pass the outage along
+quickly for confirmation or diagnosis.
+
+We investigated the latencies of responses in the ISI survey
+dataset to determine a good timeout, considering the
+distributions of latencies on a per-destination basis.
+Foremost, latencies are higher than we expected, based on
+conventional wisdom, and appear to have been increasing.
+We show that these high latencies are not an artifact of
+measurement choices such as using ICMP or the particular
+vantage points or probing schemes used, although different data sets vary somewhat.
+We show that high latencies are not caused by links with a substantial
+base timeout, such as satellite links.  
+% 
+% 
+% We analyzed the latencies of echo responses, including
+% unmatched responses in the ISI survey data set, to determine
+% what timeout would capture different fractions of
+% responses from different fractions of remote IP addresses.
+% We showed that high latencies are not an artifact of ISI
+% data. % , and in fact, it may underestimate the extent of large latencies by sampling.
+% We showed that high latencies are not an artifact of using ICMP
+% echo requests: prioritization that might favor data-carrying TCP or UDP
+% protocols does not have this substantial of an effect.
+% We showed that high latencies have been increasing over the
+% last few years by comparing different surveys taken at different times.
+% We showed that satellite links are not particularly blameworthy
+% in requiring high timeout values.
+Finally, we showed that in many instances, the initial communication to
+cellular wireless devices is largely to blame for high latency measures.
+Similar spikes that may be consistent with handoff also dissipate over time,
+to more conventional latencies that support application traffic.
+With this data, researchers should be able to reason about
+what to expect in terms of false outage detection for a
+given timeout and how to design probing methods to account for
+these behaviors.
+
+% Our initial hypothesis was that it would be a simple matter
+% to confirm that widely used timeout values would be adequate
+% for studying outages, or failing that, that one or two
+% additional seconds would be enough.
+As memory capacity and performance becomes less of a
+limiting factor, we believe that the lesson of this work is
+to design network measurement software to approach outage
+detection using a method comparable to that of TCP: send
+another probe after 3 seconds, but continue listening for a
+response to earlier probes, at least for a duration based, at
+least in part, on the error rates implied by
+Table~\ref{tbl:grand_2015}. 
+% We plan
+% to use 60 seconds when we need a timeout, and avoid timeouts
+% otherwise.
+
+% a per-ISP
+% and per-region basis, since there can be wide variation in
+% latencies. This work provides timeout values that would capture most
+% pings (say 99\%) per-ISP and per-region. 
+
+% The wide variation in observed latencies for IP addresses around the
+% world indicate that probers should set timeout values
+% based upon the addresses that they are probing. Even a 3s
+% timeout may suffice for 90\% of addresses in the ISI survey since 90\% of addresses respond
+% within 3s for 99\% of the pings sent to them. 
+
+If investigating historical outage measurement data collected by
+probing based techniques, the timeouts used by the technique must be
+compared with timeouts that would have captured almost all responses
+for the addresses pinged by the technique. For example, Thunderping
+probes addresses only in the U.S. For these addresses, both the ISI
+and Zmap datasets showed that more than 99\% of ping responses arrived
+within the 5s timeout used by Thunderping. The probability of false
+outage inferences due to high latency is small. However, if the Thunderping
+technique had been used to ping addresses in South American cellular
+ISPs, there would be a significantly higher probability of detecting
+false outages, since the 5s timeout would have missed many delayed responses.
+
+% In cases where a timeout is 
+
+
+% My proposed work is to find expected latency values
+% associated with the IP addresses that need to be probed, and to set
+% their timeouts accordingly.
  
-I propose to find expected latencies for any IP address on the
-Internet by analyzing historical and current ping data, available from
-the Zmap project~\cite{censys-icmp}. Zmap has continued to perform
-their scans of the IPv4 Internet, averaging one scan per week since
-April 2015. For each IP address that has consistently responded to
-pings, I expect to have roughly 100 samples. I will calculate expected
-latencies for all addresses using their own latencies weighted by the
-number of observed samples and will also include latency samples of
-other ``related'' addresses. Related addresses can be addresses
-belonging to the same /24 network, addresses belonging to the same
-ISP, addresses sharing the same last-hop router, addresses from the
-same dynamically addressed pools etc; I describe related addresses in
-more detail in Section~\ref{sec:last_mile}.
+% I propose to find expected latencies for any IP address on the
+% Internet by analyzing historical and current ping data, available from
+% the Zmap project~\cite{censys-icmp}. Zmap has continued to perform
+% their scans of the IPv4 Internet, averaging one scan per week since
+% April 2015. For each IP address that has consistently responded to
+% pings, I expect to have roughly 100 samples. I will calculate expected
+% latencies for all addresses using their own latencies weighted by the
+% number of observed samples and will also include latency samples of
+% other ``related'' addresses. Related addresses can be addresses
+% belonging to the same /24 network, addresses belonging to the same
+% ISP, addresses sharing the same last-hop router, addresses from the
+% same dynamically addressed pools etc; I describe related addresses in
+% more detail in Section~\ref{sec:last_mile}.
 
-Once I have determined the expected latencies for all IP addresses
-that respond to pings in the IPv4 Internet, the next task is to
-determine appropriate per-address timeouts based upon the destinations
-that need to be probed. Given any address to probe, I will modify the probing scheme to
-set timeouts that are just high enough as to capture almost all
-responses (say 99.9\%) from that address. Setting adaptive timeouts this way will achieve the
-twin goals of capturing most responses while also keeping the state
-required at the prober low.
+% Once I have determined the expected latencies for all IP addresses
+% that respond to pings in the IPv4 Internet, the next task is to
+% determine appropriate per-address timeouts based upon the destinations
+% that need to be probed. Given any address to probe, I will modify the probing scheme to
+% set timeouts that are just high enough as to capture almost all
+% responses (say 99.9\%) from that address. Setting adaptive timeouts this way will achieve the
+% twin goals of capturing most responses while also keeping the state
+% required at the prober low.

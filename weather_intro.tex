@@ -6,7 +6,21 @@
 
 One aspect of measuring Internet reliability is to determine if the occurrence of certain events adversely affects Internet connectivity. Consider the occurrence of adverse weather conditions for instance: prior work has shown that Internet outages occur more frequently during times of precipitation~\cite{pingin}. However, this work was preliminary in nature and was performed over a short duration (three months). Further, it treated every instance of a previously responsive address failing to respond to pings as an outage, ignoring the effects of dynamic addressing.
 
-In this section, I discuss an approach to quantify the effect of external factors, such as the occurrence of various weather conditions, upon Internet connectivity of residential addresses using measurements from the Thunderping probing system~\cite{pingin}. 
+In this section, I discuss a technique to quantify the effect of
+external factors, such as the occurrence of various weather
+conditions, upon Internet connectivity of residential addresses using
+measurements from the Thunderping probing system~\cite{pingin}. The
+technique mitigates false outages due to dynamic addressing and user
+behavior. First, I verify that weather conditions do not positively
+correlate with peak diurnal failure periods, where dynamic addressing
+or false outages due to user behavior are common. Next, I quantify
+the absolute increase in the number of outages observed during
+weather, when compared to non-weather periods---the outage
+inflation---for several types of weather including times with
+precipitation and times with extreme temperatures and high winds. By
+studying outage inflation of various link types and geographic regions
+across weather conditions, I am able to identify networks that are
+vulnerable to weather.
 
 \subsection{Thunderping measurement system}
 
