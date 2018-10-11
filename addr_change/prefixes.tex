@@ -1,0 +1,102 @@
+
+\section{Does a user's dynamic address prefix change?}
+
+% \begin{table*}[th]
+%   \small
+%   \centering
+%   \begin{tabular}{ccc|rr<{\%}|rr<{\%}}
+%     \ehdr{AS} & \ehdr{ASN} & \hdr{Country}  & \multicolumn{2}{c|}{\textbf{Diff /16}} & \multicolumn{2}{c}{\textbf{Diff BGP}} \\
+%     \hline
+%     % 17262 & 2014-12-30 17:38:37 & 2015-01-01 22:30:44 &
+%     % 83.115.35.156 \\
+% \multicolumn{3}{c|}{All}&79,430&      47.7&     81,571&      48.9\\
+% Orange         &3215&France    &      6,961&        67&      7,016&        68\\
+% LGI            &6830&many      &       168&        55&       171&        56\\
+% BT             &2856&U.K.      &      2,685&        68&      1,736&        44\\
+% DTAG           &3320&Germany   &      5,391&        28&      4,706&        24\\
+% Verizon        &701&U.S.      &       241&        23&       241&        23\\
+% Proximus       &5432&Belgium   &      2,331&        53&      2,152&        49\\
+% Telecom Italia &3269&Italy     &      4,412&        88&      4,281&        85\\
+% Ziggo          &9143&Netherlands&        22&        43&        18&        35\\
+% Virgin Media   &5089&U.K.      &        49&        89&        46&        84\\
+% Kabel DE       &31334&Germany   &       108&        56&       115&        60\\
+% \multicolumn{3}{c|}{Other} &     24,240&        37&     32,925&        50\\
+%   \end{tabular}
+%     \caption{Number of address changes across prefixes. Diff
+%     /16 shows the number of address changes where the previous address
+%     and the next address belonged to different /16 prefixes. Diff BGP show the number of address changes where the previous address
+%     and the next address belonged to different BGP prefixes. The \%
+%     column shows the percentage of total address changes for that
+%     autonomous system.}
+%     \label{tbl:prefs}
+% \end{table*}
+
+\begin{table*}[th]
+  \small
+  \centering
+  \begin{tabular}{ccc|rr<{\%}|rr<{\%}|rr<{\%}}
+    \ehdr{AS} & \ehdr{ASN} & \hdr{Country}  &
+    \multicolumn{2}{c|}{\textbf{Diff BGP}} &
+    \multicolumn{2}{c|}{\textbf{Diff /16}} &
+    \multicolumn{2}{c}{\textbf{Diff /8}} \\
+    \hline
+\multicolumn{3}{c|}{All}&81,571&      48.9&     79,430&      47.7&     55,835&      33.5\\
+Orange         &3215&France    &      7,016&        68&      6,961&        67&      5,513&        53\\
+LGI            &6830&many      &       171&        56&       168&        55&       136&        45\\
+BT             &2856&U.K.      &      1,736&        44&      2,685&        68&      1,735&        44\\
+DTAG           &3320&Germany   &      4,706&        24&      5,391&        28&      4,610&        24\\
+Verizon        &701&U.S.      &       241&        23&       241&        23&       209&        20\\
+Comcast        &7922&U.S.      &        76&        37&        74&        36&        63&        31\\
+Proximus       &5432&Belgium   &      2,152&        49&      2,331&        53&      1,983&        45\\
+Telecom Italia &3269&Italy     &      4,281&        85&      4,412&        88&      2,374&        47\\
+Ziggo          &9143&Netherlands&        18&        35&        22&        43&        16&        31\\
+Virgin Media   &5089&U.K.      &        46&        84&        49&        89&        39&        71\\
+  \end{tabular}
+    \caption{Number of address changes across prefixes.  Diff BGP shows the number of address changes where the previous address
+    and the next address belonged to different BGP prefixes. Diff
+    /16 shows the number of address changes where the previous address
+    and the next address belonged to different /16 prefixes and Diff
+    /8 shows the number of address changes where the previous address
+    and the next address belonged to different /8 prefixes. The \%
+    column shows the percentage of total address changes for that
+    autonomous system.}
+    \label{tbl:prefs}
+\end{table*}
+
+It is tempting to expect that a new address, when
+reassigned, will typically be drawn from nearby addresses,
+say, from the same enclosing /24 prefix.  If such an
+assumption were true, it would allow blacklisting of the
+enclosing prefix of a malicious host, if it were thought
+that the malicious host could cause its address to change
+via reboot or by waiting a day.  However, we find that such
+locality of addresses is rare and address changes typically
+span prefixes.
+
+We examined whether the dynamic address assigment also varies the
+enclosing prefix, defined three ways. 
+For each instance of address change that
+we observed, we found the BGP prefix of the previous address and the
+new address using CAIDA's IP-to-AS
+dataset~\cite{caidapfx2as}, as described in
+Section~\ref{sec:dataset}. We also extracted the /16 and /8 prefixes from the
+previous and new addresses.  We then compared how often the prefix of
+the previous address differed from the prefix of the new address.  
+Table~\ref{tbl:prefs} presents the results for the overall AS-level dataset with 2,272
+probes and for the ten ASes with the most probes that
+had at least one address change.
+
+ISPs varied prefixes even for consecutive addresses
+assigned to the same customer; nearly half of the 166,644 total address
+changes we observed also changed BGP prefixes. Unlike periodicity and renumbering upon
+outages, assigning addresses out of different prefixes appears to be a
+common behavior for ISPs. For the ten ASes in
+Table~\ref{tbl:prefs}, Verizon and DTAG had the lowest percentage of
+address changes across prefixes, but even for these ASes, almost a
+quarter of all address changes were across /16s and a fifth of all
+address changes were across /8s. Thus, it is not just
+the dynamic addresses that change; their prefixes change too. When a
+malicious actor receives a new address, even blacklisting the entire
+enclosing /8 prefix of the old address would fail to prevent access
+for a third of
+the address changes we observed.

@@ -1,0 +1,308 @@
+
+% \begin{sloppypar}
+% \section{Outage-caused address changes}
+% \end{sloppypar}
+\section{Outage-caused address \\ changes}
+\label{sec:outages}
+
+In Section~\ref{sec:periodic_asns}, we saw that even probes from ISPs
+that renumber periodically
+often have durations shorter than the typical period. In this section,
+we study another potential cause of address change: outages occurring
+at the CPE (customer premises equipment), due to loss of power or network connectivity. Here, we quantify how frequently and for which probes an
+outage event at the CPE device appears to
+cause the reassignment of its IP address. If an outage event occurs
+at approximately the same time as an address change, we assume that the
+outage caused the address change. If an outage event occurs
+distant in time from an address change, then we assume that the outage
+did not cause an address change. 
+
+There are three versions of RIPE Atlas probes: v1,v2, and v3. More
+than 75\% of probes are v3, although the distribution of versions within
+individual ISPs varies. We find network outage events
+on all versions of probes since network outages are by definition caused when a
+probe was up and reporting measurements.
+However, finding power outage
+events is confounded by the presence of potential false positives and
+negatives. We address these in detail next and describe our approach
+for filtering falsely inferred power outages.
+
+\subsection{Filtering falsely inferred power outages}
+
+The SOS-uptime data (Section~\ref{sec:sos}) allows us to
+determine when the \emph{probe rebooted}. Ideally, however, we would like to know
+\emph{when the CPE rebooted}.  Fortunately, probe
+reboots are often representative of CPE reboots due to a
+combination of how the RIPE NCC suggests that probes be
+installed~\cite{cpepowersprobe} and expected fate sharing of co-located
+devices powered together, as we describe next.  
+
+The RIPE Atlas probe gets power from USB; because of this
+design, the probe can be powered by the USB port on the CPE and
+will be power-cycled whenever the CPE reboots. When the probe
+is plugged into the CPE, or both together are power-cycled,
+a probe reboot indicates that the CPE also rebooted. 
+These represent the 
+typical cases that are useful for the  analysis of power outage related address changes.  The
+potential error scenarios are as follows. When the CPE
+alone is rebooted but the probe is not, we would not observe a
+power outage, leading to a false negative. 
+When the probe alone is rebooted but the CPE is not, we
+would detect a power outage, leading to a false positive.
+Although we expect probe reboots to be rare, a specific scenario in which they occur is when the probe receives a 
+firmware upgrade. We discuss how to remove probe reboots due to firmware upgrades below in Section~\ref{sec:firmware}.
+
+Older probe hardware (v1,v2) can also confound our inference of power
+outages, because these probes may reboot when they create new TCP
+connections, since they are vulnerable to memory fragmentation
+~\cite{atlas-fragmentation}. Address changes create new TCP
+connections and could induce such reboots, so for our power
+outage analysis we discard data from these older probes.
+
+
+\subsection{Removing reboots caused by firmware updates}
+\label{sec:firmware}
+
+The RIPE Atlas servers push firmware updates to probes
+simultaneously. When a probe's TCP connection to the central controller
+breaks, the probe will reboot and install the firmware update.
+Our goal is to filter reboots that were associated with a firmware update,
+since these reboots occur \emph{as a result of} a dropped connection rather
+than as a cause.  
+Figure~\ref{fig:global_rebooted_idxs_per_d} shows the number
+of unique probes that rebooted on each day of 2015. We observe five
+periods during the year when probes experienced more than twice as many reboots
+as the median for at least two consecutive days.
+
+\begin{figure*}[tb]
+  % \centering
+  \begin{center}
+    \includegraphics[width=0.99\textwidth]{addr_change/figs/global_rebooted_idxs_per_d_connlogs_yearly_bar}
+  \end{center}
+  \caption{\label{fig:global_rebooted_idxs_per_d} Number of unique
+    probes that rebooted on each day of the year.  Days with exceptionally
+    many reboots follow the distribution of firmware updates.  We indicate
+    days where updates seem to have been distributed with 
+    diamonds along the x-axis.}
+\end{figure*}
+For each of these periods, we found the first day
+corresponding to the spike, and identify that day as when
+the firmware update was distributed.  Some dates (April 14,
+July 6, October 5), agree precisely with documented
+RIPE Atlas firmware and UI
+updates~\cite{atlas-firmware-updates}. Other dates are close---we
+observe March 23 instead of March 28, and January 25 instead
+of January 14---but nevertheless show the same spike in reboots.
+We then discard the first reboot for each probe that occurred
+after the firmware update.
+
+\subsection{Most outages result in an address change for some ASes}
+
+We found network and power outage events and associated them with inter-connection gaps as
+described in Section~\ref{sec:dataset}. If the connection log entries
+on either side of the inter-connection gap used different
+addresses, we infer that the event caused an address change and call
+the address change an \emph{Address change with network outage},
+\emph{Address change with power outage}, and \emph{Address change with
+no-outage}, depending upon the event.
+
+For each individual probe, we consider the conditional
+probability of an address change given a detected
+outage. $P(ac|nw)$
+represents the conditional probability that an address change occurred
+given a network outage and $P(ac|pw)$ represents the same for a power outage.
+We estimate this probability using the
+fraction of outages occurring contemporaneously with an address change (out of the
+total number of outages).  We show the distribution of
+these probabilities by probe to estimate whether the group
+of probes (by geography or ISP) is dominated by those that
+always or seldom change addresses on an outage.
+
+\begin{figure}[tb]
+  % \centering
+  \begin{center}
+    \includegraphics[width=3in]{addr_change/figs/top_asns_frac_norenums_over_totalnos_cdf}
+  \end{center}
+  \caption{\label{fig:top_asns_frac_norenums_over_totalnos}
+Distribution of $P(ac|nw)$ per probe for the ASes with the most probes
+that had at least one address change. Probes in DTAG, Orange, and BT, are far more likely to change addresses upon a
+    network outage than probes in Verizon and LGI.}
+\end{figure}
+
+\begin{figure}[tb]
+  % \centering
+  \begin{center}
+    \includegraphics[width=3in]{addr_change/figs/top_asns_frac_porenums_over_totalpos_cdf}
+  \end{center}
+  \caption{\label{fig:top_asns_frac_porenums_over_totalpos}
+%
+Distribution of $P(ac|pw)$ per probe for probes running version 3. As
+with network outages, probes in DTAG and Orange are more likely
+to change addresses upon power outage than probes in Verizon and LGI.}
+\end{figure}
+
+We find that the likelihood of address change upon an outage event
+differs across
+ASes. Figure~\ref{fig:top_asns_frac_norenums_over_totalnos} shows the
+CDF of $P(ac|nw)$ for the five ASes that host the most probes with at
+least one address change and at least three network outage events. We
+find that probes in ASes that periodically renumber---Orange, DTAG,
+and BT---have high $P(ac|nw)$ compared to probes from ASes that do not
+periodically renumber, LGI and Verizon. Around half of the probes in
+both Orange and DTAG had $P(ac|nw)$ equal to 1: every network outage
+was accompanied by an address change!
+
+Figure~\ref{fig:top_asns_frac_porenums_over_totalpos} shows $P(ac|pw)$
+for these ASes. Recall that we discarded probes with versions 1 and 2
+due to their potential to reboot as a result of an address change,
+thus we have fewer samples. The AS-level behavior for power outages is
+similar to network outages. DTAG and Orange tend to renumber
+frequently upon power outages; half of the probes in Orange and 40\%
+of the probes in DTAG have $P(ac|pw)$ equal to 1. Verizon and LGI do
+not renumber frequently upon power outages; only about half of their
+probes had an address change even once upon an outage. Since the
+likelihood of an address change upon an outage can also depend upon
+the duration of the outage, we investigate the distribution of outage
+durations and the likelihood of address changes for different outage
+durations in Section~\ref{sec:outage_durs}.
+
+\begin{table*}[t]%
+  \begin{center}%
+  \begin{tiny}%
+  \begin{tabular}{ccc|r|r<{\%}r<{\%}|r<{\%}r<{\%}}
+    \ehdr{AS} & \ehdr{ASN} & \hdr{Country} & \hdr{N} & \ehdr{$P(ac|nw) > 0.8$} &
+    \hdr{$P(ac|nw) = 1$}  & \ehdr{$P(ac|pw) > 0.8$} & \ehdr{$P(ac|pw) = 1$}\\
+    \hline
+\multicolumn{3}{c|}{All}                     &  1113  &  29.1  &  16.9  &  28.3  &  14.6\\
+Orange                   &  3215  &  France   &  84    &  79  &  54  &  77  &  50\\
+Telecom Italia           &  3269  &  Italy    &  28    &  71  &  50  &  57  &  21\\
+BT                       &  2856  &  U.K.     &  22    &  64  &  55  &  50  &  14\\
+Proximus                 &  5432  &  Belgium  &  20    &  70  &  45  &  60  &  30\\
+DTAG                     &  3320  &  Germany  &  19    &  58  &  47  &  47  &  42\\
+Vodafone GmbH            &  3209  &  Germany  &  12    &  83  &  75  &  58  &  42\\
+Wind Telecomunicazioni   &  1267  &  Italy    &  12    &  67  &  42  &  83  &  42\\
+SFR                      &  15557  & France   &  16    &  38  &  25  &  50  &  6\\
+ISKON                    &  13046  & Croatia  &  6     &  100  &  50  &  83  &  67\\
+PJSC Rostelecom          &  8997  &  Russia   &  7     &  71  &  29  &  57  &  14\\
+   \end{tabular}
+  \end{tiny}
+  \end{center}
+  \caption{\label{tbl:outages}Probes likely to change
+    addresses upon network outages are also likely to change addresses
+    upon power outages. The table shows autonomous
+    systems with at least five
+    probes whose conditional probability of address change upon
+    network outage was greater than 0.8. The N column
+    shows the number of probes with at least three
+    network outages and at least three power outages. $P(ac|nw) > 0.8$ and
+    $P(ac|nw) = 1$ show the percentage of N for which the conditional probability of
+    address change upon network outage was greater than 0.8 and equal
+    to 1 respectively, and $P(ac|pw) > 0.8$,
+    $P(ac|pw) = 1$ show the same for power outages.}
+\end{table*}
+
+Since the ASes in
+Figure~\ref{fig:top_asns_frac_norenums_over_totalnos} and
+Figure~\ref{fig:top_asns_frac_porenums_over_totalpos} exhibit such
+disparate behavior, we considered if some ASes are particularly likely
+to renumber upon outages. To investigate this, we found the set of
+probes with at least three network and power outages. We then found
+probes with $P(ac|nw)$ of 0.8 or more and show ASes with 5 or more
+such probes in Table~\ref{tbl:outages}.
+
+First, we observe strong geographic correlation; all these ISPs are in
+Europe. Second, we observe that $P(ac|pw)$ is also high; $P(ac|nw) >
+0.8$ and $P(ac|pw) > 0.8$ are similar for all these ISPs (although
+$P(ac|pw) = 1$ tends to be lower because our power outage detection
+technique is more prone to false positives). This suggests that both
+types of outages are likely to cause address changes. Third, we find
+that 7 of the 10 ISPs also appeared in Table~\ref{tbl:periodic_asns}.
+Maier et al.~\cite{maier2009dominant} studied the logs from an urban
+area of a major European ISP that used Radius to assign addresses:
+neither CPE nor Radius servers remember addresses.  The behavior of
+these ISPs that nearly always renumber is consistent with the behavior
+of the large DSL provider in that study. Private communication with a
+large European ISP whose probes consistently had an address change
+upon outage confirmed that they use PPPoE and Radius to assign
+addresses for their DSL lines. We expect that this property can be
+used as evidence in inferring a device's link type.
+
+
+\subsection{Is there a relationship between outage duration and
+  address changes?}
+\label{sec:outage_durs}
+\begin{figure}[t]
+  \includegraphics[width=1.5in]{figs/6830_combined_merged_bar}~~~
+  \includegraphics[width=1.5in]{figs/3215_combined_merged_bar}
+
+  \caption{\label{fig:outagedurs} The likelihood of an address change (renumbering)
+    given network or power outages of different durations in LGI (left)
+    and Orange (right).  The top graph is a histogram; the
+    complete bar represents the number of outages observed
+    across all probes in that AS.  The lightly-shaded bar
+    extends for those outages that also saw an address
+    change.  The lower graph shows the same data as a
+    percentage.  Although relatively few outages
+    lasted longer than a day, the majority of these were
+    coincident with an address change in both ISPs. However,
+    Orange (right) changed addresses even on the shortest
+    outages.}
+\end{figure}
+
+Dynamic addresses assigned using DHCP should typically retain
+their addresses as long as they continue to renew their lease half-way
+into the lease duration as the standard
+recommends~\cite{rfc2131}. However, an outage could
+prevent them from renewing their lease. Depending upon the address
+churn at the time, the address they had previously been assigned may
+be reassigned to another device.  In this way, an outage
+longer than half a lease duration could potentially cause an address
+change.
+
+To investigate this, we analyzed the conditional probability of an
+address change given the occurrence of network or power outages of different durations
+for probes from LGI (AS 6830) and
+Orange (AS 3215) in Figure~\ref{fig:outagedurs}. For network outages,
+we considered outages from all versions of probes while for power
+outages, we only considered outages from probes running v3.
+We chose these ISPs
+due to their difference in address change behavior upon the occurrence
+of outages as seen in
+Figure~\ref{fig:top_asns_frac_norenums_over_totalnos} and
+Figure~\ref{fig:top_asns_frac_porenums_over_totalpos}.
+
+The behavior upon outages for the two ISPs is strikingly
+different. LGI's behavior appears consistent with what we would 
+expect for dynamic addresses assigned using DHCP: fewer than
+3\% of outages of up to an hour resulted in an address
+change.  More than 25\% of outage
+durations that lasted at least twelve hours resulted in an address
+change. This behavior is consistent with a DHCP lease duration on the
+order of a few hours.  Not every outage longer than twelve
+hours resulted in an address change, consistent with DHCP 
+behavior when a client returns after an expired lease and the
+previously assigned address
+is still available.
+
+For Orange, we found that even very short outages resulted in
+address changes. 91\% of outages that lasted less than five
+minutes resulted in an address change, and for every outage duration
+longer than five minutes and shorter than three hours, more than 75\% occurred with an
+address change. For outages between three hours to three days
+long, the percentage of address changes was closer to 50\%, suggesting
+the presence of some CPE devices that do not renumber upon every outage. However, as the
+outage duration increases beyond 3 days, almost every outage results
+in an address change.
+
+Private communication with a large European ISP confirmed that this
+behavior is expected for PPPoE based DSL lines in that ISP: any
+reboot/reconnect event will result in the assignment of a new address
+from the ISP's dynamic address pool. Since outages of such short
+durations can result in an address change, a simple reboot of the CPE
+(resulting in a power outage), or unplugging and replugging the
+network cable (resulting in a network outage), can change the dynamic
+address assigned to the end-user. That end-users can change their
+dynamically assigned address has implications for researchers and
+operators who use IP addresses to identify end-hosts, particularly
+when IP addresses are being used to blacklist malicious actors.
+

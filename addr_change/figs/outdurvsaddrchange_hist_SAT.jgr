@@ -1,0 +1,51 @@
+
+newgraph y_translate 0.9
+
+legend defaults x 11 y 4696.04210526 hjr vjt fontsize 10
+
+newcurve marktype xbar color 0.2 0.2 0.2 label : ip_p == ip_n
+newcurve marktype xbar color 0.8 0.8 0.8 label : ip_p != ip_n
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 0.5 1220
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 0.5 421
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 1.5 673
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 1.5 219
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 2.5 4746
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 2.5 701
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 3.5 858
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 3.5 372
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 4.5 649
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 4.5 285
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 5.5 705
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 5.5 260
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 6.5 382
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 6.5 207
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 7.5 275
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 7.5 142
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 8.5 73
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 8.5 39
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 9.5 11
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 9.5 7
+
+include figs/outdurvesaddr_axes
+label : Sat outage duration
+
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 0.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 0.5 34.5081967213
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 1.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 1.5 32.5408618128
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 2.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 2.5 14.7703329119
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 3.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 3.5 43.3566433566
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 4.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 4.5 43.9137134052
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 5.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 5.5 36.8794326241
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 6.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 6.5 54.1884816754
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 7.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 7.5 51.6363636364
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 8.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 8.5 53.4246575342
+newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 9.5 100
+newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 9.5 63.6363636364

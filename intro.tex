@@ -30,17 +30,17 @@ their travel, and even obtain critical services such as health
 monitoring~\cite{ideal-life, remote-health-elderly} and emergency
 services~\cite{emergency-voip-voipfone, emergency-voip-fcc} from their
 homes. Our dependence upon the Internet is rising further as more of
-our home devices become connected in this Internet of Things
-era. Consequently, reliable residential Internet connectivity is critical.
+our home devices become connected. Consequently, reliable residential Internet connectivity is critical.
 
-Broad and longitudinal measurements of users' Internet reliability can identify vulnerable networks, their
-challenges and potential enhancements. For instance, weather conditions such as
-thunderstorms and rain can adversely affect Internet
+Broad and longitudinal measurements of users' Internet reliability can
+identify vulnerable networks, these networks' challenges, and
+potential enhancements. For instance, weather conditions such as
+thunderstorms, rain, and gales, can adversely affect Internet
 reliability~\cite{pingin}. Measurements can inform which areas are
 particularly vulnerable to weather conditions. Comparing measurements
 against other areas with similar weather conditions can provide
 insights on potential enhancements: for example, areas may be less
-vulnerable to rain where Internet cables run underground. Once an
+vulnerable to gales where Internet cables run underground. Once an
 enhancement is deployed, measurements can reveal if the enhancement
 has resulted in improved Internet reliability.
 
@@ -50,7 +50,7 @@ has resulted in improved Internet reliability.
 % customers to call). Common users.
  
 The inferences from residential Internet reliability measurements can
-benefit stakeholders across the board, including policymakers,
+benefit various stakeholders, including policymakers,
 Internet Service Providers (ISPs), and residential users
 themselves. Policymakers around the world have begun efforts to
 measure Internet reliability~\cite{measuring-broadband-america,
@@ -80,12 +80,31 @@ obtaining such measures.
 % it to other users' reliability across geography, ISPs, and
 % media-types.
 
-\section{Challenges}
+% \section{Background, challenges, state of the art}
+\section{Background: state of the art in measuring Internet reliability}
 
-Obtaining authoritative measures of residential Internet reliability
-is a two-step process, each of which presents challenges. 
+% The problem is: how much do I cover in background? Using outages to
+% understand reliability is not something I can cover too much. I can
+% talk at length about outage detection: about false positives, about
+% going after individual outages etc. But very little about the actual metrics.
 
-\subsection{Measuring Internet outages broadly and accurately}
+Intuitively, a reliable Internet connection is one that works
+continuously. In other words, it experiences no outages. 
+
+Measuring residential Internet reliability requires the detection of
+\emph{Internet outages} affecting residential customers---at a high
+level, these are events that prevent users from communicating over the
+Internet. Since we expect outage events to be rare, detecting them
+requires monitoring a broad set of residential users over long
+periods. After detecting outages over time for a group of residential
+addresses---say addresses belonging to the same ISP or geographic
+region---the detected outages can be used to calculate reliability
+metrics. An example metric is the \emph{the outage rate}, the number of
+outages occurring over time for a group of addresses. These metrics
+can be used to compare different groups of addresses and to identify
+groups with particularly low reliability.
+
+\subsection{Challenges}
 
 % TODO: Should I expand on "broad"? They need to be "broad" because
 % reliability could be different in different places and at different
@@ -94,136 +113,219 @@ is a two-step process, each of which presents challenges.
 % TODO: Should I try convincing people that individual user
 % measurement is necessary? Why not just do Trinocular?
 
-The first step towards measuring residential Internet
-reliability is to detect \emph{Internet outages}---events that prevent
-users from communicating over the Internet. Since we expect outage
-events to be rare, detecting them requires broad and longitudinal
-measurements. Further, residential Internet outages can vary in terms of the
-number of affected users. They can affect entire counties during large power
-outages. They can also affect just an individual house if a fallen tree
-branch damages the last-mile link. The ideal outage measurement system
-would capture all Internet outage events, including individual users'
-outages, in all kinds of networks.
+ However, detecting residential Internet outages is challenging. 
 
-However, measuring outages at the individual user level is
-challenging. The scale of residential users in the Internet makes it
-difficult to measure outages broadly and the heterogeneity of
-residential networks presents problems in interpreting measurements
-and detecting outages accurately.
+One challenge is the scale of residential users on the Internet: there
+are millions of residential Internet connections to monitor. Further,
+residential Internet outages can vary in the number of
+affected users. They can affect entire counties during large power
+outages. They can also affect just an individual house if a fallen
+tree branch damages the last-mile link between the house and the
+ISP. 
 
-Existing techniques that measure individual-user-level outages
-tradeoff either outage measurement breadth or accuracy. Broadly,
-current techniques can be
-grouped into on-premises and remote probing-based, with the former
-trading off breadth, and the latter, accuracy. On-premises techniques, such as
-RIPE Atlas~\cite{atlas}, SamKnows~\cite{samknows}, and
-BISmark~\cite{bismark-main-bib}, measure diverse aspects of
-users' Internet connections, but
-measure relatively few users. These techniques 
-deploy dedicated hardware at user premises that continuously conduct ping,
-traceroute, DNS measurements etc.; some of these
-measurements can be used to infer Internet connectivity problems. Whereas hardware
-based techniques have fundamental scaling difficulties owing to
-manufacturing and deployment costs, hundreds of millions of
-IP addresses respond to active probes~\cite{timeouts}. Since many
-residences have at least one device with a public IP address ~\cite{cgn-imc16}
-(typically the home router), these IP addresses can be probed
-remotely, from 
-vantage points under researcher control, to measure their connectivity. Thunderping~\cite{pingin} and Trinocular~\cite{trinocular} adopt this
-approach to outage detection: they focus upon
-measuring only connectivity but do so for many users. Since these
-techniques can send probes remotely from servers under their control, without requiring any user
-involvement, they are able to detect outages across time
-as well as across the IPv4 address space.
-% However, existing techniques do
-% not study latency and therefore do not identify performance
-% degradation resulting from high delay.
+Another challenge is the heterogeneity of residential Internet
+connections. Some connections are cable connections, where the home router
+typically has a stable public IPv4 addresses. Others are DSL
+connections which can be configured to the home router's assigned
+every 24 hours. Residential Internet connections can also be over
+satellite links, which are prone to higher latencies. 
+
+Designing an outage detection system that can measure users
+broadly and yet remain accurate across diverse heterogeneous
+Internet connections remains a challenge.
+
+\subsection{Prior approaches}
+
+Prior approaches tradeoff either outage detection breadth or
+accuracy. Broadly, current techniques can be grouped into on-premises
+and remote probing-based, with the former trading off breadth, and the
+latter, accuracy. On-premises techniques, such as RIPE
+Atlas~\cite{atlas}, SamKnows~\cite{samknows}, and
+BISmark~\cite{bismark-main-bib}, measure diverse aspects of users'
+Internet connections, including connectivity problems, but measure
+relatively few users.
+
+Another class of techniques trades off outage detection accuracy for
+breadth by detecting outages for entire network prefixes or address
+blocks. Hubble studies reachability problems affecting BGP
+prefixes~\cite{hubble}. Trinocular detects outages affecting /24
+address blocks. Richter et~al.~\cite{advancing-outage-art} use the
+observation point of a large CDN to detect periods of reduced activity
+from /24 address blocks consistent with outages. Dainotti
+et~al.~\cite{dainotti-imc11} observe Internet Background Radiation
+traffic sent to IPv4 darknets to detect outages affecting entire
+countries. These techniques are designed to detect large Internet
+outages broadly, but at the cost of missing smaller outages that do
+not affect the entire monitored aggregate.
+
+Whereas hardware based techniques have fundamental scaling
+difficulties owing to manufacturing and deployment costs, hundreds of
+millions of IP addresses respond to active
+probes~\cite{timeouts}. Since many residences have at least one device
+with a public IP address ~\cite{cgn-imc16} (typically the home
+router), these IP addresses can be probed remotely, from vantage
+points under researcher control, to measure their
+connectivity. Thunderping~\cite{pingin} and
+Trinocular~\cite{trinocular} adopt this approach to outage detection:
+they focus upon measuring only connectivity but do so for many
+users. Since these techniques can send probes remotely from servers
+under their control, without requiring any user involvement, they are
+able to detect outages across time as well as across the IPv4 address
+space.
+
+% The Thunderping technique monitors individual users' residential
+% Internet connections during times of severe weather by sending active
+% probes to residential addresses and analyzing responses. Hundreds of millions of IP
+% addresses respond to active probes~\cite{timeouts}, allowing . Since many
+% residences have at least one device with a public IP address
+% ~\cite{cgn-imc16} (typically the home router), these IP addresses can
+% be probed remotely, from vantage points under researcher control, to
+% measure their connectivity. Thunderping~\cite{pingin} adopts this
+% approach to outage detection: it focus upon measuring only
+% connectivity but does so for millions of residential Internet
+% connections. Since Thunderping can send probes remotely from servers
+% under its control, without requiring any user involvement, it is able
+% to detect outages across time as well as across the IPv4 address
+% space.
 
 %TODO: Tie back to heterogeity, if possible
 
-% Though capable of measuring Internet outages broadly, I show in this dissertation that probing-based remote outage detection techniques can
-% make false inferences about outages when some scenarios
-% occur~\cite{timeouts, addrchange-reasons}. 
+Though capable of measuring Internet outages broadly, probing-based
+remote outage detection techniques can make false inferences about
+outages when some scenarios occur~\cite{timeouts,
+addrchange-reasons}. The likelihood of occurrence of these scenarios
+varies across geographic regions, ISPs, and media type. Analyzing
+outages in the presence of these confounding factors requires broad
+measurements of these factors in turn.
 
-Though capable of measuring Internet outages broadly, probing-based remote outage detection techniques can
-make false inferences about outages when some scenarios
-occur~\cite{timeouts, addrchange-reasons}. The likelihood of
-occurrence of these scenarios varies across geographic regions,
-ISPs, and media type. Analyzing outages in the presence of these
-confounding factors requires broad measurements of these factors in turn.
+
+
+% The first step towards measuring residential Internet
+% reliability is to detect \emph{Internet outages}---events that prevent
+% users from communicating over the Internet. Since we expect outage
+% events to be rare, detecting them requires broad and longitudinal
+% measurements. Further, residential Internet outages can vary in terms of the
+% number of affected users. They can affect entire counties during large power
+% outages. They can also affect just an individual house if a fallen tree
+% branch damages the last-mile link. The ideal outage measurement system
+% would capture all Internet outage events, including individual users'
+% outages, in all kinds of networks.
+
+% However, measuring outages at the individual user level is
+% challenging. The scale of residential users in the Internet makes it
+% difficult to measure outages broadly and the heterogeneity of
+% residential networks presents problems in interpreting measurements
+% and detecting outages accurately.
+
+% Existing techniques that measure individual-user-level outages
+% tradeoff either outage measurement breadth or accuracy. Broadly,
+% current techniques can be
+% grouped into on-premises and remote probing-based, with the former
+% trading off breadth, and the latter, accuracy. On-premises techniques, such as
+% RIPE Atlas~\cite{atlas}, SamKnows~\cite{samknows}, and
+% BISmark~\cite{bismark-main-bib}, measure diverse aspects of
+% users' Internet connections, but
+% measure relatively few users. These techniques 
+% deploy dedicated hardware at user premises that continuously conduct ping,
+% traceroute, DNS measurements etc.; some of these
+% measurements can be used to infer Internet connectivity problems. Whereas hardware
+% based techniques have fundamental scaling difficulties owing to
+% manufacturing and deployment costs, hundreds of millions of
+% IP addresses respond to active probes~\cite{timeouts}. Since many
+% residences have at least one device with a public IP address ~\cite{cgn-imc16}
+% (typically the home router), these IP addresses can be probed
+% remotely, from 
+% vantage points under researcher control, to measure their connectivity. Thunderping~\cite{pingin} and Trinocular~\cite{trinocular} adopt this
+% approach to outage detection: they focus upon
+% measuring only connectivity but do so for many users. Since these
+% techniques can send probes remotely from servers under their control, without requiring any user
+% involvement, they are able to detect outages across time
+% as well as across the IPv4 address space.
+
+
+
+
+% Though capable of measuring Internet outages broadly, probing-based
+% remote outage detection techniques can make false inferences about
+% outages when some scenarios occur~\cite{timeouts,
+% addrchange-reasons}. The likelihood of occurrence of these scenarios
+% varies across geographic regions, ISPs, and media type. Analyzing
+% outages in the presence of these confounding factors requires broad
+% measurements of these factors in turn.
 % Due to the heterogeneity of
 % residential networks, these scenarios are particularly likely to occur
 % in some networks, leading to 
 
-\subsection{Analyzing reliability using measured outages}
+
+
+% \subsection{Analyzing reliability using measured outages}
 
 % TODO: Come back here and ensure this is consistent with the
 % description in the Intro of chapter 2. And that the text in Chater 2
 % is consistent with this.
 
-The next step towards analzying reliability is to use measured outages
-to make inferences about residential Internet reliability. Inferences
-can be made by employing metrics that capture outage properties. One such
-metric is the rate of Internet outages over time. Another
-metric is the fraction of total time accounted for by outages. 
+% The next step towards analzying reliability is to use measured outages
+% to make inferences about residential Internet reliability. Inferences
+% can be made by employing metrics that capture outage properties. One such
+% metric is the rate of Internet outages over time. Another
+% metric is the fraction of total time accounted for by outages. 
 
-These metrics can quantify Internet reliability along different
-dimensions---such as reliability across ISPs, media-types, geographic
-regions---when facing a range of conditions. Comparing Internet
-reliability metrics across ISPs can help users with their choice of ISP and
-can help ISPs assess their competitors. Comparing metrics across geographic
-regions can help policymakers and ISPs identify problematic areas that
-can benefit from more Internet infrastructure investment. Comparing
-metrics for a particular group of addresses across conditions (such as
-the presence of rain) can reveal the effect of the condition on
-Internet reliability.
+% These metrics can quantify Internet reliability along different
+% dimensions---such as reliability across ISPs, media-types, geographic
+% regions---when facing a range of conditions. Comparing Internet
+% reliability metrics across ISPs can help users with their choice of ISP and
+% can help ISPs assess their competitors. Comparing metrics across geographic
+% regions can help policymakers and ISPs identify problematic areas that
+% can benefit from more Internet infrastructure investment. Comparing
+% metrics for a particular group of addresses across conditions (such as
+% the presence of rain) can reveal the effect of the condition on
+% Internet reliability.
 
-However, not all Internet outages contribute towards
-(un)reliability metrics. For example, if a user voluntarily chooses to power
-off their home Internet equipment, the user has an Internet outage but
-this outage should not lower the user's ISP's Internet reliability. Similarly, a power
-outage in an area should contribute towards lowering the reliability
-of that area, but should not lower the reliability of the
-ISPs whose addresses were affected. 
+% However, not all Internet outages contribute towards
+% (un)reliability metrics. For example, if a user voluntarily chooses to power
+% off their home Internet equipment, the user has an Internet outage but
+% this outage should not lower the user's ISP's Internet reliability. Similarly, a power
+% outage in an area should contribute towards lowering the reliability
+% of that area, but should not lower the reliability of the
+% ISPs whose addresses were affected. 
 
-% TODO: Perhaps this is too ambitious.
 % The ideal Internet reliability assessment system should be capable of
 % categorizing detected outages by their cause. These categorized
 % outages can then be used to determine Internet reliability across
 % different dimensions.
 
-However, analyzing Internet reliability using measured outages is
-again challenging. First, outage measurement errors can result in
-overestimating Internet reliability problems. Second, categorizing
-outages by their cause is difficult. Prior work performs
-outage classification mostly using sparsely available ground
-truth. Turner et al. investigate router and system logs and email
-archives to find different kinds of infrastructure
-outages~\cite{california-fault-lines}. Banerjee et al. analyze the
-outages mailing list~\cite{outages-mailing-list} to study and
-categorize widespread
-outages~\cite{phillipa-outages-mailing-list}. However, these
-techniques rely upon incomplete datasets, since ground truth tends to
-exist only for large Internet infrastructure outages. Further, the
-ground truth datasets they study are biased: Turner et al. study logs only
-from the CENIC network in California and the outages mailing list has
-a North American bias. 
+% However, analyzing Internet reliability using measured outages is
+% again challenging. First, outage measurement errors can result in
+% overestimating Internet reliability problems. Second, categorizing
+% outages by their cause is difficult. Prior work performs
+% outage classification mostly using sparsely available ground
+% truth. Turner et al. investigate router and system logs and email
+% archives to find different kinds of infrastructure
+% outages~\cite{california-fault-lines}. Banerjee et al. analyze the
+% outages mailing list~\cite{outages-mailing-list} to study and
+% categorize widespread
+% outages~\cite{phillipa-outages-mailing-list}. However, these
+% techniques rely upon incomplete datasets, since ground truth tends to
+% exist only for large Internet infrastructure outages. Further, the
+% ground truth datasets they study are biased: Turner et al. study logs only
+% from the CENIC network in California and the outages mailing list has
+% a North American bias. 
 
-Existing techniques that study invididual user
-outages have typically focused upon outage detection and have not
-attempted to categorize detected outages by their likely cause. Grover
-et al. point out that users in some countries are particularly likely
-to power down their home Internet equipment but do not attempt further
-classification of detected outages~\cite{grover2013peeking}. Shah et
-al.~\cite{disco} and Bischof et al.~\cite{alwayson} use traceroutes sent from within the
-home to find the hop where probes fail. While the traceroute-based
-approach has the potential to categorize outages---by correlating
-failures that fail at the same hop, for instance---neither technique currently
-attempts to infer the real world event (like a network or power
-outage) that resulted in the outage. However, analyzing the reliability of an
-ISP or the reliability of a geographic area requires the
-identification of outage causes, so that the appropriate subset of
-them can be used in Internet reliability metrics. 
+% Existing techniques that study invididual user
+% outages have typically focused upon outage detection and have not
+% attempted to categorize detected outages by their likely cause. Grover
+% et al. point out that users in some countries are particularly likely
+% to power down their home Internet equipment but do not attempt further
+% classification of detected outages~\cite{grover2013peeking}. Shah et
+% al.~\cite{disco} and Bischof et al.~\cite{alwayson} use traceroutes sent from within the
+% home to find the hop where probes fail. While the traceroute-based
+% approach has the potential to categorize outages---by correlating
+% failures that fail at the same hop, for instance---neither technique currently
+% attempts to infer the real world event (like a network or power
+% outage) that resulted in the outage. However, analyzing the reliability of an
+% ISP or the reliability of a geographic area requires the
+% identification of outage causes, so that the appropriate subset of
+% them can be used in Internet reliability metrics. 
 
 
 
@@ -293,6 +395,33 @@ by defending the following thesis:
   experienced by any device with a stable public IP address that typically
   responds to active probes and use these outages to compare
   reliability across ISPs, media-types and geographical areas.} 
+
+\begin{itemize}
+
+\item {\emph{Device with a stable public IP address}: This is a device
+    connected to the Internet, like a
+home-router, to which an ISP has assigned a public IP address such
+that the
+assignment is either static, or dynamic in a manner that allows the
+duration of dynamic assignment to be estimated.}
+
+\item {\emph{Substantial outage}: I define a substantial outage to be an event where a device
+    with an Internet connection is unable to send or receive any
+    packets for at least 10 minutes.}
+
+\item {\emph{Accuracy of outage detection}: An outage detection technique is accurate when it
+correctly identifies every substantial outage event experienced by an Internet-connected-device, along with its
+duration. There are no time-periods when the address
+experiences a substantial outage but it goes undetected (false
+negatives). Similarly, there are no time-periods classified as
+outages when the destination address is able to receive packets from the
+Internet (false positives).}
+
+\item {\emph{Reliability}: I define two measures of reliability: one is the raw count of outage
+events over measured time and the other is the proportion of total measured time
+detected as outage events.}
+
+\end{itemize}
 
 % The common theme is that it is possible to list, measure, mitigate
 % My approaches share a common theme: I list potential sources of

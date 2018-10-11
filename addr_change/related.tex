@@ -1,0 +1,78 @@
+\section{Related Work}
+
+Previous work
+studied the performance of DHCP in small campus
+networks~\cite{dhcpwatch, dhcp-gatech} and
+settings where smartphone usage is
+widespread~\cite{dhcp-smartphones} and developed techniques to
+reduce network address utilization and DHCP broadcast traffic. The goal of those studies was
+to improve the performance of DHCP by tuning configuration.
+
+Conceptually, so long as there is some uniquely identifying feature
+that remains constant across a host's address change,
+it is possible to track IP address changes over time for that host.
+Several studies have used this broad
+method~\cite{udmap,census-survey, zmap-dhcp,
+maier2009dominant, dhcp-gatech, peering-shroud, dhcp-dimes}. 
+UDmap~\cite{udmap} studied
+dynamic address properties using Hotmail user login
+traces where the user's login serves as the identifying
+feature. Casado et al.~\cite{peering-shroud} tracked clients using HTTP cookies when
+clients access a CDN. 
+Other studies~\cite{maier2009dominant,census-survey} used continuous
+responsiveness of an address itself as the identifying feature, assuming
+that an address that responds continuously belongs to the same user and that
+when an address stops responding to pings, it has been reassigned.
+
+While we share the same goal as these studies, our approach diverges
+in that we are interested in the events associated with an address
+change.
+Previous studies lacked
+access to end-host information that could reveal the cause of an
+address change. One exception, Maier et al.~\cite{maier2009dominant},
+used access to the Radius server of a European DSL provider from one
+urban area to
+identify why DSL sessions terminated, and noted that the DSL
+provider often limited Radius session length to 24 hours in that area.
+We extend this result to several ISPs in countries from Europe, Asia,
+and South America, and identify other typical session length limits.
+%
+Argon et al.~\cite{dhcp-dimes} used periodic measurements
+from end-hosts in the DIMES infrastructure~\cite{dimes}.
+DIMES software installed on an end-user computer is
+different from RIPE Atlas hardware probes primarily in that it reports back
+only every 30-60 minutes (as opposed to RIPE Atlas's 3 minutes),
+the agent can be installed on
+laptops that move (as opposed to RIPE Atlas probes that could
+move, but do not), the hosts running DIMES are often
+powered down (resulting in limited uptime), and DIMES hosts
+appear to have static IP addresses more often (they reported 60\% had
+only one address).  Nevertheless,
+Argon et al. observed that some small ISPs exhibited 
+address alternation with a 24 hour periodicity. In IPv6, the RFC for
+privacy extensions for stateless address autoconfiguration recommends
+that IPv6 addresses be changed every 24 hours~\cite{rfc4941} and
+empirical results by Plonka and Berger found that more than 90\% of
+client IPv6 addresses were ephemeral~\cite{akamai-v6addr-usage}. We
+showed that 24 hour defaults are not uncommon in IPv4 as well.
+
+These studies relied on relatively uncontrolled observations of
+the address assigned to a device or user, both in terms of whether
+the devices are active, whether the users connect using multiple devices,
+and how frequently samples are provided.  As a consequence, 
+the dynamic IP address churn rates reported by these studies
+vary.  While UDmap reported that over 30\% of IP addresses have
+inter-user durations of 1--3 days~\cite{udmap},  Heidemann et
+al. reported that 90\% of IP addresses were occupied for less than a
+day~\cite{census-survey}.  Maier et al.~\cite{maier2009dominant} reported that a
+major European ISP had per-user median durations of just 20 minutes during
+their study in 2009 (we did not observe this duration in 2015).
+We believe that the perspective of a device using the dynamically assigned
+network is necessary for understanding the reasons behind the address change
+and for getting precise information about the duration that any
+address is held. Further, since RIPE Atlas probes provide continuous,
+longitudinal measurements enabling the inference of successive
+addresses assigned to a CPE device, we perform the first
+analysis of dynamic prefixes from which devices are assigned
+successive addresses.
+

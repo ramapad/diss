@@ -1,0 +1,368 @@
+
+\section{The RIPE Atlas datasets}
+\label{sec:dataset}
+Analyzing periodic and administrative address changes
+requires visibility of the dynamic addresses assigned to a
+sample of the ISP's customers and the ability to see these
+addresses change over time. Analyzing outage-caused and
+reboot-caused address changes requires knowledge of the
+events occurring on the end-host at the time of an address
+change. Prior studies of dynamic addressing have typically
+relied on incoming connections that have a unique client
+identifier, such as a user name, but changing addresses, and
+thus have no information about what caused a change or precisely when
+it occurred. The RIPE Atlas dataset
+is unique since it includes necessary information about both
+address changes and contemporaneous events at the host.
+
+The RIPE NCC's Atlas project deploys small devices, called probes, that
+conduct measurements from globally distributed
+networks~\cite{atlas}. In this section, we first describe the
+connection logs dataset from RIPE Atlas that we use to detect IP
+address changes. We then describe the k-root ping and SOS-uptime
+datasets from RIPE Atlas that we use to learn about events occurring on end-hosts. 
+
+\subsection{RIPE Atlas connection logs dataset}
+RIPE Atlas probes connect to the RIPE Atlas infrastructure
+through a single SSH session over TCP port 443 (typically used
+by HTTPS)~\cite{atlas-faq-tcp443}.  RIPE Atlas servers
+record the establishment and
+termination of these connections in \emph{connection logs}.
+Table~\ref{tbl:sample} shows connection log entries for a
+RIPE Atlas probe in the dataset for the first five
+days in January 2015.  
+
+Connection logs
+record each TCP connection made by the probe to a central
+controller and include the timestamp of the beginning and end of the connection (defined by the last receipt of data), %% NS: VERIFY
+the peer address of the connection that represents the publicly visible IP
+address used by the probe, and a unique identifier of the
+probe device.  Probes are typically deployed behind the Customer
+Premise Equipment (CPE) of a user, so that the publicly visible IP address
+appearing in the connection logs belongs to that of the
+CPE.  We term this address the ``probe's address'' or the ``end-host address,''
+since it is the useful, publicly visible address that the probe uses, even though the address
+may technically belong to the CPE and the probe has a different, private, RFC 1918 address.
+
+
+\begin{table}[th]
+  \scriptsize
+  \centering
+  \hspace{-0.04in}\begin{tabular}{c|c|c|c|c}
+    \textbf{ID} & \textbf{Start time} & \textbf{End time} & \textbf{IP Address} & \textbf{Dur}\\
+    \hline
+    % 17262 & 2014-12-30 17:38:37 & 2015-01-01 22:30:44 & 83.115.35.156 \\
+    206 & Dec 31 03:21:34&Jan 1 02:57:37 & 91.55.174.103 & NA\\
+    206 &  Jan 1 03:22:16 & Jan 1 17:34:11 & 91.55.169.37 & 14.2\\
+    206 &  Jan 1 18:00:54 & Jan 1 18:42:31 & 91.55.132.252 & 0.7\\
+    206 &  Jan 1 19:06:46 & Jan 2 02:19:16 & 91.55.155.115 & 7.2\\
+    206 &  Jan 2 02:41:55 & Jan 3 02:18:00 & 91.55.141.95 & 23.6\\
+    206 & Jan 3 02:43:14 & Jan 4 02:16:59 & 91.55.165.167 & 23.6\\
+    206 & Jan 4 02:40:58 & Jan 5 02:15:45 & 91.55.163.252 & 23.6\\
+    206 & Jan 5 02:38:39 & Jan 6 02:14:48 & 91.55.141.63 & NA\\
+    \end{tabular}
+  \caption{\label{tbl:sample}Connection log sample for the first five
+    days of 2015. We compute the address duration, shown in the last column in hours.}
+    
+\end{table}
+
+
+We find IP address changes by inspecting these connection
+logs. A new entry in a probe's connection log is created
+whenever an event occurs that causes the existing TCP
+connection to break.  This connection will break when the
+probe's IP address changes, when a probe reboots, or when
+there is an outage.  We can infer that the address changed
+between the end time of one connection and the start time of
+the next, if the addresses differ in consecutive entries.  For example, in
+Table~\ref{tbl:sample}, there are seven address changes.
+Between changes, we can identify the duration that the probe
+held an address, shown in hours.  In this example, each connection
+had a different address, so the address durations are equal to the
+connection duration, though this is not always the case.
+The duration of the first
+address is unknown because we do not know when that IP
+address was first assigned to the probe; the duration of the
+last address is also unknown. 
+
+The interval between connections, in the example of
+Table~\ref{tbl:sample}, typically 20--25 minutes, is
+information we also use in concert with other datasets
+described below to determine the type and duration of the
+event that led to a new connection.  An active RIPE Atlas probe
+should report experiments back to the central controller
+about every three minutes~\cite{homburg-ntp}. We attribute
+this long delay between the end of one connection to the
+beginning of the next when there is an address change to
+waiting for TCP to exhaust its retransmission attempts
+(RFC 1122 Section 4.2.3.5)~\cite{rfc1122}.
+
+% have a TCP connection to the central controller.  We use this
+% \emph{interval-between-connections} to infer the duration of the
+% event which triggered a new connection.
+
+We obtained connection logs from January 1, 2015 to December 31, 2015
+belonging to 10,977 active RIPE Atlas probes that had been connected
+to their central controllers for more than 30 days in 2015. We first
+found the list of active probes as of December 31, 2015, using the
+RIPE Atlas probe archive~\cite{atlas-probe-archive}, and found 16,584
+active probes. Next, we scraped each active probe's connection
+logs directly from the probe's
+webpage~\cite{atlas-connlogs-link-format}. Subsequently, we found
+10,977 probes who had been connected to their central controllers for
+an aggregate duration of more than 30 days in 2015.
+
+\subsection{Probe filtering}
+% \rama{This table may be excessive. I have it here to let you know how much we're filtering}
+
+We omit from our analysis two sets of data: probes that are
+connected using a method where using different addresses
+does not indicate changes to the addresses that were
+assigned, for example, multihomed probes, as well as
+connection log entries that represent movement from one
+location or provider to another.  Once we omit a probe for
+anomalous behavior in connection logs, we omit that probe  
+from our analysis of the other RIPE Atlas datasets as well.
+
+\begin{table}[th]
+  \small
+  \centering
+  \begin{tabular}{ l|r }
+    \textbf{Category} & \textbf{Probes} \\
+    \hline
+    Total Probes & 10,977\\
+    \hline
+    \textbf{Not Analyzable} &  \\
+    ~~ Never changed & 3,073\\
+    ~~ Dual Stack & 3,728\\
+    ~~ IPv6 & 237\\
+    ~~ Multihomed / Core / Data-center (tags) &  174\\
+    ~~ Multihomed (alternating addresses) & 511\\
+    ~~ Only address change from 193.0.0.78 & 216 \\
+    \hline
+    \textbf{Analyzable (geography)} & \textbf{3,038} \\
+    \hline
+    ~~ Multiple ASes & 766\\
+    \textbf{Analyzable (AS-level)} & \textbf{2,272} \\
+    \end{tabular}
+    \caption{Of the 10,977 probes in the dataset, we are able to find address changes on 3,038 probes. 766 probes had addresses from multiple ASes; we discard address changes across ASes for these probes from our geographic analysis and filter these probes altogether in our AS-level analysis.}
+    \label{tbl:filtered}
+\end{table}
+
+Table~\ref{tbl:filtered} provides an overview of the probes
+we omitted from the analysis.
+
+\par \noindent {\bf IPv6 and dual-stacked probes}\\
+Probes that communicate, even occasionally, over IPv6 are not
+useful for understanding IPv4 address dynamics.  We found 
+237 probes that made connections solely over
+IPv6 and 3,728 that used both IPv4 and IPv6.  The 3,728 that connect over both
+protocols often alternated between address types, providing
+little information about the duration that the probe held any particular
+IPv4 address.  Concretely, if a dual-stacked probe established one TCP
+connection to the central controller over IPv4 and the next TCP
+connection over IPv6, we cannot tell whether or when the IPv4
+address changed while the IPv6 connection was active.  We would need consecutive
+IPv4 connections from three different IPv4 addresses to determine
+how long the probe held the address in the middle of the sequence.   In
+practice, a sequence of such IPv4 connections is rare for a dual-stack probe.
+
+\par \noindent {\bf Multihomed and datacenter probes}\\ We cannot use
+the connection logs dataset to observe address changes accurately on multihomed
+probes (probes that have more than
+one available IP address concurrently). For these probes, a connection from a new
+address could simply be a connection from the other address
+assigned to the CPE, much like a dual-stack probe.  Probes
+at exchange points or in data centers are relatively few and
+seemed more likely to be problematic (by exhibiting
+multihomed behavior) than instructive (by representing
+address changes experienced by customers).
+
+To filter multihomed probes, we first looked for hints in
+user-provided ``tags'' associated with a probe: 174 probes
+had at least one of the tags ``multihomed,'' ``datacentre,'' or ``core.''
+Tags are provided voluntarily and so probes may not be
+tagged with those labels even if they were in fact
+multihomed; thus, we looked for common features among the
+tagged probes which we could then use to omit probes with
+similar behavior. The most common feature we found was that
+connections from the tagged probes alternated between one
+fixed address and another potentially changing address; we
+found this feature on 36 of the 174 tagged probes. We
+found 511 other probes that matched this behavior and
+removed them from the dataset. We expect that it is far more
+likely that when a host returns to using a previously-used
+address, the host is choosing from among 
+addresses it holds for a long time rather than that the ISP reassigned a
+previously held address to the host.  We combine this behavioral,
+alternating-addresses, definition of multihomed with the tags
+to choose probes to omit from analysis.
+
+
+\subsection{Connection log entry filtering}
+
+We omit some entries in the connection log because of
+properties of either the address involved or because the detected address
+change was such that a probe reported an address from one autonomous system
+for one connection and an address from a different
+autonomous system for the next connection. 
+Removing these connection log entries does not generally
+remove probes entirely from analysis.
+
+\par \noindent {\bf Testing addresses}\\ 
+Some probes had their first address transition from the same IP
+address, 193.0.0.78.  This address belongs to the RIPE NCC, and
+was used for testing before being shipped to volunteers.
+There were 427 such probes that started with this address; we
+remove this connection log entry.  That left 216 additional probes 
+with no further address changes in 2015, so we omitted those probes
+in Table~\ref{tbl:filtered}.
+
+\par \noindent {\bf Address changes across ASes}\\
+When attributing behavior to individual autonomous systems,
+we omit from analysis any probes where address changes
+indicated a change from the address space of one autonomous
+system to the address space of another.  We used CAIDA's IP-to-AS
+dataset~\cite{caidapfx2as} to map each IP address to its autonomous
+system. CAIDA publishes the IP-to-AS dataset monthly; thus, we found
+the month in which a new IP address was assigned to a probe and used
+CAIDA's IP-to-AS dataset for that month to find
+the AS for that address. We found 766 probes with at least one
+address change spanning different autonomous systems.  These ASes
+could be sibling ASes owned by the same ISP, but could also
+belong to different ISPs if the owner of the probes switched
+ISPs. For our geographic analysis 
+(Section~\ref{sec:periodic-geography}), we discarded the address
+changes spanning ASes for these probes, but retained the
+address changes within the same AS. For our AS-level
+analysis of renumbering behavior
+(Section~\ref{sec:periodic-as}), we made the conservative choice
+of filtering these probes altogether.
+
+Table~\ref{tbl:filtered} summarizes the dataset and the
+number of probes filtered.  After the filtering process we
+had 2,272 probes analyzable for AS-level
+renumbering behavior, and 3,038 probes analyzable for
+geographic renumbering behavior.  For each analyzable probe
+in Table~\ref{tbl:filtered}, we found address changes along
+with the time of the address change and used them to find
+the duration for which addresses were assigned before
+changing.
+
+\subsection{k-root ping dataset}
+\label{sec:pings_to_k}
+
+\begin{table}[th]
+  \small
+  \centering
+  \begin{tabular}{c|r|r|r|r}
+    \textbf{ID} & \multicolumn{1}{c|}{\textbf{Timestamp}} & \textbf{N sent} &\textbf{N success} &\textbf{LTS}\\
+    \hline
+    % 17262 & 2014-12-30 17:38:37 & 2015-01-01 22:30:44 & 83.115.35.156 \\
+    16893 & Jan 27 09:01:42 & 3 & 3 & 86\\
+    16893 & Jan 27 09:05:48 & 3 & 0 & 151\\
+    16893 & Jan 27 09:09:45 & 3 & 0 & 388\\
+    16893 & Jan 27 09:13:36 & 3 & 0 & 619\\
+    16893 & Jan 27 09:17:49 & 3 & 0 & 872\\
+    16893 & Jan 27 09:21:40 & 3 & 0 & 1103\\
+    16893 & Jan 27 09:25:39 & 3 & 3 & 1342\\
+    16893 & Jan 27 09:29:36 & 3 & 3 & 146\\
+    \end{tabular}
+    \caption{Sample of k-root ping dataset for probe ID 16893 when a network outage occurred. We detect a network outage when pings to the k-root server are lost and when this ping loss is accompanied by increasing Last Time Synchronized (LTS) values. Here we detect a network outage beginning at Jan 27 09:05:48 and ending at Jan 27 09:21:40.}
+    \label{tbl:sample_pings}
+\end{table}
+
+We detect network outages using two items from the built-in
+RIPE Atlas probe measurements.  Every four minutes, each
+probe sends three pings to the k-root DNS server and logs
+the number of sent pings and the number of successful
+responses~\cite{atlas-built-in}.
+Table~\ref{tbl:sample_pings} shows a sample of this
+log. Probes report the results of these and other
+measurements via HTTP POST to the central controller once
+every four minutes.  Along with the measurement data, the
+probe also reports the current \emph{LTS} or ``last time
+synchronised'' value. This value indicates when the probe
+last synchronized its clock with that of the central
+controller. Typically, probes synchronize their clocks by NTP or upon receipt of the HTTP
+verify response from the controller~\cite{homburg-ntp}, so in the absence of an outage, the
+reported LTS value should be less than four minutes (240
+seconds).
+
+We use a combination of the ping responses and the LTS value
+to infer a network outage, so that we have two (mostly)
+independent measurements that indicate that the probe's network
+has failed.  We consider the network outage to start at the
+first measurement where all pings to the k-root server were
+lost, and to end at the last measurement where all pings
+were lost.  If the LTS value did not grow, that would
+indicate that the probe was still able to communicate with
+the controller, and thus would not be an outage. Note that
+this interval underestimates the duration of a network
+outage by up to eight minutes.
+
+\subsection{SOS-uptime dataset}
+\label{sec:sos}
+
+\begin{table}[th]
+  \small
+  \centering
+  \begin{tabular}{c|c|c}
+    \textbf{ID} & \textbf{Timestamp} & \textbf{Uptime counter value}\\
+    \hline
+    % 17262 & 2014-12-30 17:38:37 & 2015-01-01 22:30:44 & 83.115.35.156 \\
+    206 & Jan 1 03:15:18 & 262531\\
+    206 & Jan 1 17:50:26 & 315038\\
+    206 & Jan 1 17:50:55 & 19\\
+    206 & Jan 1 17:53:59 & 203\\
+    206 & Jan 1 18:59:44 & 4147\\
+    \end{tabular}
+    \caption{Sample of SOS-uptime records from RIPE Atlas for January 1 2015 for probe ID 206. The third row shows that the uptime counter had reset 19 seconds before 17:50:55, allowing us to infer that the probe rebooted at 17:50:36.}
+    \label{tbl:sample_sos}
+\end{table}
+
+The SOS-uptime dataset contains probe uptime counter
+values over time. The uptime counter on each probe is 64
+bits long and counts the number of seconds since the probe
+booted. Probes report their uptime counter value to the
+central controller every time they make a new TCP connection
+to the controller.
+
+We use the SOS-uptime dataset to determine when RIPE Atlas probes rebooted
+by finding when the uptime counter was
+reset. For example, consider the sample SOS-uptime records from the
+RIPE Atlas dataset for probe ID 206 shown in
+Table~\ref{tbl:sample_sos}. The first entry at 03:15:18 on January 1st
+shows that the probe had been up for 262,531 seconds. Later that
+evening, the probe is shown to have been up for 315,038 seconds, but
+the next uptime counter value reports that the probe was up for only
+19 seconds. We infer that a reboot occurred 19 seconds earlier, at
+17:50:36. 
+
+After finding reboot times, we use the k-root ping dataset
+to measure how long each power outage lasted. 
+ When we detect a reboot, we use the difference in time between
+successive pings to the k-root server to estimate the power outage duration. 
+
+\subsection{Associating inter-connection gaps with outage events}
+
+The next task is to synthesize these three datasets to
+identify outage events that occur between TCP connections to
+the central controller.  The TCP connection to the central
+controller breaks when the IP address changes, when the
+probe reboots, when the CPE reboots, or when there is a
+power outage or significant network outage.  For example,
+the reboot at 17:50:36 in Table~\ref{tbl:sample} corresponds
+to rows 2 and 3 in Table~\ref{tbl:sample} since the reboot
+time falls between the end of the connection log entry
+ending at 17:34:11 and the start of the connection log entry
+beginning at 18:00:54.
+
+We use a priority ordering to assign outages to inter-connection gaps.
+If the k-root dataset indicated a network outage in the gap, we associate
+it with a network outage.  If instead the SOS-uptime dataset indicates a
+reboot coincident with missing attempted k-root pings from the k-root
+dataset, we associate the gap with a power outage.  If neither occurred,
+we mark the gap as a ``no-outage'' indicating that the reconnection was
+not associated with any outage.
+

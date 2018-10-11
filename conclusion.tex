@@ -1,24 +1,176 @@
 
-\section{Conclusion and future work}
+\chapter{Conclusion and future work}
 
 In this dissertation, I described how to measure residential Internet
-reliability remotely using probing-based techniques. These techni
+reliability remotely using probing-based techniques. While having the
+ability to measure broadly, these techniques' outage inferences can be
+inaccurate. My contributions have improved their accuracy, and have
+allowed their detected outages to be used in metrics for comparing
+residential Internet reliability of various ISPs, media types, and
+geographic regions in different weather conditions.
 
-First, I showed
-how to detect Internet outages accurately using these techniques by
-analyzing and mitigating potential scenarios that can cause these
-techniques to make false inferences about detected outages. 
+In Chapter~\ref{} began by showing how to detect Internet outages accurately using
+probing-based techniques by analyzing and mitigating potential
+scenarios that can cause these techniques to make false inferences
+about detected outages. By analyzing ping response latencies from IP
+addresses across the world in a variety of networks, I investigated
+how frequently probe responses can be delayed beyond commonly used
+timeouts. I next analyzed dynamic addressing patterns in ISPs to find
+networks where addresses are stable. I also showed how to detect
+outages in networks where dynamic reassignment is common, using
+complementary datasets that can provide information on whether a
+device's IP address has changed.
 
- can measure Internet
-reliability for individual users broadly, longitudinally, and
-accurately. In spite of their potential, these techniques can make
-false inferences about outages in two scenarios: when probe
-responses are delayed beyond timeouts and when addresses get dynamically
-reassigned. I described preliminary work which studied how commonly
-probes are delayed beyond responses and described measurements of
-dynamic addressing across the world that can help build a model of
-dynamic addressing. For each outlined scenario, I proposed approaches
-that can mitigate false outage inferences when that scenario
-occurs. Finally, I discussed an approach to segregate outages into
-categories that suggest cause, and how we can use these categorized
-outages to study Internet reliability along different dimensions.
+
+\section{Future Work}
+
+% \subsection{Building a global model of dynamic address change}
+\subsection{Tracking devices across IP addresses using IDs on a global
+scale}
+
+%Though the results from RIPE Atlas are promising, they are potentially
+% biased toward technical users like most measurement infrastructure,
+% and biased toward European deployment.
+
+In Chapter~\ref{}, I showed how to use IDs from complementary datasets
+to (i) analyze dynamic addressing patterns and (ii) to confirm
+outages. However, the RIPE Atlas dataset was biased towards European
+and North American networks. While the CDN dataset was broader, it
+could still only offer confirmation for 1\% of Thunderping's detected outages.
+
+With more sources of IDs such as those from RIPE Atlas, it may be
+possible to model the likelihood of
+address change can help prevent false inferences about outages and
+their durations. For ISPs that change periodically and/or synchronously, the model can
+predict when probe-loss is more likely due to
+address changes than outages. For ISPs that change addresses upon most
+outages, the model can inform in which ISPs outage duration detection
+is particularly error-prone. For other ISPs which change addresses
+mostly upon longer outages, the model can be used to estimate the
+likelihood that an inferred outage ended falsely.
+
+Orthogonally, If every outage detected by a probing-based technique could be
+confirmed through a complementary dataset with IDs, then detected
+outages would be a hundred percent accurate. Additionally, the
+analysis of outage recovery durations for all of these outages will be
+possible. 
+
+
+
+% A less lofty goal is to simply analyze more ISPs.
+
+The key to tracking IP address(es) assigned to a home router over time
+is to associate some uniquely identifying feature (an ID) that remains
+constant across the home router's address
+changes. Chapter~\ref{cpt:addr_change} showed two examples of IDs: in the
+case of RIPE Atlas probes', the probe ID remained unchanged and in the
+case of the CDN software, the installation ID remained unchanged. I
+presented two applications of such IDs: (i) it is possible to analyze dynamic
+address assignment practices (ii) it is possible to confirm a detected
+outage if the ID associated with the address was the same before and
+after the outage.
+
+A challenge, however, is to obtain sources of IDs that can scale
+across the Internet. IP address changes can
+be tracked over time if there exists some uniquely identifying feature
+that remains constant across the device's address change. There are several potential datasets which have this
+property:
+
+\subsubsection{Dynamic DNS services}
+
+Websites such as dyn.com~\cite{dyn} provide dynamic DNS. Dynamic
+DNS is a service that allows users with a dynamic IP address to host
+web services, by providing DNS services that can be easily updated to
+reflect changes in users' IP addresses. Users of Dynamic DNS Services
+run a daemon provided by the dynamic DNS provider, which is responsible for
+determining the publicly visible IP address, and updating the A
+record(s) for the user's domain(s). 
+
+IP address changes can be tracked using the domain names
+registered with dynamic DNS services. Since the domain name of a user
+maps to her current IP address, we can use the domain name as a
+fingerprint, and detect changes in IP addresses for each domain name
+over time, by periodically obtaining the 'A' record associated with
+each domain name. 
+
+\paragraph{Geographic correlation of dynamic behavior}
+
+\begin{figure}[tb]
+% \centering
+\begin{center}
+\includegraphics[height=1.5in]{figs/did_dname_get_renum}
+\end{center}
+\caption{\label{fig:addr_change_per_ctry}
+IP address renumbering in dynamic DNS domains over a week: Black
+represents dynamic DNS domains which experienced at least one address
+change, while grey represents domains whose addresses remained the
+same. Renumbering behavior appears to be correlated with geographic
+location.}
+\end{figure}
+
+As a proof of concept, I report on a preliminary result from this
+approach: corroborating the geographic relationships in Figure~\ref{fig:conts_all_durs} 
+while extending to countries not well represented by RIPE.
+I
+obtained 3000 dynamic DNS domains from three different dynamic DNS
+services: 2000 from afraid.org~\cite{afraid}, 600 from dyn~\cite{dyn} and 400 from
+noip.com~\cite{noip} and fetched the 'A' records from their respective
+nameservers once every hour. I collected this data for a week, and
+then inspected how many of these domains experienced at least one
+address change during this time. Figure~\ref{fig:addr_change_per_ctry}
+shows the number of domains that had at least one 
+address change and the domains that had none. The y-axis is in log-scale. 
+Address changes in Asian and Latin American countries appear
+more prevalent, with more than a third of all domains in these
+countries seeing at least one address-change. On the other hand,
+Northern European countries observe fewer than 6\% of their domain names
+experiencing an address change. Address changes are uncommon in
+North America: only 3\% of domain names in the US and 6\% of domain
+names in Canada observed an address change.
+
+
+
+\subsection{Classifying IP addresses}
+
+Probing-based techniques that seek to detect residential Internet
+outages need a list of addresses classified as residential. More
+broadly, a classification of the IP address space into residential,
+enterprise, campus etc., can benefit any system that uses IP addresses
+as a proxy for measurement, including IP address based host-reputation
+systems~\cite{fail2ban,spamhaus,cbl,sorbs}. Recent work has also shown
+that ISPs are increasingly likely to deploy Carrier Grade NATs (CGNs),
+where tens of residential Internet connections are multiplexed over a single
+public IPv4 address~\cite{cgn-imc16}.
+%  and approaches to count
+% participating users in peer-to-peer
+% systems~\cite{p2pfilesharing,p2pavail,sen2004analyzing}.
+
+In this dissertation, I relied upon classifications of addresses as
+residential using reverse DNS based schemes from prior
+work~\cite{pingin}. Many ISPs include hints about an address's
+intended use in
+the reverse DNS entry of that address. Recent research has further improved address
+classification with reverse DNS names~\cite{youndo-rdns}. However,
+it is not mandatory for ISPs to provide meaningful reverse DNS
+names. Some large ISPs, such as AT\&T do not provide reverse DNS names
+for most of their addresses, resulting in their addresses' under-representation in
+Thunderping data as seen in Chapter~\ref{cpt:weather}.
+
+An orthogonal approach to address classification is to use datasets with
+some uniquely identifying feature (an ID) that can be used to track IP
+addresses over time. By analyzing how many IDs are associated with an IP
+address simultaneously and over time, I show in preliminary work that it is possible to infer
+how the ISP is using the address~\cite{shared-addrs-apnic-blog, shared-addrs-aims}. An address that 
+
+
+
+\subsection{Identifying outage causes}
+
+
+
+\subsection{Exploring the tradeoff between outage detection and ICMP blocking}
+
+
+
+\subsection{Measuring reliability in IPv6 networks}
+

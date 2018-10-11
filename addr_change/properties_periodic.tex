@@ -1,0 +1,216 @@
+
+\subsection{ISPs that renumber periodically}
+\label{sec:periodic_asns}
+
+% \newcommand{\hdr}[1]{\multicolumn{1}{c|}{\textbf{#1}}}
+\newcommand{\ehdr}[1]{\multicolumn{1}{c}{\textbf{#1}}}
+\begin{table*}[t]%
+  \begin{center}%
+  \begin{tiny}%
+  \begin{tabular}{ccc|r|rr|r<{\%}r<{\%}|r<{\%}r<{\%}}
+    \ehdr{AS} & \ehdr{ASN} & \hdr{Country} & \hdr{$d$} &
+    \ehdr{N} & \hdr{$f^p_d > 0.25$} & \ehdr{$f^p_d > 0.5$} & \hdr{$f^p_d
+      > 0.75$} & \ehdr{$MAX \leq d$}
+     & \ehdr{Harmonic}\\
+\hline
+\multicolumn{3}{c|}{All}&  24&   2272&  193&   88.6&   68.4&   43.5&   89.6\\
+\multicolumn{3}{c|}{All}& 168&   2272&  123&   74.0&   13.8&   94.3&   98.4\\
+Orange         &  3215&France    & 168&    122&  111&     77&     14&     98&     99\\
+DTAG           &  3320&Germany   &  24&     63&   51&     96&     86&     78&     98\\
+Telefonica DE 2&  6805&Germany   &  24&     17&   15&     93&     80&     27&     93\\
+Telefonica DE 1& 13184&Germany   &  24&     14&   14&     93&     86&     21&    100\\
+PJSC Rostelecom&  8997&Russia    &  24&     22&   13&    100&     69&     23&    100\\
+BT             &  2856&U.K.      & 337&     67&   13&     15&      0&     38&     62\\
+Proximus       &  5432&Belgium   &  36&     41&   12&     83&      8&      0&     83\\
+A1 Telekom     &  8447&Austria   &  24&     12&   11&    100&     91&     73&    100\\
+Vodafone GmbH  &  3209&Germany   &  24&     21&    9&     78&     11&      0&     89\\
+Hrvatski       &  5391&Croatia   &  24&      7&    7&    100&    100&     43&     86\\
+ISKON          & 13046&Croatia   &  24&      6&    6&     83&     33&      0&    100\\
+ANTEL          &  6057&Uruguay   &  12&      6&    6&    100&    100&     33&    100\\
+Global Village Telecom & 18881&Brazil    &  48&      6&    6&    100&     67&      0&     17\\
+Mauritius Telecom& 23889&Mauritius &  24&      6&    5&    100&     20&     20&    100\\
+JSC Kazakhtelecom&  9198&Kazakhstan&  24&     15&    5&     80&     80&     60&     80\\
+Orange Polska  &  5617&Poland    &  22&     10&    5&    100&    100&     60&     80\\
+VIPnet         & 31012&Croatia   &  92&      7&    4&     75&      0&     75&     75\\
+Proximus       &  5432&Belgium   &  24&     41&    4&     50&     25&      0&     75\\
+Digi Tavkozlesi& 20845&Hungary   & 168&      4&    4&    100&     25&    100&    100\\
+Orange Polska  &  5617&Poland    &  24&     10&    4&    100&    100&     50&    100\\
+Free SAS       & 12322&France    &  24&     12&    3&    100&     67&      0&     67\\
+SONATEL-AS     &  8346&Europe    &  24&      7&    3&     33&     33&     33&     33\\
+Net by Net     & 12714&Russia    &  47&      7&    3&    100&    100&     67&    100\\
+   \end{tabular}
+  \end{tiny}
+  \end{center}
+  \caption{\label{tbl:periodic_asns} Autonomous
+    systems that had at least three probes with a total time fraction
+    for duration $d$ (in hours) greater than 0.25. $f^p_d > 0.25$ shows
+    the number of probes that had a total time fraction at $d$ greater than 0.25;
+    $f^p_d > 0.50$ and $f^p_d > 0.75$ show the percentage of those probes
+    that had fractions greater than 0.5 and 0.75 for the same duration.
+    $MAX \leq d$ shows the percentage of probes whose maximum duration was no greater than
+    $d$. ``Harmonic'' represents the percentage of probes that, if not renumbered after $d$, are renumbered after some multiple of $d$ hours.
+    The ASes are sorted in decreasing order of $f^p_d > 0.25$.}
+\end{table*}
+
+In this section, we look specifically at ISPs that renumber
+periodically to infer the period over which they renumber,
+the fraction of the ISPs' probes which periodically renumber, how
+reliably the renumbering occurs at the end of the period, and whether the
+renumbering is synchronized across probes.  We classify a
+probe as ``periodic'' when its total time fraction at
+some duration $d$ exceeds 0.25.  We set the threshold to 0.25
+because we expect a probe whose address is reassigned
+periodically to sometimes have a shorter duration, say, due
+to a reboot, and sometimes have a longer duration, say, by
+receiving the same address again. 
+
+We consider autonomous systems having at least five probes with an
+address change of which at least three probes are
+periodic, and provide an overview of their renumbering
+period and behavior in Table~\ref{tbl:periodic_asns}.
+The periodic duration $d$ is shown in hours; 24 hour durations are
+typical.  Renumbering in this table is primarily a feature of
+central Europe, with some in Russia, Kazakhstan, Mauritius, and South America.
+We describe the rest of the columns in the next subsections.
+
+\subsubsection{What fraction of probes is periodic?}
+
+Even for ISPs such as Orange and DTAG which have total
+time fraction at period $d$ in excess of 0.5, not all address durations equal
+$d$; some durations are shorter and others longer as seen in Figure~\ref{fig:top_asns_all_durs}. One possible
+explanation is that only a few
+probes in these ISPs were periodically renumbered while others were
+not. Alternately, periodic probes sometimes have address
+durations not equal to $d$. We find that it is usually a combination
+of both factors that lead to non-periodic durations in these
+ISPs, although the extent to which each is responsible varies by ISP.
+
+In Table~\ref{tbl:periodic_asns}, the $N$ column shows
+the number of probes with at least one address change in the
+dataset.  The next column, $f^p_d > 0.25$, shows the number
+of periodic probes---those having a time fraction of
+more than 0.25 at duration $d$. In some ISPs, only a small fraction of
+probes are periodically renumbered. For example, only a fifth
+of the probes in BT were periodic with a 2-week period, partially explaining why
+the total time fraction at 2-weeks for BT in
+Figure~\ref{fig:top_asns_all_durs} is only 0.13. 
+
+The subsequent columns, $f^p_d > 0.5$ and $f^p_d > 0.75$
+show what percentage of the periodic probes are persistently
+so, where the total time fraction at duration $d$ is more
+than half or three quarters.  We show percentages rather
+than raw counts in these columns to simplify the comparison,
+given that these providers have different sizes.  A high percentage
+indicates that most of the periodic probes (with $f^p_d > 0.25$),
+are strongly so ($f^p_d > 0.75$).  A low percentage indicates
+that probes may either be reassigned early (due to outages) or late
+(due to inconsistent reassignment). We can see that only 15\% of the
+periodic probes in
+BT had $f^p_d > 0.5$  and none had $f^p_d > 0.75$, providing further
+explanation for why the total time fraction at 2-weeks for BT is low.
+
+Other ISPs have a much larger fraction of their
+probes that are periodic: more than 80\% of
+probes in Orange, DTAG, Telefonica Germany, A1 Telekom, Hrvat\-ski, ISK\-ON,
+ANT\-EL, Global Village Telecom, Mauritius Telekom, 
+Orange Polska, and Digi Tavkozlesi are periodic. 
+For each of these ISPs, more than 75\% of probes are persistently
+periodic, having $f^p_d > 0.5$.
+For DTAG, Telefonica, A1 Telekom, Hrvatski, ANTEL, and Orange Polska, 
+more than 75\% of probes have $f^p_d > 0.75$.
+Notable is Orange Polska, which has four of its ten probes 
+periodic at 24 hours, and five more probes periodic at 22
+hours, but 100\% of them have a time fraction at their respective
+durations greater than 0.75. 
+
+Probes in these ISPs typically have
+address durations capped at $d$. Address durations can sometimes be shorter---potentially due to outages or
+reboot/reconnect events as we show in Section~\ref{sec:outages}---but
+can occasionally be larger than $d$ as well. We study these next.
+
+\subsubsection{Why are some address durations longer than the period?}
+
+Some address durations exceed the typical period, $d$, for an ISP.  
+We
+would like to determine whether this is a behavior limited to a few
+probes in the ISP (potentially caused by unusually designed CPE devices), or if the longer-than-typical durations are
+spread across probes.  
+
+How many periodic probes have an address duration longer
+than $d$?  We expected that no address duration for such
+probes would exceed the periodic duration $d$.  That
+is, if the ISP was renumbering a probe on a schedule, then
+some additional renumbering would be possible due to other
+reasons, but the probe would never keep its address longer
+than $d$.  It turns out that this expectation is not the
+case.  The column $MAX \leq d$ shows the percentage of the
+periodic probes that had their maximum address duration less than
+$d$ (to capture only those durations that clearly exceeded
+$d$, we adjusted $d$ to be $d$ $+$ $5\%$ for this column).  Across all periodic
+probes, 94\% of those that appear to be on a one-week renumbering schedule 
+did not have an address duration longer than one week; only 44\% of those
+that appeared to be on a one-day renumbering schedule had all durations limited
+by twenty-four hours.
+
+This fraction seemed surprisingly low.  Why would so many
+probes show daily renumbering, even reporting a total time
+fraction of 0.75, when the probe might also keep its address longer?  We considered two possible explanations that
+would have the same symptoms: that a periodic renumbering
+was skipped or that the same address was (perhaps by random
+chance) assigned again.  In these cases, rather than see an
+address change after 24 hours, we might see one at 48 or
+even 72 hours.  We term such address changes
+``Harmonics'', and consider what fraction
+of the time all address changes are at or before $d$ (as
+expected), or occur at a multiple of $d$.  The percentage of
+probes that match this loosened definition (a superset of those in
+$MAX \leq d$) appears in the last column of Table~\ref{tbl:periodic_asns}.
+Most periodic probes from all ISPs
+except Global Village Telecom and SONATEL-AS have maximum durations of this kind.  
+
+\subsubsection{Are changes synchronized?}
+
+\begin{figure}[th]
+ \centering
+    \includegraphics[width=3in]{addr_change/figs/weekly_3215_a_periodicrenums_per_h24_connlogs_bar}
+  \caption{\label{fig:3215_renums_per_h24}Periodic address changes
+    in Orange appear more evenly distributed among the hours of the
+    day.}
+\end{figure}
+
+\begin{figure}[th]
+  \centering
+    \includegraphics[width=3in]{addr_change/figs/daily_3320_a_periodicrenums_per_h24_connlogs_bar}
+  \caption{\label{fig:3320_renums_per_h24}Periodic address changes
+    are more likely in some hours for Deutsche Telekom.}
+\end{figure}
+
+We imagine two broad strategies for daily renumbering:
+either leaving each customer on an independent, free-running
+clock that resets after 24 hours, or synchronizing all
+address changes to an off-peak time when few would be
+interrupted.  Both seem reasonable strategies: independent
+clocks seem simple to implement, synchronized address
+changes seem more likely to shuffle addresses since many
+addresses are made available during the synchronized
+interval.  However, if one were to blacklist addresses for
+misbehavior, knowing which strategy is in use would help to
+choose for how long to keep the blacklist entry.  We expect
+that plotting the time of day at which addresses change for
+each ISP will expose whether the renumbering is synchronized.
+
+For Orange and DTAG, the two ISPs with the most periodic probes, we
+choose the hour of the day in which every address duration that had
+duration $d$ ended and show these in Figure~\ref{fig:3215_renums_per_h24}
+and Figure~\ref{fig:3320_renums_per_h24}. For Orange, periodic address
+changes are not concentrated during any specific hours of
+the day. However, DTAG assigns periodic
+durations more often during some hours of the day. In private
+correspondence with a large European ISP, we learned that many CPE devices come with an option to choose the time
+at which they should disconnect and reconnect to receive a new
+address, as a privacy
+feature. Figure~\ref{fig:3320_renums_per_h24} supports this
+deployment scenario, observing almost three quarters of all periodic
+address changes between hours 24 to 6 (in GMT). However, some
+CPEs do not have this feature because a quarter of the periodic
+address changes happen at other hours of the day.

@@ -1,0 +1,254 @@
+
+\section{Periodic address changes}
+\label{sec:periodic}
+
+ISPs can assign dynamic addresses for as long as they wish.
+In DHCP, long leases simplify administration, while short
+leases can be more efficient in reclaiming unused addresses.
+DHCP leases, however, are meant to be renewable by devices
+that are still active.  In this section, we look at periodic
+address reassignment: instances where a device changes
+address periodically, despite actively using the address. Periodic
+reassignment is atypical for devices using DHCP since a
+device that is continuously renewing its lease should continue to
+keep its current address~\cite{rfc2131}.
+
+\subsection{Metric to detect periodic address durations}
+
+If ISPs intentionally renumber after specific durations, we would
+expect those address durations to be prominent in a distribution
+of all address durations belonging to that ISP. We initially
+considered studying distributions
+of raw address durations, similar to the analyses by
+Maier et al.~\cite{maier2009dominant} and
+Moura et al.~\cite{zmap-dhcp}, but found that short address-durations
+were overrepresented. For example, in Table~\ref{tbl:sample},
+inspecting the cumulative distribution of address
+durations
+would suggest that only half the addresses (3 of 6) were assigned for 24
+hours. However, 
+when trying to reason about the expected duration that an address will
+continue to be assigned to the CPE, we would like to know the fraction
+of total time that each duration accounted for. For example, in
+Table~\ref{tbl:sample}, the CPE was assigned
+24 hour long addresses for roughly three-quarters of the total
+measured time. This latter notion is more useful to find whether an
+ISP is using periodic durations consistently, since the modes at
+intervals on the scale of days will be more visible. 
+
+To capture this notion we
+define a metric, the \emph{total time fraction}. 
+For a given probe and an address duration $d$,
+we define the total time fraction for $d$ as the fraction of time
+spent by the probe in durations of length $d$. We compute the total time fraction for a given probe and a duration
+$d$ by obtaining the total address
+time for the probe, and computing the fraction of the total
+address time that was accounted for by address durations of 
+length $d$. For a probe $p$, if $n(d)$ is the number of times the probe had an address duration
+$d$ and $D$ is an array containing all address durations that were assigned to
+the probe, the total time fraction for the address duration $d$ is
+given by:
+
+$f^p_d =  d \times n(d) / \Sigma(D)$
+
+We use a similar procedure for computing the total time fraction
+considering all probes in an ISP, country, or continent. We believe that  
+the total time fraction offers a better representation of 
+the probability that an address was assigned for a certain
+duration than a simple inspection of the address durations. 
+
+\subsection{Periodic address changes by geography}
+\label{sec:periodic-geography}
+
+\begin{figure}[tb]
+  \begin{center}
+    \includegraphics[width=3in]{addr_change/figs/conts_a_all_ip_durs_connlogs_wtd_cdf}
+  \end{center}
+  \caption{\label{fig:conts_all_durs} 
+    Cumulative distribution of total time fraction by continent. 
+    Modes (vertical segments
+    in the CDF) indicate periodic renumbering.  Addresses in North America
+    are relatively long lived and free of periodic renumbering.}
+\end{figure}
+
+We begin by inspecting how address durations vary across continents.
+We expected that address scarcity might affect address durations,
+leading to longer durations in North America and shorter durations in
+Asia.  We use RIPE Atlas's probe database to find the country to which
+each probe belongs. Next, we aggregate the address durations of probes
+by their respective countries and subsequently, to their continents.
+Figure~\ref{fig:conts_all_durs} shows the cumulative distribution of
+the total time fraction for each continent, i.e., the y-axis shows the
+fraction of total address duration accounted for by durations less
+than the x-axis value.
+The number in
+parentheses in the legend for each continent shows the total
+ address duration for that continent in years ($\Sigma(D)$).
+
+In Europe, Asia, Africa, and South America, address durations exhibit
+well-defined modes, mostly at intervals that are multiples of 24
+hours. The most common mode is exactly at 24 hours: the total time
+fraction for European addresses at 24 hours is 0.16, African addresses
+is also 0.16, and Asian addresses is 0.07.  One week address durations
+are also common in Europe, with the total time fraction at 1 week
+equaling 0.08.  South American addresses exhibit multiple modes: their
+total time fraction is 0.11 at 12 hours, 0.07 at 28 hours, 0.09 at 48
+hours, and 0.03 at 192 hours (8 days).
+
+The curves for North America and Oceania do not have well-defined
+modes, suggesting that ISPs in these continents do not periodically
+change addresses. Further, North American probes typically retain
+their dynamic addresses for much longer durations than other
+continents; North American addresses spent more than half of the total
+time in address durations longer than 50 days. This suggests that IP
+addresses can be used as end-host identifiers in North America for
+several weeks.
+
+\begin{comment}
+
+\subsubsection{Which countries are most likely to have periodic address changes?}
+
+\begin{figure}[tb]
+  % \centering
+  \begin{center}
+    \includegraphics[width=3in]{addr_change/figs/top_periodic_ctrys_a_all_ip_durs_connlogs_wtd_cdf}
+  \end{center}
+  \caption{\label{fig:top_ctrys_periodic_all_durs}
+    Cumulative distribution of total time fraction per country for the
+    countries that had the most periodic addresses. The use of 24 hour
+    durations could be geographically correlated, with German,
+    Austrian and Polish addresses spending large proportions of their
+    total time in this 24 hour durations.
+  }
+\end{figure}
+
+Next, we examine which countries were most likely to have dynamic
+addresses with periodic durations. Among all countries for which we
+had at least 10 years of cumulative address durations, we found the
+countries which had the highest proportion of addresses that appeared
+periodic. To determine if addresses appeared periodic, we found
+address durations that were within an hour of each other, summed
+them, and found what proportion of total duration this sum
+constituted. For these countries, we show the 
+cumulative distribution of total time fractions per duration
+aggregated per country in Figure~\ref{fig:top_ctrys_periodic_all_durs}.
+
+German and Austrian address durations have total time fractions
+exceeding 0.5 at 24 hours, and Polish address durations observe a
+smaller mode of 0.17 at 24 hours. 24 hour durations are not limited to
+Central Europe, however; Kazakhstan also observes a total time
+fraction of 0.42 at 24 hours. French addresses have a total time
+fraction of 0.03 at 24 hours but observe a much larger mode of 0.47 at
+168 hours (1 week).
+
+\end{comment}
+
+\subsection{Periodic address changes by AS}
+\label{sec:periodic-as}
+We next considered whether the configuration decision to
+renumber periodically was uniform across an AS, or could
+reflect some other feature. For example, periodic
+renumbering could be a result of an unexpected
+cron job on the RIPE Atlas probe or a faulty DHCP client that
+could not renew. Periodic renumbering could be due to government
+regulations in countries, perhaps as a privacy measure. It could also
+simply reflect ISP policy, perhaps to hinder users from running web servers as anecdotal
+evidence suggests~\cite{forcedseparation}.  % If it were concentrated in some ASes and
+% absent in others, that would convince us that the behavior is
+% a feature, not a bug.
+Investigating AS-level behavior can inform whether the periodic renumbering
+behavior is concentrated in some ASes and absent in others, shedding light on its potential cause.
+
+
+\begin{figure}[tb]
+  % \centering
+  \begin{center}
+    \includegraphics[width=3in]{addr_change/figs/top_asns_a_all_ip_durs_connlogs_wtd_cdf}
+  \end{center}
+  \caption{\label{fig:top_asns_all_durs}    
+    Cumulative distribution of total time fractions for 
+    ASes with most RIPE Atlas probes
+    that yielded at least one address duration. Probes from Orange and
+    DTAG spent more than half of their total duration in periodic
+    durations of 1 week and 1 day respectively. BT also showed evidence
+    of periodic renumbering with a mode at two weeks. On the other
+    hand, LGI and Verizon have no modes at any durations, and spent
+    most of their total time in durations that were weeks long.
+  }
+\end{figure}
+
+\subsubsection{Is periodic renumbering prevalent across all ISPs?}
+
+We first investigate the ASes with the largest deployment of RIPE
+Atlas probes where we detected at least two instances of address
+changes. Recall that we only obtain an address duration when the
+address began and ended during the interval we studied, so that a
+minimum of two address changes are necessary for a probe to yield an
+address duration.  Figure~\ref{fig:top_asns_all_durs} shows the
+cumulative distribution of total time fractions
+for the five autonomous systems
+with the most probes that yielded address durations. In this figure, Orange, an ISP from France, appears to change addresses
+after a duration of 168 hours (1 week): 55\% of its total
+address duration was a week long. The German ISP, Deutsche Telekom AG (DTAG)
+reassigns addresses after 24 hours: 76\% of the total address duration
+lies in that mode. British
+Telecom (BT) has a mode at 336 hours (2 weeks) with 13\% of its
+total duration being in 2 week intervals. We study these ASes further
+in Section~\ref{sec:periodic_asns}.
+
+The other two ISPs do not exhibit any evidence of periodic
+renumbering. Liberty Global, an ISP to which probes spread
+across Europe belong, does not appear to change addresses periodically
+and neither does Verizon (US). Among these ASes, Verizon
+has the longest address durations.
+
+Since periodic renumbering behavior is widespread in some ISPs and
+non-existent in others, we conclude that the cause of periodic renumbering is likely ISP
+policy. 
+
+\subsubsection{Is periodic renumbering geographically correlated?}
+\label{sec:germany}
+
+\begin{figure}[tb]
+  % \centering
+  \begin{center}
+    \includegraphics[width=3in]{addr_change/figs/DE_asns_a_all_ip_durs_connlogs_wtd_cdf}
+  \end{center}
+  \caption{\label{fig:DE_asns_all_durs}
+    Cumulative distribution of total time fractions for ASes in Germany.
+        Many
+      German ISPs appear to change addresses every 24 hours. However,
+      some ISPs have more stable addresses.
+  }
+\end{figure}
+
+
+Next, we investigate how the periodic renumbering behavior of ISPs
+correlates with the country in which they operate. 
+Germany has more than a hundred RIPE Atlas probes deployed across
+several ISPs, thus we study their
+address durations in Figure~\ref{fig:DE_asns_all_durs} for ISPs
+with probes that contributed at least 3 years of total time. 
+Many ISPs in Germany change addresses every 24 hours: 77\% of the duration in DTAG
+(AS 3320), 76\% in Telefonica1 (AS 6805), 74\% in Telefonica2 (AS
+13184), and 29\% in Vodafone (AS 3209), is 24 hours. We observe
+that the 'other' ISPs also have a mode at 24 hours, suggesting that
+German ISPs are particularly likely to renumber every 24
+hours. However, this behavior is not universal: Kabel
+Deutschland (AS 31334) and
+Kabel BW (AS29562) do not exhibit a mode at 24 hours; instead, more than 90\% of their
+total address duration was spent in durations longer than two weeks. 
+
+These results suggest that periodic renumbering behavior can exhibit
+some geographic correlation, but is likely
+largely caused by ISP policy. 
+
+Private communication with a large European ISP confirmed that the ISP renumbers every 24
+hours, since the ISP considers this scheme to be more 'privacy secure' although
+there is no government regulation that forces this feature. The ISP
+also reported that it uses PPPoE instead of DHCP for its DSL
+lines (which accounted for the vast majority of its customers). Since
+periodic behavior would be atypical of DHCP but consistent with PPP
+techniques for address assignment, we speculate that periodic
+renumbering is a property of ISPs that use PPP.
+

@@ -1,0 +1,99 @@
+% \section{Background and Motivation}
+
+\section{Dynamic addressing background}
+
+%@@all: I have fleshed out the Background and Motivation section, with
+%a brief writeup about DHCP and PPP
+
+% An IP address can be used to uniquely identify the end-host it is assigned to
+% until the end-host's address changes for some reason. The duration of
+% time that a dynamic IP address continues to be assigned to the same
+% CPE device depends upon various causes that can induce the assigned IP
+% address to change. In this section, we present techniques used for
+% assigning dynamic addresses and the events and
+% agents involved in dynamic address changes.
+
+An IP address can be used to uniquely identify the end-host it is assigned to
+until the end-host's address changes for some reason. The duration of
+time that a dynamic IP address continues to be assigned to the same
+CPE (Customer Premises Equipment) device depends upon various causes that can induce the assigned IP
+address to change. Here, I present techniques used for
+assigning dynamic addresses and the events and
+agents involved in dynamic address changes.
+
+
+\subsection{Dynamic Host Configuration Protocol}
+
+ISPs often use the Dynamic Host Configuration Protocol
+(DHCP)~\cite{rfc2131} for IP address assignment. DHCP issues an IP address to a host for a lease
+duration configured by the ISP. The host will try to renew the lease
+before it expires, typically half-way into the lease. However,
+whether the same IP address is renewed, or a different one is
+assigned, depends upon ISP policy.  We speculate that the
+typical behavior of ISPs using DHCP is to renew the lease of the
+currently assigned IP address, since one of the stated design goals
+in the DHCP specification is that a DHCP client should be assigned the same address
+in response to each request, whenever possible. Thus, we typically
+only expect an ISP using DHCP, to change the address of a CPE, if
+something happens to prevent the CPE from renewing its lease (like an outage).
+
+% Further, on
+% reboot, the previously assigned address may be reassigned, or
+% alternately a new address may be issued, again, as dicated by ISP
+% policy.
+
+\subsection{Point-to-Point Protocol}
+
+In some networks, end-hosts connect to an ISP using
+point-to-point links. For these networks, the Point-to-Point Protocol
+(PPP) first configures and establishes the point-to-point link~\cite{rfc1661}. Next,
+a Network Control Protocol (NCP) like the Internet Protocol Control
+Protocol (IPCP) configures IP addresses~\cite{rfc1332}. The PPP specification
+notes that the link will remain configured for communication until the
+link is actively closed down through network administrator
+intervention or when an inactivity timer expires.
+
+\subsection{Potential dynamic address change causes} 
+
+Next, we identify the reasons dynamic addresses assigned using
+the above techniques could change. We classify the following categories of address change:
+
+\begin{itemize}
+\item{\textbf{Changes after outages}} If the client is
+  disconnected or loses power long enough to fail to renew a DHCP lease,
+  its address may be assigned to another; when it returns,
+  it may then get a new address. We call such changes
+  \emph{outage-caused address changes}.
+
+\item{\textbf{Changes after reboot/reconnect}} While we
+  expect addresses assigned through traditional DHCP to change only when the
+  outage duration is long enough to prevent lease renewal, addresses
+  assigned through PPP can change upon outages of any duration. Any reboot or
+  network reconnect event could cause the client
+  to forget its prior address and request a new one, or the
+  state associated with a connection may be lost.
+  We call such
+  address changes \emph{reboot-caused address changes}. 
+  
+  % We make no
+  % distinction between very short power outages and reboots.
+
+\item{\textbf{Administrative address changes}} A purpose of
+  dynamic address assignment is to allow reconfiguration of
+  the network; it is possible that a reconfiguration of the
+  DHCP server will force a change to the subnet on which the
+  client lies.  We expect such reassignment to be rare.
+  
+\item{\textbf{Periodic address changes}} We observe that
+  some ISPs limit the session length associated with an
+  address, causing a reassignment after a fixed duration,
+  typically one day to one week depending on the ISP.
+\end{itemize}
+
+% We believe these four categories should cover all IP address
+% changes we observed.  
+Intuitively, the address change is
+either caused by the ISP (administrative or periodic), or
+caused by the client (or an interruption in network service
+to the client) in a reboot or outage.
+
