@@ -2,7 +2,7 @@
 
 \newcommand{\planetlab}{PlanetLab\xspace}
 
-% \renewcommand\thesubfigure{(\alph{subfigure})}
+\renewcommand\thesubfigure{(\alph{subfigure})}
 
 %\usepackage{algorithm}s}
 \title{Analyzing Internet reliability remotely with probing-based techniques}
@@ -20,6 +20,8 @@
 %    a piece in TeX and TUG News, Vol. 2, 1993.
 \newcommand\Tstrut{\rule{0pt}{2.2ex}}         % = `top' strut
 \newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   % = `bottom' strut
+
+\newcommand{\figdone}{} % \textcolor{blue}{FINAL}}
 
 \maketitle
 
@@ -49,10 +51,13 @@
 \input{addr_change/ns}
 \input{addr_change_conclusion}
 
-\label{cpt:weather}
 \input{weather_intro}
 \input{weather/intro}
 \input{weather/data}
+\input{weather/method}
+\input{weather/analysis_weather}
+%\input{weather/related}
+\input{weather_conclusion}
 
 \input{corrfails_intro}
 

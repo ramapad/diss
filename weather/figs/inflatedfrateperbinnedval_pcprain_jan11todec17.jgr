@@ -1,0 +1,118 @@
+
+newgraph
+
+xaxis 
+log
+size 4
+label fontsize 13
+hash_labels fontsize 11
+
+label : Hourly rain precipitation (inches)
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 0.005
+hash_label at 0.005 : 0
+hash_at 0.01
+hash_label at 0.01 : 0.01
+hash_at 0.05
+hash_label at 0.05 : 0.05
+hash_at 0.1
+hash_label at 0.1 : 0.1
+hash_at 0.5
+hash_label at 0.5 : 0.5
+hash_at 1
+hash_label at 1 : 1
+min 0.004
+
+newcurve marktype none linetype dashed color 0 0 0 pts 0.004 0 4.260000 0
+yaxis 
+size 3
+label fontsize 12
+hash_labels fontsize 11
+
+label : Inflation in hourly P(Dropout)
+hash_at 0.006
+hash_label at 0.006 : 1 per week
+hash_at 0.0417
+hash_label at 0.0417 : 1 per day
+
+newcurve marktype cross linetype none color 0.2 0.8 0.1 label : Sat
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.005 -0.0128166286822 -0.0130273213651 -0.0126059359992
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.01 0.00794529304937 0.00745777471085 0.00843281138789
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.02 0.00879951557501 0.0081659528284 0.00943307832162
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.03 0.0107838522407 0.0100192313634 0.011548473118
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.04 0.0109924882214 0.0101193631619 0.0118656132809
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.05 0.0128316762849 0.011816622506 0.0138467300638
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.07 0.0126138437954 0.0117818233226 0.0134458642683
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.13 0.017663410139 0.0169649914972 0.0183618287808
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.26 0.0281603604136 0.0272008415886 0.0291198792386
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 0.52 0.0385024523673 0.0367562270152 0.0402486777193
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 1.03 0.0583957682066 0.0544189656739 0.0623725707392
+newcurve marktype cross linetype solid color 0.2 0.8 0.1 y_epts 2.05 0.0847736682859 0.0727308543858 0.096816482186
+newcurve marktype circle linetype none color 0.8 0 0 label : WISP
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.005 -0.00188352955152 -0.00195192937946 -0.00181512972358
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.01 0.000204063878849 5.48175290965e-05 0.000353310228602
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.02 0.000743705812357 0.000548450260968 0.000938961363746
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.03 0.00111806435901 0.000879899091444 0.00135622962658
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.04 0.0030341743149 0.00272932198282 0.00333902664699
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.05 0.00273813738878 0.00239690479646 0.00307936998109
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.07 0.00229596198213 0.00202424810583 0.00256767585844
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.13 0.0037617898054 0.00352514475667 0.00399843485414
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.26 0.00565904346976 0.00532753534084 0.00599055159868
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 0.52 0.0117520570865 0.010972315339 0.0125317988341
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 1.03 0.0116292627727 0.00997989163863 0.0132786339068
+newcurve marktype circle linetype solid color 0.8 0 0 y_epts 2.06 0.0290853694787 0.0233851074403 0.0347856315171
+newcurve marktype triangle linetype none color 0.2 0.2 0.8 label : All
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.005 -0.0011169382505 -0.00113017782818 -0.00110369867282
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.01 0.000374663436259 0.000344166641301 0.000405160231217
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.02 0.000514584978521 0.000475456473169 0.000553713483873
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.03 0.000593994308868 0.000547671350115 0.000640317267621
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.04 0.000709760174313 0.000656920026087 0.000762600322538
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.05 0.000953219425656 0.00089252762462 0.00101391122669
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.07 0.000867976156379 0.000819187202104 0.000916765110654
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.13 0.00167905160741 0.00163800303467 0.00172010018015
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.26 0.00271767124875 0.00266348297403 0.00277185952346
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 0.52 0.00574316646464 0.00563390023259 0.00585243269668
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 1.03 0.0105311696931 0.0102643841039 0.0107979552822
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 2.05 0.0181789850087 0.0173388652372 0.0190191047802
+newcurve marktype triangle linetype solid color 0.2 0.2 0.8 y_epts 4.2 0.0125211652168 0.00961140757268 0.015430922861
+newcurve marktype diamond linetype none color 0.65 0.65 0.2 label : DSL
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.005 -0.000923487828515 -0.000945399272523 -0.000901576384507
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.01 0.000402760707351 0.000351722917163 0.000453798497539
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.02 0.00059074428478 0.000525078701789 0.000656409867771
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.03 0.000672298098647 0.000594060800015 0.00075053539728
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.04 0.000609015043639 0.000521449593534 0.000696580493744
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.05 0.000771724612222 0.000671381052334 0.00087206817211
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.07 0.000993175981487 0.000910445293401 0.00107590666957
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.13 0.00128082683221 0.00121437727064 0.00134727639379
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.26 0.00173281413901 0.00164735584496 0.00181827243305
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 0.52 0.00316437224063 0.00299851142659 0.00333023305466
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 1.03 0.00567110945806 0.00526755941888 0.00607465949723
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 2.06 0.0117593085039 0.0104290051952 0.0130896118125
+newcurve marktype diamond linetype solid color 0.65 0.65 0.2 y_epts 4.2 0.0164280596927 0.0105217528464 0.022334366539
+newcurve marktype x linetype none color 0.1 0.65 0.65 label : Cable
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.005 -0.00085050438386 -0.000868630135412 -0.000832378632309
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.01 3.4580286559e-05 -4.62777343548e-06 7.37883465536e-05
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.02 0.000176490088483 0.000125413045976 0.00022756713099
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.03 0.000293696182041 0.000232960218099 0.000354432145983
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.04 0.000192922940745 0.000125357935856 0.000260487945634
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.05 0.000611801708273 0.00053055734395 0.000693046072596
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.07 0.000465564413092 0.000401192452631 0.000529936373553
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.13 0.00110126759571 0.00104571138885 0.00115682380257
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.26 0.00275281142851 0.00267176466679 0.00283385819023
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 0.52 0.0069217694858 0.00674081509363 0.00710272387797
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 1.03 0.0126603013471 0.0122066402076 0.0131139624866
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 2.06 0.0218178002332 0.0203523391439 0.0232832613225
+newcurve marktype x linetype solid color 0.1 0.65 0.65 y_epts 4.2 0.0153326570763 0.0102464532161 0.0204188609366
+newcurve marktype box linetype none color 0.65 0.3 0.65 label : Fiber
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.005 -0.000464941163173 -0.000500807898788 -0.000429074427558
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.01 0.000175683367241 9.32750934672e-05 0.000258091641015
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.02 0.000139245495648 3.78172356418e-05 0.000240673755655
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.03 0.000393068343561 0.000264671090303 0.000521465596818
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.04 0.000423731387779 0.000280597813156 0.000566864962403
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.05 0.000299206031094 0.000141082721187 0.000457329341002
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.07 0.000537013632994 0.000399937258146 0.000674090007842
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.13 0.000624538377747 0.000512970815304 0.00073610594019
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.26 0.00103113380785 0.000881559618582 0.00118070799713
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 0.52 0.00342733386565 0.00307337641593 0.00378129131536
+newcurve marktype box linetype solid color 0.65 0.3 0.65 y_epts 1.03 0.00202364030742 0.00142830070164 0.00261897991321

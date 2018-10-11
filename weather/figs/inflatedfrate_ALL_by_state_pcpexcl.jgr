@@ -1,0 +1,657 @@
+
+newgraph
+
+xaxis 
+size 12
+label fontsize 13
+hash_labels fontsize 9
+
+label : 
+min 0 max 52
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 1
+hash_label at 1 : HI
+hash_at 2
+hash_label at 2 : AK
+hash_at 3
+hash_label at 3 : OR
+hash_at 4
+hash_label at 4 : WA
+hash_at 5
+hash_label at 5 : CA
+hash_at 6
+hash_label at 6 : NV
+hash_at 7
+hash_label at 7 : ID
+hash_at 8
+hash_label at 8 : AZ
+hash_at 9
+hash_label at 9 : MT
+hash_at 10
+hash_label at 10 : UT
+hash_at 11
+hash_label at 11 : NM
+hash_at 12
+hash_label at 12 : CO
+hash_at 13
+hash_label at 13 : WY
+hash_at 14
+hash_label at 14 : ND
+hash_at 15
+hash_label at 15 : SD
+hash_at 16
+hash_label at 16 : TX
+hash_at 17
+hash_label at 17 : OK
+hash_at 18
+hash_label at 18 : NE
+hash_at 19
+hash_label at 19 : KS
+hash_at 20
+hash_label at 20 : IA
+hash_at 21
+hash_label at 21 : MN
+hash_at 22
+hash_label at 22 : AR
+hash_at 23
+hash_label at 23 : MO
+hash_at 24
+hash_label at 24 : LA
+hash_at 25
+hash_label at 25 : MS
+hash_at 26
+hash_label at 26 : IL
+hash_at 27
+hash_label at 27 : WI
+hash_at 28
+hash_label at 28 : TN
+hash_at 29
+hash_label at 29 : AL
+hash_at 30
+hash_label at 30 : IN
+hash_at 31
+hash_label at 31 : KY
+hash_at 32
+hash_label at 32 : MI
+hash_at 33
+hash_label at 33 : GA
+hash_at 34
+hash_label at 34 : FL
+hash_at 35
+hash_label at 35 : OH
+hash_at 36
+hash_label at 36 : WV
+hash_at 37
+hash_label at 37 : SC
+hash_at 38
+hash_label at 38 : NC
+hash_at 39
+hash_label at 39 : VA
+hash_at 40
+hash_label at 40 : DC
+hash_at 41
+hash_label at 41 : PA
+hash_at 42
+hash_label at 42 : MD
+hash_at 43
+hash_label at 43 : DE
+hash_at 44
+hash_label at 44 : NJ
+hash_at 45
+hash_label at 45 : NY
+hash_at 46
+hash_label at 46 : CT
+hash_at 47
+hash_label at 47 : VT
+hash_at 48
+hash_label at 48 : NH
+hash_at 49
+hash_label at 49 : RI
+hash_at 50
+hash_label at 50 : MA
+hash_at 51
+hash_label at 51 : ME
+
+yaxis 
+size 2.5
+label fontsize 13
+hash_labels fontsize 11
+
+label : Inflation in hourly P(Dropout)
+min -0.005 max 0.021
+hash_at 0.006
+hash_label at 0.006 : 1 per week
+
+legend defaults x 1 y 0.0197894736842 hjl vjt fontsize 11
+
+newcurve marktype x color 0.8 0.4 0.2 label : Thunderstorm
+newcurve marktype diamond color 0.2 0.5 0.8 label : Rain
+newcurve marktype box color 0.65 0.65 0.65 label : Snow
+newcurve marktype none linetype dashed color 0 0 0 pts 0 0 52 0
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 4 0.010623 0.009398 0.011848
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 43 0.003157 0.002663 0.003651
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 40 0.002918 0.002551 0.003285
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 27 0.003065 0.002736 0.003395
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 36 0.008216 0.007656 0.008775
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 1 0.011232 0.009161 0.013302
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 34 0.002716 0.00254 0.002892
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 13 0.006301 0.005493 0.007108
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 48 0.004871 0.003998 0.005745
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 44 0.001673 0.001353 0.001993
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 11 0.005161 0.004681 0.005641
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 16 0.008288 0.008125 0.008452
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 24 0.004089 0.003872 0.004307
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 38 0.005966 0.005644 0.006288
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 14 0.016371 0.014792 0.017951
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 18 0.011348 0.011009 0.011687
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 28 0.005022 0.00482 0.005224
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 45 0.005483 0.005043 0.005924
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 41 0.007793 0.007505 0.008081
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 49 0.008154 0.006638 0.009669
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 6 0.001113 0.000438 0.001788
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 39 0.005319 0.005018 0.005619
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 12 0.003661 0.00341 0.003911
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 2 0.000281 -0.00282 0.003381
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 29 0.005385 0.005116 0.005654
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 22 0.010862 0.010575 0.011149
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 47 0.012996 0.011792 0.014199
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 26 0.005852 0.005672 0.006033
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 33 0.003332 0.003123 0.003542
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 30 0.006622 0.006362 0.006883
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 20 0.009301 0.008991 0.009611
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 50 0.005189 0.004751 0.005628
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 8 0.004603 0.003922 0.005283
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 5 0.004456 0.003815 0.005097
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 7 0.006925 0.006065 0.007785
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 46 0.003697 0.002977 0.004416
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 51 0.014494 0.013257 0.015731
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 42 0.003847 0.003195 0.004499
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 17 0.012064 0.011732 0.012396
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 35 0.010036 0.009706 0.010365
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 10 0.00384 0.003404 0.004276
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 23 0.006287 0.006082 0.006493
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 21 0.00991 0.00957 0.01025
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 32 0.010012 0.009664 0.01036
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 19 0.005359 0.004993 0.005726
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 9 0.006191 0.005356 0.007025
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 25 0.006601 0.006154 0.007048
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 37 0.004875 0.004567 0.005183
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 31 0.008276 0.007989 0.008562
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 3 0.004074 0.00312 0.005029
+newcurve marktype x linetype solid color 0.8 0.4 0.2 y_epts 15 0.018598 0.017092 0.020103
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 4 -9.4e-05 -0.000144 -4.4e-05
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 43 0.000252 0.000147 0.000358
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 40 0.000915 0.000813 0.001017
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 27 0.001869 0.001744 0.001995
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 36 0.001095 0.00098 0.00121
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 1 0.004534 0.004119 0.004948
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 34 -0.000489 -0.000566 -0.000411
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 13 0.000548 0.00035 0.000746
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 48 0.001411 0.001282 0.001541
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 44 0.000495 0.000432 0.000557
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 11 0.000924 0.000738 0.00111
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 16 0.001911 0.001836 0.001987
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 24 0.001272 0.001161 0.001382
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 2 -8.9e-05 -0.000246 6.8e-05
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 38 9e-05 8e-06 0.000172
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 14 0.0026 0.002295 0.002906
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 18 0.002197 0.002042 0.002352
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 28 0.000895 0.000832 0.000957
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 45 0.001314 0.001238 0.00139
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 41 0.000793 0.000743 0.000843
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 49 0.001598 0.00142 0.001776
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 6 0.001608 0.001322 0.001893
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 39 0.001059 0.000994 0.001125
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 12 0.000434 0.000332 0.000537
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 5 0.001172 0.001126 0.001219
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 29 0.000694 0.000592 0.000796
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 22 0.002137 0.002027 0.002246
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 47 0.002118 0.001929 0.002306
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 26 0.000651 0.000587 0.000715
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 33 -5.8e-05 -0.000122 6e-06
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 30 0.000769 0.000694 0.000844
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 20 0.00123 0.001109 0.00135
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 50 0.000579 0.000528 0.00063
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 8 0.000132 -0.000175 0.00044
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 7 0.00065 0.000504 0.000796
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 46 0.001062 0.000957 0.001166
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 51 0.003221 0.003087 0.003354
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 42 -0.000126 -0.00024 -1.1e-05
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 17 0.001751 0.001609 0.001893
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 35 0.001691 0.001605 0.001778
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 10 -3.9e-05 -0.000154 7.6e-05
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 23 0.001477 0.001389 0.001565
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 21 0.001862 0.001745 0.001978
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 32 0.000832 0.000759 0.000905
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 19 0.00127 0.001073 0.001467
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 9 0.000699 0.000583 0.000815
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 25 0.002017 0.001818 0.002215
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 37 -0.000321 -0.000392 -0.000251
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 31 0.000504 0.000423 0.000584
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 3 0.000264 0.000204 0.000323
+newcurve marktype diamond linetype solid color 0.2 0.5 0.8 y_epts 15 0.004181 0.003729 0.004633
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 4 0.000676 0.000533 0.000819
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 43 8.9e-05 -0.000119 0.000298
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 40 -0.000297 -0.000478 -0.000115
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 27 0.002646 0.002527 0.002764
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 36 -0.000904 -0.001022 -0.000785
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 13 -0.000324 -0.000462 -0.000186
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 48 0.000343 0.000229 0.000457
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 44 9.4e-05 -8e-06 0.000196
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 11 0.000283 6.3e-05 0.000503
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 16 0.005761 0.005374 0.006147
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 24 0.006664 0.005389 0.00794
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 2 -0.001014 -0.001184 -0.000844
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 38 -0.000152 -0.000406 0.000102
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 14 0.000121 -8.7e-05 0.000328
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 18 -0.000315 -0.000456 -0.000175
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 28 -0.000126 -0.00025 -3e-06
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 45 0.002109 0.002014 0.002204
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 41 0.000151 9.7e-05 0.000206
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 49 0.000858 0.000607 0.001109
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 6 0.000732 0.000275 0.001189
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 39 0.000374 0.000239 0.000508
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 12 0.000345 0.000279 0.000411
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 5 0.002004 0.001765 0.002244
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 29 0.001758 0.001249 0.002267
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 22 0.003134 0.00266 0.003609
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 47 -0.000179 -0.000312 -4.7e-05
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 26 -0.0015 -0.001565 -0.001435
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 33 0.0009 0.000584 0.001216
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 30 -0.000669 -0.000748 -0.000591
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 20 -0.001303 -0.00141 -0.001197
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 17 0.001731 0.001371 0.00209
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 8 -0.003848 -0.004574 -0.003122
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 7 -0.001708 -0.00185 -0.001565
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 46 -0.000164 -0.000281 -4.6e-05
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 51 -0.000279 -0.000374 -0.000183
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 42 -0.000545 -0.00076 -0.000329
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 50 0.000193 0.000129 0.000257
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 35 -0.000518 -0.000603 -0.000434
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 10 -0.00015 -0.000272 -2.7e-05
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 23 -0.000204 -0.000331 -7.6e-05
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 21 -4.5e-05 -0.000128 3.8e-05
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 32 -0.000506 -0.000563 -0.000449
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 19 0.000731 0.000465 0.000996
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 9 -0.000213 -0.000303 -0.000122
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 25 0.011744 0.010197 0.013291
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 37 0.00181 0.001412 0.002208
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 31 -0.000911 -0.001035 -0.000786
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 3 0.000145 -0.000105 0.000395
+newcurve marktype box linetype solid color 0.65 0.65 0.65 y_epts 15 -0.000416 -0.000708 -0.000125
+newgraph y_translate -2 yaxis grid_lines grid_gray 0.8 size 1.6 max 1.0 min 0 label : Fraction of link types
+xaxis 
+size 12
+label fontsize 13
+hash_labels fontsize 9
+
+label : U.S. state (sorted by longitude of state capital)
+min 0 max 52
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 1
+hash_label at 1 : HI
+hash_at 2
+hash_label at 2 : AK
+hash_at 3
+hash_label at 3 : OR
+hash_at 4
+hash_label at 4 : WA
+hash_at 5
+hash_label at 5 : CA
+hash_at 6
+hash_label at 6 : NV
+hash_at 7
+hash_label at 7 : ID
+hash_at 8
+hash_label at 8 : AZ
+hash_at 9
+hash_label at 9 : MT
+hash_at 10
+hash_label at 10 : UT
+hash_at 11
+hash_label at 11 : NM
+hash_at 12
+hash_label at 12 : CO
+hash_at 13
+hash_label at 13 : WY
+hash_at 14
+hash_label at 14 : ND
+hash_at 15
+hash_label at 15 : SD
+hash_at 16
+hash_label at 16 : TX
+hash_at 17
+hash_label at 17 : OK
+hash_at 18
+hash_label at 18 : NE
+hash_at 19
+hash_label at 19 : KS
+hash_at 20
+hash_label at 20 : IA
+hash_at 21
+hash_label at 21 : MN
+hash_at 22
+hash_label at 22 : AR
+hash_at 23
+hash_label at 23 : MO
+hash_at 24
+hash_label at 24 : LA
+hash_at 25
+hash_label at 25 : MS
+hash_at 26
+hash_label at 26 : IL
+hash_at 27
+hash_label at 27 : WI
+hash_at 28
+hash_label at 28 : TN
+hash_at 29
+hash_label at 29 : AL
+hash_at 30
+hash_label at 30 : IN
+hash_at 31
+hash_label at 31 : KY
+hash_at 32
+hash_label at 32 : MI
+hash_at 33
+hash_label at 33 : GA
+hash_at 34
+hash_label at 34 : FL
+hash_at 35
+hash_label at 35 : OH
+hash_at 36
+hash_label at 36 : WV
+hash_at 37
+hash_label at 37 : SC
+hash_at 38
+hash_label at 38 : NC
+hash_at 39
+hash_label at 39 : VA
+hash_at 40
+hash_label at 40 : DC
+hash_at 41
+hash_label at 41 : PA
+hash_at 42
+hash_label at 42 : MD
+hash_at 43
+hash_label at 43 : DE
+hash_at 44
+hash_label at 44 : NJ
+hash_at 45
+hash_label at 45 : NY
+hash_at 46
+hash_label at 46 : CT
+hash_at 47
+hash_label at 47 : VT
+hash_at 48
+hash_label at 48 : NH
+hash_at 49
+hash_label at 49 : RI
+hash_at 50
+hash_label at 50 : MA
+hash_at 51
+hash_label at 51 : ME
+
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 1 0.24705139856
+ label : Fiber
+newcurve marktype xbar color 0.1 0.65 0.65 pts 1 0.24705139856
+ label : Satellite
+newcurve marktype xbar color 0.8 0 0 pts 1 0.223193503843
+ label : WISP
+newcurve marktype xbar color 0.4 0.9 0.3 pts 1 0.223150389376
+ label : Cable
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 1 0.220865322637
+ label : DSL
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 2 0.596807547778
+newcurve marktype xbar color 0.1 0.65 0.65 pts 2 0.596807547778
+newcurve marktype xbar color 0.8 0 0 pts 2 0.590248113962
+newcurve marktype xbar color 0.4 0.9 0.3 pts 2 0.532274389273
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 2 0.0613357471939
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 3 0.727578259709
+newcurve marktype xbar color 0.1 0.65 0.65 pts 3 0.727506319617
+newcurve marktype xbar color 0.8 0 0 pts 3 0.698471845166
+newcurve marktype xbar color 0.4 0.9 0.3 pts 3 0.637519758723
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 3 0.315002624502
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 4 0.787515762758
+newcurve marktype xbar color 0.1 0.65 0.65 pts 4 0.786890872241
+newcurve marktype xbar color 0.8 0 0 pts 4 0.774077334733
+newcurve marktype xbar color 0.4 0.9 0.3 pts 4 0.750953656827
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 4 0.487509033735
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 5 0.749079769221
+newcurve marktype xbar color 0.1 0.65 0.65 pts 5 0.732376823868
+newcurve marktype xbar color 0.8 0 0 pts 5 0.710750265066
+newcurve marktype xbar color 0.4 0.9 0.3 pts 5 0.596999603661
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 5 0.378405852575
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 6 0.651206131318
+newcurve marktype xbar color 0.1 0.65 0.65 pts 6 0.651206131318
+newcurve marktype xbar color 0.8 0 0 pts 6 0.634103426498
+newcurve marktype xbar color 0.4 0.9 0.3 pts 6 0.456643177128
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 6 0.162810890566
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 7 0.585414206657
+newcurve marktype xbar color 0.1 0.65 0.65 pts 7 0.58166998589
+newcurve marktype xbar color 0.8 0 0 pts 7 0.56921101518
+newcurve marktype xbar color 0.4 0.9 0.3 pts 7 0.522805393992
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 7 0.398955239445
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 8 0.740924293625
+newcurve marktype xbar color 0.1 0.65 0.65 pts 8 0.740895540645
+newcurve marktype xbar color 0.8 0 0 pts 8 0.724515427802
+newcurve marktype xbar color 0.4 0.9 0.3 pts 8 0.631494053036
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 8 0.488416344036
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 9 0.423254379445
+newcurve marktype xbar color 0.1 0.65 0.65 pts 9 0.423254379445
+newcurve marktype xbar color 0.8 0 0 pts 9 0.40503638074
+newcurve marktype xbar color 0.4 0.9 0.3 pts 9 0.317566428109
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 9 0.209032297059
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 10 0.575669447278
+newcurve marktype xbar color 0.1 0.65 0.65 pts 10 0.575583605664
+newcurve marktype xbar color 0.8 0 0 pts 10 0.571570316487
+newcurve marktype xbar color 0.4 0.9 0.3 pts 10 0.447743831404
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 10 0.236710489083
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 11 0.788762808968
+newcurve marktype xbar color 0.1 0.65 0.65 pts 11 0.788655298235
+newcurve marktype xbar color 0.8 0 0 pts 11 0.757564296249
+newcurve marktype xbar color 0.4 0.9 0.3 pts 11 0.752498077542
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 11 0.525792914608
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 12 0.739488325508
+newcurve marktype xbar color 0.1 0.65 0.65 pts 12 0.734163616424
+newcurve marktype xbar color 0.8 0 0 pts 12 0.714349050276
+newcurve marktype xbar color 0.4 0.9 0.3 pts 12 0.595115739536
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 12 0.381048530017
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 13 0.573164640257
+newcurve marktype xbar color 0.1 0.65 0.65 pts 13 0.55471355291
+newcurve marktype xbar color 0.8 0 0 pts 13 0.537262060866
+newcurve marktype xbar color 0.4 0.9 0.3 pts 13 0.477250991429
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 13 0.369065214083
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 14 0.502102873462
+newcurve marktype xbar color 0.1 0.65 0.65 pts 14 0.248885597229
+newcurve marktype xbar color 0.8 0 0 pts 14 0.225634717593
+newcurve marktype xbar color 0.4 0.9 0.3 pts 14 0.220432637805
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 14 0.164455897199
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 15 0.409968714543
+newcurve marktype xbar color 0.1 0.65 0.65 pts 15 0.366340264141
+newcurve marktype xbar color 0.8 0 0 pts 15 0.334599588113
+newcurve marktype xbar color 0.4 0.9 0.3 pts 15 0.208181563154
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 15 0.180729107993
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 16 0.687845407415
+newcurve marktype xbar color 0.1 0.65 0.65 pts 16 0.657473372307
+newcurve marktype xbar color 0.8 0 0 pts 16 0.612832490889
+newcurve marktype xbar color 0.4 0.9 0.3 pts 16 0.523894476947
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 16 0.269813690256
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 17 0.835000594315
+newcurve marktype xbar color 0.1 0.65 0.65 pts 17 0.819762712893
+newcurve marktype xbar color 0.8 0 0 pts 17 0.771898392419
+newcurve marktype xbar color 0.4 0.9 0.3 pts 17 0.557040849931
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 17 0.247040407641
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 18 0.582049361334
+newcurve marktype xbar color 0.1 0.65 0.65 pts 18 0.582049361334
+newcurve marktype xbar color 0.8 0 0 pts 18 0.568551769067
+newcurve marktype xbar color 0.4 0.9 0.3 pts 18 0.466904917485
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 18 0.36239930033
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 19 0.611972591294
+newcurve marktype xbar color 0.1 0.65 0.65 pts 19 0.611972591294
+newcurve marktype xbar color 0.8 0 0 pts 19 0.594628638785
+newcurve marktype xbar color 0.4 0.9 0.3 pts 19 0.566114171192
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 19 0.261812536748
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 20 0.755709674088
+newcurve marktype xbar color 0.1 0.65 0.65 pts 20 0.749429338169
+newcurve marktype xbar color 0.8 0 0 pts 20 0.735552695459
+newcurve marktype xbar color 0.4 0.9 0.3 pts 20 0.589546450993
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 20 0.573713145237
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 21 0.691004767527
+newcurve marktype xbar color 0.1 0.65 0.65 pts 21 0.69099220622
+newcurve marktype xbar color 0.8 0 0 pts 21 0.660994295146
+newcurve marktype xbar color 0.4 0.9 0.3 pts 21 0.607439502395
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 21 0.343906878647
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 22 0.867686617647
+newcurve marktype xbar color 0.1 0.65 0.65 pts 22 0.867686617647
+newcurve marktype xbar color 0.8 0 0 pts 22 0.84082381683
+newcurve marktype xbar color 0.4 0.9 0.3 pts 22 0.839062828587
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 22 0.503107966957
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 23 0.832835784583
+newcurve marktype xbar color 0.1 0.65 0.65 pts 23 0.832835295811
+newcurve marktype xbar color 0.8 0 0 pts 23 0.762286491956
+newcurve marktype xbar color 0.4 0.9 0.3 pts 23 0.625255575698
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 23 0.490799383488
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 24 0.813404016485
+newcurve marktype xbar color 0.1 0.65 0.65 pts 24 0.813389551907
+newcurve marktype xbar color 0.8 0 0 pts 24 0.781264572669
+newcurve marktype xbar color 0.4 0.9 0.3 pts 24 0.780127751154
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 24 0.341132581506
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 25 0.788975160825
+newcurve marktype xbar color 0.1 0.65 0.65 pts 25 0.788975160825
+newcurve marktype xbar color 0.8 0 0 pts 25 0.693091581605
+newcurve marktype xbar color 0.4 0.9 0.3 pts 25 0.693091581605
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 25 0.144760779718
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 26 0.714572367707
+newcurve marktype xbar color 0.1 0.65 0.65 pts 26 0.712039673219
+newcurve marktype xbar color 0.8 0 0 pts 26 0.698440400297
+newcurve marktype xbar color 0.4 0.9 0.3 pts 26 0.61495782963
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 26 0.223445703931
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 27 0.773723467651
+newcurve marktype xbar color 0.1 0.65 0.65 pts 27 0.772963846163
+newcurve marktype xbar color 0.8 0 0 pts 27 0.754470375584
+newcurve marktype xbar color 0.4 0.9 0.3 pts 27 0.73934242822
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 27 0.524151765206
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 28 0.794766992014
+newcurve marktype xbar color 0.1 0.65 0.65 pts 28 0.784799422231
+newcurve marktype xbar color 0.8 0 0 pts 28 0.751260904219
+newcurve marktype xbar color 0.4 0.9 0.3 pts 28 0.751243997566
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 28 0.195329441961
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 29 0.843332108119
+newcurve marktype xbar color 0.1 0.65 0.65 pts 29 0.843133056965
+newcurve marktype xbar color 0.8 0 0 pts 29 0.811965523979
+newcurve marktype xbar color 0.4 0.9 0.3 pts 29 0.811965523979
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 29 0.375602231193
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 30 0.663689038905
+newcurve marktype xbar color 0.1 0.65 0.65 pts 30 0.661188102107
+newcurve marktype xbar color 0.8 0 0 pts 30 0.646255499895
+newcurve marktype xbar color 0.4 0.9 0.3 pts 30 0.592436416695
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 30 0.0955661608449
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 31 0.58105983818
+newcurve marktype xbar color 0.1 0.65 0.65 pts 31 0.580503705036
+newcurve marktype xbar color 0.8 0 0 pts 31 0.561470479638
+newcurve marktype xbar color 0.4 0.9 0.3 pts 31 0.52387436815
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 31 0.414331904205
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 32 0.835227471483
+newcurve marktype xbar color 0.1 0.65 0.65 pts 32 0.835226702855
+newcurve marktype xbar color 0.8 0 0 pts 32 0.799359572443
+newcurve marktype xbar color 0.4 0.9 0.3 pts 32 0.730195534825
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 32 0.27025918541
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 33 0.76728668589
+newcurve marktype xbar color 0.1 0.65 0.65 pts 33 0.76728296984
+newcurve marktype xbar color 0.8 0 0 pts 33 0.743604267548
+newcurve marktype xbar color 0.4 0.9 0.3 pts 33 0.739096487967
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 33 0.39196431665
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 34 0.743046647559
+newcurve marktype xbar color 0.1 0.65 0.65 pts 34 0.718333015348
+newcurve marktype xbar color 0.8 0 0 pts 34 0.675013975948
+newcurve marktype xbar color 0.4 0.9 0.3 pts 34 0.659369082286
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 34 0.276319646113
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 35 0.544541255598
+newcurve marktype xbar color 0.1 0.65 0.65 pts 35 0.537252686943
+newcurve marktype xbar color 0.8 0 0 pts 35 0.494691327677
+newcurve marktype xbar color 0.4 0.9 0.3 pts 35 0.42844883633
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 35 0.38350692943
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 36 0.827264016623
+newcurve marktype xbar color 0.1 0.65 0.65 pts 36 0.803101915415
+newcurve marktype xbar color 0.8 0 0 pts 36 0.742788034742
+newcurve marktype xbar color 0.4 0.9 0.3 pts 36 0.732825789343
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 36 0.138788512115
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 37 0.776764540183
+newcurve marktype xbar color 0.1 0.65 0.65 pts 37 0.772833674877
+newcurve marktype xbar color 0.8 0 0 pts 37 0.756134419778
+newcurve marktype xbar color 0.4 0.9 0.3 pts 37 0.755446527418
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 37 0.559957802659
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 38 0.785666228544
+newcurve marktype xbar color 0.1 0.65 0.65 pts 38 0.785476434324
+newcurve marktype xbar color 0.8 0 0 pts 38 0.766453750952
+newcurve marktype xbar color 0.4 0.9 0.3 pts 38 0.754587406748
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 38 0.496324976854
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 39 0.834058364012
+newcurve marktype xbar color 0.1 0.65 0.65 pts 39 0.680651551763
+newcurve marktype xbar color 0.8 0 0 pts 39 0.649714257791
+newcurve marktype xbar color 0.4 0.9 0.3 pts 39 0.638101631575
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 39 0.298824092447
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 40 0.721621292479
+newcurve marktype xbar color 0.1 0.65 0.65 pts 40 0.617128326254
+newcurve marktype xbar color 0.8 0 0 pts 40 0.608962630343
+newcurve marktype xbar color 0.4 0.9 0.3 pts 40 0.608901534067
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 40 0.263586906699
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 41 0.803297688156
+newcurve marktype xbar color 0.1 0.65 0.65 pts 41 0.640086901644
+newcurve marktype xbar color 0.8 0 0 pts 41 0.633884034109
+newcurve marktype xbar color 0.4 0.9 0.3 pts 41 0.628921484076
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 41 0.363564202089
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 42 0.870039384084
+newcurve marktype xbar color 0.1 0.65 0.65 pts 42 0.659648775161
+newcurve marktype xbar color 0.8 0 0 pts 42 0.654565277961
+newcurve marktype xbar color 0.4 0.9 0.3 pts 42 0.628037640971
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 42 0.301300205011
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 43 0.803092405407
+newcurve marktype xbar color 0.1 0.65 0.65 pts 43 0.645953291582
+newcurve marktype xbar color 0.8 0 0 pts 43 0.640443230529
+newcurve marktype xbar color 0.4 0.9 0.3 pts 43 0.640068866813
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 43 0.167044871732
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 44 0.529782218857
+newcurve marktype xbar color 0.1 0.65 0.65 pts 44 0.358427185061
+newcurve marktype xbar color 0.8 0 0 pts 44 0.35743934768
+newcurve marktype xbar color 0.4 0.9 0.3 pts 44 0.350796357404
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 44 0.186404536965
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 45 0.666255752183
+newcurve marktype xbar color 0.1 0.65 0.65 pts 45 0.431266835962
+newcurve marktype xbar color 0.8 0 0 pts 45 0.40081911968
+newcurve marktype xbar color 0.4 0.9 0.3 pts 45 0.376928902378
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 45 0.33861510397
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 46 0.927314585754
+newcurve marktype xbar color 0.1 0.65 0.65 pts 46 0.888552444868
+newcurve marktype xbar color 0.8 0 0 pts 46 0.887892984126
+newcurve marktype xbar color 0.4 0.9 0.3 pts 46 0.887517949215
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 46 0.0868443175761
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 47 0.825599132355
+newcurve marktype xbar color 0.1 0.65 0.65 pts 47 0.825599132355
+newcurve marktype xbar color 0.8 0 0 pts 47 0.815928684998
+newcurve marktype xbar color 0.4 0.9 0.3 pts 47 0.811776289279
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 47 0.323002245699
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 48 0.723855017111
+newcurve marktype xbar color 0.1 0.65 0.65 pts 48 0.723075328804
+newcurve marktype xbar color 0.8 0 0 pts 48 0.720714077632
+newcurve marktype xbar color 0.4 0.9 0.3 pts 48 0.720658818704
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 48 0.0455667044155
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 49 0.856759345681
+newcurve marktype xbar color 0.1 0.65 0.65 pts 49 0.555603198012
+newcurve marktype xbar color 0.8 0 0 pts 49 0.555590445233
+newcurve marktype xbar color 0.4 0.9 0.3 pts 49 0.491591226762
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 49 0.190988501565
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 50 0.785263818316
+newcurve marktype xbar color 0.1 0.65 0.65 pts 50 0.635258672963
+newcurve marktype xbar color 0.8 0 0 pts 50 0.633703088761
+newcurve marktype xbar color 0.4 0.9 0.3 pts 50 0.624707434095
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 50 0.263857681736
+newcurve marktype xbar color 0.65 0.3 0.65 pattern stripe 140 pts 51 0.655731607908
+newcurve marktype xbar color 0.1 0.65 0.65 pts 51 0.655731607908
+newcurve marktype xbar color 0.8 0 0 pts 51 0.644016772325
+newcurve marktype xbar color 0.4 0.9 0.3 pts 51 0.641914964583
+newcurve marktype xbar color 0.65 0.65 0.2 pattern stripe 30 pts 51 0.613797909894
+legend defaults x 0.7 y 1.06 hjl vjt fontsize 9
+

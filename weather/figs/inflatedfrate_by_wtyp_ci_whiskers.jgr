@@ -1,0 +1,388 @@
+
+newgraph y_translate 2.2
+
+
+xaxis 
+size 6
+no_auto_hash_marks
+no_auto_hash_labels
+min 0
+max 6
+
+
+yaxis 
+log
+size 1
+no_auto_hash_labels
+label : Response centuries
+min 0.001
+hash_at 0.001
+hash_label at 0.001 : 0.001
+hash_at 0.01
+hash_label at 0.01 : 0.01
+hash_at 0.1
+hash_label at 0.1 : 0.1
+hash_at 1
+hash_label at 1 : 1
+hash_at 10
+hash_label at 10 : 10
+hash_at 100
+hash_label at 100 : 100
+
+newcurve marktype xbar color 0.65 0.65 0.2 pts 0.1 0.0141769406393
+newcurve marktype xbar color 0.8 0 0 pts 0.166666666667 21.6231244292
+newcurve marktype xbar color 0.2 0.2 0.85 pts 0.233333333333 14.0070468037
+newcurve marktype xbar color 0.2 0.65 0.65 pts 0.3 31.6137317352
+newcurve marktype xbar color 0.4 0.8 0.8 pts 0.366666666667 112.775131279
+newcurve marktype xbar color 0.8 0.8 0.8 pts 0.433333333333 2.62357420091
+newcurve marktype xbar color 0.5 0.5 0.5 pts 0.5 8.12941780822
+newcurve marktype xbar color 0.2 0.2 0.2 pts 0.566666666667 64.2017054795
+newcurve marktype xbar color 0.5 0.5 0.8 pts 0.633333333333 0.0247283105023
+newcurve marktype xbar color 0.65 0.3 0.65 pts 0.7 4.67733219178
+newcurve marktype xbar color 0.3 0.3 0.65 pts 0.766666666667 3.40330136986
+newcurve marktype xbar color 0.8 0.4 0.1 pts 0.833333333333 42.8704554795
+newcurve marktype xbar color 0.1 0.8 0.5 pts 0.9 251.187482877
+newcurve marktype xbar color 0.65 0.65 0.2 pts 1.1 0.00293378995434
+newcurve marktype xbar color 0.8 0 0 pts 1.16666666667 6.38813127854
+newcurve marktype xbar color 0.2 0.2 0.85 pts 1.23333333333 4.22544520548
+newcurve marktype xbar color 0.2 0.65 0.65 pts 1.3 9.05413584475
+newcurve marktype xbar color 0.4 0.8 0.8 pts 1.36666666667 32.9613675799
+newcurve marktype xbar color 0.8 0.8 0.8 pts 1.43333333333 0.722762557078
+newcurve marktype xbar color 0.5 0.5 0.5 pts 1.5 2.23829109589
+newcurve marktype xbar color 0.2 0.2 0.2 pts 1.56666666667 17.8184052511
+newcurve marktype xbar color 0.5 0.5 0.8 pts 1.63333333333 0.00855936073059
+newcurve marktype xbar color 0.65 0.3 0.65 pts 1.7 1.33252054795
+newcurve marktype xbar color 0.3 0.3 0.65 pts 1.76666666667 0.667159817352
+newcurve marktype xbar color 0.8 0.4 0.1 pts 1.83333333333 10.327803653
+newcurve marktype xbar color 0.1 0.8 0.5 pts 1.9 64.7030776256
+newcurve marktype xbar color 0.65 0.65 0.2 pts 2.1 0.00530936073059
+newcurve marktype xbar color 0.8 0 0 pts 2.16666666667 7.08758105023
+newcurve marktype xbar color 0.2 0.2 0.85 pts 2.23333333333 4.85033333333
+newcurve marktype xbar color 0.2 0.65 0.65 pts 2.3 11.1593721461
+newcurve marktype xbar color 0.4 0.8 0.8 pts 2.36666666667 38.5270308219
+newcurve marktype xbar color 0.8 0.8 0.8 pts 2.43333333333 0.907537671233
+newcurve marktype xbar color 0.5 0.5 0.5 pts 2.5 2.78635730594
+newcurve marktype xbar color 0.2 0.2 0.2 pts 2.56666666667 21.8694280822
+newcurve marktype xbar color 0.5 0.5 0.8 pts 2.63333333333 0.00679452054795
+newcurve marktype xbar color 0.65 0.3 0.65 pts 2.7 1.79787214612
+newcurve marktype xbar color 0.3 0.3 0.65 pts 2.76666666667 1.0733847032
+newcurve marktype xbar color 0.8 0.4 0.1 pts 2.83333333333 14.9987294521
+newcurve marktype xbar color 0.1 0.8 0.5 pts 2.9 87.7936289954
+newcurve marktype xbar color 0.8 0 0 pts 3.16666666667 0.531260273973
+newcurve marktype xbar color 0.2 0.2 0.85 pts 3.23333333333 0.587982876712
+newcurve marktype xbar color 0.2 0.65 0.65 pts 3.3 1.3026369863
+newcurve marktype xbar color 0.4 0.8 0.8 pts 3.36666666667 4.68447374429
+newcurve marktype xbar color 0.8 0.8 0.8 pts 3.43333333333 0.13877283105
+newcurve marktype xbar color 0.5 0.5 0.5 pts 3.5 0.336714611872
+newcurve marktype xbar color 0.2 0.2 0.2 pts 3.56666666667 2.34106050228
+newcurve marktype xbar color 0.65 0.3 0.65 pts 3.7 0.189583333333
+newcurve marktype xbar color 0.3 0.3 0.65 pts 3.76666666667 0.091196347032
+newcurve marktype xbar color 0.8 0.4 0.1 pts 3.83333333333 1.00842237443
+newcurve marktype xbar color 0.1 0.8 0.5 pts 3.9 9.02662100457
+newcurve marktype xbar color 0.65 0.65 0.2 pts 4.1 0.000795662100457
+newcurve marktype xbar color 0.8 0 0 pts 4.16666666667 1.27250684932
+newcurve marktype xbar color 0.2 0.2 0.85 pts 4.23333333333 0.499243150685
+newcurve marktype xbar color 0.2 0.65 0.65 pts 4.3 1.383706621
+newcurve marktype xbar color 0.4 0.8 0.8 pts 4.36666666667 5.16930593607
+newcurve marktype xbar color 0.8 0.8 0.8 pts 4.43333333333 0.122852739726
+newcurve marktype xbar color 0.5 0.5 0.5 pts 4.5 0.415030821918
+newcurve marktype xbar color 0.2 0.2 0.2 pts 4.56666666667 3.37432077626
+newcurve marktype xbar color 0.65 0.3 0.65 pts 4.7 0.169535388128
+newcurve marktype xbar color 0.3 0.3 0.65 pts 4.76666666667 0.326192922374
+newcurve marktype xbar color 0.8 0.4 0.1 pts 4.83333333333 3.54799200913
+newcurve marktype xbar color 0.1 0.8 0.5 pts 4.9 14.1924143836
+newcurve marktype xbar color 0.8 0 0 pts 5.16666666667 0.490506849315
+newcurve marktype xbar color 0.2 0.2 0.85 pts 5.23333333333 0.285141552511
+newcurve marktype xbar color 0.2 0.65 0.65 pts 5.3 0.595761415525
+newcurve marktype xbar color 0.4 0.8 0.8 pts 5.36666666667 2.29132648402
+newcurve marktype xbar color 0.8 0.8 0.8 pts 5.43333333333 0.0442979452055
+newcurve marktype xbar color 0.5 0.5 0.5 pts 5.5 0.135613013699
+newcurve marktype xbar color 0.2 0.2 0.2 pts 5.56666666667 1.12394178082
+newcurve marktype xbar color 0.65 0.3 0.65 pts 5.7 0.0650844748858
+newcurve marktype xbar color 0.3 0.3 0.65 pts 5.76666666667 0.0683401826484
+newcurve marktype xbar color 0.8 0.4 0.1 pts 5.83333333333 1.30108561644
+newcurve marktype xbar color 0.1 0.8 0.5 pts 5.9 4.99610273973
+
+
+newgraph
+xaxis 
+size 6
+no_auto_hash_marks
+no_auto_hash_labels
+label fontsize 10
+hash_labels fontsize 9
+
+min 0
+max 6
+
+draw_hash_labels_at -0.005
+hash_label at 0.5 : All
+hash_label at 1.5 : Cable
+hash_label at 2.5 : DSL
+hash_label at 3.5 : Fiber
+hash_label at 4.5 : WISP
+hash_label at 5.4 : Sat
+yaxis 
+size 2
+label fontsize 10
+hash_labels fontsize 9
+
+label : Inflation in hourly P(Dropout)
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 0
+hash_label at 0 : 0
+hash_at 0.00139
+hash_label at 0.00139 : 1 per month
+hash_at 0.006
+hash_label at 0.006 : 1 per week
+hash_at 0.015
+hash_label at 0.015 : 0.015
+hash_at 0.01
+hash_label at 0.01 : 0.010
+hash_at 0.02
+hash_label at 0.02 : 0.020
+hash_at 0.025
+hash_label at 0.025 : 0.025
+hash_at 0.03
+hash_label at 0.03 : 0.030
+hash_at 0.035
+hash_label at 0.035 : 0.035
+min 0
+(* nspring kludge: *)
+newstring x 0 y -0.01 x  :
+
+newcurve marktype xbar color 0.65 0.65 0.2 label : Tornado
+newcurve marktype xbar color 0.8 0 0 label : Thunderstorm
+newcurve marktype xbar color 0.2 0.2 0.85 label : Heavy rain
+newcurve marktype xbar color 0.2 0.65 0.65 label : Moderate rain
+newcurve marktype xbar color 0.4 0.8 0.8 label : Light rain
+newcurve marktype xbar color 0.8 0.8 0.8 label : Heavy snow
+newcurve marktype xbar color 0.5 0.5 0.5 label : Moderate snow
+newcurve marktype xbar color 0.2 0.2 0.2 label : Light snow
+newcurve marktype xbar color 0.5 0.5 0.8 label : Hail
+newcurve marktype xbar color 0.65 0.3 0.65 label : Freezing rain
+newcurve marktype xbar color 0.3 0.3 0.65 label : Gale
+newcurve marktype xbar color 0.8 0.4 0.1 label : Hot
+newcurve marktype xbar color 0.1 0.8 0.5 label : Cold
+(* the x=0 grid line *)
+newcurve marktype none linetype dashed color 0 0 0 pts 0 0 6 0
+(* work here *)
+newcurve marktype xbar color 0.65 0.65 0.2 linetype solid pts 0.1 0.011852
+newcurve marktype none linetype none color 0 0 0 y_epts 0.1 0.011852 0.009579 0.014125
+(* work here *)
+newcurve marktype xbar color 0.8 0 0 linetype solid pts 0.166666666667 0.0071
+newcurve marktype none linetype none color 0 0 0 y_epts 0.166666666667 0.0071 0.007051 0.00715
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.85 linetype solid pts 0.233333333333 0.002455
+newcurve marktype none linetype none color 0 0 0 y_epts 0.233333333333 0.002455 0.002407 0.002504
+(* work here *)
+newcurve marktype xbar color 0.2 0.65 0.65 linetype solid pts 0.3 0.000983
+newcurve marktype none linetype none color 0 0 0 y_epts 0.3 0.000983 0.000954 0.001013
+(* work here *)
+newcurve marktype xbar color 0.4 0.8 0.8 linetype solid pts 0.366666666667 0.000414
+newcurve marktype none linetype none color 0 0 0 y_epts 0.366666666667 0.000414 0.000399 0.000429
+(* work here *)
+newcurve marktype xbar color 0.8 0.8 0.8 linetype solid pts 0.433333333333 0.001031
+newcurve marktype none linetype none color 0 0 0 y_epts 0.433333333333 0.001031 0.00093 0.001133
+(* work here *)
+newcurve marktype xbar color 0.5 0.5 0.5 linetype solid pts 0.5 0.001007
+newcurve marktype none linetype none color 0 0 0 y_epts 0.5 0.001007 0.000949 0.001064
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.2 linetype solid pts 0.566666666667 0.00026
+newcurve marktype none linetype none color 0 0 0 y_epts 0.566666666667 0.00026 0.000241 0.000279
+(* work here *)
+newcurve marktype xbar color 0.5 0.5 0.8 linetype solid pts 0.633333333333 -0.001261
+newcurve marktype none linetype none color 0 0 0 y_epts 0.633333333333 -0.001261 -0.002088 -0.000433
+(* work here *)
+newcurve marktype xbar color 0.65 0.3 0.65 linetype solid pts 0.7 0.000914
+newcurve marktype none linetype none color 0 0 0 y_epts 0.7 0.000914 0.000839 0.000989
+(* work here *)
+newcurve marktype xbar color 0.3 0.3 0.65 linetype solid pts 0.766666666667 0.002896
+newcurve marktype none linetype none color 0 0 0 y_epts 0.766666666667 0.002896 0.002794 0.002997
+(* work here *)
+newcurve marktype xbar color 0.8 0.4 0.1 linetype solid pts 0.833333333333 0.00138
+newcurve marktype none linetype none color 0 0 0 y_epts 0.833333333333 0.00138 0.001354 0.001406
+(* work here *)
+newcurve marktype xbar color 0.1 0.8 0.5 linetype solid pts 0.9 -0.000455
+newcurve marktype none linetype none color 0 0 0 y_epts 0.9 -0.000455 -0.000464 -0.000445
+(* work here *)
+newcurve marktype xbar color 0.65 0.65 0.2 linetype solid pts 1.1 0.020726
+newcurve marktype none linetype none color 0 0 0 y_epts 1.1 0.020726 0.014888 0.026564
+(* work here *)
+newcurve marktype xbar color 0.8 0 0 linetype solid pts 1.16666666667 0.004354
+newcurve marktype none linetype none color 0 0 0 y_epts 1.16666666667 0.004354 0.004285 0.004423
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.85 linetype solid pts 1.23333333333 0.001544
+newcurve marktype none linetype none color 0 0 0 y_epts 1.23333333333 0.001544 0.001479 0.00161
+(* work here *)
+newcurve marktype xbar color 0.2 0.65 0.65 linetype solid pts 1.3 0.000591
+newcurve marktype none linetype none color 0 0 0 y_epts 1.3 0.000591 0.000552 0.000631
+(* work here *)
+newcurve marktype xbar color 0.4 0.8 0.8 linetype solid pts 1.36666666667 2.8e-05
+newcurve marktype none linetype none color 0 0 0 y_epts 1.36666666667 2.8e-05 9e-06 4.8e-05
+(* work here *)
+newcurve marktype xbar color 0.8 0.8 0.8 linetype solid pts 1.43333333333 0.000549
+newcurve marktype none linetype none color 0 0 0 y_epts 1.43333333333 0.000549 0.00041 0.000687
+(* work here *)
+newcurve marktype xbar color 0.5 0.5 0.5 linetype solid pts 1.5 0.000198
+newcurve marktype none linetype none color 0 0 0 y_epts 1.5 0.000198 0.000124 0.000272
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.2 linetype solid pts 1.56666666667 -0.000303
+newcurve marktype none linetype none color 0 0 0 y_epts 1.56666666667 -0.000303 -0.000328 -0.000279
+(* work here *)
+newcurve marktype xbar color 0.5 0.5 0.8 linetype solid pts 1.63333333333 -0.000219
+newcurve marktype none linetype none color 0 0 0 y_epts 1.63333333333 -0.000219 -0.001327 0.000888
+(* work here *)
+newcurve marktype xbar color 0.65 0.3 0.65 linetype solid pts 1.7 0.00107
+newcurve marktype none linetype none color 0 0 0 y_epts 1.7 0.00107 0.00096 0.001181
+(* work here *)
+newcurve marktype xbar color 0.3 0.3 0.65 linetype solid pts 1.76666666667 0.003455
+newcurve marktype none linetype none color 0 0 0 y_epts 1.76666666667 0.003455 0.003256 0.003654
+(* work here *)
+newcurve marktype xbar color 0.8 0.4 0.1 linetype solid pts 1.83333333333 0.001439
+newcurve marktype none linetype none color 0 0 0 y_epts 1.83333333333 0.001439 0.001397 0.001481
+(* work here *)
+newcurve marktype xbar color 0.1 0.8 0.5 linetype solid pts 1.9 -0.000477
+newcurve marktype none linetype none color 0 0 0 y_epts 1.9 -0.000477 -0.00049 -0.000464
+(* work here *)
+newcurve marktype xbar color 0.65 0.65 0.2 linetype solid pts 2.1 0.014241
+newcurve marktype none linetype none color 0 0 0 y_epts 2.1 0.014241 0.010304 0.018178
+(* work here *)
+newcurve marktype xbar color 0.8 0 0 linetype solid pts 2.16666666667 0.007996
+newcurve marktype none linetype none color 0 0 0 y_epts 2.16666666667 0.007996 0.007907 0.008084
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.85 linetype solid pts 2.23333333333 0.001941
+newcurve marktype none linetype none color 0 0 0 y_epts 2.23333333333 0.001941 0.001863 0.00202
+(* work here *)
+newcurve marktype xbar color 0.2 0.65 0.65 linetype solid pts 2.3 0.000785
+newcurve marktype none linetype none color 0 0 0 y_epts 2.3 0.000785 0.000738 0.000833
+(* work here *)
+newcurve marktype xbar color 0.4 0.8 0.8 linetype solid pts 2.36666666667 0.000554
+newcurve marktype none linetype none color 0 0 0 y_epts 2.36666666667 0.000554 0.000529 0.00058
+(* work here *)
+newcurve marktype xbar color 0.8 0.8 0.8 linetype solid pts 2.43333333333 0.001433
+newcurve marktype none linetype none color 0 0 0 y_epts 2.43333333333 0.001433 0.001258 0.001607
+(* work here *)
+newcurve marktype xbar color 0.5 0.5 0.5 linetype solid pts 2.5 0.00111
+newcurve marktype none linetype none color 0 0 0 y_epts 2.5 0.00111 0.001013 0.001207
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.2 linetype solid pts 2.56666666667 0.000112
+newcurve marktype none linetype none color 0 0 0 y_epts 2.56666666667 0.000112 8e-05 0.000144
+(* work here *)
+newcurve marktype xbar color 0.5 0.5 0.8 linetype solid pts 2.63333333333 0.00233
+newcurve marktype none linetype none color 0 0 0 y_epts 2.63333333333 0.00233 0.000178 0.004481
+(* work here *)
+newcurve marktype xbar color 0.65 0.3 0.65 linetype solid pts 2.7 0.000748
+newcurve marktype none linetype none color 0 0 0 y_epts 2.7 0.000748 0.000631 0.000865
+(* work here *)
+newcurve marktype xbar color 0.3 0.3 0.65 linetype solid pts 2.76666666667 0.00404
+newcurve marktype none linetype none color 0 0 0 y_epts 2.76666666667 0.00404 0.00385 0.004231
+(* work here *)
+newcurve marktype xbar color 0.8 0.4 0.1 linetype solid pts 2.83333333333 0.001879
+newcurve marktype none linetype none color 0 0 0 y_epts 2.83333333333 0.001879 0.001835 0.001924
+(* work here *)
+newcurve marktype xbar color 0.1 0.8 0.5 linetype solid pts 2.9 -0.000552
+newcurve marktype none linetype none color 0 0 0 y_epts 2.9 -0.000552 -0.000568 -0.000536
+(* work here *)
+newcurve marktype xbar color 0.8 0 0 linetype solid pts 3.16666666667 0.003829
+newcurve marktype none linetype none color 0 0 0 y_epts 3.16666666667 0.003829 0.003622 0.004037
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.85 linetype solid pts 3.23333333333 0.001375
+newcurve marktype none linetype none color 0 0 0 y_epts 3.23333333333 0.001375 0.001231 0.00152
+(* work here *)
+newcurve marktype xbar color 0.2 0.65 0.65 linetype solid pts 3.3 0.000259
+newcurve marktype none linetype none color 0 0 0 y_epts 3.3 0.000259 0.000183 0.000334
+(* work here *)
+newcurve marktype xbar color 0.4 0.8 0.8 linetype solid pts 3.36666666667 0.000129
+newcurve marktype none linetype none color 0 0 0 y_epts 3.36666666667 0.000129 9e-05 0.000169
+(* work here *)
+newcurve marktype xbar color 0.8 0.8 0.8 linetype solid pts 3.43333333333 0.000308
+newcurve marktype none linetype none color 0 0 0 y_epts 3.43333333333 0.000308 7.5e-05 0.000542
+(* work here *)
+newcurve marktype xbar color 0.5 0.5 0.5 linetype solid pts 3.5 0.000318
+newcurve marktype none linetype none color 0 0 0 y_epts 3.5 0.000318 0.000167 0.000468
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.2 linetype solid pts 3.56666666667 8.2e-05
+newcurve marktype none linetype none color 0 0 0 y_epts 3.56666666667 8.2e-05 2.9e-05 0.000136
+(* work here *)
+newcurve marktype xbar color 0.65 0.3 0.65 linetype solid pts 3.7 0.000303
+newcurve marktype none linetype none color 0 0 0 y_epts 3.7 0.000303 0.000104 0.000503
+(* work here *)
+newcurve marktype xbar color 0.3 0.3 0.65 linetype solid pts 3.76666666667 0.004319
+newcurve marktype none linetype none color 0 0 0 y_epts 3.76666666667 0.004319 0.003795 0.004842
+(* work here *)
+newcurve marktype xbar color 0.8 0.4 0.1 linetype solid pts 3.83333333333 0.000382
+newcurve marktype none linetype none color 0 0 0 y_epts 3.83333333333 0.000382 0.000293 0.000471
+(* work here *)
+newcurve marktype xbar color 0.1 0.8 0.5 linetype solid pts 3.9 -3.8e-05
+newcurve marktype none linetype none color 0 0 0 y_epts 3.9 -3.8e-05 -6.5e-05 -1e-05
+(* work here *)
+newcurve marktype xbar color 0.65 0.65 0.2 linetype solid pts 4.1 0.010349
+newcurve marktype none linetype none color 0 0 0 y_epts 4.1 0.010349 0.001096 0.019601
+(* work here *)
+newcurve marktype xbar color 0.8 0 0 linetype solid pts 4.16666666667 0.012923
+newcurve marktype none linetype none color 0 0 0 y_epts 4.16666666667 0.012923 0.012674 0.013171
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.85 linetype solid pts 4.23333333333 0.007123
+newcurve marktype none linetype none color 0 0 0 y_epts 4.23333333333 0.007123 0.006793 0.007453
+(* work here *)
+newcurve marktype xbar color 0.2 0.65 0.65 linetype solid pts 4.3 0.002184
+newcurve marktype none linetype none color 0 0 0 y_epts 4.3 0.002184 0.002029 0.002339
+(* work here *)
+newcurve marktype xbar color 0.4 0.8 0.8 linetype solid pts 4.36666666667 0.001018
+newcurve marktype none linetype none color 0 0 0 y_epts 4.36666666667 0.001018 0.000943 0.001093
+(* work here *)
+newcurve marktype xbar color 0.8 0.8 0.8 linetype solid pts 4.43333333333 0.000868
+newcurve marktype none linetype none color 0 0 0 y_epts 4.43333333333 0.000868 0.000395 0.00134
+(* work here *)
+newcurve marktype xbar color 0.5 0.5 0.5 linetype solid pts 4.5 0.001639
+newcurve marktype none linetype none color 0 0 0 y_epts 4.5 0.001639 0.001366 0.001911
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.2 linetype solid pts 4.56666666667 -0.000514
+newcurve marktype none linetype none color 0 0 0 y_epts 4.56666666667 -0.000514 -0.000595 -0.000433
+(* work here *)
+newcurve marktype xbar color 0.65 0.3 0.65 linetype solid pts 4.7 0.000486
+newcurve marktype none linetype none color 0 0 0 y_epts 4.7 0.000486 9.6e-05 0.000876
+(* work here *)
+newcurve marktype xbar color 0.3 0.3 0.65 linetype solid pts 4.76666666667 -0.000406
+newcurve marktype none linetype none color 0 0 0 y_epts 4.76666666667 -0.000406 -0.000665 -0.000146
+(* work here *)
+newcurve marktype xbar color 0.8 0.4 0.1 linetype solid pts 4.83333333333 0.000315
+newcurve marktype none linetype none color 0 0 0 y_epts 4.83333333333 0.000315 0.00023 0.0004
+(* work here *)
+newcurve marktype xbar color 0.1 0.8 0.5 linetype solid pts 4.9 -0.00111
+newcurve marktype none linetype none color 0 0 0 y_epts 4.9 -0.00111 -0.00115 -0.00107
+(* work here *)
+newcurve marktype xbar color 0.8 0 0 linetype solid pts 5.16666666667 0.036641
+newcurve marktype none linetype none color 0 0 0 y_epts 5.16666666667 0.036641 0.03594 0.037342
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.85 linetype solid pts 5.23333333333 0.025115
+newcurve marktype none linetype none color 0 0 0 y_epts 5.23333333333 0.025115 0.024285 0.025944
+(* work here *)
+newcurve marktype xbar color 0.2 0.65 0.65 linetype solid pts 5.3 0.011944
+newcurve marktype none linetype none color 0 0 0 y_epts 5.3 0.011944 0.011453 0.012435
+(* work here *)
+newcurve marktype xbar color 0.4 0.8 0.8 linetype solid pts 5.36666666667 0.008164
+newcurve marktype none linetype none color 0 0 0 y_epts 5.36666666667 0.008164 0.007926 0.008403
+(* work here *)
+newcurve marktype xbar color 0.8 0.8 0.8 linetype solid pts 5.43333333333 -0.000822
+newcurve marktype none linetype none color 0 0 0 y_epts 5.43333333333 -0.000822 -0.00225 0.000606
+(* work here *)
+newcurve marktype xbar color 0.5 0.5 0.5 linetype solid pts 5.5 -0.001736
+newcurve marktype none linetype none color 0 0 0 y_epts 5.5 -0.001736 -0.002535 -0.000936
+(* work here *)
+newcurve marktype xbar color 0.2 0.2 0.2 linetype solid pts 5.56666666667 -0.004686
+newcurve marktype none linetype none color 0 0 0 y_epts 5.56666666667 -0.004686 -0.004947 -0.004425
+(* work here *)
+newcurve marktype xbar color 0.65 0.3 0.65 linetype solid pts 5.7 -1.3e-05
+newcurve marktype none linetype none color 0 0 0 y_epts 5.7 -1.3e-05 -0.001213 0.001188
+(* work here *)
+newcurve marktype xbar color 0.3 0.3 0.65 linetype solid pts 5.76666666667 -0.002777
+newcurve marktype none linetype none color 0 0 0 y_epts 5.76666666667 -0.002777 -0.003874 -0.001681
+(* work here *)
+newcurve marktype xbar color 0.8 0.4 0.1 linetype solid pts 5.83333333333 0.001826
+newcurve marktype none linetype none color 0 0 0 y_epts 5.83333333333 0.001826 0.001544 0.002108
+(* work here *)
+newcurve marktype xbar color 0.1 0.8 0.5 linetype solid pts 5.9 -0.009357
+newcurve marktype none linetype none color 0 0 0 y_epts 5.9 -0.009357 -0.009473 -0.00924

@@ -1,0 +1,313 @@
+\section{Quantifying weather dropouts}
+\label{sec:method}
+
+In this section we describe our methodology for quantifying how much weather
+correlates with a change in the probability of residential link dropouts.
+%
+The goal is to find a metric that can measure how the likelihood of a dropout
+\emph{increases} (or not) during weather.
+
+The challenge in computing this metric is, dropouts are uncommon.
+%
+This makes it difficult to demonstrate that there is a statistically
+significant increase in dropouts during weather.
+%
+Even if there is an increase, it may simply be due to the fact that certain
+types of weather tend to occur during time periods that are commonly used for
+network maintenance or IP renumbering.
+
+By leveraging statistics developed for epidemiology, we overcome the first
+challenge and find statistical significance.
+%
+By carefully inspecting our data set, we verify that no type of weather that we
+study correlates with diurnal variations dropout probability.
+
+We will now describe our metric, inflated probability of dropout, then we will
+verify that conclusions we draw from this metric will not be skewed due to
+time-correlated network state changes.
+
+\subsection{Metric: Inflated probability of dropout} %{{{
+\label{sec:hazard}
+
+\subsubsection*{Challenge: Dropouts are uncommon}
+%
+Correlating dropouts with weather is challenging to do with statistical
+significance because \emph{dropouts are rare events}
+%
+\footnote{...and they should be. If dropouts were common, residential links
+would be unusable.}.
+%
+On average, we observed a link dropping out only once every $2-30$ days that we
+were actively pinging and receiving responses from the host residential link,
+depending on the link type.
+%
+The inverse of the average dropout rate per link type---including the average across
+\textit{all} link types---is as follows:
+
+\vspace{0.2cm}
+\noindent
+\begin{small}
+	\begin{tabular}{@{~~}r@{~}c@{~}|@{~}c@{~}|@{~}c@{~}|@{~}c@{~}|@{~}c@{~}|@{~}c@{~}}
+  \textbf{Link type:}    & Fiber & Cable & WISP & DSL & Sat & \textit{All} \\
+  \textbf{Days b/w dropouts:} &   30  &   16  &    8 &   9 &   2 & \textit{8}   \\
+\end{tabular}
+\end{small}
+\vspace{0.1cm}
+
+Given how rarely dropouts occur, we now describe a metric that accounts for
+this phenomenon, and even provides a way to determine statistical significance
+so that we can ensure that our analysis does not involve too much slicing and
+dicing of the few dropouts that occur.
+
+% We would like our metric to capture failures occurring from these severe events
+% and do not want to ignore outliers; after all, if thousands of hosts failed
+% during an hour because of a hurricane, then those failures are indeed caused by
+% weather. Thus, we aggregate failures from all hours of the week into a single
+% bin and subtract the resulting P_noweather(Dropout) from P_weather(Dropout).
+
+\subsubsection*{Our Approach: Hazard Rate}
+%
+Fortunately, there is a well-established set of techniques from the
+field of epidemiology that permit statistical significance over rare
+events.
+%
+Epidemiology---the study of the occurrence and determinants of
+disease---faces similar challenges when analyzing mortality: deaths
+(``failures'') are rare, and subjects (``links'') can be exposed to
+their disease (``weather condition'') for different amounts of time
+until the time of death (``dropout'').
+%
+Here, we describe the techniques we borrow from
+biostatistics~\cite{biostats-book} to address these concerns.
+%
+Throughout our study, we will consider different groups of ``subjects'':
+link types, geographic regions, and combinations thereof.
+
+Like in epidemiological studies, we focus on estimating the \emph{hazard rate}
+(sometimes referred to as the instantaneous death rate).
+%
+In essence, what a hazard rate gives us is the expected number of deaths per
+unit time.
+%
+More concretely, for a given hazard rate $\lambda$, the probability of death
+over a short duration of time $t$ is $\lambda \cdot t$.
+
+
+The first challenge in estimating hazard rates is that different subjects may
+be observed over different periods of time: in our study, hosts that remain
+responsive can naturally be observed for longer periods of time than those that
+drop out.
+%
+Throughout an observation period, we track the amount of time $O_i$ that we
+observe each host $i = 1, \ldots, n$, and we also count the total number of
+dropouts, $F$. 
+%
+An \emph{unbiased} estimate of the hazard rate $\hat{\lambda}$ can be obtained
+as follows~\cite[Chapter 15.4]{biostats-book}:
+
+\begin{equation}
+\hat{\lambda} = \frac{F}{\sum_{i=1}^n O_i}
+\label{eq:hazard}
+\end{equation}
+
+We exclude any bin of data if it does not have enough samples to permit
+computing confidence intervals.
+%
+We adhere to the following rule of
+thumb~\cite[Chapter~6]{biostats-book}: we accept a bin with $n$ samples
+and estimated hazard rate $\hat{\lambda}$ only if 
+
+\begin{equation}
+	n \geq 20 ~~~\mbox{and}~~~ n\hat{\lambda}(1-\hat{\lambda}) \geq 10
+	\label{eq:samples}
+\end{equation}
+
+\noindent
+%
+When these conditions hold, we can calculate 95\% confidence intervals
+over the estimated hazard rate as
+follows~\cite[Chapter~6.3]{biostats-book}:
+
+\begin{equation}
+	\hat{\lambda} \pm 1.96 \cdot
+	\sqrt{\frac{\hat{\lambda}(1-\hat{\lambda})}{n}}
+	\label{eq:hazard-conf}
+\end{equation}
+
+%% When we have sufficiently many samples, we can treat failures as a
+%% Poisson process, and may therefore compute the standard error of an
+%% estimated hazard rate with~\cite[Chapter~15.3]{biostats-book}:
+%% 
+%% \begin{equation}
+%% \mbox{SE}(\hat{\lambda}) = \frac{\sqrt{F}}{\sum_{i=1}^n O_i}
+%% \label{eq:hazard-se}
+%% \end{equation}
+%% 
+%% \noindent
+%% %
+%% The 95\% confidence intervals over the estimated hazard rate can
+%% therefore be computed as
+%% 
+%% \begin{equation}
+	%% \hat{\lambda} \pm 1.96 \cdot \mbox{SE}(\hat{\lambda})
+	%% \label{eq:hazard-conf}
+%% \end{equation}
+
+
+The above calculations yield the hazard rate along with its confidence
+intervals; what remains is to \emph{compare} two hazard rates, for
+instance, the overall hazard rate for a given link type and the hazard
+rate for that link type specifically in the presence of snow.
+%
+Two estimated hazard rates $\widehat{\lambda_1}$ and
+$\widehat{\lambda_2}$ can be compared by simply subtracting
+them~\cite{biostats-book}.
+%
+Fortunately, with sufficiently many samples, the confidence intervals
+over the difference of two hazard rates is given by the addition of the
+confidence intervals over the original hazard rates.\footnote{This
+follows from the fact that $\mbox{var}(\lambda_1 - \lambda_2)$ is
+approximately $\mbox{var}(\lambda_1) + \mbox{var}(\lambda_2)$ when
+Eq.~(\ref{eq:samples}) holds.}
+
+
+To summarize: in the results throughout this paper, we compute hazard
+rates using Eq.~(\ref{eq:hazard}), discard any bins that do not satisfy
+Eq.~(\ref{eq:samples}), and compute confidence intervals using
+Eq.~(\ref{eq:hazard-conf}).
+%
+When presenting our results, we multiply the hazard rate by a short
+time interval, one hour, to estimate the hourly probability of a
+dropout.
+
+
+%}}}
+
+\subsection{Verifying the metric will not be skewed by common dropouts correlating with weather} %{{{
+\label{subsec:independence_of_maintenance}
+
+\subsubsection*{Challenge: Dropout probability in weather may be inflated due
+to diurnal events}
+%
+Observing an increase in dropout probability during weather periods compared to
+non-weather periods may be skewed by common network state changes that tend to
+occur during certain types of weather events.
+%
+This is a significant problem because it is more likely that a dropout would be
+caused by everyday changes in network state such as nightly maintenance
+periods, IP renumbering, and customers powering off their links at night,
+rather than weather-induced outages.
+
+\subsubsection*{Our Approach: Verify that weather events do not positively correlate with common dropout periods}
+
+\begin{figure*}[t]
+%
+\begin{subfigure}[t]{0.47\linewidth}
+\centering
+\includegraphics[width=\linewidth]{weather/figs/frate_by_timeofweek_jan11todec17_scatter}
+\caption{
+\label{fig:frate_lts_timeofweek}
+Dropout probability has significant diurnal variation.
+}
+\end{subfigure}
+%
+\hfill
+%
+\begin{subfigure}[t]{0.47\linewidth}
+\centering
+\includegraphics[width=\linewidth]{weather/figs/addresshoursbywtyp_by_timeofweek_scatter}
+\caption{
+\label{fig:weather_timeofweek}
+Different weather conditions are prominent at different times.
+}
+\end{subfigure}
+%
+\caption{
+ Weather does not occur most often during hours of the week when there are an inflated number of dropouts. 
+}
+\end{figure*}
+
+The first question we must answer is: Are there any hours of the week that have
+a significantly higher probability of dropout than other hours of the week?
+%
+To answer this question, we evaluate the probability of dropouts in each hour
+of the week in the following manner:
+%
+for each hour of the week, we counted the number of dropouts (recall that
+dropouts only occur at most once per hour per link) across all links observed
+during that hour,
+%
+then we divided that by the number of hours which the link was responsive.
+%
+We did this for each link type separately, as some link types may be more
+likely to be renumbered.
+%
+For example, in prior work we discovered that European DSL links have their IP
+addresses reassigned every night at 2:00 AM UTC~\cite{addrchange-imc}.
+%
+Also, some link types may require maintenance more often than others.
+%
+
+The results are shown in Figure~\ref{fig:frate_lts_timeofweek}.
+%
+As expected, the hourly probability of dropouts significantly varies in a
+diurnal pattern over the course of each week.
+%
+Prior work suggests that ISPs are more likely to perform
+administrative maintenance during weekday night
+hours~\cite{Beverly_et_al_2015, comarela2013studying}; we speculate
+that the increased dropout probability during weekday night hours could be due to administrative
+maintenance.
+%
+The highest probability of dropouts for every link type rises in the evening
+and peaks near midnight Eastern Standard Time (indicated with vertical dotted
+black lines),
+%
+after which it drops off significantly until the early hours of the morning.
+ 
+Given that we observe a diurnal variation in hourly likelihood of dropouts, and
+the fact that weather conditions also have a known diurnal pattern of
+occurrence~\cite{diurnal-weather}, the next question we must answer is: Does
+hourly weather occurrence positively correlate with dropout probability?
+%
+To answer this question, we count the total number of responsive hours that we
+observed in each hour of the week for each weather condition.
+
+The results are shown in Figure~\ref{fig:weather_timeofweek}.
+%
+As expected, most weather conditions, possibly except for snow, have a diurnal
+pattern in their occurrence.
+%
+Fortunately, none of the weather conditions have a positive correlation with
+the hourly probability of dropouts.
+%
+There is however a negative correlation with cold weather: the coldest point of
+the night is also when the lowest hourly probably of dropouts occurred.
+%
+This negative correlation will not have an effect on the quantified failure
+rate, as dropouts are less likely to occur during the hours when it is cold
+than during other hours.
+
+\subsubsection*{Baseline probability of dropout depends on link type}
+
+The investigation into probability of dropout for each link type also provides
+additional justification for the selection of a metric that is based on the
+\emph{increase} in failure probability due to weather.
+%
+The dropout probability significantly different for each link type, with Fiber
+being the lowest and Satellite being the highest
+(Figure~\ref{fig:frate_lts_timeofweek}).
+%
+With this metric, the baseline failure rate will be removed from all link
+types; including the diurnal variations in dropout probability.
+
+\subsection{Summary}
+
+We selected a hazard rate-based metric that enables us to study the
+statistically significant \emph{increase} in dropout probability during weather
+events.
+%
+Then we verified that this metric will not be skewed by nightly spikes in
+dropout probability because they do not correlate with occurrence of weather
+conditions.
+%}}}

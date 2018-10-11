@@ -46,27 +46,34 @@ these are real in Section~\ref{sec:verification} and examine causes in Section~\
 \end{table}
 
 \begin{figure*}[tb]
-% \centering
-\begin{center}
-\subfloat[Before filtering]{
-\includegraphics[width=3in]{timeouts/figs/cdf_basic_ping_ttl}
+\begin{subfigure}[t]{0.47\linewidth}
+\centering
+\includegraphics[width=\linewidth]{timeouts/figs/cdf_basic_ping_ttl}
+\caption{
 \label{fig:basic_lat}
+Before filtering
 }
-\hspace{0.2in}
-\subfloat[After filtering]{
-\includegraphics[width=3in]{timeouts/figs/cdf_filter_ping_ttl}
+\end{subfigure}
 %
+\hfill
+%
+\begin{subfigure}[t]{0.47\linewidth}
+\centering
+\includegraphics[width=\linewidth]{timeouts/figs/cdf_filter_ping_ttl}
+\caption{
 \label{fig:filter_lat}
+After filtering
 }
-\end{center}
-\caption{CDF of Percentile latency per IP address before and after filtering
+\end{subfigure}
+\caption{
+\label{fig:lat} 
+CDF of Percentile latency per IP address before and after filtering
   unexpected responses. Each point represents an IP address and each
   color represents the percentile from that IP address's response
   latencies. Before filtering unexpected responses, there are
   bumps caused by broadcast responses at 330s, 165s and 495s,
   fractions of the 11 minute (660s) probing interval.
 }
-\label{fig:lat}
 \end{figure*}
 
 

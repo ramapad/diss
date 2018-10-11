@@ -4,7 +4,7 @@
 \chapter{Analyzing weather's effect on Internet Reliability}
 \label{cpt:weather}
 
-One aspect of measuring Internet reliability is to determine if the occurrence of certain events adversely affects Internet connectivity. Consider the occurrence of adverse weather conditions for instance: prior work has shown that Internet outages occur more frequently during times of precipitation~\cite{pingin}. However, this work was preliminary in nature and was performed over a short duration (three months). Further, it treated every instance of a previously responsive address failing to respond to pings as an outage, ignoring the effects of dynamic addressing.
+One aspect of measuring Internet reliability is to determine if the occurrence of certain events adversely affects Internet connectivity. Consider the occurrence of adverse weather conditions for instance: prior work has shown that Internet outages occur more frequently during times of precipitation~\cite{pingin}. However, this work was preliminary in nature and was performed over a short duration (three months). % Further, it treated every instance of a previously responsive address failing to respond to pings as an outage, ignoring the effects of dynamic addressing.
 
 In this section, I discuss a technique to quantify the effect of
 external factors, such as the occurrence of various weather
@@ -22,41 +22,3 @@ studying outage inflation of various link types and geographic regions
 across weather conditions, I am able to identify networks that are
 vulnerable to weather.
 
-\subsection{Thunderping measurement system}
-
-Thunderping probes addresses during times of severe weather. 
-
-\subsection{Find the inflation in dropout rate}
-
-The key insight here is that determining the inflation in \emph{dropout} rate when event(s) occur captures the increased likelihood of the \emph{outage} rate. 
-
-% \begin{figure*}[t]
-% %
-% \begin{subfigure}[t]{0.47\linewidth}
-% \centering
-% \includegraphics[width=\linewidth]{figs/frate_by_timeofweek_jan11todec17_scatter}
-% \caption{
-% \label{fig:frate_lts_timeofweek}
-% Dropout probability has significant diurnal variation.
-% }
-% \end{subfigure}
-% %
-% \hfill
-% %
-% \begin{subfigure}[t]{0.47\linewidth}
-% \centering
-% \includegraphics[width=\linewidth]{figs/addresshoursbywtyp_by_timeofweek_scatter}
-% \caption{
-% \label{fig:weather_timeofweek}
-% Different weather conditions are prominent at different times.
-% }
-% \end{subfigure}
-% %
-% \caption{
-%  Weather does not occur most often during hours of the week when there are an inflated number of dropouts. 
-% }
-% \end{figure*}
-
-
-
- 
