@@ -1,0 +1,236 @@
+
+\chapter{Future Work}
+
+\label{cpt:future}
+
+Here, I identify directions for future work in measuring residential
+reliability using probing-based techniques.
+
+% \subsection{Building a global model of dynamic address change}
+\section{Tracking devices across IP addresses using IDs on a global
+scale}
+
+%Though the results from RIPE Atlas are promising, they 
+
+In Chapter~\ref{cpt:addr_change}, I showed how to use IDs from complementary datasets
+to (i) analyze dynamic addressing patterns and (ii) to confirm
+outages. However, the RIPE Atlas dataset consisted of ten thousand probes, a small fraction of residential users around the world. While the CDN dataset was obtained from an order of magnitude more devices than RIPE Atlas, it
+could still only offer confirmation for 1\% of Thunderping's detected outages.
+
+With more sources of IDs, it may be
+possible to model the likelihood of
+address change. Such models can help prevent false inferences about outages and
+their durations. For ISPs that change periodically and/or synchronously, the model can
+predict when probe-loss is more likely due to
+address changes than outages. For ISPs that change addresses upon most
+outages, the model can inform in which ISPs outage duration detection
+is particularly error-prone. For other ISPs which change addresses
+mostly upon longer outages, the model can be used to estimate the
+likelihood that an inferred outage ended falsely.
+
+Orthogonally, if every outage detected by a probing-based technique could be
+confirmed through a complementary dataset that provides IDs, false positives due to dynamic addressing can be entirely mitigated. Additionally, the
+analysis of outage recovery durations for all of these outages will be
+possible. 
+
+
+
+% A less lofty goal is to simply analyze more ISPs.
+
+The key to tracking IP address(es) assigned to a home router over time
+is to associate some uniquely identifying feature (the ID) that remains
+constant across the home router's address
+changes. Chapter~\ref{cpt:addr_change} showed two examples of IDs: in the
+case of RIPE Atlas probes', the probe ID remained unchanged and in the
+case of the CDN software, the installation ID remained unchanged.%  I
+% presented two applications of such IDs: (i) it is possible to analyze dynamic
+% address assignment practices (ii) it is possible to confirm a detected
+% outage if the ID associated with the address was the same before and
+% after the outage.
+
+A challenge, however, is to obtain sources of IDs that can scale
+across the Internet. IP address changes can
+be tracked over time if there exists some uniquely identifying feature
+that remains constant across the device's address change. There are several potential datasets which have this
+property:
+
+\subsection{Dynamic DNS services}
+
+Websites such as dyn.com~\cite{dyn} provide dynamic DNS. Dynamic
+DNS is a service that allows users with a dynamic IP address to host
+web services, by providing DNS services that can be easily updated to
+reflect changes in users' IP addresses. Users of Dynamic DNS Services
+run a daemon provided by the dynamic DNS provider, which is responsible for
+determining the publicly visible IP address, and updating the A
+record(s) for the user's domain(s). 
+
+IP address changes can be tracked using the domain names
+registered with dynamic DNS services. Since the domain name of a user
+maps to her current IP address, we can use the domain name as a
+fingerprint, and detect changes in IP addresses for each domain name
+over time, by periodically obtaining the 'A' record associated with
+each domain name. 
+
+\paragraph{Geographic correlation of dynamic behavior}
+
+\begin{figure}[tb]
+% \centering
+\begin{center}
+\includegraphics[height=1.5in]{figs/did_dname_get_renum}
+\end{center}
+\caption{\label{fig:addr_change_per_ctry}
+IP address renumbering in dynamic DNS domains over a week: Black
+represents dynamic DNS domains which experienced at least one address
+change, while grey represents domains whose addresses remained the
+same. Renumbering behavior appears to be correlated with geographic
+location.}
+\end{figure}
+
+As a proof of concept, I report on a preliminary result from this
+approach: corroborating the geographic relationships in Figure~\ref{fig:conts_all_durs} 
+while extending to countries not well represented by RIPE.
+I
+obtained 3000 dynamic DNS domains from three different dynamic DNS
+services: 2000 from afraid.org~\cite{afraid}, 600 from dyn~\cite{dyn} and 400 from
+noip.com~\cite{noip} and fetched the 'A' records from their respective
+nameservers once every hour. I collected this data for a week, and
+then inspected how many of these domains experienced at least one
+address change during this time. Figure~\ref{fig:addr_change_per_ctry}
+shows the number of domains that had at least one 
+address change and the domains that had none. The y-axis is in log-scale. 
+Address changes in Asian and Latin American countries appear
+more prevalent, with more than a third of all domains in these
+countries seeing at least one address-change. On the other hand,
+Northern European countries observe fewer than 6\% of their domain names
+experiencing an address change. Address changes are uncommon in
+North America: only 3\% of domain names in the US and 6\% of domain
+names in Canada observed an address change.
+
+\subsection{Open DNS resolvers}
+
+Since 2010, various studies have reported on the existence of more
+than 15 million 'open' DNS resolvers on the
+Internet~\cite{openresolver, schomp2014clientsidedns, kuhrer2014exit,
+  kuhrer2015going}. These DNS resolvers are 'open' because they will resolve a DNS query sent from arbitrary IP
+addresses on the Internet. Previous studies have found that more than
+three-quarters of open DNS resolvers are likely to be
+residential~\cite{schomp2014dnsvul, schomp2014clientsidedns}. I
+identify two potential approaches to fingerprint these open DNS
+resolvers and track address changes.
+
+\paragraph{DNS caches}
+Open DNS resolvers often cache previous
+lookups~\cite{schomp2014dnsvul}. These caches can
+be used to fingerprint open DNS resolvers, allowing us to track when
+their IP addresses change. 
+
+% First, we will need to find open DNS resolvers on the Internet. I propose to register a domain and deploy an Authoritative DNS server
+% for it. Then I intend to perform a one-time scan of the entire IPv4
+% address space by sending a DNS request for a subdomain within the
+% domain we control to all the IPv4 addresses on the Internet. Each DNS
+% request I send to a target IP address will embed the target address
+% into the request, similar to the approach used by Dagon et
+% al.~\cite{dagon2008corrupted}. The Open DNS resolvers will route the
+% request to our Authoritative DNS server.  At the authoritative DNS
+% server, I will note the target IP address to which this request was
+% sent and generate a unique fingerprint for the device at this address,
+% and embed this fingerprint in my response. When these responses
+% reach the open DNS resolvers, each will now contain its unique
+% fingerprint in its cache.
+
+% Next, I will periodically inspect the caches of known open DNS resolvers.
+% I will issue periodic DNS requests for the subdomain we
+% control (with the target IP address embedded in the request) to all
+% the addresses that contacted our Authoritative DNS server. If we
+% obtain the fingerprint that we had previously issued to that address,
+% we know that the device continues to be assigned that address. If we
+% find that an address is no longer returning the expected cache
+% fingerprint, we know that the address has changed. I then propose to
+% issue DNS requests to related addresses (as described in
+% Section~\ref{sec:last_mile}) with the \emph{old} target IP address
+% embedded in the request. If the device is present on any of those
+% addresses, then we will obtain the expected fingerprint. Upon finding
+% the device at a new address, we will update
+% our local mapping and note that the fingerprint is now available at
+% this new address.
+
+\paragraph{Anomalous Open DNS Resolvers}
+
+Of the 30 million Open DNS Resolvers on the Internet, around 17
+million are \emph{anomalous}~\cite{anomalousdns}, i.e.,
+instead of sending DNS responses with a source port of 53, they
+respond with a non-standard source port. Kaizer et al. ~\cite{anomalousdns} found that
+these devices are primarily residential ADSL modems. Not only do these
+devices use a non-standard source port, DNS requests can be made to
+these devices in such a way that the source ports are assigned
+\emph{sequentially}. We can use this sequential
+assignment of source ports to fingerprint anomalous open DNS resolvers.
+
+% The first part of our approach here is similar to my approach with
+% the DNS caches: I will find open DNS resolvers that are anomalous. After registering a domain and deploying an Authoritative DNS server
+% for it, I will perform a one-time scan of the entire IPv4
+% address space by sending a DNS request for a subdomain within the
+% domain we control to all the IPv4 addresses on the Internet. Each DNS
+% request I send to a target IP address will embed the target address
+% into the request as before. However, instead of embedding responses with
+% unique fingerprints from the authoritative DNS server, we simply
+% monitor the source ports that issue DNS responses from each
+% address. If it's a non-standard port, we flag the device as an
+% anomalous open DNS resolver.
+
+% Next, I will periodically inspect the source ports used by anomalous
+% open DNS resolver responses. Since we know which
+%   addresses the anomalous open DNS resolvers are located at, I
+%   periodically issue DNS queries to these addresses. As long as the
+%   source port for successive requests to an address continues to be
+%   sequential, I can state with high confidence that the address has
+%   not changed. The source ports for these devices typically vary
+%   between 10,000 to 30,000; thus there is only a small likelihood that
+%   another device coincidentally happens to have the next value in
+%   sequence. If we find that a response doesn't arrive, or that one
+%   arrives but the source port is not sequential, then we know that the
+%   device's address has been reassigned. As in the DNS cache approach,
+%   I will then look for the expected source port in DNS responses from
+%   requests sent to related addresses to find the device again.
+
+
+\section{Classifying IP addresses}
+
+Probing-based techniques that seek to detect residential Internet
+outages need a list of addresses classified as residential. More
+broadly, a classification of the IP address space into residential,
+enterprise, campus etc., can benefit any system that uses IP addresses
+as a proxy for measurement, including IP address based host-reputation
+systems~\cite{fail2ban,spamhaus}. Recent work has also shown
+that ISPs are increasingly likely to deploy Carrier Grade NATs (CGNs),
+where tens of residential Internet connections are multiplexed over a single
+public IPv4 address~\cite{cgn-imc16}.
+%  and approaches to count
+% participating users in peer-to-peer
+% systems~\cite{p2pfilesharing,p2pavail,sen2004analyzing}.
+
+In this dissertation, I relied upon classifications of addresses as
+residential using reverse DNS based schemes from prior
+work~\cite{pingin}. Many ISPs include hints about an address's
+intended use in
+the reverse DNS entry of that address. Recent research has further improved address
+classification with reverse DNS names~\cite{youndo-rdns}. However,
+it is not mandatory for ISPs to provide meaningful reverse DNS
+names. Some large ISPs, such as AT\&T do not provide reverse DNS names
+for most of their addresses, resulting in their addresses' under-representation in
+Thunderping data as seen in Chapter~\ref{cpt:weather}.
+
+An orthogonal approach to address classification is to use datasets with some uniquely identifying feature (an ID) that can be used to track IP addresses over time. By analyzing how many IDs are associated with an IP address simultaneously and over time, I show in preliminary work that it is possible to infer how the ISP is using the address~\cite{shared-addrs-apnic-blog, shared-addrs-aims}. An address that is observed with multiple devices over time, though with relatively few devices at any instant, is likely a dynamic residential address.  An address that remains associated with a single ID over months is either statically assigned or is a residential address with a linktype that uses DHCP. Addresses associated with many IDs simultaneously could be CGN addresses or university/enterprise proxies.
+
+
+
+% \subsection{Identifying outage causes}
+
+
+
+% \subsection{Exploring the tradeoff between outage detection and ICMP blocking}
+
+
+
+% \subsection{Measuring reliability in IPv6 networks}
+

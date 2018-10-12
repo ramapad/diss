@@ -1,82 +1,76 @@
 
-\chapter{Measuring Residential Internet
-  Reliability: a Primer}
+\chapter{State of the art in residential Internet outage detection}
 
 \label{cpt:bg}
 
-In this chapter, I provide background and definitions related to the
-thesis statement. Then I present related work in measuring Interne
-outages in general, and residential Internet outages at the individual
-user level in particular. I discuss probing-based techniques to detect
-outages remotely in detail and illustrate scenarios where they could
-make false inferences about outages. I also illustrate that measuring
-Internet reliability using detected outages has nuances and show how
-some classes of detected outages need to be treated differently,
-depending upon the Internet reliability measure under consideration.
+In this chapter, I begin with an overview of Internet outage
+measurement with a focus upon residential outage measurement. Next, I
+discuss probing-based techniques to detect outages remotely in detail
+and illustrate scenarios where they could make false inferences about
+outages.
 
 % In this dissertation, I focus
 % upon how common outages are and therefore use the \emph{rate} at which
 % outages occur. Another metric is the proportion of total measured time detected as outage events.
 
 
-\section{Background and definitions}
+% \section{Background and definitions}
 
-Intuitively, a reliable Internet connection is one that works
-continuously. In other words, it experiences no outages. 
+% Intuitively, a reliable Internet connection is one that works
+% continuously. In other words, it experiences no outages. 
 
-Measuring Internet reliability, therefore, necessitates measuring
-Internet outages and then using measured outages in a metric that
-represents some property of outages. Depending upon the application,
-the appropriate outage metric may vary.
+% Measuring Internet reliability, therefore, necessitates measuring
+% Internet outages and then using measured outages in a metric that
+% represents some property of outages. % Depending upon the application,
+% % the appropriate outage metric may vary.
 
-The goal of this dissertation is to provide broad, longitudinal, and accurate measurements of
-Internet reliability across ISPs, media-types, and geographic
-locations in a variety of circumstances. Such measurements can help
-users choose from their available Internet options and can inform ISPs
-about potential problems in their networks. To achieve this goal, I
-propose the following thesis and define terms in the thesis as follows:
+% The goal of this dissertation is to provide broad, longitudinal, and accurate measurements of
+% Internet reliability across ISPs, media-types, and geographic
+% locations in a variety of circumstances. Such measurements can help
+% users choose from their available Internet options and can inform ISPs
+% about potential problems in their networks. To achieve this goal, I
+% propose the following thesis and define terms in the thesis as follows:
+
+% \emph{It is possible to remotely and accurately detect substantial outages
+%   experienced by any device with a stable public IP address that typically
+%   responds to active probes and use these outages to compare
+%   reliability across ISPs, media-types, geographical areas, and
+%   weather conditions.}
 
 
+% \begin{itemize}
 
-\emph{It is possible to remotely and accurately detect substantial outages
-  experienced by any device with a stable public IP address that typically
-  responds to active probes and use these outages to compare
-  reliability across ISPs, media-types and geographical areas.}
+% \item {\emph{Device with a stable public IP address}: This is a device
+%     connected to the Internet, like a
+% home-router, to which an ISP has assigned a public IP address such
+% that the
+% assignment is either static, or dynamic in a manner that allows the
+% duration of dynamic assignment to be estimated.}
 
+% \item {\emph{Substantial outage}: I define a substantial outage to be an event where a device
+%     with an Internet connection is unable to send or receive any
+%     packets for at least 10 minutes.}
 
-\begin{itemize}
+% \item {\emph{Accuracy of outage detection}: An outage detection technique is accurate when it
+% correctly identifies every substantial outage event experienced by an Internet-connected-device, along with its
+% duration. There are no time-periods when the address
+% experiences a substantial outage but it goes undetected (false
+% negatives). Similarly, there are no time-periods classified as
+% outages when the destination address is able to receive packets from the
+% Internet (false positives).}
 
-\item {\emph{Device with a stable public IP address}: This is a device
-    connected to the Internet, like a
-home-router, to which an ISP has assigned a public IP address such
-that the
-assignment is either static, or dynamic in a manner that allows the
-duration of dynamic assignment to be estimated.}
-
-\item {\emph{Substantial outage}: I define a substantial outage to be an event where a device
-    with an Internet connection is unable to send or receive any
-    packets for at least 10 minutes.}
-
-\item {\emph{Accuracy of outage detection}: An outage detection technique is accurate when it
-correctly identifies every substantial outage event experienced by an Internet-connected-device, along with its
-duration. There are no time-periods when the address
-experiences a substantial outage but it goes undetected (false
-negatives). Similarly, there are no time-periods classified as
-outages when the destination address is able to receive packets from the
-Internet (false positives).}
-
-\item {\emph{Reliability}: I define two measures of reliability: one is the raw count of outage
-events over measured time and the other is the proportion of total measured time
-detected as outage events.} % When estimating a particular ISP's reliability, I
+% \item {\emph{Reliability}: I define two measures of reliability: one is the raw count of outage
+% events over measured time and the other is the proportion of total measured time
+% detected as outage events.} % When estimating a particular ISP's reliability, I
 % only use the subset of outages that solely affected that ISP's
 % addresses.}
 % When estimating the reliability of a geographical area, I
 % consider the subset of outages that affected only that geographical
 % area.
 
-\end{itemize}
+% \end{itemize}
 
-\section{Related work}
+\section{Outage detection: an overview}
 
 The architects of the Internet predicted that network outages could
 occur, and designed the Internet to have the ability to route around
@@ -130,10 +124,10 @@ and IBR data using the technique introduced by Dainotti et~al.~\cite{dainotti-im
 % large customer networks~\cite{thousandeyes}. 
 However, outages that affect individual users have received comparatively less
 attention~\cite{pingin, grover2013peeking, disco, alwayson}. In the rest of this
-section, I classify these efforts to detect outages into on-premises
+chapter, I classify these efforts to detect outages into on-premises
 outage detection techniques and remote probing-based outage detection
 techniques, and
-discuss their approaches and challenges in detail.
+discuss their approaches and challenges.
 
 % Why do I care only about complete outages and not partial ones?
 % Because they are easy to define! :P
@@ -165,7 +159,7 @@ discuss their approaches and challenges in detail.
 % Find which ones study outages at the last-mile but using dedicated
 % hardware (Ark, RIPE Atlas)
 
-\subsection{On-premises outage detection techniques}
+\section{On-premises outage detection techniques}
 % The redundancy present in the core of the Internet is
 % mostly absent in residential networks, owing to the high cost of
 % deploying redundant last mile links. Even multihomed last mile links for business connectivity
@@ -232,7 +226,7 @@ and software measurements~\cite{IMC2014-Broadband-bischof}, deploying software w
 challenging. Separating user behavior, such as turning off their laptops, from
 Internet outage events presents additional challenges for these techniques~\cite{dhcp-dimes}.
  
-\subsection{Probing-based remote outage detection techniques}
+\section{Probing-based remote outage detection techniques}
 
 % TODO: Talk about Zmap. It cannot do adaptive probing, being
 % stateless, and hence cannot be used for individual outage detection.
@@ -382,24 +376,10 @@ be inaccurate}
 % Internet (false positives).
 
 Probing-based remote outage detection techniques can infer false
-negative and false positive outages as a consequence of their foundational
-assumption: that a response to an active probe indicates a working path to the probed
-IP address and that lack of response is indicative of
-failure. False negatives can occur when the probe rate
-to a destination address is low, so that very short outages
-experienced by the address go undetected. For example, with
-Thunderping's probing scheme of sending a ping every 11 minutes from
-each of its vantage points to a destination address~\cite{pingin}, it is possible that an outage lasting
-shorter than 11 minutes is not observed by each vantage
-point. Increasing the probe rate can limit the maximum duration
-of these false negative outages; remote probing based outage detection
-techniques must tradeoff the rate
-with which they probe a given destination and the duration of the
-longest outage that they can fail to detect. 
-
-While false negative outages can be controlled by probing faster,
-false positive outages pose a potentially larger accuracy problem. Current
-techniques can make false positive inferences about
+positive outages as a consequence of their foundational assumption:
+that a response to an active probe indicates a working path to the
+probed IP address and that lack of response is indicative of
+failure. Current techniques can make false positive inferences about
 outages in the following scenarios:
 
 % \begin{itemize}
@@ -457,89 +437,89 @@ due to dynamic address reassignment in Chapter~\ref{cpt:addr_change}.
 % Section~\ref{sec:timeouts} and false probe-loss inference due to IP
 % address change in Section~\ref{sec:addr_change}.
 
-\section{Analyzing Internet reliability using detected outages}
-% depending upon the question under investigation
+% \section{Analyzing Internet reliability using detected outages}
+% % depending upon the question under investigation
 
-Internet reliability can be measured along several dimensions,
-depending upon the application. For example, users who require the
-Internet for work, or who use health monitoring equipment that needs a
-continuously working Internet connection~\cite{ideal-life,
-remote-health-elderly}, may be interested in finding which ISP and
-media-type in their area provides the most reliable Internet
-connection. A per-ISP or per-media-type reliability metric would be
-appropriate for this application since these metrics can facilitate
-comparisons.
+% Internet reliability can be measured along several dimensions,
+% depending upon the application. For example, users who require the
+% Internet for work, or who use health monitoring equipment that needs a
+% continuously working Internet connection~\cite{ideal-life,
+% remote-health-elderly}, may be interested in finding which ISP and
+% media-type in their area provides the most reliable Internet
+% connection. A per-ISP or per-media-type reliability metric would be
+% appropriate for this application since these metrics can facilitate
+% comparisons.
 
-Another application of Internet reliability could be the
-identification of geographic regions and challenging conditions with
-particularly poor connectivity. A per-region reliability metric could
-allow policymakers and ISPs to identify problematic areas and drive
-Internet infrastructure deployment in such areas.
+% Another application of Internet reliability could be the
+% identification of geographic regions and challenging conditions with
+% particularly poor connectivity. A per-region reliability metric could
+% allow policymakers and ISPs to identify problematic areas and drive
+% Internet infrastructure deployment in such areas.
 
-Reliability can also be measured along various combinations of ISP,
-media-type, geographic region, and challenging conditions. Such
-measures can help find the most reliable ISP and media-type for a
-geographic region that is particularly susceptible to a challenging
-weather condition (such as blizzards, for example). Important
-infrastucture in those areas can then use the most reliable ISP and
-media-type combination.
+% Reliability can also be measured along various combinations of ISP,
+% media-type, geographic region, and challenging conditions. Such
+% measures can help find the most reliable ISP and media-type for a
+% geographic region that is particularly susceptible to a challenging
+% weather condition (such as blizzards, for example). Important
+% infrastucture in those areas can then use the most reliable ISP and
+% media-type combination.
 
-\subsection{Not all outages are relevant to Internet reliability
-measures}
+% \subsection{Not all outages are relevant to Internet reliability
+% measures}
 
-Even after mitigating errors in outage inferences due to high latency
-and dynamic address reassignment, some false outages may
-remain. 
+% Even after mitigating errors in outage inferences due to high latency
+% and dynamic address reassignment, some false outages may
+% remain. 
 
-Additionally, the set of detected outages that should be considered in
-reliability metrics can vary depending upon the application. Here are
-three potential applications with different requirements:
+% Additionally, the set of detected outages that should be considered in
+% reliability metrics can vary depending upon the application. Here are
+% three potential applications with different requirements:
 
-\begin{itemize}
+% \begin{itemize}
 
-\item{Suppose the goal is to measure the effectiveness of broadcasting
-    critical information (such as severe weather alerts or Amber
-    alerts) over the Internet. An Internet reliability metric, such as
-    the rate of Internet outages over time, offers a sense of how many
-    users in each ISP or geographic region can be reached through such
-    a broadcast. For this application, all Internet
-    outages---including outages due to users turning off their home
-    Internet equipment---should be represented in the metric. }
+% \item{Suppose the goal is to measure the effectiveness of broadcasting
+%     critical information (such as severe weather alerts or Amber
+%     alerts) over the Internet. An Internet reliability metric, such as
+%     the rate of Internet outages over time, offers a sense of how many
+%     users in each ISP or geographic region can be reached through such
+%     a broadcast. For this application, all Internet
+%     outages---including outages due to users turning off their home
+%     Internet equipment---should be represented in the metric. }
 
-\item {When comparing Internet reliability across geographic regions,
-    perhaps to identify areas with particularly poor connectivity, outages due to
-    user behavior should not be considered in the reliability
-    metric. Grover et al. report that users sometimes voluntarily
-    power off their home Internet
-    equipment~\cite{grover2013peeking}. Probing-based techniques would
-  detect such instances as Internet outages since a previously
-  responsive address ceases to respond to probes. Without accounting
-  for such outages, we may overestimate the outage rate in a region.}
+% \item {When comparing Internet reliability across geographic regions,
+%     perhaps to identify areas with particularly poor connectivity, outages due to
+%     user behavior should not be considered in the reliability
+%     metric. Grover et al. report that users sometimes voluntarily
+%     power off their home Internet
+%     equipment~\cite{grover2013peeking}. Probing-based techniques would
+%   detect such instances as Internet outages since a previously
+%   responsive address ceases to respond to probes. Without accounting
+%   for such outages, we may overestimate the outage rate in a region.}
  
-\item {When comparing reliability across ISPs, the reliability metric
-should ideally only consider outages that each ISP was responsible
-for. Doing so ensures that ISPs offering services in challenged areas
-do not have their reliability lowered by events such as power outages
-or user behavior.}
+% \item {When comparing reliability across ISPs, the reliability metric
+% should ideally only consider outages that each ISP was responsible
+% for. Doing so ensures that ISPs offering services in challenged areas
+% do not have their reliability lowered by events such as power outages
+% or user behavior.}
 
-\end{itemize}
+% \end{itemize}
 
-\subsection{Estimating how a challenging condition affects Internet
-  reliability}
+% \subsection{Estimating how a challenging condition affects Internet
+%   reliability}
 
-Suppose we wish to assess the effect of a challenging condition or environment---like
-the presence of a thunderstorm---upon the Internet reliability of a
-group of addresses. This group of addresses could be a set of
-addresses that share some relationship to each other: they could
-belong to the same ISP, media-type, geographic region etc. Such an
-assessment would help identify areas and networks that are
-particularly prone to Internet connectivity problems in certain types
-of weather. Chapter~\ref{cpt:weather} describes how to perform these assessments.
+% Suppose we wish to assess the effect of a challenging condition or environment---like
+% the presence of a thunderstorm---upon the Internet reliability of a
+% group of addresses. This group of addresses could be a set of
+% addresses that share some relationship to each other: they could
+% belong to the same ISP, media-type, geographic region etc. Such an
+% assessment would help identify areas and networks that are
+% particularly prone to Internet connectivity problems in certain types
+% of weather. Chapter~\ref{cpt:weather} describes how to perform these assessments.
 
-\subsection{Categorizing outages by their potential cause}
+% \subsection{Categorizing outages by their potential cause}
 
-Since the set of detected outages that should go into a reliability
-metric varies by application, depending upon the outage's cause, there
-is a need to classify detected outages. Chapter~\ref{cpt:corrfails}
-discusses a technique that uses simultaneous failures of related
-addresses to achieve this classification.
+% Since the set of detected outages that should go into a reliability
+% metric varies by application, depending upon the outage's cause, there
+% is a need to classify detected outages. Chapter~\ref{cpt:corrfails}
+% discusses a technique that uses simultaneous failures of related
+% addresses to achieve this classification.

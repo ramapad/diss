@@ -1,0 +1,45 @@
+
+newgraph
+
+xaxis 
+no_auto_hash_marks
+no_auto_hash_labels
+hash_labels hjr vjc rotate 45
+min 0
+max 15
+
+hash_label at 0.5 : comcast
+hash_label at 1.5 : viasat
+hash_label at 2.5 : qwest
+hash_label at 3.5 : charter
+hash_label at 4.5 : windstream
+hash_label at 5.5 : centurytel
+hash_label at 6.5 : megapath
+hash_label at 7.5 : rise
+hash_label at 8.5 : verizon
+hash_label at 9.5 : verizon-wireless
+hash_label at 10.5 : suddenlink
+hash_label at 11.5 : att
+hash_label at 12.5 : cox
+hash_label at 13.5 : pavlovmedia
+hash_label at 14.5 : level3
+yaxis 
+size 3
+label : Correlated dropouts
+min 0
+
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 0.5 3109
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 1.5 1855
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 2.5 1734
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 3.5 1374
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 4.5 1289
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 5.5 825
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 6.5 636
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 7.5 570
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 8.5 470
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 9.5 371
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 10.5 357
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 11.5 351
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 12.5 313
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 13.5 213
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 14.5 176

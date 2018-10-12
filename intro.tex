@@ -81,7 +81,8 @@ obtaining such measures.
 % media-types.
 
 % \section{Background, challenges, state of the art}
-\section{Background: state of the art in measuring Internet reliability}
+% \section{Background}
+\section{Background: state of the art in measuring residential Internet reliability}
 
 % The problem is: how much do I cover in background? Using outages to
 % understand reliability is not something I can cover too much. I can
@@ -91,9 +92,15 @@ obtaining such measures.
 Intuitively, a reliable Internet connection is one that works
 continuously. In other words, it experiences no outages. 
 
-Measuring residential Internet reliability requires the detection of
-\emph{Internet outages} affecting residential customers---at a high
-level, these are events that prevent users from communicating over the
+% Measuring residential Internet reliability requires the detection of
+% \emph{Internet outages} affecting residential customers---at a high
+% level, these are events that prevent users from communicating over the
+% Internet.
+
+Measuring Internet reliability, therefore, necessitates measuring
+\emph{Internet outages} and then using measured outages in a metric that
+represents some property of outages. At a high level, an Internet
+outage is an event that prevents users from communicating over the
 Internet. Since we expect outage events to be rare, detecting them
 requires monitoring a broad set of residential users over long
 periods. After detecting outages over time for a group of residential
@@ -113,21 +120,17 @@ groups with particularly low reliability.
 % TODO: Should I try convincing people that individual user
 % measurement is necessary? Why not just do Trinocular?
 
- However, detecting residential Internet outages is challenging. 
-
-One challenge is the scale of residential users on the Internet: there
+Detecting residential Internet outages is challenging. The first challenge is the scale of residential users on the Internet: there
 are millions of residential Internet connections to monitor. Further,
 residential Internet outages can vary in the number of
-affected users. They can affect entire counties during large power
+affected users. They can affect entire cities during large power
 outages. They can also affect just an individual house if a fallen
 tree branch damages the last-mile link between the house and the
-ISP. 
-
-Another challenge is the heterogeneity of residential Internet
+ISP.  Another challenge is the heterogeneity of residential Internet
 connections. Some connections are cable connections, where the home router
-typically has a stable public IPv4 addresses. Others are DSL
-connections which can be configured to the home router's assigned
-every 24 hours. Residential Internet connections can also be over
+typically has a stable public IPv4 address. Others are DSL
+connections where the address assigned to the home router can change
+every 24 hours. Residential Internet connections can also use
 satellite links, which are prone to higher latencies. 
 
 Designing an outage detection system that can measure users
@@ -145,18 +148,18 @@ BISmark~\cite{bismark-main-bib}, measure diverse aspects of users'
 Internet connections, including connectivity problems, but measure
 relatively few users.
 
-Another class of techniques trades off outage detection accuracy for
-breadth by detecting outages for entire network prefixes or address
-blocks. Hubble studies reachability problems affecting BGP
-prefixes~\cite{hubble}. Trinocular detects outages affecting /24
-address blocks. Richter et~al.~\cite{advancing-outage-art} use the
-observation point of a large CDN to detect periods of reduced activity
-from /24 address blocks consistent with outages. Dainotti
-et~al.~\cite{dainotti-imc11} observe Internet Background Radiation
-traffic sent to IPv4 darknets to detect outages affecting entire
-countries. These techniques are designed to detect large Internet
-outages broadly, but at the cost of missing smaller outages that do
-not affect the entire monitored aggregate.
+% Another class of techniques trades off outage detection accuracy for
+% breadth by detecting outages that affect entire network prefixes or address
+% blocks. Hubble studies reachability problems affecting BGP
+% prefixes~\cite{hubble}. Trinocular detects outages affecting /24
+% address blocks. Richter et~al.~\cite{advancing-outage-art} use the
+% observation point of a large CDN to detect periods of reduced activity
+% from /24 address blocks consistent with outages. Dainotti
+% et~al.~\cite{dainotti-imc11} observe Internet Background Radiation
+% traffic sent to IPv4 darknets to detect outages affecting entire
+% countries. These techniques are designed to detect large Internet
+% outages broadly, but at the cost of missing smaller outages that do
+% not affect the entire monitored aggregate.
 
 Whereas hardware based techniques have fundamental scaling
 difficulties owing to manufacturing and deployment costs, hundreds of
@@ -383,9 +386,13 @@ measurements of these factors in turn.
 % My goal in this dissertation is to use probing-based techniques to
 % detect outages remotely and use detected outages for
 % measuring Internet reliability.
-My goal in this dissertation is to develop approaches that will
-address the challenges in obtaining authoritative measures of
-residential Internet reliability. I work towards this goal using the
+% My goal in this dissertation is to develop approaches that will
+% address the challenges in obtaining authoritative measures of
+% residential Internet reliability. 
+
+The goal of this dissertation is to provide broad, longitudinal, and accurate measurements of
+Internet reliability across ISPs, media-types, and geographic
+locations in a variety of circumstances. I work towards this goal using the
 probing-based technique due to its ability to scale. In the rest of
 the dissertation, I illustrate my approaches to mitigate probing-based
 techniques' problems in measuring residential Internet reliability
@@ -394,7 +401,8 @@ by defending the following thesis:
 \emph{It is possible to remotely and accurately detect substantial outages
   experienced by any device with a stable public IP address that typically
   responds to active probes and use these outages to compare
-  reliability across ISPs, media-types and geographical areas.} 
+  reliability across ISPs, media-types, geographical areas, and
+  weather conditions.} 
 
 \begin{itemize}
 
@@ -407,19 +415,17 @@ duration of dynamic assignment to be estimated.}
 
 \item {\emph{Substantial outage}: I define a substantial outage to be an event where a device
     with an Internet connection is unable to send or receive any
-    packets for at least 10 minutes.}
+    packets for at least 11 minutes. Such outages are likely to inconvenience residential users.}
 
 \item {\emph{Accuracy of outage detection}: An outage detection technique is accurate when it
-correctly identifies every substantial outage event experienced by an Internet-connected-device, along with its
-duration. There are no time-periods when the address
+correctly identifies every substantial outage event experienced by an Internet-connected-device. There are no time-periods when the address
 experiences a substantial outage but it goes undetected (false
 negatives). Similarly, there are no time-periods classified as
 outages when the destination address is able to receive packets from the
 Internet (false positives).}
 
-\item {\emph{Reliability}: I define two measures of reliability: one is the raw count of outage
-events over measured time and the other is the proportion of total measured time
-detected as outage events.}
+\item {\emph{Reliability}: I define reliability to be the raw count of outage
+events over measured time.}
 
 \end{itemize}
 
@@ -427,16 +433,28 @@ detected as outage events.}
 % My approaches share a common theme: I list potential sources of
 % error, measure them, and mitigate them
 
-At the heart of my approaches is the insight that it is possible to: (a) list
-potential sources of error, (b) measure and evaluate these sources of
-error in various circumstances, and (c) use these
-measurements to mitigate error. I use this insight to list and
-measure the likelihood of potential errors in outage detection due
-to confounding factors (such as high latency and dynamic address reassignment) across ISPs and
-geographic regions. I also use this insight to list potential causes
-of unrelated outages (such as users powering off their
-home Internet equipment) and develop techniques to 
-measure and mitigate their effect on Internet reliability metrics. %  extracting instances where the signal
+
+
+% My approach to accuracy 
+
+% My approach to accuracy is enumerate sources of error and evaluate
+% whether they are creating an error. A good bit is focused on the
+% experiments looking for and eliminating sources of error. As opposed
+% to getting ground truth from some source and just evaluating against
+% that.
+
+% At the heart of my approaches is the insight that it is possible to: (a) list
+% potential sources of error, (b) measure and evaluate these sources of
+% error in various circumstances, and (c) use these
+% measurements to mitigate error. I use this insight to list and
+% measure the likelihood of potential errors in outage detection due
+% to confounding factors (such as high latency and dynamic address reassignment) across ISPs and
+% geographic regions. I also use this insight to list potential causes
+% of unrelated outages (such as users powering off their
+% home Internet equipment) and develop techniques to 
+% measure and mitigate their effect on Internet reliability metrics.
+
+ %  extracting instances where the signal
 % clearly outweighs the noise.
 
 % Negate them is true in the weather-paper. Not strictly true in
@@ -447,10 +465,11 @@ measure and mitigate their effect on Internet reliability metrics. %  extracting
 To demonstrate the thesis, I measure two confounding factors---high
 latency (Chapter~\ref{cpt:timeouts}) and dynamic address reassignent
 (Chapter~\ref{cpt:addr_change})---that can lead probing-based outage
-detection techniques to make false outage inferences. I go on to show how
+detection techniques to make false outage inferences. In
+Chapter~\ref{cpt:corrfails}, I motivate the detection of individual
+addresses' outages. I go on to show how
 to measure Internet reliability in the presence of inference errors
-and unrelated outages (Chapter~\ref{cpt:weather} and
-Chapter~\ref{cpt:corrfails}). This dissertation is organized as follows:
+and unrelated outages in Chapter~\ref{cpt:weather}. This dissertation is organized as follows:
  % I
 % demonstrate that the inflation in outage rate during the presence of a
 % particular challenging condition, such as during thunderstorms, 
@@ -464,12 +483,10 @@ Chapter~\ref{cpt:corrfails}). This dissertation is organized as follows:
 % a stable public IP address that typically
 %   responds to active probes
 
-\textbf{Chapter~\ref{cpt:bg}:~~Measuring Residential Internet
-  Reliability: a Primer}
+\textbf{Chapter~\ref{cpt:bg}:~~State of the art in residential Internet outage detection}
 
-I provide background on residential
-Internet reliability, define terms in the thesis statement, and place
-related work in context. I describe the challenges that probing-based
+I provide background and place existing work in Internet outage
+detection in context. I describe the challenges that probing-based
 remote outage detection techniques will need to address to measure
 residential Internet reliability. These techniques study outages by
 sending active probes (such as ping's echo requests) and use probe
@@ -477,12 +494,7 @@ responses to infer outages. They assume that a response to an active
 probe indicates a working path to the probed user device and that lack
 of response is indicative of failure. I illustrate two scenarios where
 this assumption can be invalid, leading to potentially false outage
-inferences. I also show how detected outages can be used to measure
-Internet reliability along different dimensions. I illustrate
-scenarios where detected outages may
-need to be treated differently depending upon the type of
-Internet reliability being studied (ISP-level reliability,
-region-level reliability etc.).
+inferences. 
  % I
 % illustrate two potential scenarios where this assumption is
 % invalid---when responses are delayed beyond the prober's timeout and
@@ -522,6 +534,17 @@ reassignment over failure can be as simple as a client that once asked
 for updates from the address with a detected outage asking for the
 next update \emph{during} the detected outage from a different address.
 
+\textbf{Chapter~\ref{cpt:corrfails}:~~The need for measuring individual address outages} 
+
+I motivate the need to study individual address outages by showing
+that even larger outages that can be detected using individual address
+outage measurements would often not be
+detected by prior work. I describe how to use simultaneous outages of
+individual addresses related
+to each other, by geography or ISP, to identify outages that are
+highly unlikely to have occurred independently, and are therefore
+likely to share a common underlying cause. 
+
 \textbf{Chapter~\ref{cpt:weather}:~~Analyzing weather's effect on
   Internet Reliability} 
 
@@ -533,15 +556,10 @@ face: severe weather conditions. I show how to use the inflation in
 outage rate---the number of outages per time---to measure the effect
 of different classes of weather upon various groups of addresses.
 
-\textbf{Chapter~\ref{cpt:corrfails}:~~Towards categorizing outages by
-  their cause} 
+\textbf{Chapter~\ref{cpt:future}:~~Future Work} 
 
-I discuss an approach to determine which of the detected outages are
-consistent with the failure of an ISP's operated equipment, and which
-outages can be attributed to other causes such as power outages or
-users voluntarily shutting down their home Internet equipment. I
-describe how to use simultaneous outages of addresses related
-to each other, by geography or ISP, to categorize outages.
+I describe directions for future work in measuring residential
+reliability using probing-based techniques.
 
 % We show in this proposal that confounding factors can cause RODWAP
 % techniques to sometimes

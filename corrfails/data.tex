@@ -1,0 +1,362 @@
+% \section{Data Set}
+
+% We use data from Thunderping.
+
+\section{Results}
+
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=.5\linewidth]{figs/dmin_vs_nout_660_jan17todec17_glorious_scatter}
+% \caption{
+% \label{fig:dmin_vs_nouts}
+% Correlated dropouts detected in 2017 vs. $D_{min}$.}
+% \end{figure}
+
+
+\subsection{Correlated dropouts across ISPs}
+
+Correlated dropouts occur across most of the large ISPs pinged by Thunderping.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.5\linewidth]{corrfails/figs/corrfails_by_isp_660_jan17todec17_filter0_bar}
+\caption{
+\label{fig:corr_dropouts_across_isps}
+Correlated dropouts by ISP.}
+\end{figure}
+
+We detected 20,831 correlated dropouts in 2017 using the Binomial
+test. We first grouped these dropouts by ISP to see if any ISPs have an
+unusual number of correlated dropouts. Figure~\ref{fig:corr_dropouts_across_isps} shows the top 10
+ISPs with correlated dropouts. These top ISPs together account for 65\% of all detected correlated dropouts.
+
+% % How about saying we will consider a couple of different approaches? In
+% % one, we will consider all correlated dropouts. In another, we will
+% % consider the correlated dropouts that affect at least 95\% of the
+% % addresses.
+
+% % Give an ISP-level breakdown of both.
+
+% % Perhaps begin with: is it dynamic addressing?
+
+% % If it's dynamic addressing, does it depend upon the size?
+
+\subsection{Correlated dropouts occur more frequently at night}
+
+Prior work has shown that outages tended to happen more frequently
+during maintenance intervals. Here, we investigate if the correlated
+dropouts we detected also follow similar patterns.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.5\linewidth]{corrfails/figs/corrfails_by_timeofweek_660_jan17todec17_filter0_bar}
+\caption{
+\label{fig:corr_dropouts_timeofweek}
+Correlated dropouts that began in each hour of the week. 'Mon' on the
+bottom xaxis refers to midnight on Monday in UTC time. On the top xaxis, 'Mon' refers to midnight at UTC-6 (CST). }
+\end{figure}
+
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=.5\linewidth]{figs/corrfails_by_timeofweek_660_jan17todec17_filter0_asncomcast_bar}
+% \caption{
+% \label{fig:corr_dropouts_timeofweek_comcast}
+% Comcast: Correlated dropouts that began in each hour of the week. 'Mon' on the
+% bottom xaxis refers to midnight on Monday in UTC time. On the top xaxis, 'Mon' refers to midnight at UTC-6 (CST). }
+% \end{figure}
+
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=.5\linewidth]{figs/corrfails_by_timeofweek_660_jan17todec17_filter0_asn209_bar}
+% \caption{
+% \label{fig:corr_dropouts_timeofweek_qwest}
+% Qwest: Correlated dropouts that began in each hour of the week. 'Mon' on the
+% bottom xaxis refers to midnight on Monday in UTC time. On the top xaxis, 'Mon' refers to midnight at UTC-6 (CST). }
+% \end{figure}
+
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=.5\linewidth]{figs/corrfails_by_timeofweek_660_jan17todec17_filter0_asn7155_bar}
+% \caption{
+% \label{fig:corr_dropouts_timeofweek_viasat}
+% Viasat: Correlated dropouts that began in each hour of the week. 'Mon' on the
+% bottom xaxis refers to midnight on Monday in UTC time. On the top xaxis, 'Mon' refers to midnight at UTC-6 (CST). }
+% \end{figure}
+
+For each hour of the week, we found how many correlated dropouts
+started, and show these in
+Figure~\ref{fig:corr_dropouts_timeofweek}.
+As expected, there are more
+correlated dropouts close to midnight, CST, on weekday nights,
+corroborating previous work.
+
+% \subsection{Correlated dropouts can recover together}
+
+% Since Thunderping continues to probe an IP address even after it
+% becomes unresponsive until the end of the weather alert, Thunderping
+% can observe when the address becomes responsive again. This
+% responsiveness may signal that the outage has ended.
+
+% However, just because an address starts responding to pings again does not necessarily
+% mean that it has recovered from a failure: it is possible that the
+% address has been reassigned to some other device which did not have a
+% failure. 
+
+% Our insight is that multiple addresses that dropout together and also
+% recover together offer evidence that: (a) the event was an outage. (b)
+% the outage event has indeed ended. 
+
+% Table~\ref{tbl:nouts_vs_nrecs} shows how many addresses recovered in a
+% correlated manner when depending upon the number of addresses that
+% were affected for a correlated dropout. For many correlated dropouts,
+% irrespective of their size, we observe the majority of addresses recover.
+
+% % \begin{table}[th]
+% % %  \scriptsize
+% %   \centering
+% %   \hspace{-0.04in}\tiny
+% %   \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}
+% % \textbf{Dropouts} & \multicolumn{11}{c|}{Correlated recoveries} \\
+% %     & \textbf{0} & \textbf{2} &
+% %     \textbf{3} & \textbf{5} & \textbf{10}  & \textbf{25}  &
+% %     \textbf{50}  & \textbf{100} & \textbf{250}  & \textbf{500}  &
+% %     \textbf{1000}\\
+% %     \hline
+% % 2 & 5390 (47\%) & 5994 (52\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% % 3 & 3733 (42\%) & 2939 (33\%) & 2119 (24\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% % 5 & 3388 (32\%) & 3148 (30\%) & 1691 (16\%) & 2077 (20\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% % 10 & 1659 (17\%) & 2224 (23\%) & 1414 (15\%) & 1926 (20\%) & 2167 (23\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% % 25 & 209 (4\%) & 465 (9\%) & 452 (9\%) & 787 (16\%) & 1401 (29\%) & 1437 (30\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% % 50 & 16 (1\%) & 40 (3\%) & 39 (3\%) & 99 (8\%) & 206 (16\%) & 423 (34\%) & 396 (32\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% % 100 & 3 (0\%) & 6 (1\%) & 11 (2\%) & 22 (4\%) & 48 (8\%) & 84 (15\%) & 128 (23\%) & 235 (43\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% % 250 & 1 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 11 (7\%) & 11 (7\%) & 19 (13\%) & 47 (32\%) & 55 (38\%) & 0 (0\%) & 0 (0\%)\\
+% % 500 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (7\%) & 0 (0\%) & 3 (23\%) & 9 (69\%) & 0 (0\%)\\
+% % 1000 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (25\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (25\%) & 2 (50\%)\\
+% %     \end{tabular}
+% %   \caption{\label{tbl:nouts_vs_nrecs_without_nonrecs} Number of addresses that
+% %     recovered for correlated dropouts affecting different numbers of addresses.
+% %   }
+% % \end{table}
+
+
+% \begin{table}[th]
+% %  \scriptsize
+%   \centering
+%   \hspace{-0.04in}\tiny
+%   \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+% \textbf{Dropouts} & \multicolumn{13}{c|}{Correlated recoveries} \\
+%     & \textbf{-2} & \textbf{-1} & \textbf{0} & \textbf{2} &
+%     \textbf{3} & \textbf{5} & \textbf{10}  & \textbf{25}  &
+%     \textbf{50}  & \textbf{100} & \textbf{250}  & \textbf{500}  &
+%     \textbf{1000}\\
+%     \hline
+% 2 & 623 (24\%) & 286 (11\%) & 425 (16\%) & 1259 (49\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 3 & 476 (16\%) & 283 (10\%) & 463 (16\%) & 741 (25\%) & 1006 (34\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 5 & 520 (11\%) & 304 (6\%) & 761 (15\%) & 1050 (21\%) & 915 (18\%) & 1401 (28\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 10 & 349 (7\%) & 184 (3\%) & 568 (11\%) & 888 (17\%) & 799 (15\%) & 1159 (22\%) & 1377 (26\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 25 & 169 (5\%) & 65 (2\%) & 136 (4\%) & 259 (8\%) & 250 (8\%) & 470 (14\%) & 861 (26\%) & 1067 (33\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 50 & 47 (4\%) & 13 (1\%) & 18 (2\%) & 23 (2\%) & 31 (3\%) & 77 (7\%) & 146 (14\%) & 358 (34\%) & 335 (32\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 100 & 15 (3\%) & 2 (0\%) & 4 (1\%) & 7 (1\%) & 5 (1\%) & 23 (5\%) & 31 (6\%) & 71 (14\%) & 147 (30\%) & 193 (39\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 250 & 2 (1\%) & 0 (0\%) & 1 (1\%) & 0 (0\%) & 0 (0\%) & 1 (1\%) & 8 (5\%) & 17 (11\%) & 16 (10\%) & 52 (34\%) & 56 (37\%) & 0 (0\%) & 0 (0\%)\\
+% 500 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 2 (13\%) & 0 (0\%) & 2 (13\%) & 11 (73\%) & 0 (0\%)\\
+% 1000 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 1 (33\%)\\
+%     \end{tabular}
+%   \caption{\label{tbl:nouts_vs_nrecs} The number of addresses that
+%     recovered (columns) for correlated dropouts affecting different numbers of
+%     addresses (rows). -2 indicates that no addresses that dropped out
+%     recovered. -1 indicates that only one address recovered. The other
+%     numbers show how many of the (at least two) addresses that
+%     recovered did so in a correlated manner.
+%   }
+% \end{table}
+
+% \begin{table}[th]
+% %  \scriptsize
+%   \centering
+%   \hspace{-0.04in}\tiny
+%   \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+% \textbf{Dropouts} & \multicolumn{13}{c|}{Correlated recoveries} \\
+%     & \textbf{-2} & \textbf{-1} & \textbf{0} & \textbf{2} &
+%     \textbf{3} & \textbf{5} & \textbf{10}  & \textbf{25}  &
+%     \textbf{50}  & \textbf{100} & \textbf{250}  & \textbf{500}  &
+%     \textbf{1000}\\
+%     \hline
+% 2 & 48 (26\%) & 16 (9\%) & 47 (25\%) & 76 (41\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 3 & 34 (13\%) & 8 (3\%) & 50 (19\%) & 86 (32\%) & 90 (34\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 5 & 58 (8\%) & 24 (3\%) & 53 (7\%) & 152 (21\%) & 178 (25\%) & 247 (35\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 10 & 50 (6\%) & 19 (2\%) & 49 (5\%) & 84 (9\%) & 158 (18\%) & 251 (28\%) & 290 (32\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 25 & 21 (3\%) & 12 (2\%) & 23 (4\%) & 48 (7\%) & 42 (6\%) & 77 (12\%) & 226 (35\%) & 201 (31\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 50 & 5 (2\%) & 3 (1\%) & 4 (2\%) & 4 (2\%) & 9 (4\%) & 18 (8\%) & 49 (21\%) & 92 (39\%) & 52 (22\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 100 & 3 (3\%) & 0 (0\%) & 1 (1\%) & 0 (0\%) & 0 (0\%) & 5 (5\%) & 14 (13\%) & 19 (17\%) & 41 (38\%) & 26 (24\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 250 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 3 (7\%) & 4 (9\%) & 5 (12\%) & 18 (42\%) & 13 (30\%) & 0 (0\%) & 0 (0\%)\\
+% 500 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 2 (100\%) & 0 (0\%)\\
+% 1000 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (100\%)\\
+%     \end{tabular}
+%   \caption{\label{tbl:nouts_vs_nrecs_comcast} For Comcast, the number of addresses that
+%     recovered (columns) for correlated dropouts affecting different numbers of
+%     addresses (rows). -2 indicates that no addresses that dropped out
+%     recovered. -1 indicates that only one address recovered. The other
+%     numbers show how many of the (at least two) addresses that
+%     recovered did so in a correlated manner.
+%   }
+% \end{table}
+
+
+% \begin{table}[th]
+% %  \scriptsize
+%   \centering
+%   \hspace{-0.04in}\tiny
+%   \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+% \textbf{Dropouts} & \multicolumn{13}{c|}{Correlated recoveries} \\
+%     & \textbf{-2} & \textbf{-1} & \textbf{0} & \textbf{2} &
+%     \textbf{3} & \textbf{5} & \textbf{10}  & \textbf{25}  &
+%     \textbf{50}  & \textbf{100} & \textbf{250}  & \textbf{500}  &
+%     \textbf{1000}\\
+%     \hline
+% 2 & 27 (20\%) & 11 (8\%) & 16 (12\%) & 80 (60\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 3 & 43 (32\%) & 11 (8\%) & 13 (10\%) & 23 (17\%) & 45 (33\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 5 & 66 (18\%) & 26 (7\%) & 69 (19\%) & 89 (24\%) & 55 (15\%) & 60 (16\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 10 & 65 (11\%) & 24 (4\%) & 109 (19\%) & 131 (22\%) & 94 (16\%) & 99 (17\%) & 61 (10\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 25 & 20 (5\%) & 11 (3\%) & 36 (9\%) & 54 (14\%) & 34 (9\%) & 86 (22\%) & 102 (26\%) & 57 (14\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 50 & 1 (1\%) & 1 (1\%) & 6 (8\%) & 6 (8\%) & 4 (5\%) & 12 (16\%) & 10 (14\%) & 21 (29\%) & 12 (16\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 100 & 1 (4\%) & 0 (0\%) & 1 (4\%) & 2 (7\%) & 1 (4\%) & 2 (7\%) & 0 (0\%) & 1 (4\%) & 8 (30\%) & 11 (41\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 250 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (8\%) & 2 (17\%) & 5 (42\%) & 4 (33\%) & 0 (0\%) & 0 (0\%)\\
+% 500 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 0 (0\%) & 1 (33\%) & 1 (33\%) & 0 (0\%)\\
+% 1000 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (50\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (50\%) & 0 (0\%)\\
+%     \end{tabular}
+%   \caption{\label{tbl:nouts_vs_nrecs_qwest} For Qwest, the number of addresses that
+%     recovered (columns) for correlated dropouts affecting different numbers of
+%     addresses (rows). -2 indicates that no addresses that dropped out
+%     recovered. -1 indicates that only one address recovered. The other
+%     numbers show how many of the (at least two) addresses that
+%     recovered did so in a correlated manner.
+%   }
+% \end{table}
+
+% \begin{table}[th]
+% %  \scriptsize
+%   \centering
+%   \hspace{-0.04in}\tiny
+%   \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+% \textbf{Dropouts} & \multicolumn{13}{c|}{Correlated recoveries} \\
+%     & \textbf{-2} & \textbf{-1} & \textbf{0} & \textbf{2} &
+%     \textbf{3} & \textbf{5} & \textbf{10}  & \textbf{25}  &
+%     \textbf{50}  & \textbf{100} & \textbf{250}  & \textbf{500}  &
+%     \textbf{1000}\\
+%     \hline
+% 2 & 7 (9\%) & 19 (24\%) & 22 (28\%) & 31 (39\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 3 & 5 (3\%) & 11 (7\%) & 45 (30\%) & 57 (38\%) & 32 (21\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 5 & 5 (1\%) & 10 (2\%) & 111 (25\%) & 144 (33\%) & 85 (19\%) & 88 (20\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 10 & 3 (0\%) & 7 (1\%) & 65 (10\%) & 159 (24\%) & 161 (25\%) & 156 (24\%) & 104 (16\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 25 & 1 (0\%) & 0 (0\%) & 5 (1\%) & 18 (5\%) & 38 (11\%) & 81 (24\%) & 104 (31\%) & 90 (27\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 50 & 2 (2\%) & 0 (0\%) & 1 (1\%) & 0 (0\%) & 1 (1\%) & 7 (5\%) & 29 (22\%) & 63 (49\%) & 26 (20\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 100 & 1 (2\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 2 (5\%) & 24 (57\%) & 15 (36\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 250 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (6\%) & 0 (0\%) & 2 (12\%) & 5 (29\%) & 9 (53\%) & 0 (0\%) & 0 (0\%)\\
+% 500 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 2 (67\%) & 0 (0\%)\\
+% 1000 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+%     \end{tabular}
+%   \caption{\label{tbl:nouts_vs_nrecs_viasat} For Viasat, the number of addresses that
+%     recovered (columns) for correlated dropouts affecting different numbers of
+%     addresses (rows). -2 indicates that no addresses that dropped out
+%     recovered. -1 indicates that only one address recovered. The other
+%     numbers show how many of the (at least two) addresses that
+%     recovered did so in a correlated manner.
+%   }
+% \end{table}
+
+
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=.5\linewidth]{figs/corrdropouts_durs_660_jan17todec17_filter0_cdf}
+% \caption{
+% \label{fig:corrdropouts_durs}
+% Distribution of durations of correlated dropouts. The curve includes the
+% duration of a detected correlated dropout as many times as there were addresses
+% that recovered in a correlated manner. For example, if 10 addresses
+% dropped out and 5 recovered in a correlated manner, and if the
+% duration of the recovery was 1h, then we would consider 1h five
+% times. Around two-thirds of
+% detected dropouts lasted less than an hour.}
+% \end{figure}
+
+
+% \subsection{Correlated dropouts may be prefix reassignment}
+
+% Recent work has shown that the inactivity of addresses does not
+% necessarily indicate an Internet failure event.
+
+\subsection{Correlated dropouts do not always knock out entire  /24s}
+
+We observe that many correlated dropouts did not affect all addresses
+in a /24. Prior work that detect outages affecting /24 address blocks
+can miss these events~\cite{trinocular, advancing-outage-art}.
+
+Of 20,831 detected correlated dropouts, 12,825(61\%) have at least one
+responsive address in \emph{all} the /24s that the correlated dropout
+affected. Even if some of the /24s have addresses that failed by
+random chance, the  assumption requires that at least one
+/24 (the one with the correlated failure) should be 'knocked out',
+i.e., have no responsive addresses. This assumption is incorrect 61\%
+of the time.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.5\linewidth]{corrfails/figs/outpers24_vs_uppers24_all_660_jan17todec17_scatter}
+\caption{
+\label{fig:outpers24_vs_uppers24_all}
+Addresses out in a /24 vs. addresses alive in a /24, for all /24s with
+an address that dropped out during a detected correlated
+dropout event for that state-ASN.}
+\end{figure}
+
+Next, we investigate how many addresses were alive in a /24 which had
+an address that may have been involved in a correlated dropout, in Figure~\ref{fig:outpers24_vs_uppers24_all}
+For each correlated dropout, for each /24 involved in the correlated
+dropout, we first found how many addresses dropped out. Next, we found
+how many addresses continued to respond in the /24. The 20,831
+detected dropouts affected addresses from 92,777 /24s. Each of these /24s
+is a point in Figure~\ref{fig:outpers24_vs_uppers24_all}.
+
+It it is hard to reason about /24s with less than Dmin failures, since
+the addresses in those /24s may have failed independently. However,
+recall that Dmin gives the minimum dropouts necessary to infer a
+correlated dropout across the entire U.S. state and ASN
+aggregate. Thus, when more than Dmin failures happen \emph{in the same
+  /24}, that /24's addresses are highly likely to have been affected
+by the correlated dropout. 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.5\linewidth]{corrfails/figs/outpers24minusdmin_vs_uppers24_all_660_jan17todec17_scatter}
+\caption{
+\label{fig:outpers24minusdmin_vs_uppers24_all}
+Minimum addresses out in a /24 vs. addresses alive in a /24, for all /24s with
+at least Dmin address that dropped out during a detected correlated
+dropout event for that state-ASN.}
+\end{figure}
+
+ Thus, we next find just the /24s with at least Dmin failures; there
+were 14,702 such /24s of the 92,277 total. For these /24s, we
+subtracted Dmin-1 from the total failed addresses: this gives us the
+minimum number of addresses that failed in the /24 as part of the
+correlated dropout (we subtract Dmin - 1 since there could have been
+Dmin - 1 independent
+failures). Figure~\ref{fig:outpers24minusdmin_vs_uppers24_all} shows
+the 14,702 /24s' minimum number of addresses that failed in the /24
+along the xaxis and the number of addresses that continued to respond
+along the yaxis. 10,164 (69\%) /24s had at least one responsive
+address. 5,850 (40\%) had at least 10 responsive addresses. 1,691 /24s
+had at least 10 addresses that were part of the correlated dropout. Of
+those, 550 (33\%) had at least 10 responsive addresses.
+
+% These results highlight the value in detecting outages at the
+% individual address level.
+
+% Thus, prior work that detects 
+
+% \subsection{Correlated dropouts can be multi-ISP}
+
+% We observe correlated dropouts occurring simultaneously across
+% multiple ISPs. We confirm that some of them correlate with large known
+% power outages reported in the media.
+
