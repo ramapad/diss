@@ -9,4 +9,45 @@
 % So for link-types, good to go. For other linktypes, need the
 % complementary dataset.
 
-Dynamic
+In this chapter, I showed that dynamic address reassignment can confuse
+probing-based techniques and lead them to make false inferences about
+outages. Next, I conducted a measurement study with colleagues to infer and analyze patterns of address changes using
+an existing set of logs from 3,038 globally distributed RIPE Atlas probes that saw address changes in
+2015. We found several factors in play.
+Dynamic address durations vary by geography, with addresses from North
+American ISPs persisting for weeks and addresses from
+many German ISPs assigned for a day. Dynamic addresses change as a
+result of network and power outages in most ISPs. In some ISPs, an
+outage of any duration results in an address change, while in others, the
+likelihood of address change increases with outage duration. Using
+this study, I was able to identify which networks have stable
+addresses, where dynamic reassignment is uncommon.
+
+I also showed using a complementary dataset that is sometimes possible
+to confirm probing-based techniques' detected outages even in
+networks with frequent dynamic reassignment. % The results from this
+% investigation corroborated the results from the RIPE Atlas measurement
+% study, showing that cable addresses tend to be stable and that DSL
+% addresses change frequently. 
+
+% Two of our findings seem at odds with the address assignment practice
+% specified in the DHCP standard~\cite{rfc2131}, which states as a
+% design goal that an address assigned to a client should persist as
+% long as the client continues to renew its lease, even across client
+% and DHCP server reboots. First, our dataset included periodically
+% reassigned addresses for many European and nearby Asian probes; these
+% reassignments potentially terminated sessions that were active during
+% the time of renumbering. Second, many address changes seem to result
+% from reboots and reconnect events. These observations---that some
+% addresses change daily and may change under the control of a
+% user---have implications both for researchers who might use addresses
+% as a means of counting or tracking individual users and for operators
+% that might blacklist addresses for misbehavior. We provide a list of
+% ISPs that renumbered periodically and their renumbering parameters in
+% Table~\ref{tbl:periodic_asns}; the maximum duration these ISPs are
+% likely to assign an address to a CPE can be estimated accurately with
+% high probability. We also provide a list of ISPs that renumber
+% consistently upon reboot and reconnect events in
+% Table~\ref{tbl:outages}; malicious users from these ISPs can evade
+% blacklists by simply rebooting their device.
+

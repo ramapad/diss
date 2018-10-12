@@ -5,9 +5,11 @@
 
 % TODO: Index section numbers to the roadmap
 
-In this chapter, I begin by describing how dynamic addressing can lead
+In this chapter, I begin by describing a common assumption that IP
+addresses can be used as proxies for users in
+Section~\ref{sec:addrs-are-host-proxies} and how dynamic addressing can lead
 probing-based outage detection techniques to make false inferences
-about outages. 
+about outages in Section~\ref{sec:addrchange-false-inferences}. 
 
 Next, I describe work with colleagues to empirically
 measure the frequency of dynamic addressing and the durations for
@@ -29,7 +31,7 @@ changes hosted across 929 ISPs and 156
 countries~\cite{addrchange-reasons}. Using the measurements from RIPE Atlas, I identify networks
 where addresses are typically stable. 
 
-Finally, I discuss a technique to identify outages even in networks
+Finally, in section~\ref{sec:complementary-ns} I discuss a technique to identify outages even in networks
 where dynamic reassignment is common. Using a complementary dataset
 that allows checking if an address for which a probing-based technique
 detected an outage has remained the same before and after the detected
@@ -37,6 +39,8 @@ outage, we are able to confirm outages even in networks where dynamic
 reassignment is common.
 
 \section{IP addresses can be proxies for end users}
+
+\label{sec:addrs-are-host-proxies}
 
 Academia and industry often rely on a simplifying assumption that IP
 addresses uniquely identify
