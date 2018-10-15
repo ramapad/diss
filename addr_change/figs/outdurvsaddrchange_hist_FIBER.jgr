@@ -24,7 +24,7 @@ newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 8.5 5
 newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 9.5 5
 newcurve marktype xbar marksize 0.2 color 0.8 0.8 0.8 pts 9.5 3
 
-include figs/outdurvesaddr_axes
+include addr_change/figs/outdurvesaddr_axes
 label : Fiber outage duration
 
 newcurve marktype xbar marksize 0.2 color 0.2 0.2 0.2 pts 0.5 100

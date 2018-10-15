@@ -140,13 +140,26 @@ Internet connections remains a challenge.
 \subsection{Prior approaches}
 
 Prior approaches tradeoff either outage detection breadth or
-accuracy. Broadly, current techniques can be grouped into on-premises
-and remote probing-based, with the former trading off breadth, and the
-latter, accuracy. On-premises techniques, such as RIPE
-Atlas~\cite{atlas}, SamKnows~\cite{samknows}, and
-BISmark~\cite{bismark-main-bib}, measure diverse aspects of users'
-Internet connections, including connectivity problems, but measure
-relatively few users.
+accuracy. 
+
+Edge network outage detection techniques detect outages broadly but
+focus upon detecting outages that affect a group of addresses---such as
+addresses belonging to the same /24 address block~\cite{trinocular, advancing-outage-art}, BGP
+prefix~\cite{hubble}, or country~\cite{dainotti-imc11}. These techniques can miss residential
+outages affecting relatively few users. Thus, they trade off outage detection accuracy
+for breadth.
+
+% Broadly, current techniques can be grouped into on-premises
+% and remote probing-based, with the former trading off breadth, and the
+% latter, accuracy.
+On-premises techniques, such as RIPE Atlas~\cite{atlas},
+SamKnows~\cite{samknows}, BISmark~\cite{bismark-main-bib}, and
+DIMES~\cite{netdimes} measure diverse aspects of users' Internet
+connections, including connectivity problems, but measure relatively
+few users. These techniques deploy dedicated hardware or software at
+user premises that continuously conduct ping, traceroute, DNS
+measurements etc.; some of these measurements can be used to infer
+Internet connectivity problems.
 
 % Another class of techniques trades off outage detection accuracy for
 % breadth by detecting outages that affect entire network prefixes or address
@@ -161,7 +174,7 @@ relatively few users.
 % outages broadly, but at the cost of missing smaller outages that do
 % not affect the entire monitored aggregate.
 
-Whereas hardware based techniques have fundamental scaling
+Whereas on-premises techniques have fundamental scaling
 difficulties owing to manufacturing and deployment costs, hundreds of
 millions of IP addresses respond to active
 probes~\cite{timeouts}. Since many residences have at least one device
@@ -424,7 +437,8 @@ negatives). Similarly, there are no time-periods classified as
 outages when the destination address is able to receive packets from the
 Internet (false positives).}
 
-\item {\emph{Reliability}: I define reliability to be the raw count of outage
+\item {\emph{Reliability}: I measure reliability using the outage
+    rate metric, which I define as the raw count of outage
 events over measured time.}
 
 \end{itemize}
@@ -529,21 +543,21 @@ techniques to mitigate these false inferences. I measure the frequency
 and patterns in dynamic address reassignment for ISPs across the
 world.  I also introduce a technique using a complementary dataset to
 determine whether an outage detected for an address by a probing-based
-system is a false outage due to dynamic reassignment. The evidence for
-reassignment over failure can be as simple as a client that once asked
-for updates from the address with a detected outage asking for the
-next update \emph{during} the detected outage from a different address.
+system is a false outage due to dynamic reassignment. % The evidence for
+% reassignment over failure can be as simple as a client that once asked
+% for updates from the address with a detected outage asking for the
+% next update \emph{during} the detected outage from a different address.
 
 \textbf{Chapter~\ref{cpt:corrfails}:~~The need for measuring individual address outages} 
 
 I motivate the need to study individual address outages by showing
-that even larger outages that can be detected using individual address
-outage measurements would often not be
-detected by prior work. I describe how to use simultaneous outages of
-individual addresses related
-to each other, by geography or ISP, to identify outages that are
-highly unlikely to have occurred independently, and are therefore
-likely to share a common underlying cause. 
+that individual address outage measurements can be used to find outage
+events affecting multiple addresses, and that many of these events
+would often not be detected by prior work. I describe how to use
+simultaneous outages of individual addresses related to each other, by
+geography or ISP, to identify outages that are highly unlikely to have
+occurred independently, and are therefore likely to share a common
+underlying cause.
 
 \textbf{Chapter~\ref{cpt:weather}:~~Analyzing weather's effect on
   Internet Reliability} 
@@ -553,7 +567,7 @@ addresses belonging to the same ISP, media-type, geographic
 region---when facing challenging environments. I consider one class of
 challenging environments that residential Internet connections can
 face: severe weather conditions. I show how to use the inflation in
-outage rate---the number of outages per time---to measure the effect
+outage rate to measure the effect
 of different classes of weather upon various groups of addresses.
 
 \textbf{Chapter~\ref{cpt:future}:~~Future Work} 

@@ -224,7 +224,69 @@ An orthogonal approach to address classification is to use datasets with some un
 
 
 
-% \subsection{Identifying outage causes}
+\section{Identifying outage causes can help orthogonal reliability analyses}
+
+In this dissertation, I covered one possible reliability analysis:
+examining how challenging conditions like weather affects Internet
+reliability. Another potential analysis is the head-to-head comparison
+of one ISP's reliability against another. Such comparisons can aid
+users in their choice of ISP and can help ISPs gauge their
+competition. 
+
+When comparing reliability across ISPs, the reliability metric
+should ideally only consider outages that each ISP was responsible
+for. If a user voluntarily chooses to power
+off their home Internet equipment, the user has an Internet outage but
+this outage should not lower the user's ISP's Internet reliability. Similarly, a power
+outage in an area should contribute towards lowering the reliability
+of that area, but should not lower the reliability of the
+ISPs whose addresses were affected. 
+
+For conducting comparisons of ISPs, we need to
+classify outages by detected cause. Chapter~\ref{cpt:corrfails} showed
+the potential of using simultaneous outages of related addresses to
+find addresses that failed due to a common underlying causes. When
+addresses from multiple ISPs fail together in the same geographic
+region, the cause is potentially a power outage. When addresses from
+only a single ISP have been observed to fail, the cause is potentially
+a network outage. % However, showing that \emph{no} other ISP had been
+% affected by an outage requires widespread probing of addresses. By
+% triggering additional probing of related addresses on demand, and by
+% augmenting pings with traceroutes, it's possible to uncover additional
+% context about detected outages. This context can help with classifying outages.
+
+% Additionally, the set of detected outages that should be considered in
+% reliability metrics can vary depending upon the application. Here are
+% three potential applications with different requirements:
+
+% \begin{itemize}
+
+% \item{Suppose the goal is to measure the effectiveness of broadcasting
+%     critical information (such as severe weather alerts or Amber
+%     alerts) over the Internet. An Internet reliability metric, such as
+%     the rate of Internet outages over time, offers a sense of how many
+%     users in each ISP or geographic region can be reached through such
+%     a broadcast. For this application, all Internet
+%     outages---including outages due to users turning off their home
+%     Internet equipment---should be represented in the metric. }
+
+% \item {When comparing Internet reliability across geographic regions,
+%     perhaps to identify areas with particularly poor connectivity, outages due to
+%     user behavior should not be considered in the reliability
+%     metric. Grover et al. report that users sometimes voluntarily
+%     power off their home Internet
+%     equipment~\cite{grover2013peeking}. Probing-based techniques would
+%   detect such instances as Internet outages since a previously
+%   responsive address ceases to respond to probes. Without accounting
+%   for such outages, we may overestimate the outage rate in a region.}
+ 
+% \item {When comparing reliability across ISPs, the reliability metric
+% should ideally only consider outages that each ISP was responsible
+% for. Doing so ensures that ISPs offering services in challenged areas
+% do not have their reliability lowered by events such as power outages
+% or user behavior.}
+
+% \end{itemize}
 
 
 

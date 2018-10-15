@@ -5,13 +5,43 @@
 
 \label{sec:complementary-ns}
 
-While the results from the RIPE Atlas measurement study allow the identification of networks with stable addresses, they also show the existence of networks where dynamic addressing is common. In this section, I show how to use a complementary dataset to confirm outages detected in networks where dynamic addressing can occur.
+The results from the RIPE Atlas measurement study allow the
+identification of networks with stable addresses. However, they also
+show the existence of networks where dynamic addressing is common. In
+this section, I show how to use a complementary dataset to confirm
+outages detected in networks where dynamic addressing can occur.
 
-Recall that Section~\ref{sec:addrchange-false-inferences} had described the different ways probing-based techniques can make false inferences about outages when dynamic addressing occurs. If the address being probed is withdrawn from its home router and not reassigned to any other router, probe responses will cease to arrive and a false outage will be inferred. If the home router experiences an outage causing its address to cease to respond to probes, and before the outage ends, the address is reassigned to some other device which responds to probes, probing-based techniques will infer the occurrence of the outage correctly but will falsely conclude that the outage ended before it did.
 
-Since dynamic reassignment and Internet outages will manifest similarly to probing-based techniques, I distinguish between Internet outages and \emph{dropouts}. A dropout happens when the address attached to a residential link transitions from being responsive to pings from multiple vantage points, to being unresponsive from all of the vantage points.
+Recall that Section~\ref{sec:addrchange-false-inferences} had described the different ways probing-based techniques can make false inferences about outages when dynamic addressing occurs. If the address being probed is withdrawn from its home router and not reassigned to any other device, probe responses will cease to arrive and a false outage will be inferred. If the home router experiences an outage causing its address to cease to respond to probes, and before the outage ends, the address is reassigned to some other device which responds to probes, probing-based techniques will infer the occurrence of the outage correctly but will falsely conclude that the outage ended before it did.
 
-My key insight is that a complementary dataset which can yield some sort of an unchanging identifier uniquely associated with the device can provide information about whether address reassignment occurred. For instance, consider the probe-ID field provided by RIPE Atlas, which uniquely identifies a device. If the address associated with the device before and after the dropout is the same, it is proof that dynamic address reassignment did not occur, and therefore, that an outage occurred. This approach provides two benefits:
+When a responsive address being probed is withdrawn from its host or
+when the host it belongs to experiences an Internet outage, a
+probing-based technique will observe that responses cease to arrive. I
+define this event to be a dropout. Formally: \emph{A dropout happens
+when the address attached to a residential link transitions from being
+responsive to pings from multiple vantage points, to being
+unresponsive from all of the vantage points.} An observed dropout can
+either be due to an outage or dynamic reassignment.
+
+ % Since dynamic reassignment and Internet outages will manifest similarly to probing-based techniques, I distinguish between Internet outages and \emph{dropouts}. 
+
+My key insight is that a complementary dataset which can yield some
+sort of an unchanging identifier (an ID) uniquely associated with the device
+can provide information about whether the device's address
+changed. For instance, consider the probe-ID field provided by RIPE
+Atlas, which uniquely identifies a device. If the address associated
+with the device before and after the dropout is the same, it is proof
+that dynamic address reassignment did not occur. The only way that the
+address before and after the dropout can be identical and yet for
+dynamic reassignment to have occurred, is if the device's address
+changed to a new one and then changed back to the original
+address. However, Section~\ref{sec:prefixes} showed that subsequent
+addresses are often assigned from entirely different prefixes; thus, the
+probability that a subsequent address is exactly the address that was
+assigned before is small. Since dynamic reassignment is highly
+unlikely to have occurred, we can infer that an outage occurred. 
+
+The ID-based approach provides two benefits:
 
 \begin{itemize}
 
@@ -24,11 +54,31 @@ My key insight is that a complementary dataset which can yield some sort of an u
 
 \subsection{CDN dataset provides IDs}
 
-I measure how often the address changes after a dropout by relying on a dataset of CDN access logs that contain a time stamp, unique client identifier and the public source IP address of the request.  The dataset comprises $\approx$ 70 million IP addresses in March of 2017.
+I measure how often addresses remained the same before and after a dropout using a dataset
+of CDN software logs that contain a timestamp, unique identifier of
+the software installation on the client machine and the public source
+IP address visible to the CDN.  The CDN offers a service to content owners
+whereby end users can elect to install software that will improve the
+performance the client experiences when accessing the content through
+the CDN. The CDN records logs collected from its software
+installations on users' desktops and laptop machines. Each logline
+contains (among other fields) the timestamp at whch the logline was
+created, the unique identifier of the software installation on the
+machine (the ID), and the public IP address seen by the CDN's
+infrastructure at this time. Loglines in the CDN software dataset are
+dependent on user activity, and therefore, their frequency varies. % In March 2017, there
+% were over a billion loglines from close to 20M unique IDs and 66M
+% unique IP addresses. 
+
+ % The dataset comprises $\approx$ 70 million IP addresses in March of 2017.
 
 \subsection{Confirming outages detected by Thunderping}
 
-For dropouts detected by the Thunderping system~\cite{pingin}, I measure how frequently the complementary dataset confirmed that the dropout was an outage. I used all dropout events detected in three years (2015, 2016, 2017) in this analysis and compare against the CDN dataset.
+For dropouts detected by the Thunderping system~\cite{pingin}, I
+measure how frequently the complementary dataset confirmed that the
+dropout was an outage. I used all dropout events detected in three
+years (2015, 2016, 2017) in this analysis and compare against the CDN
+dataset during the same period.
 
 To determine whether the address associated with a home router remained the same before and after a detected dropout, I
 first collect all entries where the address that experienced
@@ -89,40 +139,41 @@ SAT        &       9600 (0.4\%) &       6939 (72.3\%) &        241 (2.5\%) &    
 
 For DSL addresses, 31\% of dropouts were confirmed. Without the complementary dataset, all of these dropouts were suspect, since prior results showed that DSL addresses tend to be renumbered frequently. However, through the use of a dataset that provides IDs, I am able to confirm outages even in networks where addresses are not stable.
 
-% We next try to determine whether longer apparent outages
-% correlate with address changes.  If short outages typically
-% have no address change, we can at least characterize short
-% outage durations.  However, if all dropouts lead to address
-% changes on recovery, the time until an address starts
-% responding again is more a function of address reuse than of
-% recovery.  Figure~\ref{fig:outdur_vs_addrchange} shows the
-% results for each of the media types in our study.  This uses
-% the same data as in Table~\ref{tbl:lt_vs_outages_fp}.  In
-% Figure~\ref{fig:outdur_vs_addrchange}, the top graphs
-% represent the raw histograms of apparent outage duration,
-% though only the distribution of dark bars (where the address
-% is unchanged) should be taken as a distribution of true
-% outage duration.  The bottom graph represents the fraction
-% of outages having an address change or no address change.
-% At a high level, graphs with more dark are media types or
-% durations that are more likely to be true outages rather
-% than address renumbering.  For WISP and Cable, the bulk of
-% the outages at most 3 hours long have very little
-% renumbering and outage durations can be estimated well.  For
-% DSL, even short apparent outages are often accompanied by
-% address changes, meaning that outage duration should not be
-% estimated based on responsiveness alone (to do so would
-% require additional data from clients).  We observe few Fiber
-% outages, but the time-dependence is more pronounced.
+We next try to determine whether longer apparent outages
+correlate with address changes.  If short outages typically
+have no address change, we can at least characterize short
+outage durations.  However, if all dropouts lead to address
+changes on recovery, the time until an address starts
+responding again is more a function of address reuse than of
+recovery.  Figure~\ref{fig:outdur_vs_addrchange} shows the
+results for each of the media types in our study.  This uses
+the same data as in Table~\ref{tbl:lt_vs_outages_fp}.  In
+Figure~\ref{fig:outdur_vs_addrchange}, the top graphs
+represent the raw histograms of apparent outage duration,
+though only the distribution of dark bars (where the address
+is unchanged) should be taken as a distribution of true
+outage duration.  The bottom graph represents the fraction
+of outages having an address change or no address change.
+At a high level, graphs with more dark are media types or
+durations that are more likely to be true outages rather
+than address renumbering.  For WISP and Cable, the bulk of
+the outages at most 3 hours long have very little
+renumbering and outage durations can be estimated well.  For
+DSL, even short apparent outages are often accompanied by
+address changes, meaning that outage duration should not be
+estimated based on responsiveness alone (to do so would
+require additional data from clients).  We observe few Fiber
+outages, but the time-dependence is more pronounced.
 
 
 % \newlength{\fairsubfigwidth}
 % \setlength{\fairsubfigwidth}{0.19\textwidth}
 % \newlength{\commonfigheight}
 % \setlength{\commonfigheight}{2.4in}
+
 % \begin{figure*}[t]
 
-% \begin{subfigure}[t]{0.1\linewidth}
+% \begin{subfigure}[t]{0.32\linewidth}
 % \centering
 % \includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_CABLE}
 % \caption{
@@ -132,7 +183,7 @@ For DSL addresses, 31\% of dropouts were confirmed. Without the complementary da
 % %
 % \hfill
 % %
-% \begin{subfigure}[t]{0.1\linewidth}
+% \begin{subfigure}[t]{0.32\linewidth}
 % \centering
 % \includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_DSL}
 % \caption{
@@ -142,7 +193,7 @@ For DSL addresses, 31\% of dropouts were confirmed. Without the complementary da
 % %
 % \hfill
 % %
-% \begin{subfigure}[t]{0.1\linewidth}
+% \begin{subfigure}[t]{0.32\linewidth}
 % \centering
 % \includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_FIBER}
 % \caption{
@@ -152,29 +203,63 @@ For DSL addresses, 31\% of dropouts were confirmed. Without the complementary da
 % %
 % \hfill
 % %
-% \begin{subfigure}[t]{0.1\linewidth}
-% \centering
-% \includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_WISP}
-% \caption{
-% \label{fig:outdur_vs_addrchange_wisp}
-% WISP}
-% \end{subfigure}
-% %
-% \hfill
-% %
-% \begin{subfigure}[t]{0.1\linewidth}
-% \centering
-% \includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_SAT}
-% \caption{
-% \label{fig:outdur_vs_addrchange_sat}
-% Satellite}
-% \end{subfigure}
-% %
-% \caption{
-% \label{fig:outdur_vs_addrchange}	
-% \figdone
-% Outage duration vs.~probability of address change for addresses from
-% various link types.}
-% %
 % \end{figure*}
+
+\begin{figure*}[t]
+
+\begin{subfigure}[t]{0.19\linewidth}
+\centering
+\includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_CABLE}
+\caption{
+\label{fig:outdur_vs_addrchange_cable}
+Cable}
+\end{subfigure}
+%
+%\hfill
+%
+\begin{subfigure}[t]{0.19\linewidth}
+\centering
+\includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_DSL}
+\caption{
+\label{fig:outdur_vs_addrchange_dsl}
+DSL}
+\end{subfigure}
+%
+%\hfill
+%
+\begin{subfigure}[t]{0.19\linewidth}
+\centering
+\includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_FIBER}
+\caption{
+\label{fig:outdur_vs_addrchange_fiber}
+Fiber}
+\end{subfigure}
+%
+%\hfill
+%
+\begin{subfigure}[t]{0.19\linewidth}
+\centering
+\includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_WISP}
+\caption{
+\label{fig:outdur_vs_addrchange_wisp}
+WISP}
+\end{subfigure}
+%
+%\hfill
+%
+\begin{subfigure}[t]{0.19\linewidth}
+\centering
+\includegraphics[width=\linewidth]{addr_change/figs/outdurvsaddrchange_hist_SAT}
+\caption{
+\label{fig:outdur_vs_addrchange_sat}
+Satellite}
+\end{subfigure}
+%
+\caption{
+\label{fig:outdur_vs_addrchange}	
+\figdone
+Outage duration vs.~probability of address change for addresses from
+various link types.}
+%
+\end{figure*}
 

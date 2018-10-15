@@ -1,0 +1,47 @@
+
+xaxis 
+size 1.2 (* *)
+no_auto_hash_marks
+no_auto_hash_labels
+label : 
+min 0
+max 10
+hash_labels vjc hjr rotate 90
+
+yaxis 
+size 1.5
+(* label : Number of outages *)
+(* x -4.0 *)
+min 0.8
+
+
+newgraph border
+newcurve marktype none color 0.7 0.7 0.7 linetype solid pts 0 20 10 20
+newcurve marktype none color 0.7 0.7 0.7 linetype solid pts 0 40 10 40
+newcurve marktype none color 0.7 0.7 0.7 linetype solid pts 0 60 10 60
+newcurve marktype none color 0.7 0.7 0.7 linetype solid pts 0 80 10 80
+
+yaxis 
+size 0.75
+(* label : % of outages *)
+min 0 max 100
+
+xaxis 
+size 1.2 (* *)
+no_auto_hash_marks
+no_auto_hash_labels
+min 0
+max 10
+hash_labels vjc hjr rotate 90
+
+hash_label at 0.5 : 20m
+hash_label at 1.5 : 30m
+hash_label at 2.5 : 1h
+hash_label at 3.5 : 3h
+hash_label at 4.5 : 6h
+hash_label at 5.5 : 12h
+hash_label at 6.5 : 1d
+hash_label at 7.5 : 3d
+hash_label at 8.5 : 1w
+hash_label at 9.5 : >1w
+
