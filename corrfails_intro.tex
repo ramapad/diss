@@ -3,24 +3,55 @@
 \label{cpt:corrfails}
 
 In this chapter, I develop and evaluate an approach to detect
-dependent Internet failure events that affect multiple residential
-users simultaneously using measurements of individual address outages
-gathered with the Thunderping technique. 
+dependent \emph{Internet disruption} events that affect multiple residential
+addresses simultaneously using measurements of individual address disruptions
+gathered with the Thunderping technique. Borrowing terminology from
+Richter et al.~\cite{advancing-outage-art}, I define an Internet
+disruption event for an address to be the abrupt loss of response to active probing
+from that address.
 
-I define a dependent Internet failure event to be one which affects
-multiple customers due to a shared underlying cause (such as a network
-or power outage). My insight is that such events can affect multiple
-addresses that are related to each other simultaneously.
+% I define a dependent Internet disruption event to be one which affects
+% multiple customers due to a shared underlying cause (such as a network
+% or power outage). My insight is that such events can affect multiple
+% addresses that are related to each other simultaneously.
+Techniques that detect outages at the Internet's edge often seek
+disruption events affecting a substantial set of addresses. The set of addresses may comprise
+those belonging to the same /24
+address block~\cite{trinocular,advancing-outage-art}, BGP
+prefix~\cite{hubble}, or country~\cite{dainotti-imc11}.  
+Techniques seek such disruption events because individually, each large disruption has
+impact and their size makes them easier to confirm, e.g., with operators. In contrast, disruptions
+affecting only a few users are harder to detect with confidence.  For example, the
+lack of response from a single address might best be explained by a
+user switching off their home router---hardly an outage.
+However, residential Internet
+outages may be limited to a small neighborhood or apartment block; prior
+techniques are likely to miss such events.
 
-Using a novel approach based
-upon Binomial hypothesis testing, I detect instances of per-address
-outage events that are unlikely to have happened by random chance and
-flag these as dependent Internet outages. Next, I characterize these
-outages and present results that challenge conventional wisdom on how
-such outages affect Internet address blocks. I show that many of these
-outages would be missed by existing techniques that do not perform individual
-address outage detection, and instead detect outages affecting entire
-network prefixes.
+% In the rest of the chapter, I describe work with colleagues where we
+% use a novel approach based upon Binomial hypothesis testing to
+% detect instances of per-address disruption events that are unlikely to
+% have happened independently and flag these as dependent Internet
+% disruption events. Next, we characterize these dependent disruption
+% events and present results that challenge conventional wisdom on how
+% such disruptions affect Internet address blocks. We show that many of
+% these events would be missed by existing techniques that do not
+% perform individual address outage detection.
+
+In the rest of this chapter, I describe work with colleagues where we
+demonstrate a technique that detects disruption events with
+quantifiable confidence, by investigating the potential dependence
+between disruptions of multiple IP addresses in a principled way. We
+apply a simple statistical method to a large dataset of active probing
+measurements towards residential Internet users in the US. We find
+times when multiple addresses experience a disruption simultaneously
+such that they are unlikely to have occurred independently; we call
+the occurrence of such events \emph{dependent disruptions}. We
+characterize these dependent disruption events and present results
+that challenge conventional wisdom on how such disruptions affect
+Internet address blocks. We show that many of these events would be
+missed by existing techniques that do not perform individual address
+outage detection.
 
 % begin by providing background on why residential
 % reliability measurements could require measurements of individual
@@ -32,18 +63,6 @@ Residential Internet connections are vulnerable. The last-mile link
 connecting home routers to their ISP is typically not multi-homed and
 is therefore a single point of failure. Further, last-mile links can
 be damaged by exposure to the elements or by broken tree limbs blown
-by the wind. Thus, residential outages could be small in the number of
-affected users: they may affect only the users in an apartment block
-or can even affect only a couple of neighboring homes.
-
-% However, an individual address's outage need not necessarily be due to
-% an outage; users may also choose to voluntarily turn off their home
-% Internet equipment~\cite{grover2013peeking}.
-
-However, prior probing-based techniques typically focus upon detecting failures
-that affect many users and may miss observing smaller residential
-failures.  They detect outages that affect entire BGP
-prefixes~\cite{hubble} or /24 address
-blocks~\cite{trinocular}. Residential outages may not be large enough
-to be detected at these granularities.
+by the wind. Thus, residential outages may be limited to a small
+neighborhood or apartment block.
 

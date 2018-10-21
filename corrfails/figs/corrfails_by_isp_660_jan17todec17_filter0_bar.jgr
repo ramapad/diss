@@ -25,7 +25,7 @@ hash_label at 13.5 : pavlovmedia
 hash_label at 14.5 : level3
 yaxis 
 size 3
-label : Correlated dropouts
+label : Dependent dropout events
 min 0
 
 newcurve marktype xbar marksize 0.2 color 0 0 0 pts 0.5 3109

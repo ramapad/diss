@@ -2,6 +2,7 @@
 newgraph clip
 
 xaxis 
+size 3
 no_auto_hash_marks
 no_auto_hash_labels
 hash_labels hjr vjc rotate 45
@@ -31,8 +32,8 @@ hash_label at 0 : 0
 
 legend defaults x 15 y 1147092.88421 hjr vjt
 
-newcurve marktype xbar color 0.365 0.737 0.8235  label : All addresses with > 100 pings
-newcurve marktype xbar color 0.701 0.027 0.129 label : Addresses with > 10% loss
+newcurve marktype xbar color 0.365 0.737 0.8235  label : Addresses with > 100 pings
+newcurve marktype xbar color 0.701 0.027 0.129 label : Addresses with > 100 pings and > 10% loss
 newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 0.5 1159296
 newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 0.5 4156
 newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 1.5 357625

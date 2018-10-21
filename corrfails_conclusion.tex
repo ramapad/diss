@@ -1,4 +1,7 @@
 
 \section{Conclusion}
 
-In this chapter, I showed how to detect dependent residential failure events using individual address outages. Using Binomial hypothesis testing, I detected events where multiple addresses that are related to each other by geography or ISP fail simultaneously such that the failures are unlikely to have occurred independently. By analyzing these events, I demonstrated that prior techniques which detect dependent failures affecting network prefixes can miss observing these events. These results motivate finding individual address outages for measuring residential Internet reliability.
+In this chapter, I showed how to detect dependent residential disruption events using individual address disruptions. Using the binomial test, I detected events where multiple addresses that are related to each other by geography and ISP fail simultaneously such that the failures are unlikely to have occurred independently. The technique is capable of detecting large known
+disruption events, such as power outages during times of severe
+thunderstorms, but importantly, can also detect much smaller
+events. By analyzing these events, I demonstrated that prior techniques which detect dependent disruptions affecting a substantial number of addresses in BGP prefixes or /24 address blocks can miss observing these events. These results motivate finding individual address outages for measuring residential Internet reliability.

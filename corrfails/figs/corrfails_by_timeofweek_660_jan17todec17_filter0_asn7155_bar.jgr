@@ -1,0 +1,228 @@
+
+newgraph
+
+
+(* title : Correlated dropouts per hour of the week (ASN = 7155 (Viasat) ) *)
+
+xaxis 
+size 4
+label : Hour of the week (UTC)
+min 0 max 169
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 0
+hash_label at 0 : Mon
+hash_at 24
+hash_label at 24 : Tue
+hash_at 48
+hash_label at 48 : Wed
+hash_at 72
+hash_label at 72 : Thu
+hash_at 96
+hash_label at 96 : Fri
+hash_at 120
+hash_label at 120 : Sat
+hash_at 144
+hash_label at 144 : Sun
+
+yaxis 
+size 3
+min 0
+
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 0.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 1.5 14
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 2.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 3.5 16
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 4.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 5.5 15
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 6.5 33
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 7.5 18
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 8.5 16
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 9.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 10.5 6
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 11.5 9
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 12.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 13.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 14.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 15.5 6
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 16.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 17.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 18.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 19.5 11
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 20.5 14
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 21.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 22.5 14
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 23.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 24.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 25.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 26.5 6
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 27.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 28.5 14
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 29.5 46
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 30.5 66
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 31.5 48
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 32.5 10
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 33.5 10
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 34.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 35.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 36.5 1
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 37.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 38.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 39.5 11
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 40.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 41.5 1
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 42.5 6
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 43.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 44.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 45.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 46.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 47.5 3
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 48.5 2
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 49.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 50.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 51.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 52.5 3
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 53.5 25
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 54.5 47
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 55.5 47
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 56.5 44
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 57.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 58.5 9
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 59.5 2
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 60.5 3
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 61.5 6
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 62.5 1
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 63.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 64.5 0
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 65.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 66.5 19
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 67.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 68.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 69.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 70.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 71.5 9
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 72.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 73.5 10
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 74.5 9
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 75.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 76.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 77.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 78.5 65
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 79.5 36
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 80.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 81.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 82.5 10
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 83.5 1
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 84.5 1
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 85.5 1
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 86.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 87.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 88.5 1
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 89.5 3
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 90.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 91.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 92.5 1
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 93.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 94.5 14
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 95.5 9
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 96.5 2
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 97.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 98.5 2
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 99.5 14
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 100.5 10
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 101.5 6
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 102.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 103.5 15
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 104.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 105.5 6
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 106.5 6
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 107.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 108.5 3
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 109.5 2
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 110.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 111.5 2
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 112.5 3
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 113.5 9
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 114.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 115.5 10
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 116.5 11
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 117.5 10
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 118.5 19
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 119.5 10
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 120.5 11
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 121.5 16
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 122.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 123.5 9
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 124.5 3
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 125.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 126.5 17
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 127.5 21
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 128.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 129.5 11
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 130.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 131.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 132.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 133.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 134.5 3
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 135.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 136.5 11
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 137.5 14
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 138.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 139.5 9
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 140.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 141.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 142.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 143.5 10
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 144.5 15
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 145.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 146.5 15
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 147.5 19
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 148.5 13
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 149.5 14
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 150.5 19
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 151.5 26
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 152.5 8
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 153.5 6
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 154.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 155.5 4
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 156.5 5
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 157.5 11
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 158.5 11
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 159.5 7
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 160.5 14
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 161.5 12
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 162.5 17
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 163.5 18
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 164.5 18
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 165.5 16
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 166.5 15
+newcurve marktype xbar marksize 0.2 color 0 0 0 pts 167.5 10
+
+
+newgraph
+y_translate 3
+xaxis size 4
+label : Hour of the week (CST, UTC - 6)
+draw_at 0
+hash_scale 1.0
+min 0 max 169
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 6
+hash_label at 6 : Mon
+hash_at 30
+hash_label at 30 : Tue
+hash_at 54
+hash_label at 54 : Wed
+hash_at 78
+hash_label at 78 : Thu
+hash_at 102
+hash_label at 102 : Fri
+hash_at 126
+hash_label at 126 : Sat
+hash_at 150
+hash_label at 150 : Sun
+yaxis nodraw
+size 0.2
+min 0
+max 10

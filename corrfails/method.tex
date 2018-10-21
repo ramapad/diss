@@ -1,259 +1,320 @@
-\section{Detecting correlated dropouts}
+\section{Detecting dependent disruptions}
 \label{sec:method}
 
-Thunderping pings thousands of addresses simultaneously. When
-several of them dropout at the same time, there could be a common
-underlying cause, in such a case, the dropouts are statistically
-\emph{dependent}.
-%. The intuition behind our approach is that simultaneous dropouts could be \emph{dependent} upon each other (\ie sharing the same cause).
-%
-In addition, outages are likely to affect addresses that are related to
-each other by geography or ISP, an insight that we share with
-Disco~\cite{disco}. In this work, we call groups of related addresses, such as all addresses within the
-same U.S.~state or ISP, \emph{address aggregates} and we look for
-dependent dropouts within such aggregates. Specifically, we
-focus upon one particular class of address aggregates: the state-ASN
-aggregate, which includes all addresses that belong to a particular
-ASN in a particular U.S.~state.
-%
-%However, when thousands of addresses are being pinged, multiple
-%addresses can fail by random chance. 
-We quantify the probability that addresses in an aggregate can fail by
-random chance using the Binomial test, and identify events that are
-highly unlikely to have occurred at the same time by chance.
+In this section, we apply binomial testing to
+identify dependent disruptions in the outage dataset.
+First, we show how the binomial test works to rule out
+independent events and show how to apply the test to network
+outages in reasonably sized aggregates of
+addresses.  Second, we apply this method to the outage
+dataset, omitting addresses with excessive baseline loss
+rates and evaluating our chosen aggregation method.  Finally
+we summarize the dependent disruptions we found in this
+dataset.  This sets up analysis of these events (time of
+day, geography, and scope) which we defer to the following
+section.
+
 
 \subsection{Finding dependent events in an address aggregate}
+\label{sec:aggregates}
 
-When the number of observed addresses ($N$) within an address
-aggregate is large, there is some chance that multiple of them
-dropout simultaneously but independently (by random chance).
-In this section, we describe how we use Binomial hypothesis testing to find events that
-are highly unlikely to have occurred independently. Suppose $P_d$ is
-the probability that an address from the aggregate drops out in a
-given time window. Given
-$N$ addresses that can potentially dropout, the Binomial distribution gives the probability that
-$K$ of them dropout \emph{independently} as:
+When many addresses experience a disruption simultaneously, there
+could be a common underlying cause.
+%
+Such disruptions are statistically \emph{dependent}.
+%
+To identify these dependent events, our insight is to model address disruptions as
+\emph{independent} events; when disruptions co-occur in
+greater numbers than the independent model can explain, the
+disruptions must be \emph{dependent}.
+%
+Binomial testing provides precisely this ability to find
+events that are highly unlikely to have occurred
+independently.
 
-\[
-{N\choose k} \cdot P_d^k(1-P_d)^{N-k}
-\]
-
-Given $N$ and $P_d$, it is possible to calculate $D_{min}$, the minimum number of
-dropouts that need to occur, such that the probability of
-$D_{min}$ or more dropouts occurring independently is small (less
-than 1\%). If we observe $D_{min}$ or more dropouts, we reason that
-these dropouts are \emph{not} independent, that is they share a common underlying cause.
-
-\subsection{Analyzing $D_{min}$}
-
-% $D_{min}$ determines the minimum dropouts that need to occur in an
-% aggregate. 
-
-Here, we investigate $D_{min}$ values for different combinations of
-$N$ and $P_d$.
-
-\subsubsection*{Filtering addresses with high loss}
-
-Due to a variety of causes, such as high response
-latency~\cite{timeouts} and ICMP rate-limiting and filtering, we find
-that there exist addresses for which Thunderping experiences unusually high
-ping loss rates. These addresses dropout very
-frequently. 
-
-Figure~\ref{fig:lrs_per_pingedaddr} shows the distribution of ping
-loss rates for IP addresses during times when the addresses were not
-experiencing a dropout. 2\% of addresses have loss rates exceeding
-10\%. We filter these addresses since they can inflate the probability
-of dropout.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=.5\linewidth]{corrfails/figs/lrs_per_pingedaddr_jan17todec17_cdf}
-\caption{
-\label{fig:lrs_per_pingedaddr}
-Distribution of ping loss rates per IP address during times when Thunderping believed an
-address was \emph{not} experiencing a dropout. While most addresses
-have low loss rates, 2\% of addresses had loss rates exceeding 10\%.}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=.5\linewidth]{corrfails/figs/iggy_ips_frac_per_as_jan17todec17}
-\caption{
-\label{fig:iggy_ips_frac_per_as}
-Fraction of addresses per ISP with ping loss rates exceeding 10\%
-during non-dropout periods, for the 15 ISPs with most pinged
-addresses. Addresses in some ISPs such as Viasat, Verizon Wireless, and Pavlov
-Media, are more likely to have high loss rates. Even for these ISPs,
-there remain other addresses with lower loss rates, so high loss-rate does not seem
-to be an entire-ISP property.}
-\end{figure}
-
-
-\subsubsection*{How many addresses can potentially fail in an
-  aggregate?} % ($N$)?}
-
-% \begin{figure}[t]
-% \centering
-% \includegraphics[width=\linewidth]{figs/upips_per_timebin_660_jan17todec17_cdf}
-% \caption{
-% \label{fig:upips_per_timebin}
-% Distribution of all addresses pinged by Thunderping that can potentially fail in each 11 minute
-% time bin}
-% \end{figure}
-
-\begin{figure*}[t]
-  \begin{subfigure}[t]{0.47\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{corrfails/figs/upips_per_timebin_660_jan17todec17_cdf} 
-    \caption{
-      \label{fig:upips_per_timebin}
-      Distribution of all addresses pinged by Thunderping that can potentially fail in each 11 minute
-      time bin
-    }
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[t]{0.47\linewidth}
-    \centering
-   \includegraphics[width=.45\textwidth]{corrfails/figs/dropout_rate_stateasnwise_660_cdf} 
- \caption{
-   \label{fig:p_dropout}
-   Distribution of the probability of dropout ($P_d$) for various state-ASN address aggregates
- }
-\end{subfigure}
-\caption{Determining candidate $N$ and $P_d$ based upon Thunderping data.
-  \label{fig:binomial_params}
-}
-\end{figure*}
-
-
-Since we use data from Thunderping, we first determine $N$, the
-maximum number
-of addresses that can potentially fail in each address
-aggregate. Figure~\ref{fig:upips_per_timebin} shows the distribution
-of addresses pinged by Thunderping in each 11 minute time bin
-in 2017. The
-median number is around 50K addresses across all U.S. states and
-ISPs. Since many weather events tend to be active at any given point of time,
-these addresses are likely to be distributed among tens of state-ASN
-aggregates. Thus, in each aggregate, there can be anywhere between 0
-to 20K addresses, depending upon the size of the state and ISP, and
-the number of counties in the state where the weather alert is
-active. In 2017, the maximum addresses that could potentially fail in
-any state-ASN aggregate was 15,863. 
-
-\subsubsection*{How does the probability of dropout ($P_d$) vary across
-  state-asn aggregates?}
-
-We calculate the probability that an address from an aggregate drops
-out in a given window of time, $P_d$, using the Thunderping
-dataset as follows:
+Given $N$ addresses, the binomial distribution gives the probability
+that $D$ of them were disrupted \emph{independently} as:
 
 \begin{equation}
-P_d= \frac{dropouts}{timebins}
-\label{eq:p_dropout}
+	\Pr[D \mbox{~independent failures}] ~~=~~ {N\choose D} \cdot P_d^D(1-P_d)^{N-D}
+	\label{eq:binomial}
 \end{equation}
 
-We use 11-minute long time-bins since Thunderping pings an address
-once every 11 minutes from each vantage point. Since dropouts are
-detected when every vantage point confirms that its pings have become
-unresponsive, a dropout may take up to 11 minutes to get detected. For
-each aggregate, the formula calculates the probability that an address
-drops out in a 11-minute time bin.
+\noindent where $P_d$ represents the probability of disruption for the aggregate $N$.
+To apply this formula, we must first set a threshold probability below which
+we consider the simultaneous disruption to be too unlikely to be independent.
+We set this threshold to 0.01\%.  We then solve for $D_{min}$, the smallest (whole) number of
+simultaneous disruptions with a smaller than 0.01\% chance of
+occurring independently.
 
-We only consider state-ASN aggregates where we were able to obtain a
-statistically significant value for $P_d$. For statistical
-significance, we adhere to the following rule of
-thumb~\cite[Chapter~6]{biostats-book}: we accept a state-asn aggregate with $t$ timebins
-and estimated probability of dropout $P_d$ only if 
-
-\begin{equation}
-	tP_d(1-P_d) \geq 10
-	\label{eq:stat_sig}
-\end{equation}
-
-% \begin{figure}[t]
-% \centering
-% \includegraphics[width=\linewidth]{figs/dropout_rate_660_cdf}
-% \caption{
-% \label{fig:p_dropout}
-% Distribution of $P_d$ for different address aggregates. }
-% \end{figure}
-
-% \begin{figure}[t]
-% \centering
-% \includegraphics[width=\linewidth]{figs/dropout_rate_stateasnwise_660_cdf}
-% \caption{
-% \label{fig:p_dropout}
-% Distribution of the probability of dropout ($P_d$) for various state-ASN address aggregates.}
-% \end{figure}
-
-Figure~\ref{fig:p_dropout} shows how $P_d$ is distributed across
-state-ASN aggregates. There is extensive 
-variation: addresses in some of these aggregates dropout only once every
-year, whereas in other aggregates they dropout more often than once per
-day.\footnote{Since dropouts are a superset of outages and dynamic
-  reassignment, frequent dropouts are not necessarily indicative of
-  poor Internet connectivity.} % However, when considering entire U.S. states (which contain
-% several ISPs), $P_d$ exhibits lesser variation. 
-
-% $D_{min}$ values depend not only upon $P_d$, but also upon the number
-% of addresses ($N$) that can potentially fail in an aggregate in a
-% timebin. 
-
-\subsubsection*{$D_{min}$ for different combinations of $N$ and $P_d$}
-
-For different values of $N$ and $P_d$, we list $D_{min}$ values in
-Table~\ref{tbl:binomial_thresh}. 
+Table~\ref{tbl:binomial_thresh} presents $D_{min}$, computed for
+various values of $N$ and $P_d$.  This table shows that, even for
+large aggregates of IP addresses, often few simultaneous disruptions
+are necessary to be able to confidently conclude that a dependent
+disruption has occurred. When applied to the Thunderping dataset,
+$D_{min}$ values are typically below 8.
 
 \begin{table}[th]
 %  \scriptsize
   \centering
   \hspace{-0.04in}
-  \begin{tabular}{c|c|c|c|c|}
-$N$ & \multicolumn{4}{c|}{Probability of dropout ($P_d$)} \\
-    & \textbf{1/hour} & \textbf{1/day} & \textbf{1/week} &
-    \textbf{1/month} \\
+  \begin{tabular}{r|r|r|r|r}
+	  $\mathbf{N}$ & \multicolumn{4}{c}{$\mathbf{D_{min}}$} \\
+    & $P_d$ = 1/hour & 1/day & 1/week & 1/month \\
     \hline
-10 & 6 & 2 & 2 & 1\\
-50 & 17 & 3 & 2 & 2\\
-100 & 29 & 4 & 2 & 2\\
-500 & 113 & 10 & 4 & 2\\
-1000 & 213 & 16 & 5 & 3\\
-5000 & 982 & 54 & 13 & 5\\
-10000 & 1925 & 98 & 20 & 8\\
-50000 & 9369 & 429 & 73 & 23\\
+10 & 8 & 3 & 2 & 2 \\
+50 & 21 & 5 & 3 & 2 \\
+100 & 35 & 7 & 4 & 3 \\
+500 & 126 & 14 & 6 & 4 \\
+1000 & 231 & 21 & 8 & 5 \\
+5000 & 1021 & 64 & 17 & 8 \\
+10000 & 1980 & 112 & 26 & 11 \\
+50000 & 9491 & 457 & 85 & 29 \\
     \end{tabular}
-  \caption{\label{tbl:binomial_thresh} $D_{min}$ values
-    for different
-    values of number of addresses that can potentially fail ($N$) and
-    the probability of dropout ($p_d$). There is less than 1\%
-    probability according to the Binomial hypothesis test that
-    $D_{min}$ or more addresses fail for each $N$ and $P_d$.
+  \caption{\label{tbl:binomial_thresh}
+	  $D_{min}$ values for varying values of $N$ and $P_d$.  There is
+	  less than 0.01\% probability according to the binomial 
+	  test that $D_{min}$ or more addresses fail for each $N$ and
+	  $P_d$.
   }
 \end{table}
 
-These results show that the approach will work well for some ASNs (i.e., be
-sensitive) but not for others who have such high $P_d$ that we would need to see a very large number of dropouts to suggest that something happened.
+
+There are two practical challenges in applying this test.
+First, we must choose aggregates of $N$ IP addresses that
+define the scope of a dependent disruption: too large an
+aggregate will have too large a chance of simultaneous independent
+failures and drive up $D$, while too small an aggregate may fail to
+include all the addresses in an event. 
+Second, we must estimate $P_d$ for each aggregate.
+We address each in turn.
+
+\subsubsection{Choosing aggregate sets of IP addresses}
+
+Our technique assumes some \emph{aggregate} set of IP addresses among
+which to detect a dependent disruption.
+%
+We note that the \emph{correctness} of our approach does not depend on
+how this set is chosen---the binomial test will apply so long as
+independent failures can be modeled by $P_d$.
+%
+When applying our technique, IP
+addresses must be aggregated into sets that are large enough to span interesting
+disruption events, but not so large as to become insensitive to them.
+
+In this paper, we aggregate IP addresses based on the U.S.~state and
+the ASN they are in.
+%
+\emph{State-ASN} aggregates have the benefit of spanning
+multiple prefixes (so we can observe whether more than one
+/24 is affected by a given disruption event), but also being
+constrained to a common geographic region (so hosts in an
+aggregate are likely to share similar infrastructure).
+There are two limitations with this approach: states are not
+of uniform size, though the test elegantly handles
+varying $N$, and a few ISPs use multiple ASNs, which may
+hide some dependent failures.  Alternate aggregations are
+possible.
 
 
-% The minimum number of dropouts
-%     such that their likelihood of occurrence is small 
+\subsubsection{Calculating the probability of disruption ($P_d$)} 
+\label{sec:calc_fprob}
 
-% Depending upon 
-% Since outages are usually
-% rare events, $P_o$ in a small window of time (like minutes) is
-% low. Consequently, even a relatively small number of failures
+As a final consideration, we discuss how to estimate the probability of
+disruption, $P_d$, from an empirical dataset of disruptions.
+%
+We assume that the dataset can be separated into a set of discrete
+``time bins''; this is common with ping-based outage detection, such as
+Thunderping and Trinocular, which both consider 11-minute bins of time.
+%
+$P_d$ can be estimated using the following equation:
+
+\begin{equation}
+	P_d = \frac{\mbox{\#disruptions}}{\mbox{\#timebins}}
+\label{eq:p_dropout}
+\end{equation}
 
 
-% When that probability is very, very low then we can argue that those X addresses must have failed in a dependent manner, likely due to a common cause.
-
-% Say that there is some probability, p that an outage can occur in any minute. Probability that ‘k’ outages happen independently when we ping ‘n’ addresses is given by the Binomial distribution:
-% nCk*(p)^k * (1-p)^n-k
-
-% The main problem is arriving at the probability that an outage occur in any minute. Currently, I divide #outages/total-up-minutes for some aggregate of addresses (say all Comcast addresses in a given US state). Perhaps I can do better. 
-
-% After finding correlated failures, my goal is to make some progress towards the potential cause of each correlated failure. Failures where multiple addresses from multiple ISPs are affected would be consistent with a power outage, for example.
+\noindent
+%
+Here, \#timebins represents the total number of observation intervals
+used: if a single host was measured across 10 time intervals and five
+other hosts were all measured across 3, then \#timebins = $10 + 3 \cdot
+5 = 25$.
 
 
+
+We only consider state-ASN aggregates where we were able to obtain a
+statistically significant value for $P_d$. For statistical
+significance, we adhere to the following rule of
+thumb~\cite[Chapter~6]{biostats-book}: we accept a state-ASN aggregate
+with $t$ timebins and estimated probability of disruption $P_d$ only if:
+\begin{equation}
+	tP_d(1-P_d) \geq 10
+	\label{eq:stat_sig}
+\end{equation}
+
+
+\subsection{Applying our method to the Thunderping dataset}
+
+We investigate all ping responses in the Thunderping dataset from
+January 1, 2017 to December 31, 2017 and detect disruptions according
+to the methodology described above.
+%
+During this time, Thunderping had sent at least 100 pings to 3,577,895
+addresses and detected a total of 1,694,125 individual address
+disruptions affecting 1,193,812 unique addresses.
+%
+Figure~\ref{fig:iggy_ips_frac_per_as} shows the top 15 ISPs whose
+addresses Thunderping had sampled most frequently.
+%
+These ISPs include large cable providers (Comcast, Charter,
+Suddenlink), DSL providers (Windstream, Qwest, Centurytel), WISP
+providers (RISE Broadband), and satellite providers (Viasat).
+
+
+\subsubsection*{Filtering lossy addresses}
+
+\begin{figure*}[t]
+\includegraphics[width=\linewidth]{corrfails/figs/fig1-combined}
+\caption{
+\label{fig:lr}
+\label{fig:lrs_per_pingedaddr}
+\label{fig:iggy_ips_frac_per_as}
+(Left)~The distribution of ping loss rates per IP address during times when Thunderping believed an
+address was \emph{not} experiencing a disruption. While most addresses
+have low loss rates, 2\% of addresses had loss rates exceeding
+10\%. 
+(Right)~The fraction of addresses per ISP with ping loss rates exceeding 10\%
+during non-disruption periods, for the 15 ISPs with the most pinged
+addresses. We filter from all remaining analyses any address whose
+loss rate exceeded 10\%.
+}
+\end{figure*}
+
+We find that some pinged addresses experience unusually high ping loss
+rates. These addresses see disruption very frequently, since high loss
+rates can result in pings from all vantage points to these addresses failing together. Disruptions for
+such addresses are even more challenging to interpret because a variety
+of causes can result in high ping loss rates, such as high response
+latency~\cite{timeouts} and ICMP
+rate-limiting~\cite{icmp-rate-limiting-pam18}. Thus, we find these
+addresses and remove them from the rest of the analyses.
+
+Figure~\ref{fig:lrs_per_pingedaddr} shows the distribution of ping
+loss rates for IP addresses during times when the addresses were not
+experiencing a disruption. 2\% of addresses have loss rates exceeding
+10\%. Figure~\ref{fig:iggy_ips_frac_per_as} shows the prevalence of
+these addresses in the 15 ISPs whose addresses Thunderping had sampled
+most frequently. Some ISPs have a higher concentration of addresses
+with high loss rates, such as Viasat, Verizon Wireless, and Pavlov
+Media. However, even in these ISPs, the majority of addresses do
+\emph{not} have high loss rates. Thus, instead of filtering the ISPs
+wholesale, we only remove the addresses whose loss rates exceeded 10\%
+and do not consider these addresses in the remaining analyses.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.99\linewidth]{corrfails/figs/fig2-combined}
+\caption{
+\label{fig:fig2}
+Potential $N$ and $P_d$ values in the Thunderping dataset: On
+the left, we show the distribution of all addresses (across all
+state-ASN aggregates) pinged by Thunderping that can potentially fail in each 11 minute
+time bin. On the right, we show the distribution of the probability of disruption ($P_d$) for various state-ASN address aggregates.}
+\end{figure*}
+
+\subsubsection*{Detecting dependent disruptions in the Thunderping dataset}
+
+\label{sec:tping-detection}
+
+We use Figure~\ref{fig:fig2} to describe potential $N$ and $P_d$
+values in the Thunderping dataset. On the left, we show the distribution
+of addresses pinged by Thunderping in each 11 minute timebin in 2017. The
+median number is roughly 50,000 addresses across all U.S. states and
+ISPs. Since many weather alerts tend to be active at any given point of time,
+these addresses are likely to be distributed among tens of state-ASN
+aggregates. In 2017, the maximum addresses that could potentially fail in
+any state-ASN aggregate was 15,863. On the right, we show the
+distribution of $P_d$ values for all state-ASN aggregates that we
+considered. There is extensive 
+variation: addresses in some of these aggregates experience
+disruptions only once every
+year, whereas in other aggregates they experience disruptions more often than once per
+day. \footnote{Since disruptions are a superset of outages and dynamic
+  reassignment, frequent disruptions are not necessarily indicative of
+  poor Internet connectivity. Also, the existence of many aggregates with few
+  disruptions indicates that Thunderping often pinged addresses during weather
+  conditions that were not conducive to disruptions.} 
+
+For each state-ASN aggregate, for each 11-minute window
+during which Thunderping had pinged addresses, we identify the maximum
+number of addresses that can potentially fail, $N$, \ie all the
+addresses that are responsive to pings at the beginning of the
+window. Next, we apply the binomial test for each of these windows
+since we know $N$ and $P_d$. When the number of disruptions in a window
+is at least $D_{min}$, we determine that a dependent disruption event
+occurred in that window with a probability greater than 0.9999. 
+
+\begin{table}[th]
+%  \scriptsize
+  \centering
+  \hspace{-0.04in}\tiny
+  \begin{tabular}{c|c|c|c|c|}
+\textbf{$N$} & \multicolumn{4}{c|}{\textbf{Probability of disruption ($P_d$)}} \\
+    & \textbf{ 1/hour $>$ $P_d$ $\geq$ 1/day} & \textbf{1/day $>$
+      $P_d$ $\geq$ 1/week} & \textbf{1/week $>$ $P_d$ $\geq$ 1/month} &
+    \textbf{1/month $>$ $P_d$} \\
+    \hline
+$\leq$ 10 & 11 (0.1\%) & 486 (2.3\%) & 519 (2.5\%) & 179 (0.9\%) \\
+$\leq$ 50 & 6 (0.0\%) & 1089 (5.2\%) & 1990 (9.6\%) & 868 (4.2\%) \\
+$\leq$ 100 & 0 (0.0\%) & 863 (4.1\%) & 1229 (5.9\%) & 736 (3.5\%) \\
+$\leq$ 500 & 0 (0.0\%) & 1807 (8.7\%) & 4328 (20.8\%) & 1360 (6.5\%) \\
+$\leq$ 1000 & 0 (0.0\%) & 462 (2.2\%) & 1884 (9.0\%) & 405 (1.9\%) \\
+$\leq$ 5000 & 0 (0.0\%) & 171 (0.8\%) & 1865 (9.0\%) & 458 (2.2\%) \\
+$\leq$ 10000 & 0 (0.0\%) & 0 (0.0\%) & 83 (0.4\%) & 0 (0.0\%) \\
+$\leq$ 50000 & 0 (0.0\%) & 0 (0.0\%) & 32 (0.2\%) & 0 (0.0\%) \\
+    \end{tabular}
+  \caption{\label{tbl:events_per_nup_and_fprob} Dependent disruption
+events for different values of number of addresses that can
+potentially fail ($N$) and probability of disruption ($P_d$) from the
+Thunderping dataset. Of 20,831 total dependent disruption
+events, the majority were detected when $P_d$ is low.
+  }
+\end{table}
+
+In total, we detected 20,831 events with dependent disruptions in
+2017. Table~\ref{tbl:events_per_nup_and_fprob} shows the number of
+detected events for various values of $N$ and $P_d$ in the Thunderping dataset
+in 2017. The majority of events were detected for state-ASNs with
+$P_d$ lower than once a week. From Figure~\ref{fig:fig2}, we know that
+close to three-quarters of state-ASN aggregates fall in this
+category, showing that our technique is able to detect dependent
+disruptions in most aggregates.
+
+Next, we analyzed our confidence in these dependent
+disruptions. The occurrence of $D_{min}$ disruptions has less than 0.01\%
+probability according to the Binomial test. We test if most detected
+dependent disruption events have exactly 0.01\%
+probability of occurring or if they are well clear of this threshold.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.5\linewidth]{corrfails/figs/err_prob_660_jan17todec17_cdf} 
+\caption{
+   \label{fig:err_prob}
+Figure~\ref{fig:err_prob} shows the distribution of the
+probability that the 20,831 detected dependent disruption events could have occurred
+independently. For 90\% of events, the probability of occurring
+independently is less than 0.00005.
+% Caption goes here if necessary
+ }
+\end{figure} 
+
+Figure~\ref{fig:err_prob} shows the distribution of the probability that
+we incorrectly classify an independent event as dependent. The probability of occurring
+independently is less than 0.005\% for 90\% of the events and less
+than 0.001\% for 75\%. Thus, the probabillity that detected events
+occurred independently is typically much smaller than our choice of
+0.01\%.
 

@@ -106,7 +106,7 @@ requires monitoring a broad set of residential users over long
 periods. After detecting outages over time for a group of residential
 addresses---say addresses belonging to the same ISP or geographic
 region---the detected outages can be used to calculate reliability
-metrics. An example metric is the \emph{the outage rate}, the number of
+metrics. An example metric is the \emph{outage rate}, the number of
 outages occurring over time for a group of addresses. These metrics
 can be used to compare different groups of addresses and to identify
 groups with particularly low reliability.
@@ -143,10 +143,12 @@ Prior approaches tradeoff either outage detection breadth or
 accuracy. 
 
 Edge network outage detection techniques detect outages broadly but
-focus upon detecting outages that affect a group of addresses---such as
-addresses belonging to the same /24 address block~\cite{trinocular, advancing-outage-art}, BGP
-prefix~\cite{hubble}, or country~\cite{dainotti-imc11}. These techniques can miss residential
-outages affecting relatively few users. Thus, they trade off outage detection accuracy
+focus upon detecting outages that affect a substanial numer of addresses
+in a group collectively. The group may comprise addresses belonging to the same /24 address block~\cite{trinocular, advancing-outage-art}, BGP
+prefix~\cite{hubble}, or country~\cite{dainotti-imc11}. Techniques seek such disruption events because individually, each large disruption has
+impact and their size makes them easier to confirm, e.g., with operators. However, residential Internet
+outages may be limited to a small neighborhood or apartment block; these
+techniques are likely to miss such events. Thus, they trade off outage detection accuracy
 for breadth.
 
 % Broadly, current techniques can be grouped into on-premises
@@ -552,10 +554,10 @@ system is a false outage due to dynamic reassignment. % The evidence for
 
 I motivate the need to study individual address outages by showing
 that individual address outage measurements can be used to find outage
-events affecting multiple addresses, and that many of these events
-would often not be detected by prior work. I describe how to use
+events that are statistically unlikely to have occurred independently, and that many of these events
+would not be detected by prior work. I describe how to use
 simultaneous outages of individual addresses related to each other, by
-geography or ISP, to identify outages that are highly unlikely to have
+geography and ISP, to identify outages that are highly unlikely to have
 occurred independently, and are therefore likely to share a common
 underlying cause.
 

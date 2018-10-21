@@ -1,0 +1,103 @@
+
+\subsection{Dependent disruptions may not disrupt entire  /24s}
+
+Here, we examine if the dependent disruption events that we detected
+disrupt entire /24 address blocks. If so, they would likely be
+detected by prior work that looks for outages at these
+granularities~\cite{trinocular,advancing-outage-art}. If there
+continue to be responding addresses within a /24 with a disrupted
+address, however, prior work may miss the disruption.
+
+To analyze how dependent disruptions affect /24 address blocks, we find all addresses in
+the observed disrupted group for a dependent disruption event and
+group them by /24s. As a running example in this section, 
+consider a dependent disruption event comprising 3 addresses in 1.2.3.0/24,
+5 addresses in 2.3.4.0/24, and 2 addresses in 4.5.6.0/24. We call these
+the \emph{observed
+disrupted} /24s. For each of these /24s, we also find how many
+addresses were pinged by Thunderping that were responding to pings
+\emph{before} the dependent disruption and that continued to respond for at
+least 30 minutes \emph{after} the time-bin where the dependent
+disruption occurred. We term these addresses the responsive addresses
+in a /24 since these addresses were not affected by the
+disruption. 
+
+Our goal is to find how many /24s exist where at least one address was
+an actual address in a dependent disruption but there were other
+addresses which continued to be responsive. 
+
+First, we check how many of the 20,831 disruption
+\emph{events} observed at least one responsive address in \emph{all} of the observed
+disrupted /24s. 12,825 (61\%) have at least one
+responsive address in all of the observed disrupted /24s. For each such event, even if
+some of the disrupted /24s have addresses that failed independently,
+since all disrupted /24s continue to have at least one responsive address,
+prior work may miss detecting this event.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.5\linewidth]{corrfails/figs//outpers24minusdmin_vs_uppers24_all_660_jan17todec17_scatter}
+\caption{
+\label{fig:outpers24minusdmin_vs_uppers24_all}
+Minimum actual disrupted addresses in a /24 vs. responsive addresses in a /24, for all /24s with
+at least $D_{min}$ address that were disrupted during a detected dependent
+disruption event.}
+\end{figure}
+
+ Next, we investigate the subset of observed disrupted /24s where there
+were at least $D_{min}$ failures within the /24 itself. Since the
+entire state-ASN aggregate only required $D_{min}$ failures, when
+$D_{min}$ or more addresses are disrupted within a single /24, the /24
+has at least one actual disrupted addresses. We obtain the minimum bound on
+the number of actual disrupted addresses in a /24 by subtracting
+$D_{min} - 1$ from the observed disrupted addresses in that /24. Suppose the
+$D_{min}$ for the example dependent disruption event above was 3. We would obtain a minimum bound of at least 1
+actual disrupted address in 1.2.3.0/24. In 2.3.4.0/24, the lower bound
+is 3. In 4.5.6.0/24, the lower bound is 0 and we are unable to
+determine if the addresses in this /24 had a dependent disruption. Of 92,777 /24s with observed disrupted /24s (across all dependent
+disruption events), we find that 14,702 (16\%) have at least $D_{min}$
+disrupted addresses. Each of these is a point in
+Figure~\ref{fig:outpers24minusdmin_vs_uppers24_all}.
+
+We find that many disrupted /24s with actual disrupted addresses have other addresses that continued to be responsive. 10,164 (69\%)
+/24s had at least one responsive address, 9327 (63\%) had at least two responsive addresses, and 6,096 (41\%) had at least 10
+responsive addresses. 1,691 /24s had at least 10 actual disrupted addresses; of those, 550 (33\%) had at least 10
+responsive addresses.
+
+\begin{figure*}[t]
+  \begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{corrfails/figs//outpers24minusdmin_vs_uppers24_comcast_660_jan17todec17_scatter}
+    \caption{
+      \label{fig:outpers24minusdmin_vs_uppers24_comcast}
+      Comcast}
+  \end{subfigure}
+  % 
+  \hfill
+  % 
+  \begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{corrfails/figs//outpers24minusdmin_vs_uppers24_qwest_660_jan17todec17_scatter}
+    \caption{
+      \label{fig:outpers24minusdmin_vs_uppers24_qwest}
+      Qwest}
+  \end{subfigure}
+  % 
+  \hfill
+  % 
+  \begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{corrfails/figs//outpers24minusdmin_vs_uppers24_viasat_660_jan17todec17_scatter}
+    \caption{
+      \label{fig:outpers24minusdmin_vs_uppers24_viasat}
+      Viasat}
+  \end{subfigure}
+  \caption{
+  \label{fig:outpers24minusdmin_vs_uppers24_isp}
+For Comcast, Qwest, and Viasat: Minimum actual disrupted addresses in a /24 vs. responsive addresses in a /24, for all /24s with
+at least $D_{min}$ address that were disrupted during a detected dependent
+disruption event. All ISPs have /24s with actual disrupted addresses where there continued to be responsive addresses throughout the disruption.
+}
+\end{figure*}
+
+Next, we investigated if the responsiveness of other addresses in /24s with actual disrupted address would vary across ISPs. Figure~\ref{fig:outpers24minusdmin_vs_uppers24_isp} shows per-ISP behavior. We see that all ISPs have /24s with actual disrupted addresses where there continued to be responsive addresses throughout the disruption.

@@ -242,14 +242,16 @@ outage in an area should contribute towards lowering the reliability
 of that area, but should not lower the reliability of the
 ISPs whose addresses were affected. 
 
-For conducting comparisons of ISPs, we need to
-classify outages by detected cause. Chapter~\ref{cpt:corrfails} showed
-the potential of using simultaneous outages of related addresses to
-find addresses that failed due to a common underlying causes. When
-addresses from multiple ISPs fail together in the same geographic
-region, the cause is potentially a power outage. When addresses from
-only a single ISP have been observed to fail, the cause is potentially
-a network outage. % However, showing that \emph{no} other ISP had been
+For conducting comparisons of ISPs, we need to classify outages by
+detected cause. Chapter~\ref{cpt:corrfails} showed the potential of
+using simultaneous outages of related addresses to find addresses that
+failed due to a common underlying cause. When addresses from multiple
+ISPs fail together in the same geographic region, the cause is
+potentially a power outage. When addresses from only a single ISP have
+been observed to fail, the cause is potentially a network outage. Once
+outages have been classified by cause, outages in appropriate classes
+can be used to determine the outage rate per ISP.
+ % However, showing that \emph{no} other ISP had been
 % affected by an outage requires widespread probing of addresses. By
 % triggering additional probing of related addresses on demand, and by
 % augmenting pings with traceroutes, it's possible to uncover additional

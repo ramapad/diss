@@ -6,8 +6,9 @@
 In this chapter, I begin with an overview of Internet outage
 measurement with a focus upon residential outage measurement. Next, I
 discuss probing-based techniques to detect outages remotely in detail
-and illustrate scenarios where they could make false inferences about
-outages.
+and show their potential to measure residential users at scale. Then I
+illustrate scenarios where these techniques could make false
+inferences about outages.
 
 % In this dissertation, I focus
 % upon how common outages are and therefore use the \emph{rate} at which
@@ -375,8 +376,14 @@ scale but require improved accuracy}
 % outages when the destination address is able to receive packets from the
 % Internet (false positives).
 
-Probing-based remote outage detection techniques can infer false
-positive outages as a consequence of their foundational assumption:
+Since probing-based techniques send probes from machines under
+reseacher control, they have control over the number of addresses they
+probe and how frequently to probe. The Zmap technique has demonstrated
+that it is possible to send a ping to the entire IPv4 address space
+in less than five minutes~\cite{zippier-zmap}.
+
+However, probing-based remote outage detection techniques can infer false
+outages as a consequence of their foundational assumption:
 that a response to an active probe indicates a working path to the
 probed IP address and that lack of response is indicative of
 failure. Current techniques can make false positive inferences about

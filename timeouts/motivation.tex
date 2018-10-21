@@ -17,20 +17,17 @@ associated with the probe, thereby reclaiming memory.
 
 Conventional wisdom also suggests that a single timed out probe is
 insufficient to reason about end-host failures, due to potential
-random loss on the Internet. % When a probe experiences a timeout, it
-could be because % the end-host's last-mile link is \emph{out}, but it
-could also be because the % probe was lost elsewhere along the path.
-For most probing systems, any timed out active probes are followed up
-with retransmissions to increase the confidence that a lack of
-response is due to an outage event and not due to random loss on the
-Internet. These followup probes will also have a timeout that is
-generally the same as the first attempt.
+random loss on the Internet. For most probing systems, any timed out
+active probes are followed up with retransmissions to increase the
+confidence that a lack of response is due to an outage event and not
+due to random loss on the Internet. These followup probes will also
+have a timeout that is generally the same as the first attempt.
 
-Setting correct timeouts is critical for
-probing-based remote outage detection techniques. These techniques infer outages
-based upon lost probes and probe response loss is
-dependent upon the prober's timeout. Additonally, since probe timeouts trigger followup probes, setting appropriate
-timeouts is vital to these techniques. 
+Setting correct timeouts is critical for probing-based remote outage
+detection techniques. These techniques infer outages based upon lost
+probes and probe response loss is dependent upon the prober's
+timeout. Additonally, since probe timeouts trigger followup probes,
+setting appropriate timeouts is vital to these techniques.
 
 However, choosing an appropriate timeout is
 challenging. Selecting a timeout value that is too low will ignore delayed

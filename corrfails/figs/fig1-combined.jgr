@@ -2,7 +2,7 @@
 newgraph
 
 xaxis 
-size 3
+size 2.5
 log
 label : Loss rate per address during non-disrupted times
 no_auto_hash_labels
@@ -13,13 +13,15 @@ hash_at 0.001
 hash_label at 0.001 : 0.001
 hash_at 0.01
 hash_label at 0.01 : 0.01
+hash_at 0.05
+
 hash_at 0.1
 hash_label at 0.1 : 0.1
-hash_at 1
-hash_label at 1 : 1
+hash_at 0.5
+hash_label at 0.5 : 0.5
 
 yaxis 
-size 3
+size 2
 label : CDF
 min 0 max 1
 
@@ -17518,3 +17520,69 @@ pts
 0.9717 0.9999
 1.0000 0.9999
 1.0000 1.0000
+
+newgraph x_translate 3.6 clip
+
+xaxis 
+size 2.5
+no_auto_hash_marks
+no_auto_hash_labels
+hash_labels hjr vjc rotate 45
+min 0
+max 15
+
+hash_label at 0.5 : comcast
+hash_label at 1.5 : windstream
+hash_label at 2.5 : qwest
+hash_label at 3.5 : charter
+hash_label at 4.5 : verizon
+hash_label at 5.5 : centurytel
+hash_label at 6.5 : viasat
+hash_label at 7.5 : cox
+hash_label at 8.5 : suddenlink
+hash_label at 9.5 : rise
+hash_label at 10.5 : megapath
+hash_label at 11.5 : level3
+hash_label at 12.5 : att
+hash_label at 13.5 : pavlovmedia
+hash_label at 14.5 : verizonwireless
+yaxis 
+size 2
+label : IP Addresses (Thousands)
+min 0
+hash_label at 0 : 0
+
+legend defaults x 15 y 1147.09288421 hjr vjt
+
+newcurve marktype xbar color 0.365 0.737 0.8235  label : With > 100 pings
+newcurve marktype xbar color 0.701 0.027 0.129 label : With > 100 pings and > 10% loss
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 0.5 1159.296
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 0.5 4.156
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 1.5 357.625
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 1.5 2.274
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 2.5 308.451
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 2.5 1.422
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 3.5 285.593
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 3.5 2.566
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 4.5 272.878
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 4.5 1.758
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 5.5 163.121
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 5.5 1.428
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 6.5 91.785
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 6.5 20.139
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 7.5 60.908
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 7.5 .516
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 8.5 57.391
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 8.5 1.247
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 9.5 44.150
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 9.5 .702
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 10.5 41.141
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 10.5 .536
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 11.5 26.408
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 11.5 .276
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 12.5 22.131
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 12.5 .450
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 13.5 20.525
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 13.5 6.610
+newcurve marktype xbar marksize 0.2 color 0.365 0.737 0.8235  pts 14.5 19.944
+newcurve marktype xbar marksize 0.2 color 0.701 0.027 0.129 pts 14.5 6.759

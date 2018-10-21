@@ -1,0 +1,2598 @@
+
+newgraph
+
+xaxis 
+log
+size 3
+label : Minimum out addresses in /24
+min 0.5
+max 256
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 1
+hash_label at 1 : 1
+hash_at 10
+hash_label at 10 : 10
+hash_at 100
+hash_label at 100 : 100
+hash_at 2
+hash_label at 2 : 2
+hash_at 20
+hash_label at 20 : 20
+hash_at 5
+hash_label at 5 : 5
+hash_at 50
+hash_label at 50 : 50
+hash_at 256
+hash_label at 256 : 256
+
+yaxis 
+log
+size 3
+label : Alive addresses in /24
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 0.5
+hash_label at 0.5 : 0
+hash_at 1
+hash_label at 1 : 1
+hash_at 10
+hash_label at 10 : 10
+hash_at 100
+hash_label at 100 : 100
+hash_at 2
+hash_label at 2 : 2
+hash_at 20
+hash_label at 20 : 20
+hash_at 5
+hash_label at 5 : 5
+hash_at 50
+hash_label at 50 : 50
+hash_at 256
+hash_label at 256 : 256
+min 0.35
+max 256
+
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.5
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 35
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 24 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 33
+newcurve marktype x linetype none color 0 0 0 pts 3 35
+newcurve marktype x linetype none color 0 0 0 pts 7 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 7
+newcurve marktype x linetype none color 0 0 0 pts 10 0.46
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 7
+newcurve marktype x linetype none color 0 0 0 pts 1 4
+newcurve marktype x linetype none color 0 0 0 pts 6 2.1
+newcurve marktype x linetype none color 0 0 0 pts 7 11
+newcurve marktype x linetype none color 0 0 0 pts 5 6
+newcurve marktype x linetype none color 0 0 0 pts 2 2.1
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 1 1.9
+newcurve marktype x linetype none color 0 0 0 pts 2 4
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 4
+newcurve marktype x linetype none color 0 0 0 pts 2 3
+newcurve marktype x linetype none color 0 0 0 pts 2 6
+newcurve marktype x linetype none color 0 0 0 pts 1.1 3
+newcurve marktype x linetype none color 0 0 0 pts 3 31
+newcurve marktype x linetype none color 0 0 0 pts 35 1.0
+newcurve marktype x linetype none color 0 0 0 pts 13 0.54
+newcurve marktype x linetype none color 0 0 0 pts 11 0.54
+newcurve marktype x linetype none color 0 0 0 pts 16 22
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 44
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 34
+newcurve marktype x linetype none color 0 0 0 pts 1.1 33
+newcurve marktype x linetype none color 0 0 0 pts 30 0.95
+newcurve marktype x linetype none color 0 0 0 pts 13 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 1.05
+newcurve marktype x linetype none color 0 0 0 pts 6 6
+newcurve marktype x linetype none color 0 0 0 pts 5 3
+newcurve marktype x linetype none color 0 0 0 pts 1 14
+newcurve marktype x linetype none color 0 0 0 pts 1 12
+newcurve marktype x linetype none color 0 0 0 pts 1 21
+newcurve marktype x linetype none color 0 0 0 pts 6 30
+newcurve marktype x linetype none color 0 0 0 pts 6 30
+newcurve marktype x linetype none color 0 0 0 pts 65 0.5
+newcurve marktype x linetype none color 0 0 0 pts 33 10
+newcurve marktype x linetype none color 0 0 0 pts 28 8
+newcurve marktype x linetype none color 0 0 0 pts 1 47
+newcurve marktype x linetype none color 0 0 0 pts 6 49
+newcurve marktype x linetype none color 0 0 0 pts 0.9 30
+newcurve marktype x linetype none color 0 0 0 pts 1.1 10
+newcurve marktype x linetype none color 0 0 0 pts 1.0 6
+newcurve marktype x linetype none color 0 0 0 pts 1 40
+newcurve marktype x linetype none color 0 0 0 pts 10 20
+newcurve marktype x linetype none color 0 0 0 pts 1 30
+newcurve marktype x linetype none color 0 0 0 pts 1 29
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 9
+newcurve marktype x linetype none color 0 0 0 pts 1 9
+newcurve marktype x linetype none color 0 0 0 pts 1 35
+newcurve marktype x linetype none color 0 0 0 pts 8 10
+newcurve marktype x linetype none color 0 0 0 pts 2 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 47
+newcurve marktype x linetype none color 0 0 0 pts 18 0.46
+newcurve marktype x linetype none color 0 0 0 pts 0.9 13
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 10 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.0 2.1
+newcurve marktype x linetype none color 0 0 0 pts 1.1 2.1
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.0 13
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.1 2.0
+newcurve marktype x linetype none color 0 0 0 pts 0.9 4
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1.1 2.1
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 33
+newcurve marktype x linetype none color 0 0 0 pts 2 25
+newcurve marktype x linetype none color 0 0 0 pts 3 45
+newcurve marktype x linetype none color 0 0 0 pts 3 15
+newcurve marktype x linetype none color 0 0 0 pts 3 19
+newcurve marktype x linetype none color 0 0 0 pts 12 10
+newcurve marktype x linetype none color 0 0 0 pts 9 8
+newcurve marktype x linetype none color 0 0 0 pts 8 18
+newcurve marktype x linetype none color 0 0 0 pts 29 21
+newcurve marktype x linetype none color 0 0 0 pts 12 10
+newcurve marktype x linetype none color 0 0 0 pts 9 8
+newcurve marktype x linetype none color 0 0 0 pts 7 18
+newcurve marktype x linetype none color 0 0 0 pts 28 21
+newcurve marktype x linetype none color 0 0 0 pts 2 18
+newcurve marktype x linetype none color 0 0 0 pts 1.1 14
+newcurve marktype x linetype none color 0 0 0 pts 3 11
+newcurve marktype x linetype none color 0 0 0 pts 3 9
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 2 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 7
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 34
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 1.1 65
+newcurve marktype x linetype none color 0 0 0 pts 1.1 40
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.46
+newcurve marktype x linetype none color 0 0 0 pts 9 16
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 12 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 74
+newcurve marktype x linetype none color 0 0 0 pts 10 64
+newcurve marktype x linetype none color 0 0 0 pts 4 23
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 27 119
+newcurve marktype x linetype none color 0 0 0 pts 9 83
+newcurve marktype x linetype none color 0 0 0 pts 1 94
+newcurve marktype x linetype none color 0 0 0 pts 2 48
+newcurve marktype x linetype none color 0 0 0 pts 5 118
+newcurve marktype x linetype none color 0 0 0 pts 6 37
+newcurve marktype x linetype none color 0 0 0 pts 25 57
+newcurve marktype x linetype none color 0 0 0 pts 6 95
+newcurve marktype x linetype none color 0 0 0 pts 10 49
+newcurve marktype x linetype none color 0 0 0 pts 2 6
+newcurve marktype x linetype none color 0 0 0 pts 26 39
+newcurve marktype x linetype none color 0 0 0 pts 15 31
+newcurve marktype x linetype none color 0 0 0 pts 2 79
+newcurve marktype x linetype none color 0 0 0 pts 1 77
+newcurve marktype x linetype none color 0 0 0 pts 8 73
+newcurve marktype x linetype none color 0 0 0 pts 15 44
+newcurve marktype x linetype none color 0 0 0 pts 9 19
+newcurve marktype x linetype none color 0 0 0 pts 9 45
+newcurve marktype x linetype none color 0 0 0 pts 6 23
+newcurve marktype x linetype none color 0 0 0 pts 20 37
+newcurve marktype x linetype none color 0 0 0 pts 15 1.05
+newcurve marktype x linetype none color 0 0 0 pts 9 27
+newcurve marktype x linetype none color 0 0 0 pts 8 29
+newcurve marktype x linetype none color 0 0 0 pts 3 27
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 30
+newcurve marktype x linetype none color 0 0 0 pts 4 35
+newcurve marktype x linetype none color 0 0 0 pts 4 7
+newcurve marktype x linetype none color 0 0 0 pts 4 13
+newcurve marktype x linetype none color 0 0 0 pts 9 7
+newcurve marktype x linetype none color 0 0 0 pts 5 13
+newcurve marktype x linetype none color 0 0 0 pts 10 10
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 12 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 23
+newcurve marktype x linetype none color 0 0 0 pts 4 27
+newcurve marktype x linetype none color 0 0 0 pts 4 1.05
+newcurve marktype x linetype none color 0 0 0 pts 3 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 22
+newcurve marktype x linetype none color 0 0 0 pts 4 1.0
+newcurve marktype x linetype none color 0 0 0 pts 2 1.0
+newcurve marktype x linetype none color 0 0 0 pts 15 3
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 1 42
+newcurve marktype x linetype none color 0 0 0 pts 1 42
+newcurve marktype x linetype none color 0 0 0 pts 3 47
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 117 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 8 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 14 0.5
+newcurve marktype x linetype none color 0 0 0 pts 54 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 8 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 16 0.5
+newcurve marktype x linetype none color 0 0 0 pts 14 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 14 0.5
+newcurve marktype x linetype none color 0 0 0 pts 41 0.5
+newcurve marktype x linetype none color 0 0 0 pts 59 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 50 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 57 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 66
+newcurve marktype x linetype none color 0 0 0 pts 3 66
+newcurve marktype x linetype none color 0 0 0 pts 9 52
+newcurve marktype x linetype none color 0 0 0 pts 14 104
+newcurve marktype x linetype none color 0 0 0 pts 1 117
+newcurve marktype x linetype none color 0 0 0 pts 3 124
+newcurve marktype x linetype none color 0 0 0 pts 9 109
+newcurve marktype x linetype none color 0 0 0 pts 1 79
+newcurve marktype x linetype none color 0 0 0 pts 2 78
+newcurve marktype x linetype none color 0 0 0 pts 4 127
+newcurve marktype x linetype none color 0 0 0 pts 8 87
+newcurve marktype x linetype none color 0 0 0 pts 8 69
+newcurve marktype x linetype none color 0 0 0 pts 1 94
+newcurve marktype x linetype none color 0 0 0 pts 2 82
+newcurve marktype x linetype none color 0 0 0 pts 2 82
+newcurve marktype x linetype none color 0 0 0 pts 13 120
+newcurve marktype x linetype none color 0 0 0 pts 1 93
+newcurve marktype x linetype none color 0 0 0 pts 2 82
+newcurve marktype x linetype none color 0 0 0 pts 1 93
+newcurve marktype x linetype none color 0 0 0 pts 2 83
+newcurve marktype x linetype none color 0 0 0 pts 6 127
+newcurve marktype x linetype none color 0 0 0 pts 1 35
+newcurve marktype x linetype none color 0 0 0 pts 3 77
+newcurve marktype x linetype none color 0 0 0 pts 1 71
+newcurve marktype x linetype none color 0 0 0 pts 2 76
+newcurve marktype x linetype none color 0 0 0 pts 8 38
+newcurve marktype x linetype none color 0 0 0 pts 9 36
+newcurve marktype x linetype none color 0 0 0 pts 8 37
+newcurve marktype x linetype none color 0 0 0 pts 10 4
+newcurve marktype x linetype none color 0 0 0 pts 5 20
+newcurve marktype x linetype none color 0 0 0 pts 1 62
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 30 0.5
+newcurve marktype x linetype none color 0 0 0 pts 58 1.0
+newcurve marktype x linetype none color 0 0 0 pts 1 42
+newcurve marktype x linetype none color 0 0 0 pts 1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 13
+newcurve marktype x linetype none color 0 0 0 pts 3 6
+newcurve marktype x linetype none color 0 0 0 pts 14 7
+newcurve marktype x linetype none color 0 0 0 pts 27 15
+newcurve marktype x linetype none color 0 0 0 pts 10 38
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 7 34
+newcurve marktype x linetype none color 0 0 0 pts 21 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 22 0.95
+newcurve marktype x linetype none color 0 0 0 pts 26 0.54
+newcurve marktype x linetype none color 0 0 0 pts 28 0.5
+newcurve marktype x linetype none color 0 0 0 pts 26 0.54
+newcurve marktype x linetype none color 0 0 0 pts 24 0.46
+newcurve marktype x linetype none color 0 0 0 pts 34 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 50
+newcurve marktype x linetype none color 0 0 0 pts 7 18
+newcurve marktype x linetype none color 0 0 0 pts 1 51
+newcurve marktype x linetype none color 0 0 0 pts 10 25
+newcurve marktype x linetype none color 0 0 0 pts 2 21
+newcurve marktype x linetype none color 0 0 0 pts 3 17
+newcurve marktype x linetype none color 0 0 0 pts 4 12
+newcurve marktype x linetype none color 0 0 0 pts 3 13
+newcurve marktype x linetype none color 0 0 0 pts 1 16
+newcurve marktype x linetype none color 0 0 0 pts 2 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 5
+newcurve marktype x linetype none color 0 0 0 pts 4 3
+newcurve marktype x linetype none color 0 0 0 pts 1 14
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 5 1.05
+newcurve marktype x linetype none color 0 0 0 pts 3 4
+newcurve marktype x linetype none color 0 0 0 pts 2 3
+newcurve marktype x linetype none color 0 0 0 pts 2 5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 26
+newcurve marktype x linetype none color 0 0 0 pts 2 25
+newcurve marktype x linetype none color 0 0 0 pts 1 31
+newcurve marktype x linetype none color 0 0 0 pts 3 10
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 12 1.05
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 2 2.0
+newcurve marktype x linetype none color 0 0 0 pts 8 4
+newcurve marktype x linetype none color 0 0 0 pts 21 61
+newcurve marktype x linetype none color 0 0 0 pts 1 13
+newcurve marktype x linetype none color 0 0 0 pts 1 21
+newcurve marktype x linetype none color 0 0 0 pts 2 51
+newcurve marktype x linetype none color 0 0 0 pts 6 37
+newcurve marktype x linetype none color 0 0 0 pts 4 54
+newcurve marktype x linetype none color 0 0 0 pts 9 27
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 1 52
+newcurve marktype x linetype none color 0 0 0 pts 1 52
+newcurve marktype x linetype none color 0 0 0 pts 6 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 60
+newcurve marktype x linetype none color 0 0 0 pts 2 38
+newcurve marktype x linetype none color 0 0 0 pts 8 48
+newcurve marktype x linetype none color 0 0 0 pts 7 47
+newcurve marktype x linetype none color 0 0 0 pts 2 47
+newcurve marktype x linetype none color 0 0 0 pts 9 39
+newcurve marktype x linetype none color 0 0 0 pts 2 30
+newcurve marktype x linetype none color 0 0 0 pts 2 38
+newcurve marktype x linetype none color 0 0 0 pts 3 36
+newcurve marktype x linetype none color 0 0 0 pts 1 35
+newcurve marktype x linetype none color 0 0 0 pts 3 31
+newcurve marktype x linetype none color 0 0 0 pts 3 26
+newcurve marktype x linetype none color 0 0 0 pts 6 23
+newcurve marktype x linetype none color 0 0 0 pts 3 22
+newcurve marktype x linetype none color 0 0 0 pts 2 22
+newcurve marktype x linetype none color 0 0 0 pts 25 68
+newcurve marktype x linetype none color 0 0 0 pts 1 10
+newcurve marktype x linetype none color 0 0 0 pts 35 51
+newcurve marktype x linetype none color 0 0 0 pts 3 23
+newcurve marktype x linetype none color 0 0 0 pts 18 45
+newcurve marktype x linetype none color 0 0 0 pts 1 42
+newcurve marktype x linetype none color 0 0 0 pts 4 27
+newcurve marktype x linetype none color 0 0 0 pts 4 21
+newcurve marktype x linetype none color 0 0 0 pts 8 92
+newcurve marktype x linetype none color 0 0 0 pts 23 63
+newcurve marktype x linetype none color 0 0 0 pts 2 47
+newcurve marktype x linetype none color 0 0 0 pts 1 46
+newcurve marktype x linetype none color 0 0 0 pts 1 57
+newcurve marktype x linetype none color 0 0 0 pts 7 38
+newcurve marktype x linetype none color 0 0 0 pts 1 45
+newcurve marktype x linetype none color 0 0 0 pts 12 25
+newcurve marktype x linetype none color 0 0 0 pts 3 46
+newcurve marktype x linetype none color 0 0 0 pts 1 26
+newcurve marktype x linetype none color 0 0 0 pts 6 32
+newcurve marktype x linetype none color 0 0 0 pts 3 65
+newcurve marktype x linetype none color 0 0 0 pts 4 43
+newcurve marktype x linetype none color 0 0 0 pts 1 25
+newcurve marktype x linetype none color 0 0 0 pts 1 51
+newcurve marktype x linetype none color 0 0 0 pts 6 47
+newcurve marktype x linetype none color 0 0 0 pts 2 21
+newcurve marktype x linetype none color 0 0 0 pts 2 1.05
+newcurve marktype x linetype none color 0 0 0 pts 7 22
+newcurve marktype x linetype none color 0 0 0 pts 11 15
+newcurve marktype x linetype none color 0 0 0 pts 2 39
+newcurve marktype x linetype none color 0 0 0 pts 4 32
+newcurve marktype x linetype none color 0 0 0 pts 3 67
+newcurve marktype x linetype none color 0 0 0 pts 1 46
+newcurve marktype x linetype none color 0 0 0 pts 1 28
+newcurve marktype x linetype none color 0 0 0 pts 2 1.0
+newcurve marktype x linetype none color 0 0 0 pts 3 35
+newcurve marktype x linetype none color 0 0 0 pts 4 58
+newcurve marktype x linetype none color 0 0 0 pts 6 6
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 12 23
+newcurve marktype x linetype none color 0 0 0 pts 8 16
+newcurve marktype x linetype none color 0 0 0 pts 1 76
+newcurve marktype x linetype none color 0 0 0 pts 1 51
+newcurve marktype x linetype none color 0 0 0 pts 5 41
+newcurve marktype x linetype none color 0 0 0 pts 2 32
+newcurve marktype x linetype none color 0 0 0 pts 11 60
+newcurve marktype x linetype none color 0 0 0 pts 2 68
+newcurve marktype x linetype none color 0 0 0 pts 2 10
+newcurve marktype x linetype none color 0 0 0 pts 3 16
+newcurve marktype x linetype none color 0 0 0 pts 46 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 11 22
+newcurve marktype x linetype none color 0 0 0 pts 3 20
+newcurve marktype x linetype none color 0 0 0 pts 4 11
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 1 14
+newcurve marktype x linetype none color 0 0 0 pts 2 11
+newcurve marktype x linetype none color 0 0 0 pts 2 3
+newcurve marktype x linetype none color 0 0 0 pts 7 14
+newcurve marktype x linetype none color 0 0 0 pts 7 10
+newcurve marktype x linetype none color 0 0 0 pts 1 36
+newcurve marktype x linetype none color 0 0 0 pts 7 37
+newcurve marktype x linetype none color 0 0 0 pts 3 53
+newcurve marktype x linetype none color 0 0 0 pts 3 25
+newcurve marktype x linetype none color 0 0 0 pts 10 33
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 25
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 18
+newcurve marktype x linetype none color 0 0 0 pts 7 1.0
+newcurve marktype x linetype none color 0 0 0 pts 5 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 16 12
+newcurve marktype x linetype none color 0 0 0 pts 1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 16 0.54
+newcurve marktype x linetype none color 0 0 0 pts 17 0.54
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 25 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 13 0.46
+newcurve marktype x linetype none color 0 0 0 pts 8 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 10
+newcurve marktype x linetype none color 0 0 0 pts 1 16
+newcurve marktype x linetype none color 0 0 0 pts 2 12
+newcurve marktype x linetype none color 0 0 0 pts 2 30
+newcurve marktype x linetype none color 0 0 0 pts 5 63
+newcurve marktype x linetype none color 0 0 0 pts 1 47
+newcurve marktype x linetype none color 0 0 0 pts 1 81
+newcurve marktype x linetype none color 0 0 0 pts 29 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 70
+newcurve marktype x linetype none color 0 0 0 pts 1 7
+newcurve marktype x linetype none color 0 0 0 pts 37 0.46
+newcurve marktype x linetype none color 0 0 0 pts 36 0.54
+newcurve marktype x linetype none color 0 0 0 pts 37 0.46
+newcurve marktype x linetype none color 0 0 0 pts 12 41
+newcurve marktype x linetype none color 0 0 0 pts 11 41
+newcurve marktype x linetype none color 0 0 0 pts 5 20
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 68 0.46
+newcurve marktype x linetype none color 0 0 0 pts 28 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 14 34
+newcurve marktype x linetype none color 0 0 0 pts 2 27
+newcurve marktype x linetype none color 0 0 0 pts 29 34
+newcurve marktype x linetype none color 0 0 0 pts 8 19
+newcurve marktype x linetype none color 0 0 0 pts 1 33
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 7 57
+newcurve marktype x linetype none color 0 0 0 pts 4 24
+newcurve marktype x linetype none color 0 0 0 pts 13 34
+newcurve marktype x linetype none color 0 0 0 pts 1 27
+newcurve marktype x linetype none color 0 0 0 pts 1 67
+newcurve marktype x linetype none color 0 0 0 pts 8 41
+newcurve marktype x linetype none color 0 0 0 pts 8 36
+newcurve marktype x linetype none color 0 0 0 pts 1.1 12
+newcurve marktype x linetype none color 0 0 0 pts 0.9 1.05
+newcurve marktype x linetype none color 0 0 0 pts 0.9 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1.1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 17
+newcurve marktype x linetype none color 0 0 0 pts 4 1.0
+newcurve marktype x linetype none color 0 0 0 pts 11 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 44
+newcurve marktype x linetype none color 0 0 0 pts 1 44
+newcurve marktype x linetype none color 0 0 0 pts 11 1.9
+newcurve marktype x linetype none color 0 0 0 pts 1 42
+newcurve marktype x linetype none color 0 0 0 pts 2 48
+newcurve marktype x linetype none color 0 0 0 pts 1 48
+newcurve marktype x linetype none color 0 0 0 pts 2 61
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 27
+newcurve marktype x linetype none color 0 0 0 pts 2 10
+newcurve marktype x linetype none color 0 0 0 pts 20 53
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 1 9
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 12 56
+newcurve marktype x linetype none color 0 0 0 pts 2 47
+newcurve marktype x linetype none color 0 0 0 pts 4 57
+newcurve marktype x linetype none color 0 0 0 pts 5 100
+newcurve marktype x linetype none color 0 0 0 pts 8 88
+newcurve marktype x linetype none color 0 0 0 pts 16 60
+newcurve marktype x linetype none color 0 0 0 pts 1 33
+newcurve marktype x linetype none color 0 0 0 pts 3 48
+newcurve marktype x linetype none color 0 0 0 pts 6 26
+newcurve marktype x linetype none color 0 0 0 pts 3 29
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 0.9 2.0
+newcurve marktype x linetype none color 0 0 0 pts 2 1.05
+newcurve marktype x linetype none color 0 0 0 pts 0.9 3
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 3
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.0 3
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 23 0.46
+newcurve marktype x linetype none color 0 0 0 pts 14 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 70
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 28
+newcurve marktype x linetype none color 0 0 0 pts 1 21
+newcurve marktype x linetype none color 0 0 0 pts 1 92
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 7
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 21 0.46
+newcurve marktype x linetype none color 0 0 0 pts 19 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 7 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 10
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 5
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 6 13
+newcurve marktype x linetype none color 0 0 0 pts 4 22
+newcurve marktype x linetype none color 0 0 0 pts 5 9
+newcurve marktype x linetype none color 0 0 0 pts 2 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 20 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 2.0
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 17
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 11
+newcurve marktype x linetype none color 0 0 0 pts 1 68
+newcurve marktype x linetype none color 0 0 0 pts 3 44
+newcurve marktype x linetype none color 0 0 0 pts 1 22
+newcurve marktype x linetype none color 0 0 0 pts 4 36
+newcurve marktype x linetype none color 0 0 0 pts 1 34
+newcurve marktype x linetype none color 0 0 0 pts 1 34
+newcurve marktype x linetype none color 0 0 0 pts 1 35
+newcurve marktype x linetype none color 0 0 0 pts 1 16
+newcurve marktype x linetype none color 0 0 0 pts 1 33
+newcurve marktype x linetype none color 0 0 0 pts 1 41
+newcurve marktype x linetype none color 0 0 0 pts 7 25
+newcurve marktype x linetype none color 0 0 0 pts 3 12
+newcurve marktype x linetype none color 0 0 0 pts 5 16
+newcurve marktype x linetype none color 0 0 0 pts 9 30
+newcurve marktype x linetype none color 0 0 0 pts 2 37
+newcurve marktype x linetype none color 0 0 0 pts 2 19
+newcurve marktype x linetype none color 0 0 0 pts 2 28
+newcurve marktype x linetype none color 0 0 0 pts 2 15
+newcurve marktype x linetype none color 0 0 0 pts 3 32
+newcurve marktype x linetype none color 0 0 0 pts 7 25
+newcurve marktype x linetype none color 0 0 0 pts 3 12
+newcurve marktype x linetype none color 0 0 0 pts 5 16
+newcurve marktype x linetype none color 0 0 0 pts 15 23
+newcurve marktype x linetype none color 0 0 0 pts 4 26
+newcurve marktype x linetype none color 0 0 0 pts 6 29
+newcurve marktype x linetype none color 0 0 0 pts 6 14
+newcurve marktype x linetype none color 0 0 0 pts 6 19
+newcurve marktype x linetype none color 0 0 0 pts 1 12
+newcurve marktype x linetype none color 0 0 0 pts 6 21
+newcurve marktype x linetype none color 0 0 0 pts 1 49
+newcurve marktype x linetype none color 0 0 0 pts 2 32
+newcurve marktype x linetype none color 0 0 0 pts 7 36
+newcurve marktype x linetype none color 0 0 0 pts 7 19
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 12 2.1
+newcurve marktype x linetype none color 0 0 0 pts 45 5
+newcurve marktype x linetype none color 0 0 0 pts 43 3
+newcurve marktype x linetype none color 0 0 0 pts 43 6
+newcurve marktype x linetype none color 0 0 0 pts 44 7
+newcurve marktype x linetype none color 0 0 0 pts 2 6
+newcurve marktype x linetype none color 0 0 0 pts 2 7
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.54
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 0.9 2.0
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 0.9 1.05
+newcurve marktype x linetype none color 0 0 0 pts 24 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 18
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 8
+newcurve marktype x linetype none color 0 0 0 pts 2 31
+newcurve marktype x linetype none color 0 0 0 pts 5 20
+newcurve marktype x linetype none color 0 0 0 pts 5 22
+newcurve marktype x linetype none color 0 0 0 pts 1 87
+newcurve marktype x linetype none color 0 0 0 pts 2 31
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 87
+newcurve marktype x linetype none color 0 0 0 pts 2 17
+newcurve marktype x linetype none color 0 0 0 pts 1 32
+newcurve marktype x linetype none color 0 0 0 pts 3 85
+newcurve marktype x linetype none color 0 0 0 pts 3 28
+newcurve marktype x linetype none color 0 0 0 pts 2 24
+newcurve marktype x linetype none color 0 0 0 pts 1 7
+newcurve marktype x linetype none color 0 0 0 pts 3 15
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 4 26
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 21
+newcurve marktype x linetype none color 0 0 0 pts 0.9 3
+newcurve marktype x linetype none color 0 0 0 pts 3 55
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 46
+newcurve marktype x linetype none color 0 0 0 pts 7 22
+newcurve marktype x linetype none color 0 0 0 pts 9 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 1 33
+newcurve marktype x linetype none color 0 0 0 pts 1 44
+newcurve marktype x linetype none color 0 0 0 pts 2 48
+newcurve marktype x linetype none color 0 0 0 pts 2 48
+newcurve marktype x linetype none color 0 0 0 pts 18 3
+newcurve marktype x linetype none color 0 0 0 pts 1 60
+newcurve marktype x linetype none color 0 0 0 pts 8 46
+newcurve marktype x linetype none color 0 0 0 pts 2 9
+newcurve marktype x linetype none color 0 0 0 pts 3 8
+newcurve marktype x linetype none color 0 0 0 pts 2 51
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 21
+newcurve marktype x linetype none color 0 0 0 pts 4 24
+newcurve marktype x linetype none color 0 0 0 pts 2 12
+newcurve marktype x linetype none color 0 0 0 pts 3 19
+newcurve marktype x linetype none color 0 0 0 pts 1 17
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 2 3
+newcurve marktype x linetype none color 0 0 0 pts 1.1 3
+newcurve marktype x linetype none color 0 0 0 pts 1.0 3
+newcurve marktype x linetype none color 0 0 0 pts 1.1 32
+newcurve marktype x linetype none color 0 0 0 pts 5 26
+newcurve marktype x linetype none color 0 0 0 pts 3 28
+newcurve marktype x linetype none color 0 0 0 pts 1.0 26
+newcurve marktype x linetype none color 0 0 0 pts 2 23
+newcurve marktype x linetype none color 0 0 0 pts 0.9 21
+newcurve marktype x linetype none color 0 0 0 pts 2 18
+newcurve marktype x linetype none color 0 0 0 pts 1.0 29
+newcurve marktype x linetype none color 0 0 0 pts 1.0 32
+newcurve marktype x linetype none color 0 0 0 pts 4 27
+newcurve marktype x linetype none color 0 0 0 pts 37 60
+newcurve marktype x linetype none color 0 0 0 pts 1 7
+newcurve marktype x linetype none color 0 0 0 pts 3 8
+newcurve marktype x linetype none color 0 0 0 pts 39 0.5
+newcurve marktype x linetype none color 0 0 0 pts 9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 7 5
+newcurve marktype x linetype none color 0 0 0 pts 9 3
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 33
+newcurve marktype x linetype none color 0 0 0 pts 1 22
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 6
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 73
+newcurve marktype x linetype none color 0 0 0 pts 1 73
+newcurve marktype x linetype none color 0 0 0 pts 2 35
+newcurve marktype x linetype none color 0 0 0 pts 5 49
+newcurve marktype x linetype none color 0 0 0 pts 12 8
+newcurve marktype x linetype none color 0 0 0 pts 3 6
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 6 24
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 1 25
+newcurve marktype x linetype none color 0 0 0 pts 4 10
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 40 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 6
+newcurve marktype x linetype none color 0 0 0 pts 5 30
+newcurve marktype x linetype none color 0 0 0 pts 1 76
+newcurve marktype x linetype none color 0 0 0 pts 5 38
+newcurve marktype x linetype none color 0 0 0 pts 2 25
+newcurve marktype x linetype none color 0 0 0 pts 3 16
+newcurve marktype x linetype none color 0 0 0 pts 1 17
+newcurve marktype x linetype none color 0 0 0 pts 10 96
+newcurve marktype x linetype none color 0 0 0 pts 2 25
+newcurve marktype x linetype none color 0 0 0 pts 4 23
+newcurve marktype x linetype none color 0 0 0 pts 2 7
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 1 83
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 24
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 44 45
+newcurve marktype x linetype none color 0 0 0 pts 41 47
+newcurve marktype x linetype none color 0 0 0 pts 1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 86
+newcurve marktype x linetype none color 0 0 0 pts 1 34
+newcurve marktype x linetype none color 0 0 0 pts 3 84
+newcurve marktype x linetype none color 0 0 0 pts 7 12
+newcurve marktype x linetype none color 0 0 0 pts 2 11
+newcurve marktype x linetype none color 0 0 0 pts 12 25
+newcurve marktype x linetype none color 0 0 0 pts 2 12
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 6 13
+newcurve marktype x linetype none color 0 0 0 pts 1 4
+newcurve marktype x linetype none color 0 0 0 pts 2 54
+newcurve marktype x linetype none color 0 0 0 pts 2 54
+newcurve marktype x linetype none color 0 0 0 pts 3 85
+newcurve marktype x linetype none color 0 0 0 pts 1 76
+newcurve marktype x linetype none color 0 0 0 pts 63 15
+newcurve marktype x linetype none color 0 0 0 pts 4 1.9
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 16 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 8 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 41
+newcurve marktype x linetype none color 0 0 0 pts 1 126
+newcurve marktype x linetype none color 0 0 0 pts 12 20
+newcurve marktype x linetype none color 0 0 0 pts 8 23
+newcurve marktype x linetype none color 0 0 0 pts 6 116
+newcurve marktype x linetype none color 0 0 0 pts 4 122
+newcurve marktype x linetype none color 0 0 0 pts 4 32
+newcurve marktype x linetype none color 0 0 0 pts 3 116
+newcurve marktype x linetype none color 0 0 0 pts 9 95
+newcurve marktype x linetype none color 0 0 0 pts 3 59
+newcurve marktype x linetype none color 0 0 0 pts 15 99
+newcurve marktype x linetype none color 0 0 0 pts 6 38
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 36 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 13
+newcurve marktype x linetype none color 0 0 0 pts 1 19
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 28 0.5
+newcurve marktype x linetype none color 0 0 0 pts 9 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 4
+newcurve marktype x linetype none color 0 0 0 pts 8 4
+newcurve marktype x linetype none color 0 0 0 pts 3 10
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 20 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 43
+newcurve marktype x linetype none color 0 0 0 pts 6 36
+newcurve marktype x linetype none color 0 0 0 pts 1 18
+newcurve marktype x linetype none color 0 0 0 pts 1 28
+newcurve marktype x linetype none color 0 0 0 pts 1 30
+newcurve marktype x linetype none color 0 0 0 pts 1.0 3
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.0 4
+newcurve marktype x linetype none color 0 0 0 pts 4 9
+newcurve marktype x linetype none color 0 0 0 pts 10 133
+newcurve marktype x linetype none color 0 0 0 pts 1 17
+newcurve marktype x linetype none color 0 0 0 pts 13 132
+newcurve marktype x linetype none color 0 0 0 pts 1 129
+newcurve marktype x linetype none color 0 0 0 pts 2 11
+newcurve marktype x linetype none color 0 0 0 pts 1 129
+newcurve marktype x linetype none color 0 0 0 pts 1 9
+newcurve marktype x linetype none color 0 0 0 pts 4 149
+newcurve marktype x linetype none color 0 0 0 pts 1 19
+newcurve marktype x linetype none color 0 0 0 pts 2 76
+newcurve marktype x linetype none color 0 0 0 pts 0.9 19
+newcurve marktype x linetype none color 0 0 0 pts 2 27
+newcurve marktype x linetype none color 0 0 0 pts 1.1 6
+newcurve marktype x linetype none color 0 0 0 pts 1.0 3
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 2 2.0
+newcurve marktype x linetype none color 0 0 0 pts 1 16
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 6 40
+newcurve marktype x linetype none color 0 0 0 pts 1 45
+newcurve marktype x linetype none color 0 0 0 pts 7 47
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 0.9 62
+newcurve marktype x linetype none color 0 0 0 pts 1.0 62
+newcurve marktype x linetype none color 0 0 0 pts 1.1 62
+newcurve marktype x linetype none color 0 0 0 pts 2 61
+newcurve marktype x linetype none color 0 0 0 pts 3 60
+newcurve marktype x linetype none color 0 0 0 pts 6 59
+newcurve marktype x linetype none color 0 0 0 pts 7 0.95
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 0.9 11
+newcurve marktype x linetype none color 0 0 0 pts 1 2.1
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 7 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 2.1
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 1.05
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 9 17
+newcurve marktype x linetype none color 0 0 0 pts 2 14
+newcurve marktype x linetype none color 0 0 0 pts 2 22
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 8 63
+newcurve marktype x linetype none color 0 0 0 pts 3 67
+newcurve marktype x linetype none color 0 0 0 pts 5 42
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 93
+newcurve marktype x linetype none color 0 0 0 pts 13 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 9
+newcurve marktype x linetype none color 0 0 0 pts 2 45
+newcurve marktype x linetype none color 0 0 0 pts 1 20
+newcurve marktype x linetype none color 0 0 0 pts 3 86
+newcurve marktype x linetype none color 0 0 0 pts 3 54
+newcurve marktype x linetype none color 0 0 0 pts 2 103
+newcurve marktype x linetype none color 0 0 0 pts 1 9
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 20
+newcurve marktype x linetype none color 0 0 0 pts 5 18
+newcurve marktype x linetype none color 0 0 0 pts 3 13
+newcurve marktype x linetype none color 0 0 0 pts 1 32
+newcurve marktype x linetype none color 0 0 0 pts 15 86
+newcurve marktype x linetype none color 0 0 0 pts 46 35
+newcurve marktype x linetype none color 0 0 0 pts 2 4
+newcurve marktype x linetype none color 0 0 0 pts 2 4
+newcurve marktype x linetype none color 0 0 0 pts 2 44
+newcurve marktype x linetype none color 0 0 0 pts 12 50
+newcurve marktype x linetype none color 0 0 0 pts 5 50
+newcurve marktype x linetype none color 0 0 0 pts 1 46
+newcurve marktype x linetype none color 0 0 0 pts 3 42
+newcurve marktype x linetype none color 0 0 0 pts 1 42
+newcurve marktype x linetype none color 0 0 0 pts 1 68
+newcurve marktype x linetype none color 0 0 0 pts 1 65
+newcurve marktype x linetype none color 0 0 0 pts 4 27
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 30 0.54
+newcurve marktype x linetype none color 0 0 0 pts 28 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 4
+newcurve marktype x linetype none color 0 0 0 pts 8 8
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 11 4
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 43
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 18
+newcurve marktype x linetype none color 0 0 0 pts 5 12
+newcurve marktype x linetype none color 0 0 0 pts 2 7
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 8 61
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 24 55
+newcurve marktype x linetype none color 0 0 0 pts 2 22
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 6 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 8 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 12 0.54
+newcurve marktype x linetype none color 0 0 0 pts 8 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.5
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 23 0.5
+newcurve marktype x linetype none color 0 0 0 pts 14 0.54
+newcurve marktype x linetype none color 0 0 0 pts 24 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 83
+newcurve marktype x linetype none color 0 0 0 pts 67 1.0
+newcurve marktype x linetype none color 0 0 0 pts 68 0.46
+newcurve marktype x linetype none color 0 0 0 pts 74 1.0
+newcurve marktype x linetype none color 0 0 0 pts 55 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 150
+newcurve marktype x linetype none color 0 0 0 pts 4 30
+newcurve marktype x linetype none color 0 0 0 pts 1 19
+newcurve marktype x linetype none color 0 0 0 pts 4 14
+newcurve marktype x linetype none color 0 0 0 pts 2 14
+newcurve marktype x linetype none color 0 0 0 pts 2 21
+newcurve marktype x linetype none color 0 0 0 pts 3 25
+newcurve marktype x linetype none color 0 0 0 pts 2 37
+newcurve marktype x linetype none color 0 0 0 pts 2 18
+newcurve marktype x linetype none color 0 0 0 pts 1 40
+newcurve marktype x linetype none color 0 0 0 pts 1 40
+newcurve marktype x linetype none color 0 0 0 pts 1 38
+newcurve marktype x linetype none color 0 0 0 pts 3 8
+newcurve marktype x linetype none color 0 0 0 pts 14 17
+newcurve marktype x linetype none color 0 0 0 pts 12 5
+newcurve marktype x linetype none color 0 0 0 pts 4 17
+newcurve marktype x linetype none color 0 0 0 pts 3 5
+newcurve marktype x linetype none color 0 0 0 pts 1 20
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 10
+newcurve marktype x linetype none color 0 0 0 pts 2 27
+newcurve marktype x linetype none color 0 0 0 pts 3 25
+newcurve marktype x linetype none color 0 0 0 pts 3 15
+newcurve marktype x linetype none color 0 0 0 pts 5 20
+newcurve marktype x linetype none color 0 0 0 pts 5 22
+newcurve marktype x linetype none color 0 0 0 pts 4 19
+newcurve marktype x linetype none color 0 0 0 pts 3 15
+newcurve marktype x linetype none color 0 0 0 pts 6 34
+newcurve marktype x linetype none color 0 0 0 pts 1 17
+newcurve marktype x linetype none color 0 0 0 pts 4 9
+newcurve marktype x linetype none color 0 0 0 pts 3 26
+newcurve marktype x linetype none color 0 0 0 pts 3 13
+newcurve marktype x linetype none color 0 0 0 pts 4 20
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 4 14
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 27
+newcurve marktype x linetype none color 0 0 0 pts 3 25
+newcurve marktype x linetype none color 0 0 0 pts 2 1.9
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 3 7
+newcurve marktype x linetype none color 0 0 0 pts 5 4
+newcurve marktype x linetype none color 0 0 0 pts 5 5
+newcurve marktype x linetype none color 0 0 0 pts 3 3
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 4 3
+newcurve marktype x linetype none color 0 0 0 pts 6 1.05
+newcurve marktype x linetype none color 0 0 0 pts 2 3
+newcurve marktype x linetype none color 0 0 0 pts 6 7
+newcurve marktype x linetype none color 0 0 0 pts 3 4
+newcurve marktype x linetype none color 0 0 0 pts 5 3
+newcurve marktype x linetype none color 0 0 0 pts 7 3
+newcurve marktype x linetype none color 0 0 0 pts 6 5
+newcurve marktype x linetype none color 0 0 0 pts 2 3
+newcurve marktype x linetype none color 0 0 0 pts 1 4
+newcurve marktype x linetype none color 0 0 0 pts 4 6
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 3 8
+newcurve marktype x linetype none color 0 0 0 pts 2 4
+newcurve marktype x linetype none color 0 0 0 pts 3 4
+newcurve marktype x linetype none color 0 0 0 pts 1 9
+newcurve marktype x linetype none color 0 0 0 pts 1.1 9
+newcurve marktype x linetype none color 0 0 0 pts 1.0 71
+newcurve marktype x linetype none color 0 0 0 pts 10 65
+newcurve marktype x linetype none color 0 0 0 pts 2 21
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 42
+newcurve marktype x linetype none color 0 0 0 pts 60 0.54
+newcurve marktype x linetype none color 0 0 0 pts 18 24
+newcurve marktype x linetype none color 0 0 0 pts 1 22
+newcurve marktype x linetype none color 0 0 0 pts 20 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 34
+newcurve marktype x linetype none color 0 0 0 pts 2 17
+newcurve marktype x linetype none color 0 0 0 pts 18 0.5
+newcurve marktype x linetype none color 0 0 0 pts 48 0.54
+newcurve marktype x linetype none color 0 0 0 pts 13 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.46
+newcurve marktype x linetype none color 0 0 0 pts 52 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 30
+newcurve marktype x linetype none color 0 0 0 pts 1 11
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 14
+newcurve marktype x linetype none color 0 0 0 pts 2 99
+newcurve marktype x linetype none color 0 0 0 pts 1.1 8
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 54
+newcurve marktype x linetype none color 0 0 0 pts 1 13
+newcurve marktype x linetype none color 0 0 0 pts 1 19
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 1.0 12
+newcurve marktype x linetype none color 0 0 0 pts 7 6
+newcurve marktype x linetype none color 0 0 0 pts 3 1.0
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 7 4
+newcurve marktype x linetype none color 0 0 0 pts 4 11
+newcurve marktype x linetype none color 0 0 0 pts 2 2.1
+newcurve marktype x linetype none color 0 0 0 pts 3 1.9
+newcurve marktype x linetype none color 0 0 0 pts 5 1.9
+newcurve marktype x linetype none color 0 0 0 pts 4 0.95
+newcurve marktype x linetype none color 0 0 0 pts 8 7
+newcurve marktype x linetype none color 0 0 0 pts 17 5
+newcurve marktype x linetype none color 0 0 0 pts 9 0.95
+newcurve marktype x linetype none color 0 0 0 pts 8 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 4 1.05
+newcurve marktype x linetype none color 0 0 0 pts 7 11
+newcurve marktype x linetype none color 0 0 0 pts 1 8
+newcurve marktype x linetype none color 0 0 0 pts 1.1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 93
+newcurve marktype x linetype none color 0 0 0 pts 1 92
+newcurve marktype x linetype none color 0 0 0 pts 27 123
+newcurve marktype x linetype none color 0 0 0 pts 1 140
+newcurve marktype x linetype none color 0 0 0 pts 2 156
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 202 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 177
+newcurve marktype x linetype none color 0 0 0 pts 6 195
+newcurve marktype x linetype none color 0 0 0 pts 4 102
+newcurve marktype x linetype none color 0 0 0 pts 7 102
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 1.9
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 95
+newcurve marktype x linetype none color 0 0 0 pts 1 50
+newcurve marktype x linetype none color 0 0 0 pts 3 26
+newcurve marktype x linetype none color 0 0 0 pts 4 20
+newcurve marktype x linetype none color 0 0 0 pts 10 33
+newcurve marktype x linetype none color 0 0 0 pts 6 6
+newcurve marktype x linetype none color 0 0 0 pts 9 6
+newcurve marktype x linetype none color 0 0 0 pts 1 41
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 3 22
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 1 30
+newcurve marktype x linetype none color 0 0 0 pts 2 21
+newcurve marktype x linetype none color 0 0 0 pts 9 21
+newcurve marktype x linetype none color 0 0 0 pts 4 31
+newcurve marktype x linetype none color 0 0 0 pts 14 12
+newcurve marktype x linetype none color 0 0 0 pts 3 15
+newcurve marktype x linetype none color 0 0 0 pts 1 18
+newcurve marktype x linetype none color 0 0 0 pts 1 13
+newcurve marktype x linetype none color 0 0 0 pts 2 21
+newcurve marktype x linetype none color 0 0 0 pts 1 12
+newcurve marktype x linetype none color 0 0 0 pts 1 21
+newcurve marktype x linetype none color 0 0 0 pts 1 14
+newcurve marktype x linetype none color 0 0 0 pts 1 31
+newcurve marktype x linetype none color 0 0 0 pts 1 17
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 32 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 0.54
+newcurve marktype x linetype none color 0 0 0 pts 41 0.46
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 81
+newcurve marktype x linetype none color 0 0 0 pts 1 31
+newcurve marktype x linetype none color 0 0 0 pts 8 47
+newcurve marktype x linetype none color 0 0 0 pts 3 31
+newcurve marktype x linetype none color 0 0 0 pts 1 31
+newcurve marktype x linetype none color 0 0 0 pts 31 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 31
+newcurve marktype x linetype none color 0 0 0 pts 2 28
+newcurve marktype x linetype none color 0 0 0 pts 1 28
+newcurve marktype x linetype none color 0 0 0 pts 1 23
+newcurve marktype x linetype none color 0 0 0 pts 1 13
+newcurve marktype x linetype none color 0 0 0 pts 1 42
+newcurve marktype x linetype none color 0 0 0 pts 1 14
+newcurve marktype x linetype none color 0 0 0 pts 7 123
+newcurve marktype x linetype none color 0 0 0 pts 2 115
+newcurve marktype x linetype none color 0 0 0 pts 11 5
+newcurve marktype x linetype none color 0 0 0 pts 9 11
+newcurve marktype x linetype none color 0 0 0 pts 1 117
+newcurve marktype x linetype none color 0 0 0 pts 45 68
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 1 144
+newcurve marktype x linetype none color 0 0 0 pts 3 52
+newcurve marktype x linetype none color 0 0 0 pts 5 45
+newcurve marktype x linetype none color 0 0 0 pts 2 16
+newcurve marktype x linetype none color 0 0 0 pts 5 12
+newcurve marktype x linetype none color 0 0 0 pts 2 51
+newcurve marktype x linetype none color 0 0 0 pts 2 14
+newcurve marktype x linetype none color 0 0 0 pts 1 61
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 6 18
+newcurve marktype x linetype none color 0 0 0 pts 10 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 84
+newcurve marktype x linetype none color 0 0 0 pts 3 87
+newcurve marktype x linetype none color 0 0 0 pts 2 39
+newcurve marktype x linetype none color 0 0 0 pts 1 40
+newcurve marktype x linetype none color 0 0 0 pts 1 79
+newcurve marktype x linetype none color 0 0 0 pts 2 70
+newcurve marktype x linetype none color 0 0 0 pts 4 64
+newcurve marktype x linetype none color 0 0 0 pts 1 79
+newcurve marktype x linetype none color 0 0 0 pts 1 73
+newcurve marktype x linetype none color 0 0 0 pts 1 78
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 43 1.0
+newcurve marktype x linetype none color 0 0 0 pts 40 2.0
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 0.46
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 78
+newcurve marktype x linetype none color 0 0 0 pts 1 39
+newcurve marktype x linetype none color 0 0 0 pts 90 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 69 9
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 10
+newcurve marktype x linetype none color 0 0 0 pts 5 0.95
+newcurve marktype x linetype none color 0 0 0 pts 9 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 7 1.0
+newcurve marktype x linetype none color 0 0 0 pts 9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 6 1.05
+newcurve marktype x linetype none color 0 0 0 pts 5 2.0
+newcurve marktype x linetype none color 0 0 0 pts 6 14
+newcurve marktype x linetype none color 0 0 0 pts 6 12
+newcurve marktype x linetype none color 0 0 0 pts 32 18
+newcurve marktype x linetype none color 0 0 0 pts 1.0 3
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1.0 1.0
+newcurve marktype x linetype none color 0 0 0 pts 1 39
+newcurve marktype x linetype none color 0 0 0 pts 5 28
+newcurve marktype x linetype none color 0 0 0 pts 7 144
+newcurve marktype x linetype none color 0 0 0 pts 12 139
+newcurve marktype x linetype none color 0 0 0 pts 13 107
+newcurve marktype x linetype none color 0 0 0 pts 16 101
+newcurve marktype x linetype none color 0 0 0 pts 9 101
+newcurve marktype x linetype none color 0 0 0 pts 9 93
+newcurve marktype x linetype none color 0 0 0 pts 1 93
+newcurve marktype x linetype none color 0 0 0 pts 3 80
+newcurve marktype x linetype none color 0 0 0 pts 4 93
+newcurve marktype x linetype none color 0 0 0 pts 9 80
+newcurve marktype x linetype none color 0 0 0 pts 38 39
+newcurve marktype x linetype none color 0 0 0 pts 36 28
+newcurve marktype x linetype none color 0 0 0 pts 5 29
+newcurve marktype x linetype none color 0 0 0 pts 65 2.0
+newcurve marktype x linetype none color 0 0 0 pts 1 22
+newcurve marktype x linetype none color 0 0 0 pts 11 50
+newcurve marktype x linetype none color 0 0 0 pts 16 14
+newcurve marktype x linetype none color 0 0 0 pts 12 12
+newcurve marktype x linetype none color 0 0 0 pts 5 5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 17
+newcurve marktype x linetype none color 0 0 0 pts 40 118
+newcurve marktype x linetype none color 0 0 0 pts 2 146
+newcurve marktype x linetype none color 0 0 0 pts 1 145
+newcurve marktype x linetype none color 0 0 0 pts 2 120
+newcurve marktype x linetype none color 0 0 0 pts 28 86
+newcurve marktype x linetype none color 0 0 0 pts 7 140
+newcurve marktype x linetype none color 0 0 0 pts 8 114
+newcurve marktype x linetype none color 0 0 0 pts 7 106
+newcurve marktype x linetype none color 0 0 0 pts 40 93
+newcurve marktype x linetype none color 0 0 0 pts 5 113
+newcurve marktype x linetype none color 0 0 0 pts 7 98
+newcurve marktype x linetype none color 0 0 0 pts 28 68
+newcurve marktype x linetype none color 0 0 0 pts 1 53
+newcurve marktype x linetype none color 0 0 0 pts 4 54
+newcurve marktype x linetype none color 0 0 0 pts 4 116
+newcurve marktype x linetype none color 0 0 0 pts 33 80
+newcurve marktype x linetype none color 0 0 0 pts 1 53
+newcurve marktype x linetype none color 0 0 0 pts 57 53
+newcurve marktype x linetype none color 0 0 0 pts 5 12
+newcurve marktype x linetype none color 0 0 0 pts 30 76
+newcurve marktype x linetype none color 0 0 0 pts 2 26
+newcurve marktype x linetype none color 0 0 0 pts 4 64
+newcurve marktype x linetype none color 0 0 0 pts 43 48
+newcurve marktype x linetype none color 0 0 0 pts 16 64
+newcurve marktype x linetype none color 0 0 0 pts 1 58
+newcurve marktype x linetype none color 0 0 0 pts 1 38
+newcurve marktype x linetype none color 0 0 0 pts 18 64
+newcurve marktype x linetype none color 0 0 0 pts 8 86
+newcurve marktype x linetype none color 0 0 0 pts 6 56
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 62 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 27
+newcurve marktype x linetype none color 0 0 0 pts 2 10
+newcurve marktype x linetype none color 0 0 0 pts 1 99
+newcurve marktype x linetype none color 0 0 0 pts 1 18
+newcurve marktype x linetype none color 0 0 0 pts 16 69
+newcurve marktype x linetype none color 0 0 0 pts 1 41
+newcurve marktype x linetype none color 0 0 0 pts 3 94
+newcurve marktype x linetype none color 0 0 0 pts 1 69
+newcurve marktype x linetype none color 0 0 0 pts 2 22
+newcurve marktype x linetype none color 0 0 0 pts 11 50
+newcurve marktype x linetype none color 0 0 0 pts 3 36
+newcurve marktype x linetype none color 0 0 0 pts 9 74
+newcurve marktype x linetype none color 0 0 0 pts 3 64
+newcurve marktype x linetype none color 0 0 0 pts 1 10
+newcurve marktype x linetype none color 0 0 0 pts 2 40
+newcurve marktype x linetype none color 0 0 0 pts 2 4
+newcurve marktype x linetype none color 0 0 0 pts 9 8
+newcurve marktype x linetype none color 0 0 0 pts 6 19
+newcurve marktype x linetype none color 0 0 0 pts 12 38
+newcurve marktype x linetype none color 0 0 0 pts 17 14
+newcurve marktype x linetype none color 0 0 0 pts 9 32
+newcurve marktype x linetype none color 0 0 0 pts 1 25
+newcurve marktype x linetype none color 0 0 0 pts 1 23
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 72 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 34 0.5
+newcurve marktype x linetype none color 0 0 0 pts 34 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 22
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 13 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 35 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 37 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 43
+newcurve marktype x linetype none color 0 0 0 pts 3 7
+newcurve marktype x linetype none color 0 0 0 pts 23 30
+newcurve marktype x linetype none color 0 0 0 pts 2 1.05
+newcurve marktype x linetype none color 0 0 0 pts 52 1.05
+newcurve marktype x linetype none color 0 0 0 pts 5 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 51
+newcurve marktype x linetype none color 0 0 0 pts 62 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 5
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 10 0.5
+newcurve marktype x linetype none color 0 0 0 pts 15 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 15 0.46
+newcurve marktype x linetype none color 0 0 0 pts 8 0.5
+newcurve marktype x linetype none color 0 0 0 pts 11 0.54
+newcurve marktype x linetype none color 0 0 0 pts 7 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 1.0
+newcurve marktype x linetype none color 0 0 0 pts 1 31
+newcurve marktype x linetype none color 0 0 0 pts 1 23
+newcurve marktype x linetype none color 0 0 0 pts 4 44
+newcurve marktype x linetype none color 0 0 0 pts 4 26
+newcurve marktype x linetype none color 0 0 0 pts 1 21
+newcurve marktype x linetype none color 0 0 0 pts 7 29
+newcurve marktype x linetype none color 0 0 0 pts 10 37
+newcurve marktype x linetype none color 0 0 0 pts 1 2.1
+newcurve marktype x linetype none color 0 0 0 pts 8 59
+newcurve marktype x linetype none color 0 0 0 pts 17 71
+newcurve marktype x linetype none color 0 0 0 pts 1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 5 1.9
+newcurve marktype x linetype none color 0 0 0 pts 3 32
+newcurve marktype x linetype none color 0 0 0 pts 2 17
+newcurve marktype x linetype none color 0 0 0 pts 1 19
+newcurve marktype x linetype none color 0 0 0 pts 2 25
+newcurve marktype x linetype none color 0 0 0 pts 2 16
+newcurve marktype x linetype none color 0 0 0 pts 3 4
+newcurve marktype x linetype none color 0 0 0 pts 1 9
+newcurve marktype x linetype none color 0 0 0 pts 46 0.5
+newcurve marktype x linetype none color 0 0 0 pts 11 2.0
+newcurve marktype x linetype none color 0 0 0 pts 11 2.0
+newcurve marktype x linetype none color 0 0 0 pts 5 1.0
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 12 0.5
+newcurve marktype x linetype none color 0 0 0 pts 9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 9 6
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 13 4
+newcurve marktype x linetype none color 0 0 0 pts 9 3
+newcurve marktype x linetype none color 0 0 0 pts 4 3
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 11
+newcurve marktype x linetype none color 0 0 0 pts 16 6
+newcurve marktype x linetype none color 0 0 0 pts 2 5
+newcurve marktype x linetype none color 0 0 0 pts 1 4
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 16 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 63
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 15 8
+newcurve marktype x linetype none color 0 0 0 pts 9 6
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 12 0.54
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 14 0.54
+newcurve marktype x linetype none color 0 0 0 pts 10 68
+newcurve marktype x linetype none color 0 0 0 pts 7 68
+newcurve marktype x linetype none color 0 0 0 pts 9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 25
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 4
+newcurve marktype x linetype none color 0 0 0 pts 4 0.95
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 71
+newcurve marktype x linetype none color 0 0 0 pts 3 5
+newcurve marktype x linetype none color 0 0 0 pts 1 4
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 1 10
+newcurve marktype x linetype none color 0 0 0 pts 17 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 13 0.46
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 10 0.5
+newcurve marktype x linetype none color 0 0 0 pts 56 32
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 1.0
+newcurve marktype x linetype none color 0 0 0 pts 13 0.5
+newcurve marktype x linetype none color 0 0 0 pts 14 12
+newcurve marktype x linetype none color 0 0 0 pts 7 13
+newcurve marktype x linetype none color 0 0 0 pts 4 13
+newcurve marktype x linetype none color 0 0 0 pts 12 7
+newcurve marktype x linetype none color 0 0 0 pts 2 4
+newcurve marktype x linetype none color 0 0 0 pts 19 0.5
+newcurve marktype x linetype none color 0 0 0 pts 24 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 9
+newcurve marktype x linetype none color 0 0 0 pts 1 12
+newcurve marktype x linetype none color 0 0 0 pts 1 29
+newcurve marktype x linetype none color 0 0 0 pts 8 79
+newcurve marktype x linetype none color 0 0 0 pts 9 81
+newcurve marktype x linetype none color 0 0 0 pts 7 41
+newcurve marktype x linetype none color 0 0 0 pts 2 42
+newcurve marktype x linetype none color 0 0 0 pts 6 63
+newcurve marktype x linetype none color 0 0 0 pts 10 61
+newcurve marktype x linetype none color 0 0 0 pts 3 28
+newcurve marktype x linetype none color 0 0 0 pts 8 0.5
+newcurve marktype x linetype none color 0 0 0 pts 13 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 10 0.54
+newcurve marktype x linetype none color 0 0 0 pts 8 0.46
+newcurve marktype x linetype none color 0 0 0 pts 11 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 12 0.46
+newcurve marktype x linetype none color 0 0 0 pts 13 11
+newcurve marktype x linetype none color 0 0 0 pts 5 8
+newcurve marktype x linetype none color 0 0 0 pts 1 13
+newcurve marktype x linetype none color 0 0 0 pts 1 55
+newcurve marktype x linetype none color 0 0 0 pts 24 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 8 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 17 1.0
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 32 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 7 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 7
+newcurve marktype x linetype none color 0 0 0 pts 22 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 44 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 13
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 14 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 1.05
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 11 0.5
+newcurve marktype x linetype none color 0 0 0 pts 11 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 37
+newcurve marktype x linetype none color 0 0 0 pts 6 42
+newcurve marktype x linetype none color 0 0 0 pts 5 23
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 50 0.54
+newcurve marktype x linetype none color 0 0 0 pts 10 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 44
+newcurve marktype x linetype none color 0 0 0 pts 2 10
+newcurve marktype x linetype none color 0 0 0 pts 1 65
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 11 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 2.0
+newcurve marktype x linetype none color 0 0 0 pts 1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 3 12
+newcurve marktype x linetype none color 0 0 0 pts 2 23
+newcurve marktype x linetype none color 0 0 0 pts 4 25
+newcurve marktype x linetype none color 0 0 0 pts 1 33
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 6 0.5
+newcurve marktype x linetype none color 0 0 0 pts 6 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 7 0.46
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 0.9 1.0
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 3
+newcurve marktype x linetype none color 0 0 0 pts 1.0 10
+newcurve marktype x linetype none color 0 0 0 pts 3 4
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 38 11
+newcurve marktype x linetype none color 0 0 0 pts 2 45
+newcurve marktype x linetype none color 0 0 0 pts 3 42
+newcurve marktype x linetype none color 0 0 0 pts 1 37
+newcurve marktype x linetype none color 0 0 0 pts 1 40
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 9 32
+newcurve marktype x linetype none color 0 0 0 pts 4 38
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 1.0
+newcurve marktype x linetype none color 0 0 0 pts 11 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.1 49
+newcurve marktype x linetype none color 0 0 0 pts 2 45
+newcurve marktype x linetype none color 0 0 0 pts 1.0 64
+newcurve marktype x linetype none color 0 0 0 pts 5 44
+newcurve marktype x linetype none color 0 0 0 pts 5 42
+newcurve marktype x linetype none color 0 0 0 pts 2 27
+newcurve marktype x linetype none color 0 0 0 pts 2 27
+newcurve marktype x linetype none color 0 0 0 pts 2 33
+newcurve marktype x linetype none color 0 0 0 pts 3 31
+newcurve marktype x linetype none color 0 0 0 pts 1.0 8
+newcurve marktype x linetype none color 0 0 0 pts 1.0 34
+newcurve marktype x linetype none color 0 0 0 pts 4 54
+newcurve marktype x linetype none color 0 0 0 pts 1 2.0
+newcurve marktype x linetype none color 0 0 0 pts 1 1.9
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 71
+newcurve marktype x linetype none color 0 0 0 pts 1 2.0
+newcurve marktype x linetype none color 0 0 0 pts 4 79
+newcurve marktype x linetype none color 0 0 0 pts 1 41
+newcurve marktype x linetype none color 0 0 0 pts 1 62
+newcurve marktype x linetype none color 0 0 0 pts 2 63
+newcurve marktype x linetype none color 0 0 0 pts 2 92
+newcurve marktype x linetype none color 0 0 0 pts 1 65
+newcurve marktype x linetype none color 0 0 0 pts 2 5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.0 44
+newcurve marktype x linetype none color 0 0 0 pts 3 40
+newcurve marktype x linetype none color 0 0 0 pts 1.0 35
+newcurve marktype x linetype none color 0 0 0 pts 0.9 35
+newcurve marktype x linetype none color 0 0 0 pts 1.0 32
+newcurve marktype x linetype none color 0 0 0 pts 1 17
+newcurve marktype x linetype none color 0 0 0 pts 1 21
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 34 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 56
+newcurve marktype x linetype none color 0 0 0 pts 7 31
+newcurve marktype x linetype none color 0 0 0 pts 1 16
+newcurve marktype x linetype none color 0 0 0 pts 10 20
+newcurve marktype x linetype none color 0 0 0 pts 12 10
+newcurve marktype x linetype none color 0 0 0 pts 8 18
+newcurve marktype x linetype none color 0 0 0 pts 12 18
+newcurve marktype x linetype none color 0 0 0 pts 11 28
+newcurve marktype x linetype none color 0 0 0 pts 5 13
+newcurve marktype x linetype none color 0 0 0 pts 3 18
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 1 10
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 35 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 8 61
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 16
+newcurve marktype x linetype none color 0 0 0 pts 1 18
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 44 0.5
+newcurve marktype x linetype none color 0 0 0 pts 19 38
+newcurve marktype x linetype none color 0 0 0 pts 1 56
+newcurve marktype x linetype none color 0 0 0 pts 15 31
+newcurve marktype x linetype none color 0 0 0 pts 6 46
+newcurve marktype x linetype none color 0 0 0 pts 1 22
+newcurve marktype x linetype none color 0 0 0 pts 2 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 17 24
+newcurve marktype x linetype none color 0 0 0 pts 19 42
+newcurve marktype x linetype none color 0 0 0 pts 6 54
+newcurve marktype x linetype none color 0 0 0 pts 2 25
+newcurve marktype x linetype none color 0 0 0 pts 12 25
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 5
+newcurve marktype x linetype none color 0 0 0 pts 13 2.0
+newcurve marktype x linetype none color 0 0 0 pts 16 5
+newcurve marktype x linetype none color 0 0 0 pts 5 11
+newcurve marktype x linetype none color 0 0 0 pts 14 1.0
+newcurve marktype x linetype none color 0 0 0 pts 4 42
+newcurve marktype x linetype none color 0 0 0 pts 44 0.5
+newcurve marktype x linetype none color 0 0 0 pts 12 20
+newcurve marktype x linetype none color 0 0 0 pts 7 20
+newcurve marktype x linetype none color 0 0 0 pts 3 78
+newcurve marktype x linetype none color 0 0 0 pts 9 9
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 12 14
+newcurve marktype x linetype none color 0 0 0 pts 18 7
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 32
+newcurve marktype x linetype none color 0 0 0 pts 7 26
+newcurve marktype x linetype none color 0 0 0 pts 4 34
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 5 45
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 32
+newcurve marktype x linetype none color 0 0 0 pts 2 5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 40
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 14 0.46
+newcurve marktype x linetype none color 0 0 0 pts 16 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 8 145
+newcurve marktype x linetype none color 0 0 0 pts 1 150
+newcurve marktype x linetype none color 0 0 0 pts 3 146
+newcurve marktype x linetype none color 0 0 0 pts 3 145
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 1.9
+newcurve marktype x linetype none color 0 0 0 pts 84 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 218
+newcurve marktype x linetype none color 0 0 0 pts 1 57
+newcurve marktype x linetype none color 0 0 0 pts 11 205
+newcurve marktype x linetype none color 0 0 0 pts 6 195
+newcurve marktype x linetype none color 0 0 0 pts 171 38
+newcurve marktype x linetype none color 0 0 0 pts 2 57
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 107
+newcurve marktype x linetype none color 0 0 0 pts 8 211
+newcurve marktype x linetype none color 0 0 0 pts 6 25
+newcurve marktype x linetype none color 0 0 0 pts 9 102
+newcurve marktype x linetype none color 0 0 0 pts 2 55
+newcurve marktype x linetype none color 0 0 0 pts 112 0.54
+newcurve marktype x linetype none color 0 0 0 pts 7 209
+newcurve marktype x linetype none color 0 0 0 pts 106 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 53
+newcurve marktype x linetype none color 0 0 0 pts 3 57
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 3
+newcurve marktype x linetype none color 0 0 0 pts 4 5
+newcurve marktype x linetype none color 0 0 0 pts 4 15
+newcurve marktype x linetype none color 0 0 0 pts 3 71
+newcurve marktype x linetype none color 0 0 0 pts 6 110
+newcurve marktype x linetype none color 0 0 0 pts 10 33
+newcurve marktype x linetype none color 0 0 0 pts 4 27
+newcurve marktype x linetype none color 0 0 0 pts 2 22
+newcurve marktype x linetype none color 0 0 0 pts 1 69
+newcurve marktype x linetype none color 0 0 0 pts 1 8
+newcurve marktype x linetype none color 0 0 0 pts 3 56
+newcurve marktype x linetype none color 0 0 0 pts 1 9
+newcurve marktype x linetype none color 0 0 0 pts 1 55
+newcurve marktype x linetype none color 0 0 0 pts 2 9
+newcurve marktype x linetype none color 0 0 0 pts 3 3
+newcurve marktype x linetype none color 0 0 0 pts 0.9 4
+newcurve marktype x linetype none color 0 0 0 pts 1 2.1
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 1.0
+newcurve marktype x linetype none color 0 0 0 pts 4 17
+newcurve marktype x linetype none color 0 0 0 pts 11 13
+newcurve marktype x linetype none color 0 0 0 pts 8 18
+newcurve marktype x linetype none color 0 0 0 pts 4 12
+newcurve marktype x linetype none color 0 0 0 pts 5 9
+newcurve marktype x linetype none color 0 0 0 pts 3 13
+newcurve marktype x linetype none color 0 0 0 pts 7 8
+newcurve marktype x linetype none color 0 0 0 pts 2 12
+newcurve marktype x linetype none color 0 0 0 pts 9 9
+newcurve marktype x linetype none color 0 0 0 pts 1 12
+newcurve marktype x linetype none color 0 0 0 pts 3 9
+newcurve marktype x linetype none color 0 0 0 pts 5 8
+newcurve marktype x linetype none color 0 0 0 pts 3 9
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.46
+newcurve marktype x linetype none color 0 0 0 pts 7 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 25 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 1.0
+newcurve marktype x linetype none color 0 0 0 pts 0.9 22
+newcurve marktype x linetype none color 0 0 0 pts 1.1 3
+newcurve marktype x linetype none color 0 0 0 pts 3 66
+newcurve marktype x linetype none color 0 0 0 pts 1 13
+newcurve marktype x linetype none color 0 0 0 pts 1 17
+newcurve marktype x linetype none color 0 0 0 pts 5 37
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 1.9
+newcurve marktype x linetype none color 0 0 0 pts 2 4
+newcurve marktype x linetype none color 0 0 0 pts 1 49
+newcurve marktype x linetype none color 0 0 0 pts 2 43
+newcurve marktype x linetype none color 0 0 0 pts 2 50
+newcurve marktype x linetype none color 0 0 0 pts 1 46
+newcurve marktype x linetype none color 0 0 0 pts 1 73
+newcurve marktype x linetype none color 0 0 0 pts 1 61
+newcurve marktype x linetype none color 0 0 0 pts 2 66
+newcurve marktype x linetype none color 0 0 0 pts 4 64
+newcurve marktype x linetype none color 0 0 0 pts 1 54
+newcurve marktype x linetype none color 0 0 0 pts 1 59
+newcurve marktype x linetype none color 0 0 0 pts 1 32
+newcurve marktype x linetype none color 0 0 0 pts 3 72
+newcurve marktype x linetype none color 0 0 0 pts 1 11
+newcurve marktype x linetype none color 0 0 0 pts 5 67
+newcurve marktype x linetype none color 0 0 0 pts 10 5
+newcurve marktype x linetype none color 0 0 0 pts 8 7
+newcurve marktype x linetype none color 0 0 0 pts 50 18
+newcurve marktype x linetype none color 0 0 0 pts 7 6
+newcurve marktype x linetype none color 0 0 0 pts 1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 7
+newcurve marktype x linetype none color 0 0 0 pts 2 18
+newcurve marktype x linetype none color 0 0 0 pts 3 3
+newcurve marktype x linetype none color 0 0 0 pts 1 4
+newcurve marktype x linetype none color 0 0 0 pts 3 11
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 33
+newcurve marktype x linetype none color 0 0 0 pts 2 37
+newcurve marktype x linetype none color 0 0 0 pts 2 34
+newcurve marktype x linetype none color 0 0 0 pts 3 35
+newcurve marktype x linetype none color 0 0 0 pts 1 56
+newcurve marktype x linetype none color 0 0 0 pts 2 29
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 0.9 3
+newcurve marktype x linetype none color 0 0 0 pts 3 1.0
+newcurve marktype x linetype none color 0 0 0 pts 5 31
+newcurve marktype x linetype none color 0 0 0 pts 7 0.95
+newcurve marktype x linetype none color 0 0 0 pts 5 4
+newcurve marktype x linetype none color 0 0 0 pts 2 6
+newcurve marktype x linetype none color 0 0 0 pts 3 58
+newcurve marktype x linetype none color 0 0 0 pts 7 0.5
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 8
+newcurve marktype x linetype none color 0 0 0 pts 13 25
+newcurve marktype x linetype none color 0 0 0 pts 9 9
+newcurve marktype x linetype none color 0 0 0 pts 12 14
+newcurve marktype x linetype none color 0 0 0 pts 6 30
+newcurve marktype x linetype none color 0 0 0 pts 1 14
+newcurve marktype x linetype none color 0 0 0 pts 1 20
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 13
+newcurve marktype x linetype none color 0 0 0 pts 1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 4
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 6 16
+newcurve marktype x linetype none color 0 0 0 pts 5 8
+newcurve marktype x linetype none color 0 0 0 pts 2 53
+newcurve marktype x linetype none color 0 0 0 pts 0.9 4
+newcurve marktype x linetype none color 0 0 0 pts 1 2.1
+newcurve marktype x linetype none color 0 0 0 pts 2 4
+newcurve marktype x linetype none color 0 0 0 pts 3 4
+newcurve marktype x linetype none color 0 0 0 pts 10 7
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 1.05
+newcurve marktype x linetype none color 0 0 0 pts 11 24
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 8 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 33
+newcurve marktype x linetype none color 0 0 0 pts 1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 2 33
+newcurve marktype x linetype none color 0 0 0 pts 16 9
+newcurve marktype x linetype none color 0 0 0 pts 5 8
+newcurve marktype x linetype none color 0 0 0 pts 1 18
+newcurve marktype x linetype none color 0 0 0 pts 1 1.0
+newcurve marktype x linetype none color 0 0 0 pts 37 9
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 17
+newcurve marktype x linetype none color 0 0 0 pts 2 68
+newcurve marktype x linetype none color 0 0 0 pts 2 17
+newcurve marktype x linetype none color 0 0 0 pts 1 63
+newcurve marktype x linetype none color 0 0 0 pts 10 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 67
+newcurve marktype x linetype none color 0 0 0 pts 1 59
+newcurve marktype x linetype none color 0 0 0 pts 3 59
+newcurve marktype x linetype none color 0 0 0 pts 1 71
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 13
+newcurve marktype x linetype none color 0 0 0 pts 10 16
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 17
+newcurve marktype x linetype none color 0 0 0 pts 1 6
+newcurve marktype x linetype none color 0 0 0 pts 1 18
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 10 0.5
+newcurve marktype x linetype none color 0 0 0 pts 19 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 9
+newcurve marktype x linetype none color 0 0 0 pts 3 15
+newcurve marktype x linetype none color 0 0 0 pts 20 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 6 12
+newcurve marktype x linetype none color 0 0 0 pts 5 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 16 0.46
+newcurve marktype x linetype none color 0 0 0 pts 15 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 17
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 1.0
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 6 0.95
+newcurve marktype x linetype none color 0 0 0 pts 9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 10 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 5 2.1
+newcurve marktype x linetype none color 0 0 0 pts 4 0.95
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 6 0.95
+newcurve marktype x linetype none color 0 0 0 pts 8 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 19 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.5
+newcurve marktype x linetype none color 0 0 0 pts 32 0.5
+newcurve marktype x linetype none color 0 0 0 pts 25 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 28 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 38 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 17 0.5
+newcurve marktype x linetype none color 0 0 0 pts 11 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 3
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 2.0
+newcurve marktype x linetype none color 0 0 0 pts 3 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 1.0
+newcurve marktype x linetype none color 0 0 0 pts 2 0.95
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.95
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 22
+newcurve marktype x linetype none color 0 0 0 pts 2 26
+newcurve marktype x linetype none color 0 0 0 pts 8 21
+newcurve marktype x linetype none color 0 0 0 pts 1 11
+newcurve marktype x linetype none color 0 0 0 pts 29 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 28
+newcurve marktype x linetype none color 0 0 0 pts 2 26
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 119
+newcurve marktype x linetype none color 0 0 0 pts 13 51
+newcurve marktype x linetype none color 0 0 0 pts 2 45
+newcurve marktype x linetype none color 0 0 0 pts 1 7
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 1.9
+newcurve marktype x linetype none color 0 0 0 pts 2 1.9
+newcurve marktype x linetype none color 0 0 0 pts 8 10
+newcurve marktype x linetype none color 0 0 0 pts 1 2.0
+newcurve marktype x linetype none color 0 0 0 pts 2 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.5
+newcurve marktype x linetype none color 0 0 0 pts 2 0.95
+newcurve marktype x linetype none color 0 0 0 pts 4 3
+newcurve marktype x linetype none color 0 0 0 pts 1 0.95
+newcurve marktype x linetype none color 0 0 0 pts 6 78
+newcurve marktype x linetype none color 0 0 0 pts 18 58
+newcurve marktype x linetype none color 0 0 0 pts 17 118
+newcurve marktype x linetype none color 0 0 0 pts 2 74
+newcurve marktype x linetype none color 0 0 0 pts 2 132
+newcurve marktype x linetype none color 0 0 0 pts 2 107
+newcurve marktype x linetype none color 0 0 0 pts 8 150
+newcurve marktype x linetype none color 0 0 0 pts 8 43
+newcurve marktype x linetype none color 0 0 0 pts 8 43
+newcurve marktype x linetype none color 0 0 0 pts 1 108
+newcurve marktype x linetype none color 0 0 0 pts 1 99
+newcurve marktype x linetype none color 0 0 0 pts 5 27
+newcurve marktype x linetype none color 0 0 0 pts 48 1.05
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 69 1.0
+newcurve marktype x linetype none color 0 0 0 pts 9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 7 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 0.95
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 11 2.1
+newcurve marktype x linetype none color 0 0 0 pts 8 4
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 8 35
+newcurve marktype x linetype none color 0 0 0 pts 9 20
+newcurve marktype x linetype none color 0 0 0 pts 2 8
+newcurve marktype x linetype none color 0 0 0 pts 7 35
+newcurve marktype x linetype none color 0 0 0 pts 9 38
+newcurve marktype x linetype none color 0 0 0 pts 3 44
+newcurve marktype x linetype none color 0 0 0 pts 1 44
+newcurve marktype x linetype none color 0 0 0 pts 1 41
+newcurve marktype x linetype none color 0 0 0 pts 4 89
+newcurve marktype x linetype none color 0 0 0 pts 4 86
+newcurve marktype x linetype none color 0 0 0 pts 6 85
+newcurve marktype x linetype none color 0 0 0 pts 2 87
+newcurve marktype x linetype none color 0 0 0 pts 2 82
+newcurve marktype x linetype none color 0 0 0 pts 3 86
+newcurve marktype x linetype none color 0 0 0 pts 2 82
+newcurve marktype x linetype none color 0 0 0 pts 4 64
+newcurve marktype x linetype none color 0 0 0 pts 5 4
+newcurve marktype x linetype none color 0 0 0 pts 7 2.0
+newcurve marktype x linetype none color 0 0 0 pts 5 3
+newcurve marktype x linetype none color 0 0 0 pts 13 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 13 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 17
+newcurve marktype x linetype none color 0 0 0 pts 4 11
+newcurve marktype x linetype none color 0 0 0 pts 17 17
+newcurve marktype x linetype none color 0 0 0 pts 22 11
+newcurve marktype x linetype none color 0 0 0 pts 9 2.1
+newcurve marktype x linetype none color 0 0 0 pts 2 1.05
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.5
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 54
+newcurve marktype x linetype none color 0 0 0 pts 2 2.1
+newcurve marktype x linetype none color 0 0 0 pts 2 96
+newcurve marktype x linetype none color 0 0 0 pts 1 98
+newcurve marktype x linetype none color 0 0 0 pts 32 98
+newcurve marktype x linetype none color 0 0 0 pts 2 17
+newcurve marktype x linetype none color 0 0 0 pts 2 94
+newcurve marktype x linetype none color 0 0 0 pts 2 95
+newcurve marktype x linetype none color 0 0 0 pts 4 76
+newcurve marktype x linetype none color 0 0 0 pts 3 69
+newcurve marktype x linetype none color 0 0 0 pts 3 72
+newcurve marktype x linetype none color 0 0 0 pts 12 59
+newcurve marktype x linetype none color 0 0 0 pts 6 24
+newcurve marktype x linetype none color 0 0 0 pts 3 60
+newcurve marktype x linetype none color 0 0 0 pts 2 123
+newcurve marktype x linetype none color 0 0 0 pts 3 66
+newcurve marktype x linetype none color 0 0 0 pts 3 65
+newcurve marktype x linetype none color 0 0 0 pts 4 15
+newcurve marktype x linetype none color 0 0 0 pts 4 16
+newcurve marktype x linetype none color 0 0 0 pts 1 27
+newcurve marktype x linetype none color 0 0 0 pts 2 70
+newcurve marktype x linetype none color 0 0 0 pts 7 69
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 5 0.46
+newcurve marktype x linetype none color 0 0 0 pts 39 0.46
+newcurve marktype x linetype none color 0 0 0 pts 95 0.5
+newcurve marktype x linetype none color 0 0 0 pts 98 0.54
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 2 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.54
+newcurve marktype x linetype none color 0 0 0 pts 6 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 99
+newcurve marktype x linetype none color 0 0 0 pts 1 97
+newcurve marktype x linetype none color 0 0 0 pts 8 90
+newcurve marktype x linetype none color 0 0 0 pts 1 97
+newcurve marktype x linetype none color 0 0 0 pts 8 90
+newcurve marktype x linetype none color 0 0 0 pts 1 95
+newcurve marktype x linetype none color 0 0 0 pts 9 90
+newcurve marktype x linetype none color 0 0 0 pts 7 92
+newcurve marktype x linetype none color 0 0 0 pts 7 92
+newcurve marktype x linetype none color 0 0 0 pts 3 96
+newcurve marktype x linetype none color 0 0 0 pts 1 99
+newcurve marktype x linetype none color 0 0 0 pts 4 100
+newcurve marktype x linetype none color 0 0 0 pts 8 72
+newcurve marktype x linetype none color 0 0 0 pts 2 72
+newcurve marktype x linetype none color 0 0 0 pts 1 100
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.54
+newcurve marktype x linetype none color 0 0 0 pts 1.0 0.5
+newcurve marktype x linetype none color 0 0 0 pts 7 0.46
+newcurve marktype x linetype none color 0 0 0 pts 4 0.5
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 3 0.5
+newcurve marktype x linetype none color 0 0 0 pts 4 0.54
+newcurve marktype x linetype none color 0 0 0 pts 5 48
+newcurve marktype x linetype none color 0 0 0 pts 17 0.46
+newcurve marktype x linetype none color 0 0 0 pts 17 6
+newcurve marktype x linetype none color 0 0 0 pts 17 6
+newcurve marktype x linetype none color 0 0 0 pts 1 1.05
+newcurve marktype x linetype none color 0 0 0 pts 10 0.54
+newcurve marktype x linetype none color 0 0 0 pts 52 0.5
+newcurve marktype x linetype none color 0 0 0 pts 23 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 0.46
+newcurve marktype x linetype none color 0 0 0 pts 6 11
+newcurve marktype x linetype none color 0 0 0 pts 1 47
+newcurve marktype x linetype none color 0 0 0 pts 0.9 0.46
+newcurve marktype x linetype none color 0 0 0 pts 13 52
+newcurve marktype x linetype none color 0 0 0 pts 1.1 24
+newcurve marktype x linetype none color 0 0 0 pts 3 21
+newcurve marktype x linetype none color 0 0 0 pts 3 19
+newcurve marktype x linetype none color 0 0 0 pts 1 24
+newcurve marktype x linetype none color 0 0 0 pts 1 65
+newcurve marktype x linetype none color 0 0 0 pts 6 67
+newcurve marktype x linetype none color 0 0 0 pts 1 68
+newcurve marktype x linetype none color 0 0 0 pts 1 31
+newcurve marktype x linetype none color 0 0 0 pts 4 58
+newcurve marktype x linetype none color 0 0 0 pts 4 46
+newcurve marktype x linetype none color 0 0 0 pts 1.1 12
+newcurve marktype x linetype none color 0 0 0 pts 5 77
+newcurve marktype x linetype none color 0 0 0 pts 1 7
+newcurve marktype x linetype none color 0 0 0 pts 7 92
+newcurve marktype x linetype none color 0 0 0 pts 6 39
+newcurve marktype x linetype none color 0 0 0 pts 1 73
+newcurve marktype x linetype none color 0 0 0 pts 4 5
+newcurve marktype x linetype none color 0 0 0 pts 1 39
+newcurve marktype x linetype none color 0 0 0 pts 1 49
+newcurve marktype x linetype none color 0 0 0 pts 55 0.46
+newcurve marktype x linetype none color 0 0 0 pts 1 69
+newcurve marktype x linetype none color 0 0 0 pts 1 12
+newcurve marktype x linetype none color 0 0 0 pts 15 61
+newcurve marktype x linetype none color 0 0 0 pts 7 35
+newcurve marktype x linetype none color 0 0 0 pts 11 66
+newcurve marktype x linetype none color 0 0 0 pts 3 40
+newcurve marktype x linetype none color 0 0 0 pts 2 0.54
+legend defaults x 1000 hjl vjc
+
+
+newgraph
+
+y_translate 3.2
+xaxis
+size 3
+
+log
+min 0.5 max 256
+no_auto_hash_labels
+no_auto_hash_marks
+
+yaxis
+size 0.2
+
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 0
+hash_label at 0 : 0
+hash_label at 1 : 1
+
+newcurve marktype none linethickness 2 linetype solid color 0.3 0.3 0.3
+pts
+1.0000 0.0000
+1.0000 0.3115
+2.0000 0.3115
+2.0000 0.4769
+3.0000 0.4769
+3.0000 0.5781
+4.0000 0.5781
+4.0000 0.6509
+5.0000 0.6509
+5.0000 0.7025
+6.0000 0.7025
+6.0000 0.7449
+7.0000 0.7449
+7.0000 0.7830
+8.0000 0.7830
+8.0000 0.8177
+9.0000 0.8177
+9.0000 0.8419
+10.0000 0.8419
+10.0000 0.8611
+11.0000 0.8611
+11.0000 0.8737
+12.0000 0.8737
+12.0000 0.8881
+13.0000 0.8881
+13.0000 0.8983
+14.0000 0.8983
+14.0000 0.9055
+15.0000 0.9055
+15.0000 0.9118
+16.0000 0.9118
+16.0000 0.9195
+17.0000 0.9195
+17.0000 0.9257
+18.0000 0.9257
+18.0000 0.9296
+19.0000 0.9296
+19.0000 0.9325
+20.0000 0.9325
+20.0000 0.9354
+21.0000 0.9354
+21.0000 0.9368
+22.0000 0.9368
+22.0000 0.9383
+23.0000 0.9383
+23.0000 0.9407
+24.0000 0.9407
+24.0000 0.9441
+25.0000 0.9441
+25.0000 0.9465
+26.0000 0.9465
+26.0000 0.9479
+27.0000 0.9479
+27.0000 0.9494
+28.0000 0.9494
+28.0000 0.9537
+29.0000 0.9537
+29.0000 0.9556
+30.0000 0.9556
+30.0000 0.9576
+31.0000 0.9576
+31.0000 0.9581
+32.0000 0.9581
+32.0000 0.9605
+33.0000 0.9605
+33.0000 0.9614
+34.0000 0.9614
+34.0000 0.9634
+35.0000 0.9634
+35.0000 0.9653
+36.0000 0.9653
+36.0000 0.9667
+37.0000 0.9667
+37.0000 0.9691
+38.0000 0.9691
+38.0000 0.9706
+39.0000 0.9706
+39.0000 0.9716
+40.0000 0.9716
+40.0000 0.9735
+41.0000 0.9735
+41.0000 0.9749
+43.0000 0.9749
+43.0000 0.9769
+44.0000 0.9769
+44.0000 0.9793
+45.0000 0.9793
+45.0000 0.9802
+46.0000 0.9802
+46.0000 0.9817
+48.0000 0.9817
+48.0000 0.9826
+50.0000 0.9826
+50.0000 0.9841
+52.0000 0.9841
+52.0000 0.9855
+54.0000 0.9855
+54.0000 0.9860
+55.0000 0.9860
+55.0000 0.9870
+56.0000 0.9870
+56.0000 0.9875
+57.0000 0.9875
+57.0000 0.9884
+58.0000 0.9884
+58.0000 0.9889
+59.0000 0.9889
+59.0000 0.9894
+60.0000 0.9894
+60.0000 0.9899
+62.0000 0.9899
+62.0000 0.9908
+63.0000 0.9908
+63.0000 0.9913
+65.0000 0.9913
+65.0000 0.9923
+67.0000 0.9923
+67.0000 0.9928
+68.0000 0.9928
+68.0000 0.9937
+69.0000 0.9937
+69.0000 0.9947
+72.0000 0.9947
+72.0000 0.9952
+74.0000 0.9952
+74.0000 0.9957
+84.0000 0.9957
+84.0000 0.9961
+90.0000 0.9961
+90.0000 0.9966
+95.0000 0.9966
+95.0000 0.9971
+98.0000 0.9971
+98.0000 0.9976
+106.0000 0.9976
+106.0000 0.9981
+112.0000 0.9981
+112.0000 0.9986
+117.0000 0.9986
+117.0000 0.9990
+171.0000 0.9990
+171.0000 0.9995
+202.0000 0.9995
+202.0000 1.0000
+
+newgraph
+
+x_translate 3.2
+xaxis
+size 0.2
+
+no_auto_hash_labels
+no_auto_hash_marks
+hash_at 0
+hash_label at 0 : 0
+hash_at 1
+hash_label at 1 : 1
+
+yaxis
+size 3
+
+log
+min 0.35 max 256
+no_auto_hash_labels
+no_auto_hash_marks
+
+newcurve marktype none linethickness 2 linetype solid color 0.3 0.3 0.3
+pts
+0.0000 0.5000
+0.3390 0.5000
+0.3390 1.0000
+0.3963 1.0000
+0.3963 2.0000
+0.4190 2.0000
+0.4190 3.0000
+0.4412 3.0000
+0.4412 4.0000
+0.4600 4.0000
+0.4600 5.0000
+0.4754 5.0000
+0.4754 6.0000
+0.4918 6.0000
+0.4918 7.0000
+0.5043 7.0000
+0.5043 8.0000
+0.5198 8.0000
+0.5198 9.0000
+0.5328 9.0000
+0.5328 10.0000
+0.5448 10.0000
+0.5448 11.0000
+0.5554 11.0000
+0.5554 12.0000
+0.5689 12.0000
+0.5689 13.0000
+0.5810 13.0000
+0.5810 14.0000
+0.5906 14.0000
+0.5906 15.0000
+0.5964 15.0000
+0.5964 16.0000
+0.6046 16.0000
+0.6046 17.0000
+0.6167 17.0000
+0.6167 18.0000
+0.6283 18.0000
+0.6283 19.0000
+0.6360 19.0000
+0.6360 20.0000
+0.6442 20.0000
+0.6442 21.0000
+0.6548 21.0000
+0.6548 22.0000
+0.6659 22.0000
+0.6659 23.0000
+0.6731 23.0000
+0.6731 24.0000
+0.6832 24.0000
+0.6832 25.0000
+0.6948 25.0000
+0.6948 26.0000
+0.7020 26.0000
+0.7020 27.0000
+0.7112 27.0000
+0.7112 28.0000
+0.7175 28.0000
+0.7175 29.0000
+0.7218 29.0000
+0.7218 30.0000
+0.7290 30.0000
+0.7290 31.0000
+0.7377 31.0000
+0.7377 32.0000
+0.7464 32.0000
+0.7464 33.0000
+0.7541 33.0000
+0.7541 34.0000
+0.7608 34.0000
+0.7608 35.0000
+0.7686 35.0000
+0.7686 36.0000
+0.7724 36.0000
+0.7724 37.0000
+0.7782 37.0000
+0.7782 38.0000
+0.7850 38.0000
+0.7850 39.0000
+0.7893 39.0000
+0.7893 40.0000
+0.7946 40.0000
+0.7946 41.0000
+0.7999 41.0000
+0.7999 42.0000
+0.8076 42.0000
+0.8076 43.0000
+0.8110 43.0000
+0.8110 44.0000
+0.8173 44.0000
+0.8173 45.0000
+0.8230 45.0000
+0.8230 46.0000
+0.8274 46.0000
+0.8274 47.0000
+0.8337 47.0000
+0.8337 48.0000
+0.8380 48.0000
+0.8380 49.0000
+0.8414 49.0000
+0.8414 50.0000
+0.8447 50.0000
+0.8447 51.0000
+0.8491 51.0000
+0.8491 52.0000
+0.8515 52.0000
+0.8515 53.0000
+0.8549 53.0000
+0.8549 54.0000
+0.8597 54.0000
+0.8597 55.0000
+0.8621 55.0000
+0.8621 56.0000
+0.8650 56.0000
+0.8650 57.0000
+0.8684 57.0000
+0.8684 58.0000
+0.8708 58.0000
+0.8708 59.0000
+0.8742 59.0000
+0.8742 60.0000
+0.8775 60.0000
+0.8775 61.0000
+0.8819 61.0000
+0.8819 62.0000
+0.8843 62.0000
+0.8843 63.0000
+0.8877 63.0000
+0.8877 64.0000
+0.8920 64.0000
+0.8920 65.0000
+0.8959 65.0000
+0.8959 66.0000
+0.8987 66.0000
+0.8987 67.0000
+0.9016 67.0000
+0.9016 68.0000
+0.9065 68.0000
+0.9065 69.0000
+0.9098 69.0000
+0.9098 70.0000
+0.9118 70.0000
+0.9118 71.0000
+0.9151 71.0000
+0.9151 72.0000
+0.9171 72.0000
+0.9171 73.0000
+0.9200 73.0000
+0.9200 74.0000
+0.9214 74.0000
+0.9214 76.0000
+0.9248 76.0000
+0.9248 77.0000
+0.9262 77.0000
+0.9262 78.0000
+0.9286 78.0000
+0.9286 79.0000
+0.9315 79.0000
+0.9315 80.0000
+0.9330 80.0000
+0.9330 81.0000
+0.9344 81.0000
+0.9344 82.0000
+0.9368 82.0000
+0.9368 83.0000
+0.9388 83.0000
+0.9388 84.0000
+0.9397 84.0000
+0.9397 85.0000
+0.9412 85.0000
+0.9412 86.0000
+0.9446 86.0000
+0.9446 87.0000
+0.9470 87.0000
+0.9470 88.0000
+0.9474 88.0000
+0.9474 89.0000
+0.9479 89.0000
+0.9479 90.0000
+0.9494 90.0000
+0.9494 92.0000
+0.9527 92.0000
+0.9527 93.0000
+0.9566 93.0000
+0.9566 94.0000
+0.9585 94.0000
+0.9585 95.0000
+0.9609 95.0000
+0.9609 96.0000
+0.9624 96.0000
+0.9624 97.0000
+0.9634 97.0000
+0.9634 98.0000
+0.9648 98.0000
+0.9648 99.0000
+0.9677 99.0000
+0.9677 100.0000
+0.9691 100.0000
+0.9691 101.0000
+0.9701 101.0000
+0.9701 102.0000
+0.9716 102.0000
+0.9716 103.0000
+0.9720 103.0000
+0.9720 104.0000
+0.9725 104.0000
+0.9725 106.0000
+0.9730 106.0000
+0.9730 107.0000
+0.9744 107.0000
+0.9744 108.0000
+0.9749 108.0000
+0.9749 109.0000
+0.9754 109.0000
+0.9754 110.0000
+0.9759 110.0000
+0.9759 113.0000
+0.9764 113.0000
+0.9764 114.0000
+0.9769 114.0000
+0.9769 115.0000
+0.9773 115.0000
+0.9773 116.0000
+0.9788 116.0000
+0.9788 117.0000
+0.9797 117.0000
+0.9797 118.0000
+0.9812 118.0000
+0.9812 119.0000
+0.9822 119.0000
+0.9822 120.0000
+0.9831 120.0000
+0.9831 122.0000
+0.9836 122.0000
+0.9836 123.0000
+0.9851 123.0000
+0.9851 124.0000
+0.9855 124.0000
+0.9855 126.0000
+0.9860 126.0000
+0.9860 127.0000
+0.9870 127.0000
+0.9870 129.0000
+0.9879 129.0000
+0.9879 132.0000
+0.9889 132.0000
+0.9889 133.0000
+0.9894 133.0000
+0.9894 139.0000
+0.9899 139.0000
+0.9899 140.0000
+0.9908 140.0000
+0.9908 144.0000
+0.9918 144.0000
+0.9918 145.0000
+0.9932 145.0000
+0.9932 146.0000
+0.9942 146.0000
+0.9942 149.0000
+0.9947 149.0000
+0.9947 150.0000
+0.9961 150.0000
+0.9961 156.0000
+0.9966 156.0000
+0.9966 177.0000
+0.9971 177.0000
+0.9971 195.0000
+0.9981 195.0000
+0.9981 205.0000
+0.9986 205.0000
+0.9986 209.0000
+0.9990 209.0000
+0.9990 211.0000
+0.9995 211.0000
+0.9995 218.0000
+1.0000 218.0000
