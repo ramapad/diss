@@ -1193,6 +1193,13 @@
 	key = "Akamai NetSession",
 	title = {{Akamai NetSession}}}
 
+@inproceedings{akamai-v6addr-usage,
+  title={Temporal and Spatial Classification of Active {IPv6} Addresses},
+  author={Plonka, David and Berger, Arthur},
+  booktitle=IMC,
+  year={2015},
+}
+
 @inproceedings{akhawe-2012-separation,
 	author = "Devdatta Akhawe and Prateek Sazena and Dawn Song",
 	booktitle = "Proceedings of the USENIX Annual Technical Conference",
@@ -8513,10 +8520,109 @@
   year={2010}
 }
 
+@inproceedings{dhcp-smartphones,
+  title={Configuring {DHCP} leases in the smartphone era},
+  author={Papapanagiotou, Ioannis and Nahum, Erich M. and Pappas, Vasileios},
+  booktitle=IMC,
+  year={2012},
+}
+
+@inproceedings{dhcpwatch,
+  title={Debugging {DHCP} performance},
+  author={Brik, Vladimir and Stroik, Jesse and Banerjee, Suman},
+  booktitle=IMC,
+  year={2004},
+}
+
 @misc{ripe-atlas-website,
 	author = {{RIPE NCC}},
 	title = {RIPE Atlas},
 	howpublished = {\url{http://atlas.ripe.net}},
+}
+
+@Misc{atlas-faq-tcp443,
+  key =       {atlas},
+  title =     {About {RIPE Atlas}: {FAQ}: How does the probe connect to the {Internet}?},
+  howpublished = {\url{https://atlas.ripe.net/about/faq/}},
+  annote =    {"and then tries to look up the controlling infrastructure using DNS and connects over SSH to it on outgoing TCP port 443 (HTTPS)."}
+}
+
+
+@Misc{homburg-ntp,
+  author =    {Philip Homburg},
+  title =     {{NTP} Measurements with {RIPE Atlas}},
+  howpublished = {\url{https://labs.ripe.net/Members/philip_homburg/ntp-measurements-with-ripe-atlas}},
+  month =     feb,
+  year =      2015,
+  annote =    {"Every three minutes, probes will try to submit their measurement results to the RIPE Atlas infrastructure using an HTTP POST request."}
+}
+
+@misc{atlas-probe-archive,
+	author = {{RIPE NCC}},
+	title = {{RIPE} Atlas probe archive},
+	howpublished = {\url{https://atlas.ripe.net/api/v1/probe-archive/}},
+}
+
+@misc{atlas-connlogs-link-format,
+	author = {{RIPE NCC}},
+	title = {{RIPE} Atlas connection logs url format},
+	howpublished = {\url{https://atlas.ripe.net/probes/<prb_id>/connection-history/<yyyy>/<mm>/}},
+}
+
+@Misc{atlas-built-in,
+  key =       {atlas},
+  author =    {{RIPE NCC}},
+  title =     {Built-in Measurements},
+  howpublished = {\url{https://atlas.ripe.net/docs/built-in/}}}
+  
+@Misc{atlas-firmware-updates,
+  key =       {atlas},
+  author =    {{RIPE NCC}},
+  title =     {Technical Updates},
+  howpublished = {\url{https://atlas.ripe.net/resources/announcements/}}}
+
+@Misc{cpepowersprobe,
+  key =       {cpepowersprobe},
+  author =    {{RIPE NCC}},
+  title =     {Become a RIPE Atlas probe host},
+  howpublished = {\url{https://atlas.ripe.net/get-involved/become-a-host/}}
+  }
+
+@Article{atlas-fragmentation,
+  author =       {{RIPE NCC Staff}},
+  title =        {{RIPE Atlas}: A Global Internet Measurement Network},
+  journal =      {Internet Protocol Journal},
+  year =         2015,
+  volume =    18,
+  number =    3,
+  month =     sep,
+  annote =
+                  {http://ipj.dreamhosters.com/wp-content/uploads/2015/10/ipj18.3.pdf
+                  "One problem caused by the lack of an MMU
+                  on the rst-generation probes was memory
+                  fragmentation. On systems with an MMU,
+                  main memory fragmentation is no problem
+                  because it does not cause frag- mentation
+                  of the virtual memory of a process. On
+                  systems without an MMU, fragmented main
+                  memory cannot be hidden and, essentially,
+                  the only way to deal with memory
+                  fragmentation is to reboot the
+                  probe. Certainly with early rmware
+                  versions, the 8 MB of memory would quickly
+                  fragment and probes would reboot,
+                  sometimes within one day.  Fortunately,
+                  Lantronix was responsive to this issue and
+                  released a version with 16-MB main
+                  memory. These devices became the second-
+                  generation probes." }
+}
+
+@Misc{forcedseparation,
+  key = "forcedsep",
+  title =     {Zwangstrennung ({Forced IP} address change)},
+  howpublished = {\url{https://de.wikipedia.org/wiki/Zwangstrennung}},
+  annote =    {``Anecdotal evidence that ISPs renumber frequently''}
 }
 
 @Misc{twcable-business-web,
@@ -8533,6 +8639,24 @@
     booktitle={IMC},
   year={2011},
 }
+
+@Misc{metar-ftp,
+  author = {{NOAA}},
+  title =     {Automated Surface Observing System ({ASOS})},
+  howpublished = {\url{https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/automated-surface-observing-system-asos}},
+  note = {\url{ftp://ftp.ncdc.noaa.gov/pub/data/noaa/}}}
+  
+@Misc{noaa-sotc,
+  author =    {{NOAA}},
+  title =     {State of the Climate Report: Hurricanes and Tropical Storms},
+  howpublished = {\url{https://www.ncdc.noaa.gov/sotc/}}}
+
+@Misc{csgmidwest,
+  author =    {Carolyn Orr},
+  title =     {A look at how and why {North Dakota} became a leader in deployment of fiber optic {Internet}},
+  howpublished = {\url{http://www.csgmidwest.org/policyresearch/0616-fiber-optic-North-Dakota.aspx}},
+  month =     {Jun},
+  year =      2016}
 
 @inproceedings{p2pfilesharing,
   title={Measurement study of peer-to-peer file sharing systems},
@@ -9199,3 +9323,16 @@ Year={2013},
   howpublished = {\url{http://www.isi.edu/ant/traces/topology/address_surveys/binformat_description.html}}
 }
 
+@Misc{isi-notes-54,
+  key = "landernotes",
+  title =     {LANDERNOTES},
+  howpublished = {\url{https://wiki.isi.edu/predict/index.php/LANDER:internet_address_survey_reprobing_it54c-20130524}}
+}
+
+@InProceedings{gprsweb,
+    author = {Rajiv Chakravorty and Andrew Clark and Ian Pratt},
+    title = {{GPRSWeb}: Optimizing the Web for {GPRS} Links},
+    booktitle = MOBISYS,
+   month= "May",
+    year = 2003,
+}

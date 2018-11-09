@@ -7,6 +7,8 @@ We start with a definition of the partially interpreted data
 we seek: ``dropouts,'' where an address fails to respond in
 the context of otherwise ``responsive hours'' of an address.
 %
+Dropouts and \emph{disruptions} from Chapter~\ref{cpt:corrfails} are synonymous.
+%
 We next briefly review the ThunderPing data probing system and
 present brief statistics about the raw active probing data.
 % 
@@ -40,7 +42,7 @@ of three vantage points to observe outages~\cite{trinocular}.
 %
 Our selection of a five second timeout for ping responses is based on our
 prior work that observed that most ping replies to residential
-hosts are received within five seconds~\cite{timeouts-imc}.
+hosts are received within five seconds~\cite{timeouts}.
 %
 Our selection of one hour as the time period for a dropout is based on the fact
 that the weather data we collected consists of hourly reports.
@@ -85,8 +87,9 @@ that the two events can be studied separately.
 %
 We confirm that dropouts during typical maintenance intervals are
 unlikely to correlate with weather in
-Section~\ref{subsec:independence_of_maintenance}, and we
-revisit DHCP in Section~\ref{sec:recovery}.
+Section~\ref{subsec:independence_of_maintenance}.
+% , and we
+% revisit DHCP in Section~\ref{sec:recovery}.
 
 %
 % \todo{insert that our approach for dealing with this is statistical?}
@@ -243,7 +246,8 @@ Collectively, these hurricane times account for less than 3\% of
 responsive address hours and 4\% of dropout hours.
 
 \begin{table}
-  \hspace{-0.1in}\ninput{weather/fragments/summary_table_vert}
+  \hspace{-0.1in}\tiny
+\ninput{weather/fragments/summary_table_vert}
   \caption{\label{tbl:summary}Summary of data set for large ISPs
 	classified by link type.  ``All'' comprises data from ISPs not
 	included in this sample.

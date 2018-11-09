@@ -1,7 +1,7 @@
 \section{Introduction}
 
 Wather-related damage to vital infrastructure
-(in this case the power grid) can lead to significant economic harm.
+can lead to significant economic harm.
 %
 Yet, %  in the Internet era,
 little is known about the economic impact of
@@ -11,7 +11,7 @@ access the Internet: residential last-mile links.
 For massive last-mile outages, telcos are required by U.S.~policy~\cite{cfr49}
 to report the outage to the FCC.
 %
-However, the minimum reporting threshold is astronomical: the outage must be at
+However, the minimum reporting threshold is high: the outage must be at
 least 30 minutes in duration, and it must have affected tens of thousands of
 customers~\cite{cfr49}.
 %
@@ -160,13 +160,16 @@ to be of general use to the community.
 
 Another challenge is this metric could be artificially inflated by
 weather conditions coinciding with daily network state changes such as
-maintenance or renumbering~\cite{addrchange-imc}.
+maintenance or renumbering~\cite{addrchange-reasons}.
 %
 We verify that weather does not appear to be positively correlated with
-peak diurnal failure periods, and to do recovery time analysis we
-select networks and outage durations unlikely to suffer from address
-renumbering, allowing us to ensure that we are probing the same
-residential link before and after the outage.
+peak diurnal failure periods.
+% Rk: I did not want recovery in the dissertation, it's
+% tangential. Besides, we will eventually do a better job using the NS data.
+%  and to do recovery time analysis we
+% select networks and outage durations unlikely to suffer from address
+% renumbering, allowing us to ensure that we are probing the same
+% residential link before and after the outage.
 
 \paragraph{Observations and Contributions}
 %
