@@ -64,7 +64,7 @@ duration than a simple inspection of the address durations.
   \begin{center}
     \includegraphics[width=3in]{addr_change/figs/conts_a_all_ip_durs_connlogs_wtd_cdf}
   \end{center}
-  \caption{\label{fig:conts_all_durs} 
+  \caption[Cumulative distribution of total time fraction by continent]{\label{fig:conts_all_durs} 
     Cumulative distribution of total time fraction by continent. 
     Modes (vertical segments
     in the CDF) indicate periodic renumbering.  Addresses in North America
@@ -145,7 +145,24 @@ fraction of 0.03 at 24 hours but observe a much larger mode of 0.47 at
 
 \subsection{Periodic address changes by AS}
 \label{sec:periodic-as}
-We next considered whether the configuration decision to
+\begin{figure}[tb]
+  % \centering
+  \begin{center}
+    \includegraphics[width=3in]{addr_change/figs/top_asns_a_all_ip_durs_connlogs_wtd_cdf}
+  \end{center}
+  \caption[Cumulative distribution of total time fraction by AS]{\label{fig:top_asns_all_durs}    
+    Cumulative distribution of total time fractions for 
+    ASes with most RIPE Atlas probes
+    that yielded at least one address duration. Probes from Orange and
+    DTAG spent more than half of their total duration in periodic
+    durations of 1 week and 1 day respectively. BT also showed evidence
+    of periodic renumbering with a mode at two weeks. On the other
+    hand, LGI and Verizon have no modes at any durations, and spent
+    most of their total time in durations that were weeks long.
+  }
+\end{figure}
+
+ We next considered whether the configuration decision to
 renumber periodically was uniform across an AS, or could
 reflect some other feature. For example, periodic
 renumbering could be a result of an unexpected
@@ -159,23 +176,6 @@ evidence suggests~\cite{forcedseparation}.  % If it were concentrated in some AS
 Investigating AS-level behavior can inform whether the periodic renumbering
 behavior is concentrated in some ASes and absent in others, shedding light on its potential cause.
 
-
-\begin{figure}[tb]
-  % \centering
-  \begin{center}
-    \includegraphics[width=3in]{addr_change/figs/top_asns_a_all_ip_durs_connlogs_wtd_cdf}
-  \end{center}
-  \caption{\label{fig:top_asns_all_durs}    
-    Cumulative distribution of total time fractions for 
-    ASes with most RIPE Atlas probes
-    that yielded at least one address duration. Probes from Orange and
-    DTAG spent more than half of their total duration in periodic
-    durations of 1 week and 1 day respectively. BT also showed evidence
-    of periodic renumbering with a mode at two weeks. On the other
-    hand, LGI and Verizon have no modes at any durations, and spent
-    most of their total time in durations that were weeks long.
-  }
-\end{figure}
 
 \subsubsection{Is periodic renumbering prevalent across all ISPs?}
 
@@ -214,7 +214,7 @@ policy.
   \begin{center}
     \includegraphics[width=3in]{addr_change/figs/DE_asns_a_all_ip_durs_connlogs_wtd_cdf}
   \end{center}
-  \caption{\label{fig:DE_asns_all_durs}
+  \caption[Cumulative distribution of total time fraction for German ASes]{\label{fig:DE_asns_all_durs}
     Cumulative distribution of total time fractions for ASes in Germany.
         Many
       German ISPs appear to change addresses every 24 hours. However,

@@ -1,7 +1,26 @@
 
 \subsection{Patterns associated with RTTs greater than 100 seconds}
 
-Finally, we look at addresses with extraordinarily high
+\newcommand{\noop}[1]{#1}
+\begin{table}[t]
+  \begin{center}%
+    \begin{small}%
+      \begin{tabular}{c|rrr}
+        \hdrbar{Pattern} & \hdr{Pings} & \hdr{Events} & \hdr{Addrs}\\\hline
+        \noop{Low latency, then decay} & 615 & 13 & 10\Tstrut\\
+        \noop{Loss, then decay} & 1528 & 81 & 33\\
+        \noop{Sustained high latency and loss} & 2994 & 21 & 14 \\
+        \noop{High latency between loss} & 12 & 12 & 12
+        % 
+      \end{tabular}
+    \end{small}
+    \end{center}
+  \caption[Patterns of latency and loss near high latency responses]{We observed distinct patterns of latency and loss near high latency responses,
+    classifying all 5149 pings above 100 seconds from the sample.}
+\label{tbl:handoff}
+\end{table}
+      
+ Finally, we look at addresses with extraordinarily high
 latencies ( greater than 100 seconds); in particular, we want to
 understand whether these high latencies are an instance of a
 first-ping-like behavior, where wireless negotiation or
@@ -70,22 +89,3 @@ twice as many pings are part of \emph{Sustained high latency and
   loss}.
 %
 
-\newcommand{\noop}[1]{#1}
-\begin{table}[t]
-  \begin{center}%
-    \begin{small}%
-      \begin{tabular}{c|rrr}
-        \hdrbar{Pattern} & \hdr{Pings} & \hdr{Events} & \hdr{Addrs}\\\hline
-        \noop{Low latency, then decay} & 615 & 13 & 10\Tstrut\\
-        \noop{Loss, then decay} & 1528 & 81 & 33\\
-        \noop{Sustained high latency and loss} & 2994 & 21 & 14 \\
-        \noop{High latency between loss} & 12 & 12 & 12
-        % 
-      \end{tabular}
-    \end{small}
-    \end{center}
-  \caption{We observed distinct patterns of latency and loss near high latency responses,
-    classifying all 5149 pings above 100 seconds from the sample.}
-\label{tbl:handoff}
-\end{table}
-      

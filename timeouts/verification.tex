@@ -44,7 +44,7 @@ around 350M addresses.
 
 \begin{table}[tb]
   \begin{center}
-    \begin{small}
+    \begin{tiny}
   \begin{tabular}{r|c|c|c}
     \hdr{Scan Date} & \hdr{Day} & \hdr{Begin Time} & \hdr{Echo Responses} \\
     \hline
@@ -68,9 +68,9 @@ around 350M addresses.
     \textbf{Jul 9, 2015} & Thu & 12:00 & 369M \\
     \textbf{Jul 12, 2015} & Sun & 12:00 & 367M \\
     \end{tabular}
-    \end{small}
+    \end{tiny}
   \end{center}
-    \caption{Zmap scan details: For each Zmap scan in
+    \caption[Details of Zmap scans used in the analyses]{Zmap scan details: For each Zmap scan in
       Figure~\ref{fig:grand_zmap}, the table shows the date, day of the
       week, the time at which the scan began (in UTC time), and the number of
       destinations that responded with Echo Responses.}
@@ -118,7 +118,7 @@ We infer from these nearly identical latency distributions that high latencies a
 \begin{center}
 \includegraphics[width=3in]{timeouts/figs/grand_zmap}
 \end{center}
-\caption{\label{fig:grand_zmap}%
+\caption[Distribution of RTTs for all Zmap scans performed in 2015]{\label{fig:grand_zmap}%
 Distribution of RTTs for all Zmap scans performed in 2015. Around 5\%
 of addresses have latencies greater than 1s in each scan, and 0.1\% of addresses observed latencies in excess of 75s.
 }
@@ -171,7 +171,7 @@ latencies are a product of the probing scheme.
 % \centering
 \includegraphics[width=3in]{timeouts/figs/cdf_high_rtt_guys_grand}
 \end{center}
-\caption{\label{fig:cdf_high_rtt_ips}%
+\caption[Confirmation of high latency with Scamper]{\label{fig:cdf_high_rtt_ips}%
 Confirmation of high latency: Percentile latency per IP address for
 2000 randomly chosen IP addresses from ISI's 2011 - 2013 surveys that had $>$ 5\% of pings with
 latencies 100s and above. Each point represents an IP address and the

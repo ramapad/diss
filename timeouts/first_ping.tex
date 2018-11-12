@@ -63,7 +63,7 @@ for comparison).
 \begin{center}
 \includegraphics[width=3in]{timeouts/figs/initial_dual_cdf}
 \end{center}
-\caption{\label{fig:initial_drops_cdf}Bottom: Difference between initial latency and second probe latency; values around 1 indicate that both responses arrive at about the same time, values near zero indicate that the RTTs were about the same.  The second line includes only those where $RTT_1 > max(RTT_2 \ldots RTT_n)$.  Top: The probability that, given $RTT_1 - RTT_2$ on the $x$-axis, that $RTT_1 > max(RTT_2 \ldots RTT_n)$.}
+\caption[The first response often has the largest RTT]{\label{fig:initial_drops_cdf}Bottom: Difference between initial latency and second probe latency; values around 1 indicate that both responses arrive at about the same time, values near zero indicate that the RTTs were about the same.  The second line includes only those where $RTT_1 > max(RTT_2 \ldots RTT_n)$.  Top: The probability that, given $RTT_1 - RTT_2$ on the $x$-axis, that $RTT_1 > max(RTT_2 \ldots RTT_n)$.}
 \end{figure}
 
 % \vspace{-0.1in}
@@ -93,7 +93,7 @@ indicative of an overestimate with high probability.
 \begin{center}
 \includegraphics[width=3in]{timeouts/figs/drops_to_min_cdf}
 \end{center}
-\caption{\label{fig:drops_to_min}Difference between initial latency and observed minimum.  The typical setup time is below four seconds.}
+\caption[Difference between initial RTT and observed minimum]{\label{fig:drops_to_min}Difference between initial latency and observed minimum.  The typical setup time is below four seconds.}
 \end{figure}
 
 \subsubsection*{How long does the negotiation or wake-up process take, and how 
@@ -114,7 +114,8 @@ that the wake-up or negotiation process generally takes from one-half to four se
 \begin{center}
 \includegraphics[width=3in]{timeouts/figs/prefix_percentage_cdf}
 \end{center}
-\caption{\label{fig:prefix_percentage_cdf}Percentage of addresses in a /24 prefix showing 
+\caption[Percentage of addresses in a /24 prefix showing 
+  a drop from the initial to the maximum]{\label{fig:prefix_percentage_cdf}Percentage of addresses in a /24 prefix showing 
   a drop from the initial to the maximum.}
 \end{figure}
 % \neil{maybe drop the following par} 

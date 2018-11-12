@@ -2,7 +2,8 @@
 % \begin{sloppypar}
 % \section{Outage-caused address changes}
 % \end{sloppypar}
-\section{Outage-caused address \\ changes}
+% \section{Outage-caused address \\ changes}
+\section{Outage-caused address changes}
 \label{sec:outages}
 
 In Section~\ref{sec:periodic_asns}, we saw that even probes from ISPs
@@ -79,7 +80,8 @@ as the median for at least two consecutive days.
   \begin{center}
     \includegraphics[width=0.99\textwidth]{addr_change/figs/global_rebooted_idxs_per_d_connlogs_yearly_bar}
   \end{center}
-  \caption{\label{fig:global_rebooted_idxs_per_d} Number of unique
+  \caption[Number of unique
+    RIPE Atlas probes that rebooted on each day of the year]{\label{fig:global_rebooted_idxs_per_d} Number of unique
     probes that rebooted on each day of the year.  Days with exceptionally
     many reboots follow the distribution of firmware updates.  We indicate
     days where updates seem to have been distributed with 
@@ -123,7 +125,8 @@ always or seldom change addresses on an outage.
   \begin{center}
     \includegraphics[width=3in]{addr_change/figs/top_asns_frac_norenums_over_totalnos_cdf}
   \end{center}
-  \caption{\label{fig:top_asns_frac_norenums_over_totalnos}
+  \caption[Distribution of the conditional probability that an address change occurred
+given a network outage]{\label{fig:top_asns_frac_norenums_over_totalnos}
 Distribution of $P(ac|nw)$ per probe for the ASes with the most probes
 that had at least one address change. Probes in DTAG, Orange, and BT, are far more likely to change addresses upon a
     network outage than probes in Verizon and LGI.}
@@ -134,7 +137,8 @@ that had at least one address change. Probes in DTAG, Orange, and BT, are far mo
   \begin{center}
     \includegraphics[width=3in]{addr_change/figs/top_asns_frac_porenums_over_totalpos_cdf}
   \end{center}
-  \caption{\label{fig:top_asns_frac_porenums_over_totalpos}
+  \caption[Distribution of the conditional probability that an address change occurred
+given a power outage]{\label{fig:top_asns_frac_porenums_over_totalpos}
 %
 Distribution of $P(ac|pw)$ per probe for probes running version 3. As
 with network outages, probes in DTAG and Orange are more likely
@@ -187,7 +191,9 @@ PJSC Rostelecom          &  8997  &  Russia   &  7     &  71  &  29  &  57  &  1
    \end{tabular}
   \end{tiny}
   \end{center}
-  \caption{\label{tbl:outages}Probes likely to change
+  \caption[Probes likely to change
+    addresses upon network outages are also likely to change addresses
+    upon power outages.]{\label{tbl:outages}Probes likely to change
     addresses upon network outages are also likely to change addresses
     upon power outages. The table shows autonomous
     systems with at least five
@@ -227,6 +233,7 @@ upon outage confirmed that they use PPPoE and Radius to assign
 addresses for their DSL lines. We expect that this property can be
 used as evidence in inferring a device's link type.
 
+\clearpage
 
 \subsection{Is there a relationship between outage duration and
   address changes?}
@@ -235,7 +242,8 @@ used as evidence in inferring a device's link type.
   \includegraphics[width=1.5in]{figs/6830_combined_merged_bar}~~~
   \includegraphics[width=1.5in]{figs/3215_combined_merged_bar}
 
-  \caption{\label{fig:outagedurs} The likelihood of an address change (renumbering)
+  \caption[Relationship between outage duration and
+  address changes]{\label{fig:outagedurs} The likelihood of an address change (renumbering)
     given network or power outages of different durations in LGI (left)
     and Orange (right).  The top graph is a histogram; the
     complete bar represents the number of outages observed

@@ -71,7 +71,7 @@ $D_{min}$ values are typically below 8.
 10000 & 1980 & 112 & 26 & 11 \\
 50000 & 9491 & 457 & 85 & 29 \\
     \end{tabular}
-  \caption{\label{tbl:binomial_thresh}
+  \caption[$D_{min}$ values for varying values of $N$ and $P_d$]{\label{tbl:binomial_thresh}
 	  $D_{min}$ values for varying values of $N$ and $P_d$.  There is
 	  less than 0.01\% probability according to the binomial 
 	  test that $D_{min}$ or more addresses fail for each $N$ and
@@ -177,7 +177,7 @@ providers (RISE Broadband), and satellite providers (Viasat).
 
 \begin{figure*}[t]
 \includegraphics[width=\linewidth]{corrfails/figs/fig1-combined}
-\caption{
+\caption[Filtering lossy addresses]{
 \label{fig:lr}
 \label{fig:lrs_per_pingedaddr}
 \label{fig:iggy_ips_frac_per_as}
@@ -216,7 +216,7 @@ and do not consider these addresses in the remaining analyses.
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.99\linewidth]{corrfails/figs/fig2-combined}
-\caption{
+\caption[Potential $N$ and $P_d$ values in the Thunderping dataset]{
 \label{fig:fig2}
 Potential $N$ and $P_d$ values in the Thunderping dataset: On
 the left, we show the distribution of all addresses (across all
@@ -275,7 +275,10 @@ $\leq$ 5000 & 0 (0.0\%) & 171 (0.8\%) & 1865 (9.0\%) & 458 (2.2\%) \\
 $\leq$ 10000 & 0 (0.0\%) & 0 (0.0\%) & 83 (0.4\%) & 0 (0.0\%) \\
 $\leq$ 50000 & 0 (0.0\%) & 0 (0.0\%) & 32 (0.2\%) & 0 (0.0\%) \\
     \end{tabular}
-  \caption{\label{tbl:events_per_nup_and_fprob} Dependent disruption
+  \caption[Dependent disruption
+events for different values of number of addresses that can
+potentially fail ($N$) and probability of disruption ($P_d$) from the
+Thunderping dataset]{\label{tbl:events_per_nup_and_fprob} Dependent disruption
 events for different values of number of addresses that can
 potentially fail ($N$) and probability of disruption ($P_d$) from the
 Thunderping dataset. Of 20,831 total dependent disruption
@@ -301,7 +304,8 @@ probability of occurring or if they are well clear of this threshold.
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.5\linewidth]{corrfails/figs/err_prob_660_jan17todec17_cdf} 
-\caption{
+\caption[Distribution of the probability that detected dependent
+disruption events could have occurred independently]{
    \label{fig:err_prob}
 Figure~\ref{fig:err_prob} shows the distribution of the
 probability that the 20,831 detected dependent disruption events could have occurred

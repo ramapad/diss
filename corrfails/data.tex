@@ -4,7 +4,8 @@
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.5\linewidth]{corrfails/figs/dmin_vs_nout_660_jan17todec17_extra_glorious_scatter}
-   \caption{
+   \caption[$D_{min}$ vs observed disruptions, for each
+   detected dependent disruption event]{
    \label{fig:dmin_vs_nout}
 For each detected correlated disruption event,
 Figure~\ref{fig:dmin_vs_nout} shows the $D_{min}$ value on the x-axis and
@@ -89,7 +90,7 @@ events for Comcast, 1855 for Viasat, 1734 for Qwest).
 \begin{figure}[t]
 \centering
 \includegraphics[width=.5\linewidth]{corrfails/figs/corrfails_by_isp_660_jan17todec17_filter0_bar}
-\caption{
+\caption[Dependent disruption events detected per ISP]{
 \label{fig:corrfails_across_isps}
 Figure~\ref{fig:corrfails_across_isps} shows the number of
 dependent disruption events detected per ISP. Note that these numbers
@@ -100,12 +101,9 @@ infrastructure.}
 
 We grouped dependent disruption events by ISP to check if any ISPs contribute an
 unusual number of events. Figure~\ref{fig:corrfails_across_isps} shows the top 15
-ISPs with dependent disruption events.
-% late axe - ns
-%Most of the ISPs from
-%Figure~\ref{fig:iggy_ips_frac_per_as} are represented here as well, suggesting
-%that no ISPs are unduly biasing our results.
-These top 15 ISPs together account
+ISPs with dependent disruption events. Most of the ISPs from
+Figure~\ref{fig:iggy_ips_frac_per_as} are represented here as well, suggesting
+that no ISPs are unduly biasing our results. These top 15 ISPs together account
 for 13,643 (65\%) of all detected events.
 
 We emphasize that these results are not meant to reflect any
@@ -148,7 +146,7 @@ Viasat
 \label{fig:corrfails_timeofweek_viasat}
 }
 \end{subfigure}
-\caption{
+\caption[Dependent disruption events that began in each hour of the week]{
 \label{fig:corrfails_tow_asn}
 %Investigating addresses with high loss rates
 Dependent disruption events that began in each hour of the week. 'Mon' on the
@@ -233,7 +231,7 @@ $\leq$ 100 & 15 (3\%) & 2 (0\%) & 4 (1\%) & 7 (1\%) & 5 (1\%) & 23 (5\%) & 31 (6
 $\leq$ 500 & 2 (1\%) & 0 (0\%) & 1 (1\%) & 0 (0\%) & 0 (0\%) & 1 (1\%) & 8 (5\%) & 35 (21\%) & 52 (31\%) & 69 (41\%) & 0 (0\%)\\
 $\leq$ 1000 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 1 (33\%)\\
     \end{tabular}
-  \caption{\label{tbl:nouts_vs_nrecs} The number of addresses that
+  \caption[Dependent recovery]{\label{tbl:nouts_vs_nrecs} The number of addresses that
     recovered (columns) for dependent disruptions affecting different numbers of
     addresses (rows). -2 indicates that no addresses that dropped out
     were observed to have recovered. -1 indicates that only one address recovered. The other
@@ -289,7 +287,7 @@ group, more than 50\% recover together.
 %
 % \hfill
 %
-\caption{
+\caption[Durations of dependent disruption events]{
 \label{fig:rec_durs}
 % Caption would go here
 (a)~The distribution of durations of dependent dropouts for all addresses that
@@ -329,7 +327,7 @@ together often last less than an hour.
 \begin{figure}[t]
 \centering
 \includegraphics[width=3.3in]{corrfails/figs/corrfails_over_time_660_jan17todec17_scatter_no_nils}
-\caption{
+\caption[Multi-ISP dependent disruption events over time]{
 \label{fig:multiisp_over_time}
 Multi-ISP dependent disruption events over time: several ISPs in the same
 state have simultaneous disruption events on 333 occasions. Here, we
@@ -340,7 +338,7 @@ with many multi-ISP events often correlate with days with large known power outa
 \begin{figure}[t]
 \centering
 \includegraphics[width=.5\linewidth]{corrfails/figs/corrfails_over_irma}
-\caption{
+\caption[Multi-ISP dependent disruption events during Hurricane Irma]{
 \label{fig:corrfails_over_irma}
 Multi-ISP dependent disruption events during Hurricane Irma in Florida (FL), Georgia (GA),
 and South Carolina (SC). Of 111 events during this time, 15 affected 3

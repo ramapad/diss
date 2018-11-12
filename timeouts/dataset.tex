@@ -59,7 +59,7 @@ Scriptroute~\cite{usits03-spring}.
 \begin{center}
 \includegraphics[width=0.7\textwidth]{timeouts/figs/cdf_raw_ping_ttl}
 \end{center}
-\caption{\label{fig:raw_lat}%
+\caption[Survey-detected response latencies are capped at the timeout]{\label{fig:raw_lat}%
 CDF of percentile latency of survey-detected responses per IP address: Each point represents an IP address
 and each curve represents the percentile from that IP address's
 response latencies. The slope of the latency
@@ -263,7 +263,7 @@ end in binary '01' or '10' have very few addresses.
 \begin{center}
 \includegraphics[width=3in]{timeouts/figs/zmap_last_octet_hist_all_bcast_addrs_apr_17}
 \end{center}
-\caption{\label{fig:zmap_last_octet_hist}%
+\caption[Broadcast addresses that solicit responses in Zmap scans]{\label{fig:zmap_last_octet_hist}%
 Broadcast addresses that solicit responses in Zmap: Broadcast addresses usually
 have last octets whose last N bits are either 1 or 0
 (where N $>$ 1).
@@ -281,8 +281,8 @@ have last octets whose last N bits are either 1 or 0
 \begin{center}
 \includegraphics[width=.99\linewidth]{timeouts/figs/last_octet_hist}
 \end{center}
-\caption{\label{fig:bcast_hist}%
-Number of unmatched responses that followed a probe sent to address
+\caption[Broadcast addresses that solicit responses in ISI surveys]{\label{fig:bcast_hist}%
+Broadcast addresses that solicit responses in ISI surveys: Number of unmatched responses that followed a probe sent to address
 with last octet X. Last octets with last N bits ending in
 0s and 1s (where N $>$ 1) observe spikes, likely caused by broadcast
 responses. Not all unmatched responses are caused by broadcast
@@ -343,7 +343,7 @@ to a latency based on the interval between probing
 % \includegraphics[width=0.97\linewidth]{timeouts/figs/wfall_bcast}
 \includegraphics[width=3in]{timeouts/figs/wfall_bcast}
 \end{center}
-\caption{\label{fig:bcast_sample}%
+\caption[Potential incorrect match caused by a broadcast response]{\label{fig:bcast_sample}%
 We filter broadcast responses since they can lead to the inference of
 false latencies. This figure illustrates a potential incorrect match
 caused by a broadcast response.
@@ -481,7 +481,7 @@ behavior.
 % \centering
 \includegraphics[width=.9\linewidth]{timeouts/figs/ccdf_dos}
 \end{center}
-\caption{\label{fig:dos}%
+\caption[Some addresses send multiple responses to a single echo request]{\label{fig:dos}%
 Maximum number of responses received for a single echo request, for IP
 addresses that sent more than 2 responses to an echo request. The red
 dots indicate instances where addresses responded to a single echo

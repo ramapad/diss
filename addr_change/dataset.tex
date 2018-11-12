@@ -61,7 +61,7 @@ may technically belong to the CPE and the probe has a different, private, RFC 19
     206 & Jan 4 02:40:58 & Jan 5 02:15:45 & 91.55.163.252 & 23.6\\
     206 & Jan 5 02:38:39 & Jan 6 02:14:48 & 91.55.141.63 & NA\\
     \end{tabular}
-  \caption{\label{tbl:sample}Connection log sample for the first five
+  \caption[RIPE Atlas Connection log sample]{\label{tbl:sample}Connection log sample for the first five
     days of 2015. We compute the address duration, shown in the last column in hours.}
     
 \end{table}
@@ -145,7 +145,7 @@ from our analysis of the other RIPE Atlas datasets as well.
     ~~ Multiple ASes & 766\\
     \textbf{Analyzable (AS-level)} & \textbf{2,272} \\
     \end{tabular}
-    \caption{Of the 10,977 probes in the dataset, we are able to find address changes on 3,038 probes. 766 probes had addresses from multiple ASes; we discard address changes across ASes for these probes from our geographic analysis and filter these probes altogether in our AS-level analysis.}
+    \caption[Filtering RIPE Atlas probes]{Of the 10,977 probes in the dataset, we are able to find address changes on 3,038 probes. 766 probes had addresses from multiple ASes; we discard address changes across ASes for these probes from our geographic analysis and filter these probes altogether in our AS-level analysis.}
     \label{tbl:filtered}
 \end{table}
 
@@ -268,7 +268,8 @@ changing.
     16893 & Jan 27 09:25:39 & 3 & 3 & 1342\\
     16893 & Jan 27 09:29:36 & 3 & 3 & 146\\
     \end{tabular}
-    \caption{Sample of k-root ping dataset for probe ID 16893 when a network outage occurred. We detect a network outage when pings to the k-root server are lost and when this ping loss is accompanied by increasing Last Time Synchronized (LTS) values. Here we detect a network outage beginning at Jan 27 09:05:48 and ending at Jan 27 09:21:40.}
+    \caption[Sample k-root ping data during the occurrence of a
+    network outage]{Sample of k-root ping dataset for probe ID 16893 when a network outage occurred. We detect a network outage when pings to the k-root server are lost and when this ping loss is accompanied by increasing Last Time Synchronized (LTS) values. Here we detect a network outage beginning at Jan 27 09:05:48 and ending at Jan 27 09:21:40.}
     \label{tbl:sample_pings}
 \end{table}
 
@@ -317,7 +318,7 @@ outage by up to eight minutes.
     206 & Jan 1 17:53:59 & 203\\
     206 & Jan 1 18:59:44 & 4147\\
     \end{tabular}
-    \caption{Sample of SOS-uptime records from RIPE Atlas for January 1 2015 for probe ID 206. The third row shows that the uptime counter had reset 19 seconds before 17:50:55, allowing us to infer that the probe rebooted at 17:50:36.}
+    \caption[Sample SOS-uptime data during the reboot of a RIPE Atlas probe]{Sample of SOS-uptime records from RIPE Atlas for January 1 2015 for probe ID 206. The third row shows that the uptime counter had reset 19 seconds before 17:50:55, allowing us to infer that the probe rebooted at 17:50:36.}
     \label{tbl:sample_sos}
 \end{table}
 

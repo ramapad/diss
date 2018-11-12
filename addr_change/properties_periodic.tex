@@ -41,7 +41,7 @@ Net by Net     & 12714&Russia    &  47&      7&    3&    100&    100&     67&   
    \end{tabular}
   \end{tiny}
   \end{center}
-  \caption{\label{tbl:periodic_asns} Autonomous
+  \caption[ASes that renumber periodically]{\label{tbl:periodic_asns} Autonomous
     systems that had at least three probes with a total time fraction
     for duration $d$ (in hours) greater than 0.25. $f^p_d > 0.25$ shows
     the number of probes that had a total time fraction at $d$ greater than 0.25;
@@ -168,12 +168,15 @@ $MAX \leq d$) appears in the last column of Table~\ref{tbl:periodic_asns}.
 Most periodic probes from all ISPs
 except Global Village Telecom and SONATEL-AS have maximum durations of this kind.  
 
+% Let's force the table to appear here
+\clearpage
+
 \subsubsection{Are changes synchronized?}
 
 \begin{figure}[th]
  \centering
     \includegraphics[width=3in]{addr_change/figs/weekly_3215_a_periodicrenums_per_h24_connlogs_bar}
-  \caption{\label{fig:3215_renums_per_h24}Periodic address changes
+  \caption[Periodic address changes in Orange]{\label{fig:3215_renums_per_h24}Periodic address changes
     in Orange appear more evenly distributed among the hours of the
     day.}
 \end{figure}
@@ -181,7 +184,7 @@ except Global Village Telecom and SONATEL-AS have maximum durations of this kind
 \begin{figure}[th]
   \centering
     \includegraphics[width=3in]{addr_change/figs/daily_3320_a_periodicrenums_per_h24_connlogs_bar}
-  \caption{\label{fig:3320_renums_per_h24}Periodic address changes
+  \caption[Periodic address changes in Deutsche Telekom]{\label{fig:3320_renums_per_h24}Periodic address changes
     are more likely in some hours for Deutsche Telekom.}
 \end{figure}
 
@@ -214,3 +217,4 @@ deployment scenario, observing almost three quarters of all periodic
 address changes between hours 24 to 6 (in GMT). However, some
 CPEs do not have this feature because a quarter of the periodic
 address changes happen at other hours of the day.
+
