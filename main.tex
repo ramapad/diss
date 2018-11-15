@@ -33,6 +33,9 @@
 
 %Pages from this point start at lower-case Roman number ii)
 \pagestyle{plain} \pagenumbering{roman} \setcounter{page}{2}
+
+\cleardoublepage
+\phantomsection
 \addcontentsline{toc}{chapter}{Acknowledgements}
 \include{acks}
 
@@ -49,6 +52,8 @@
 \setlength{\parskip}{0em}
 \renewcommand{\baselinestretch}{2}
 \small\normalsize
+
+%Pages from this point start at Arabic numeral 1
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
@@ -101,10 +106,16 @@
 \input{conclusion}
 \newpage
 
-\clearpage % TODO: Find out what clearpage does?
+% \clearpage
+\cleardoublepage
+\phantomsection
 \renewcommand{\baselinestretch}{1}
 \small\normalsize
-\bibliographystyle{plain}
+% \bibliographystyle{plain}
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{unsrt}
 \bibliography{longnames,outages}
+
 
 \end{document}

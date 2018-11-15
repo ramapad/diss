@@ -2,11 +2,15 @@
 %TODO: Find out what's different about ns-proposal used in reliability proposal
 % \documentclass[letterpaper,10pt]{article}
 %% \documentclass[10pt,onecolumn]{article}
-\documentclass[10pt,onecolumn]{ns-article}
-% \newcommand{\mydriver}{pdflatex}
+% \documentclass[10pt,onecolumn]{ns-article}
+\newcommand{\mydriver}{pdflatex}
 % \documentclass[12pt,\mydriver]{thesis-2}
+\documentclass[12pt,\mydriver]{thesis}
 %% \usepackage[letterpaper, margin=1.25in]{geometry} % For giving to neil
 
+% To avoid widows
+\clubpenalty=10000 
+\widowpenalty = 10000
 
 \PassOptionsToPackage{hyphens}{url}
 \usepackage[hyphens]{url}
@@ -14,6 +18,11 @@
 \hypersetup{breaklinks=true}
 \urlstyle{same}
 \usepackage{balance}
+
+\usepackage{titlesec}
+   \titleformat{\chapter}
+      {\large \bf}{Chapter \thechapter:}{1em}{}
+      % {\normalfont\large}{Chapter \thechapter:}{1em}{}
 
 % TODO: I seem to have used most of these from the reliability
 % proposal. Find out what the role of each command is.
@@ -37,10 +46,6 @@
 
 \usepackage[square,comma,numbers,sort&compress]{natbib}
 
-\usepackage{titlesec}
-   \titleformat{\chapter}
-      {\normalfont\large}{Chapter \thechapter:}{1em}{}
-
 \usepackage{color}
 \usepackage[table]{xcolor}
 \definecolor{orange}{RGB}{255,127,0}
@@ -60,30 +65,6 @@
 
 % \newcommand{\ignore}[1]{}
 
-% Rk: The following commands came from the NSF reliability proposal
-% \setlength{\textwidth}{6.5in}
-% \setlength{\textheight}{9in}
-% \setlength{\topmargin}{0in}
-% \setlength{\headheight}{0in}
-% \setlength\columnsep{.30in}
-% \setlength{\headsep}{0in}
-% \setlength{\oddsidemargin}{0pt}
-% \setlength{\evensidemargin}{0pt}
-
-% Rk: The following commands are from mainthesis.tex from UMD's
-% official style guide. Revisit and fix to get tables.
-% \newcommand{\tbsp}{\rule{0pt}{18pt}} %used to get a vertical distance after \hline
-% \renewcommand{\baselinestretch}{2}
-% \setlength{\textwidth}{5.9in}
-% \setlength{\textheight}{9in}
-% \setlength{\topmargin}{-.50in}
-% %\setlength{\topmargin}{0in}    %use this setting if the printer makes the the top margin 1/2 inch instead of 1 inch
-% \setlength{\oddsidemargin}{.55in}
-% \setlength{\parindent}{.4in}
-% \pagestyle{empty}
-
-\setlength{\textfloatsep}{.1in plus 0.05in}
-\setlength{\itemsep}{-10pt}
 
 
 \usepackage{enumitem}
@@ -103,20 +84,25 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{ucs}
 
-% \newcounter{FileStack}
-% \let\OrigInput\input
-% \newcommand{\ninput}[1]{%
-%   \stepcounter{FileStack}
-%   \expandafter\let
-%   \csname NameStack\theFileStack\endcsname
-%   \ThisFile
-%   \def\ThisFile{#1}%
-%   \OrigInput{#1}%
-%   \expandafter\let\expandafter
-%   \ThisFile
-%   \csname NameStack\theFileStack\endcsname
-%   \addtocounter{FileStack}{-1}%
-% }
+% Was purportedly a fix for getting the Bibliography to appear in the
+% Table fo Contents. However, it threw an error. So I went with the
+% other fix: \addcontentsline{toc}{section}{Bibliography}
+% \usepackage[nottoc,numbib]{tocbibind}
+
+\newcounter{FileStack}
+\let\OrigInput\input
+\newcommand{\ninput}[1]{%
+  \stepcounter{FileStack}
+  \expandafter\let
+  \csname NameStack\theFileStack\endcsname
+  \ThisFile
+  \def\ThisFile{#1}%
+  \OrigInput{#1}%
+  \expandafter\let\expandafter
+  \ThisFile
+  \csname NameStack\theFileStack\endcsname
+  \addtocounter{FileStack}{-1}%
+}
 
 %boxed,vlined,,linesnumbered,commentsnumbered
 \usepackage[vlined]{algorithm2e}
@@ -125,3 +111,32 @@
 
 
 
+% Rk: The following commands came from the NSF reliability proposal
+% \setlength{\textwidth}{6.5in}
+% \setlength{\textheight}{9in}
+% \setlength{\topmargin}{0in}
+% \setlength{\headheight}{0in}
+% \setlength\columnsep{.30in}
+% \setlength{\headsep}{0in}
+% \setlength{\oddsidemargin}{0pt}
+% \setlength{\evensidemargin}{0pt}
+
+% Rk: The following commands are from mainthesis.tex from UMD's
+% official style guide. Revisit and fix to get tables.
+\newcommand{\tbsp}{\rule{0pt}{18pt}} %used to get a vertical distance after \hline
+\renewcommand{\baselinestretch}{2}
+\setlength{\textwidth}{5.9in}
+\setlength{\textheight}{9in}
+\setlength{\topmargin}{-.50in}
+%\setlength{\topmargin}{0in}    %use this setting if the printer makes the the top margin 1/2 inch instead of 1 inch
+\setlength{\oddsidemargin}{.55in}
+\setlength{\parindent}{.4in}
+\pagestyle{empty}
+
+% \setlength{\textfloatsep}{.1in plus 0.05in} % This command reduces
+% space between a fig's caption and the following text. May perhaps be
+% useful for recovering space for a document with a
+% word-limit. It negatively affects the diss.
+% \setlength{\itemsep}{-10pt}
+
+\captionsetup{font=small,labelfont={bf}}

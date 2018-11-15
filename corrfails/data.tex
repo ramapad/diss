@@ -215,21 +215,18 @@ This indicates that dependent recovery is quite common.
 %  \scriptsize
   \centering
   \hspace{-0.04in}\tiny
-  \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}
-\textbf{Disruptions} & \multicolumn{11}{c|}{Correlated recoveries} \\
+  \begin{tabular}{c|c|c|c|c|c|c|c|c|c|}
+\textbf{Disruptions} & \multicolumn{9}{c|}{Correlated recoveries} \\
     & \textbf{-2} & \textbf{-1} & \textbf{0} & \textbf{2} &
-    \textbf{3} & \textbf{$\leq$ 5} & \textbf{$\leq$ 10}  &
-    \textbf{$\leq$ 50}  & \textbf{$\leq$ 100} & \textbf{$\leq$ 500}  &
-    \textbf{$\leq$ 1000}\\
+    \textbf{3} & \textbf{$\leq$ 10}  &
+    \textbf{$\leq$ 50}  & \textbf{$\leq$ 100}  & \textbf{$\leq$ 1000}\\
     \hline
-2 & 623 (24\%) & 286 (11\%) & 425 (16\%) & 1259 (49\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
-3 & 476 (16\%) & 283 (10\%) & 463 (16\%) & 741 (25\%) & 1006 (34\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
-$\leq$ 5 & 520 (11\%) & 304 (6\%) & 761 (15\%) & 1050 (21\%) & 915 (18\%) & 1401 (28\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
-$\leq$ 10 & 349 (7\%) & 184 (3\%) & 568 (11\%) & 888 (17\%) & 799 (15\%) & 1159 (22\%) & 1377 (26\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
-$\leq$ 50 & 216 (5\%) & 78 (2\%) & 154 (4\%) & 282 (7\%) & 281 (6\%) & 547 (13\%) & 1007 (23\%) & 1760 (41\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
-$\leq$ 100 & 15 (3\%) & 2 (0\%) & 4 (1\%) & 7 (1\%) & 5 (1\%) & 23 (5\%) & 31 (6\%) & 218 (44\%) & 193 (39\%) & 0 (0\%) & 0 (0\%)\\
-$\leq$ 500 & 2 (1\%) & 0 (0\%) & 1 (1\%) & 0 (0\%) & 0 (0\%) & 1 (1\%) & 8 (5\%) & 35 (21\%) & 52 (31\%) & 69 (41\%) & 0 (0\%)\\
-$\leq$ 1000 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 1 (33\%)\\
+2 & 623 (24\%) & 286 (11\%) & 425 (16\%) & 1259 (49\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+3 & 476 (16\%) & 283 (10\%) & 463 (16\%) & 741 (25\%) & 1006 (34\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+$\leq$ 10 & 869 (8\%) & 488 (5\%) & 1329 (13\%) & 1938 (19\%) & 1714 (17\%) & 3937 (38\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+$\leq$ 50 & 216 (5\%) & 78 (2\%) & 154 (4\%) & 282 (7\%) & 281 (6\%) & 1554 (36\%) & 1760 (41\%) & 0 (0\%) & 0 (0\%)\\
+$\leq$ 100 & 15 (3\%) & 2 (0\%) & 4 (1\%) & 7 (1\%) & 5 (1\%) & 54 (11\%) & 218 (44\%) & 193 (39\%) & 0 (0\%)\\
+$\leq$ 1000 & 2 (1\%) & 0 (0\%) & 1 (1\%) & 0 (0\%) & 0 (0\%) & 10 (6\%) & 35 (20\%) & 52 (30\%) & 71 (42\%)\\
     \end{tabular}
   \caption[Dependent recovery]{\label{tbl:nouts_vs_nrecs} The number of addresses that
     recovered (columns) for dependent disruptions affecting different numbers of
@@ -239,6 +236,35 @@ $\leq$ 1000 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (33\
     recovered did so in a correlated manner.
   }
 \end{table*}
+
+% \begin{table*}[th]
+% %  \scriptsize
+%   \centering
+%   \hspace{-0.04in}\tiny
+%   \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}
+% \textbf{Disruptions} & \multicolumn{11}{c|}{Correlated recoveries} \\
+%     & \textbf{-2} & \textbf{-1} & \textbf{0} & \textbf{2} &
+%     \textbf{3} & \textbf{$\leq$ 5} & \textbf{$\leq$ 10}  &
+%     \textbf{$\leq$ 50}  & \textbf{$\leq$ 100} & \textbf{$\leq$ 500}  &
+%     \textbf{$\leq$ 1000}\\
+%     \hline
+% 2 & 623 (24\%) & 286 (11\%) & 425 (16\%) & 1259 (49\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% 3 & 476 (16\%) & 283 (10\%) & 463 (16\%) & 741 (25\%) & 1006 (34\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% $\leq$ 5 & 520 (11\%) & 304 (6\%) & 761 (15\%) & 1050 (21\%) & 915 (18\%) & 1401 (28\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% $\leq$ 10 & 349 (7\%) & 184 (3\%) & 568 (11\%) & 888 (17\%) & 799 (15\%) & 1159 (22\%) & 1377 (26\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% $\leq$ 50 & 216 (5\%) & 78 (2\%) & 154 (4\%) & 282 (7\%) & 281 (6\%) & 547 (13\%) & 1007 (23\%) & 1760 (41\%) & 0 (0\%) & 0 (0\%) & 0 (0\%)\\
+% $\leq$ 100 & 15 (3\%) & 2 (0\%) & 4 (1\%) & 7 (1\%) & 5 (1\%) & 23 (5\%) & 31 (6\%) & 218 (44\%) & 193 (39\%) & 0 (0\%) & 0 (0\%)\\
+% $\leq$ 500 & 2 (1\%) & 0 (0\%) & 1 (1\%) & 0 (0\%) & 0 (0\%) & 1 (1\%) & 8 (5\%) & 35 (21\%) & 52 (31\%) & 69 (41\%) & 0 (0\%)\\
+% $\leq$ 1000 & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 0 (0\%) & 0 (0\%) & 1 (33\%) & 1 (33\%)\\
+%     \end{tabular}
+%   \caption[Dependent recovery]{\label{tbl:nouts_vs_nrecs} The number of addresses that
+%     recovered (columns) for dependent disruptions affecting different numbers of
+%     addresses (rows). -2 indicates that no addresses that dropped out
+%     were observed to have recovered. -1 indicates that only one address recovered. The other
+%     numbers show how many of the (at least two) addresses that
+%     recovered did so in a correlated manner.
+%   }
+% \end{table*}
 
 We also tested whether the likelihood of dependent recovery is a
 function of the number of addresses in the observed disrupted group.
